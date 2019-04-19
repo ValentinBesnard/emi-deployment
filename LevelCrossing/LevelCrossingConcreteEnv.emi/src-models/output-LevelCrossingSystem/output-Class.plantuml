@@ -1,0 +1,73 @@
+
+
+@startuml
+
+
+	class "[[DAL%3A%3AActivationProvider-Class.svg DAL::ActivationProvider]]" as DAL_ActivationProvider
+	class "[[DAL%3A%3AAuthorizationUser-Class.svg DAL::AuthorizationUser]]" as DAL_AuthorizationUser
+	class "Integer" as LevelCrossingSystem_Integer <<DataType>>
+	class "Boolean" as LevelCrossingSystem_Boolean <<DataType>>
+	class "System" as LevelCrossingSystem_System {
+		+♦ tcEntrance : [[LevelCrossingSystem%3A%3AEntranceTC-Class.svg EntranceTC]][2..1]
+		+♦ tcExit : [[LevelCrossingSystem%3A%3AExitTC-Class.svg ExitTC]]
+		+♦ controller : [[LevelCrossingSystem%3A%3AController-Class.svg Controller]]
+		+♦ railwaySign : [[LevelCrossingSystem%3A%3ARailwaySign-Class.svg RailwaySign]]
+		+♦ roadSign : [[LevelCrossingSystem%3A%3ARoadSign-Class.svg RoadSign]]
+		+♦ gate : [[LevelCrossingSystem%3A%3AGate-Class.svg Gate]]
+		+♦ tcEntrancePort : [[LevelCrossingSystem%3A%3AEntranceTCPort-Class.svg EntranceTCPort]][2..1]
+		+♦ tcExitPort : [[LevelCrossingSystem%3A%3AExitTCPort-Class.svg ExitTCPort]]
+		+♦ railwaySignPort : [[LevelCrossingSystem%3A%3ARailwaySignPort-Class.svg RailwaySignPort]]
+	}
+	class "entranceDetection" as LevelCrossingSystem_entranceDetection <<signal>> {
+		+id : Integer
+	}
+	class "exitDetection" as LevelCrossingSystem_exitDetection <<signal>> {
+		+id : Integer
+	}
+	class "EntranceTCPort" as LevelCrossingSystem_EntranceTCPort
+	class "ExitTCPort" as LevelCrossingSystem_ExitTCPort
+	class "RailwaySignPort" as LevelCrossingSystem_RailwaySignPort
+	class "EntranceTC" as ACTIVE_LevelCrossingSystem_EntranceTC {
+		-id : Integer
+	}
+	class "ExitTC" as ACTIVE_LevelCrossingSystem_ExitTC {
+		-id : Integer
+	}
+	class "Controller" as ACTIVE_LevelCrossingSystem_Controller {
+		-nbEngagedTrains : Integer
+		+<<signal>> entranceDetection()
+		+<<signal>> exitDetection()
+		+<<signal>> roadSignOn()
+		+<<signal>> roadSignOff()
+		+<<signal>> railwaySignOn()
+		+<<signal>> gateOpen()
+		+<<signal>> gateClosed()
+	}
+	class "RoadSign" as ACTIVE_LevelCrossingSystem_RoadSign {
+		+<<signal>> switchOn()
+		+<<signal>> switchOff()
+	}
+	class "Gate" as ACTIVE_LevelCrossingSystem_Gate {
+		+<<signal>> open()
+		+<<signal>> close()
+	}
+	class "RailwaySign" as ACTIVE_LevelCrossingSystem_RailwaySign {
+		-id : Integer
+		+<<signal>> switchOn()
+		+<<signal>> switchOff()
+	}
+	DAL_ActivationProvider <|-- LevelCrossingSystem_EntranceTCPort
+	DAL_ActivationProvider <|-- LevelCrossingSystem_ExitTCPort
+	DAL_AuthorizationUser <|-- LevelCrossingSystem_RailwaySignPort
+	DAL_ActivationProvider <|-- ACTIVE_LevelCrossingSystem_EntranceTC
+	DAL_ActivationProvider <|-- ACTIVE_LevelCrossingSystem_ExitTC
+	DAL_AuthorizationUser <|-- ACTIVE_LevelCrossingSystem_RailwaySign
+	ACTIVE_LevelCrossingSystem_Controller -- ACTIVE_LevelCrossingSystem_Gate : gate
+	ACTIVE_LevelCrossingSystem_Controller -- ACTIVE_LevelCrossingSystem_EntranceTC : tcEntrance[2..1]
+	ACTIVE_LevelCrossingSystem_Controller -- ACTIVE_LevelCrossingSystem_ExitTC : tcExit
+	ACTIVE_LevelCrossingSystem_Controller -- ACTIVE_LevelCrossingSystem_RoadSign : roadSign
+	LevelCrossingSystem_EntranceTCPort -- ACTIVE_LevelCrossingSystem_EntranceTC : tcEntrance
+	LevelCrossingSystem_ExitTCPort -- ACTIVE_LevelCrossingSystem_ExitTC : tcExit
+	ACTIVE_LevelCrossingSystem_Controller -- ACTIVE_LevelCrossingSystem_RailwaySign : railwaySign
+	ACTIVE_LevelCrossingSystem_RailwaySign -- LevelCrossingSystem_RailwaySignPort : train
+@enduml

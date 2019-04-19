@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:ClassDiagram">
+      <skinparams>
+        <commentsBefore></commentsBefore>
+      </skinparams>
+      <elements xsi:type="PlantUML:Class" name="DAL_LightProvider" longName="[[DAL%3A%3ALightProvider-Class.svg DAL::LightProvider]]" isAbstract="true"/>
+      <elements xsi:type="PlantUML:Class" name="DAL_ButtonUser" longName="[[DAL%3A%3AButtonUser-Class.svg DAL::ButtonUser]]" isAbstract="true"/>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_DIL_PwmLed" longName="PwmLed">
+        <features xsi:type="PlantUML:Attribute" name="-timer : UML_Timer"/>
+        <features xsi:type="PlantUML:Attribute" name="-channel : UML_PwmChannel"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_DIL_GpioLed" longName="GpioLed">
+        <features xsi:type="PlantUML:Attribute" name="-port : UML_GpioPort"/>
+        <features xsi:type="PlantUML:Attribute" name="-pin : UML_GpioPin"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_DIL_GpioButton" longName="GpioButton">
+        <features xsi:type="PlantUML:Attribute" name="-&#x2666; peer : [[DAL%3A%3AButtonReceiverPort-Class.svg ButtonReceiverPort]]"/>
+        <features xsi:type="PlantUML:Attribute" name="-port : UML_GpioPort"/>
+        <features xsi:type="PlantUML:Attribute" name="-pin : UML_GpioPin"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.2"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.3"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.1"/>
+        <members target="/0/@element.0/@elements.4"/>
+      </elements>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:Class name="DIL_PwmLed_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="DIL_PwmLed_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="DIL_PwmLed_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="DIL_PwmLed_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="DIL_GpioLed_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="DIL_GpioLed_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="DIL_GpioLed_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="DIL_GpioButton_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="DIL_GpioButton_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="DIL_GpioButton_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@266a47fd" longName="unnamed" stereotype="OpaqueBehavior"/>
+</xmi:XMI>

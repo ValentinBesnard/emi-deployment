@@ -1,0 +1,16 @@
+
+
+@startuml
+	state Main {
+		
+			state "cci : CCI" as CCICS_Main_cci {
+				
+					
+				
+			}
+			state "env : Env" as CCICS_Main_env {
+				
+					
+				
+			}
+			

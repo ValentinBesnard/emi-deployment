@@ -1,0 +1,26 @@
+
+
+@startuml
+	rectangle "<u>controller : Controller</u>" as CCISystem_system_CCI_controller
+	rectangle "<u>actuation : Actuation</u>" as CCISystem_system_CCI_actuation
+	rectangle "<u>csm : CruiseSpeedManager</u>" as CCISystem_system_CCI_csm
+	rectangle "<u>pm : PedalsManager</u>" as CCISystem_system_CCI_pm
+	rectangle "<u>buttonsPort : CCIButtonsPort</u>" as CCISystem_system_CCI_buttonsPort
+	rectangle "<u>clutchPedalPort : CCIPedalPort</u>" as CCISystem_system_CCI_clutchPedalPort
+	rectangle "<u>breakPedalPort : CCIPedalPort</u>" as CCISystem_system_CCI_breakPedalPort
+	rectangle "<u>throttlePedalPort : CCIPedalPort</u>" as CCISystem_system_CCI_throttlePedalPort
+	rectangle "<u>controlOnOffPort : CCIControlOnOffPort</u>" as CCISystem_system_CCI_controlOnOffPort
+	rectangle "<u>speedPort : CCISpeedPort</u>" as CCISystem_system_CCI_speedPort
+	rectangle "<u>cruiseSpeedPort : CCICruiseSpeedPort</u>" as CCISystem_system_CCI_cruiseSpeedPort
+	CCISystem_system_CCI_pm -- CCISystem_system_CCI_clutchPedalPort
+	CCISystem_system_CCI_pm -- CCISystem_system_CCI_breakPedalPort
+	CCISystem_system_CCI_pm -- CCISystem_system_CCI_throttlePedalPort
+	CCISystem_system_CCI_buttonsPort -- CCISystem_system_CCI_controller
+	CCISystem_system_CCI_controlOnOffPort -- CCISystem_system_CCI_actuation
+	CCISystem_system_CCI_speedPort -- CCISystem_system_CCI_actuation
+	CCISystem_system_CCI_cruiseSpeedPort -- CCISystem_system_CCI_csm
+	CCISystem_system_CCI_pm -- CCISystem_system_CCI_controller
+	CCISystem_system_CCI_actuation -- CCISystem_system_CCI_controller
+	CCISystem_system_CCI_csm -- CCISystem_system_CCI_controller
+	CCISystem_system_CCI_actuation -- CCISystem_system_CCI_csm
+@enduml

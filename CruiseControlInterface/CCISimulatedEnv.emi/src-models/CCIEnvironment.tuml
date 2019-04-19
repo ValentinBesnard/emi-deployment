@@ -1,0 +1,132 @@
+model CCIEnvironment with(
+	private "DAL.uml#DAL.Integer",
+	private "DAL.uml#DAL.Boolean",
+	private "DAL.uml#DAL.I_ControlOnOff",
+	private "DAL.uml#DAL.I_CruiseSpeed",
+	private "DAL.uml#DAL.ButtonsUser",
+	private "DAL.uml#DAL.PedalUser",
+	private "DAL.uml#DAL.ControlOnOffProvider",
+	private "DAL.uml#DAL.SpeedUser",
+	private "DAL.uml#DAL.CruiseSpeedProvider",
+	private "DAL.uml#DAL.updateSpeed_SE",
+	private "DAL.uml#DAL.updateSetPoint_SE",
+	private "DAL.uml#DAL.controlOn_SE",
+	private "DAL.uml#DAL.controlOff_SE"
+) {
+
+	// Ports for Env
+	class EnvButtonsPort extends ButtonsUser {}
+	class EnvPedalPort extends PedalUser {}
+	class EnvControlOnOffPort extends ControlOnOffProvider {}
+	class EnvSpeedPort extends SpeedUser {}
+	class EnvCruiseSpeedPort extends CruiseSpeedProvider {}
+
+	class Env {
+		public composite buttons[1-1] : Buttons;
+		public composite clutchPedal[1-1] : Pedal;
+		public composite breakPedal[1-1] : Pedal;
+		public composite throttlePedal[1-1] : Pedal;
+		public composite engine[1-1] : Engine = instEngine;
+
+		public composite port envButtonsPort[1-1] : EnvButtonsPort;
+		public composite port envClutchPedalPort[1-1] : EnvPedalPort;
+		public composite port envBreakPedalPort[1-1] : EnvPedalPort;
+		public composite port envThrottlePedalPort[1-1] : EnvPedalPort;
+		public composite port envControlOnOffPort[1-1] : EnvControlOnOffPort;
+		public composite port envSpeedPort[1-1] : EnvSpeedPort;
+		public composite port envCruiseSpeedPort[1-1] : EnvCruiseSpeedPort;
+
+		connector "c_buttonsPort_buttons" : EnvButtonsPort_Buttons between envButtonsPort and buttons;
+		connector "c_clutchPedalPort_clutchPedal" : EnvPedalPort_Pedal between envClutchPedalPort and clutchPedal;
+		connector "c_breakPedalPort_breakPedal" : EnvPedalPort_Pedal between envBreakPedalPort and breakPedal;
+		connector "c_throttlePedalPort_throttlePedal" : EnvPedalPort_Pedal between envThrottlePedalPort and throttlePedal;
+		connector "c_controlOnOffPort_engine" : EnvControlOnOffPort_Engine between envControlOnOffPort and engine;
+		connector "c_speedPort_engine" : EnvSpeedPort_Engine between envSpeedPort and engine;
+		connector "c_cruiseSpeedPort_engine" : EnvCruiseSpeedPort_Engine between envCruiseSpeedPort and engine;
+	}
+
+	instance instEngine of Engine {
+		speed = 50;
+	}
+	
+	// Associations for Env
+	association EnvButtonsPort_Buttons {
+		envButtonsPort[1-1] : EnvButtonsPort in EnvButtonsPort_Buttons;
+		buttons[1-1] : Buttons in EnvButtonsPort_Buttons;
+	}
+	association EnvPedalPort_Pedal {
+		envPedalPort[1-1] : EnvPedalPort in EnvPedalPort_Pedal;
+		pedal[1-1] : Pedal in EnvPedalPort_Pedal;
+	}
+	association EnvControlOnOffPort_Engine {
+		envControlOnOffPort[1-1] : EnvControlOnOffPort in EnvControlOnOffPort_Engine;
+		engine[1-1] : Engine in EnvControlOnOffPort_Engine;
+	}
+	association EnvSpeedPort_Engine {
+		envSpeedPort[1-1] : EnvSpeedPort in EnvSpeedPort_Engine;
+		engine[1-1] : Engine in EnvSpeedPort_Engine;
+	}
+	association EnvCruiseSpeedPort_Engine {
+		envCruiseSpeedPort[1-1] : EnvCruiseSpeedPort in EnvCruiseSpeedPort_Engine;
+		engine[1-1] : Engine in EnvCruiseSpeedPort_Engine;
+	}
+
+	class |Buttons| behavesAs SM_Buttons extends ButtonsUser{
+		stateMachine SM_Buttons {
+			region R {
+				Initial -> Idle : Init;
+				Idle -> Idle : Start : [constraint "guard" is opaqueExpression = 'EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))' in C;] /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), start);' in C;;
+				Idle -> Idle : Set : [constraint "guard" is opaqueExpression = 'EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))' in C;] /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), set);' in C;;
+				Idle -> Idle : Pause : [constraint "guard" is opaqueExpression = 'EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))' in C;] /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), pause);' in C;;
+				Idle -> Idle : Resume : [constraint "guard" is opaqueExpression = 'EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))' in C;] /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), resume);' in C;;
+				Idle -> Idle : Inc : [constraint "guard" is opaqueExpression = 'EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))' in C;] /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), inc);' in C;;
+				Idle -> Idle : Dec : [constraint "guard" is opaqueExpression = 'EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))' in C;] /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), dec);' in C;;
+				Idle -> Idle : Stop : [constraint "guard" is opaqueExpression = 'EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))' in C;] /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), stop);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |Pedal| behavesAs SM_Pedal extends PedalUser {
+		stateMachine SM_Pedal {
+			region R {
+				Initial -> Released : Init ;
+				Released -> Pressed : PressPedal : [constraint "guard" is opaqueExpression = 'EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))' in C;] /
+					opaqueBehavior = 'SEND(GET(this, envPedalPort), pedalPressed);' in C;;
+				Pressed -> Released : ReleasePedal : [constraint "guard" is opaqueExpression = 'EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))' in C;] /
+					opaqueBehavior = 'SEND(GET(this, envPedalPort), pedalReleased);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |Engine| behavesAs SM_Engine extends SpeedUser implements I_ControlOnOff, I_CruiseSpeed {
+		private speed[1-1] : Integer;
+		private on[1-1] : Boolean;
+		stateMachine SM_Engine {
+			region R {
+				Initial -> Idle : Init : / ;
+				Idle -> Idle : Tick : /
+					opaqueBehavior = 'SEND(GET(this, envSpeedPort), updateSpeed, GET(this, speed));' in C;;
+				Idle -> Idle : UpdateSetPoint : updateSetPoint_SE / ;
+					// No opaque behavior here: abtsraction of the control loop
+				Idle -> Idle : ControlOn : controlOn_SE /
+					opaqueBehavior = 'SET(this, on, TRUE);' in C;;
+				Idle -> Idle : ControlOff : controlOff_SE /
+					opaqueBehavior = 'SET(this, on, FALSE);' in C;;
+				Idle -> Idle : IncSpeed : [constraint "guard" is opaqueExpression = 'GET(this, speed) < 200' in C;] /
+					opaqueBehavior = 'INC(this, speed, 1);' in C;;
+				Idle -> Idle : DecSpeed : [constraint "guard" is opaqueExpression = 'GET(this, speed) > 0' in C;] /
+					opaqueBehavior = 'DEC(this, speed, 1);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+}

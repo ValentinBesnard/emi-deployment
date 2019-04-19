@@ -1,0 +1,22 @@
+
+
+@startuml
+
+
+	class "[[DIL%3A%3AGpioLed-Class.svg DIL::GpioLed]]" as ACTIVE_DIL_GpioLed
+	class "[[DAL%3A%3AButtonReceiverPort-Class.svg DAL::ButtonReceiverPort]]" as DAL_ButtonReceiverPort
+	abstract class "[[DAL%3A%3ALightProvider-Class.svg DAL::LightProvider]]" as DAL_LightProvider
+	abstract class "[[DAL%3A%3AButtonUser-Class.svg DAL::ButtonUser]]" as DAL_ButtonUser
+	class "Env" as ButtonLedsEnvironment_Env {
+		+♦ envLedPort : [[ButtonLedsEnvironment%3A%3AEnvLedPort-Class.svg EnvLedPort]]
+		+♦ envButtonPort : [[ButtonLedsEnvironment%3A%3AEnvButtonPort-Class.svg EnvButtonPort]]
+		+♦ envLed : [[DIL%3A%3AGpioLed-Class.svg GpioLed]]
+		+♦ envButton : [[DIL%3A%3AGpioButton-Class.svg GpioButton]]
+	}
+	class "EnvLedPort" as ButtonLedsEnvironment_EnvLedPort
+	class "EnvButtonPort" as ButtonLedsEnvironment_EnvButtonPort
+	DAL_LightProvider <|-- ButtonLedsEnvironment_EnvLedPort
+	DAL_ButtonUser <|-- ButtonLedsEnvironment_EnvButtonPort
+	ButtonLedsEnvironment_EnvLedPort -- ACTIVE_DIL_GpioLed : led
+	DAL_ButtonReceiverPort -- ButtonLedsEnvironment_EnvButtonPort : buttonPort
+@enduml

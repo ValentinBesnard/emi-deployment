@@ -1,0 +1,32 @@
+model DIL with (
+	private "Target.uml#Target.UML_GpioPort",
+	private "Target.uml#Target.UML_GpioPin"
+) {
+
+	signal buttonPressed;
+	signalEvent buttonPressed_SE of buttonPressed;
+
+	interface I_Button receives buttonPressed(buttonPressed) {}
+	class ButtonProvider implements I_Button {}
+	class ButtonUser {}
+	usage use_Button_ButtonUser of I_Button by ButtonUser;
+
+	class ButtonPort extends ButtonUser {}
+
+	class |GpioButton| behavesAs SM extends ButtonUser {
+		private composite behavior port buttonPeer[1-1] : ButtonPort;
+		private "port"[1-1] : UML_GpioPort;
+		private pin[1-1] : UML_GpioPin;
+
+		stateMachine SM {
+			region R {
+				Initial -> Released;
+				Released -> Pressed: [constraint "" is opaqueExpression = 'UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1' in C;] /
+					opaqueBehavior = 'SEND(GET(this, buttonPeer), buttonPressed);' in C;;
+				Pressed -> Released: [constraint "" is opaqueExpression = 'UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0' in C;] / ;
+				initial pseudoState Initial;
+			}
+		}
+	}
+}
+

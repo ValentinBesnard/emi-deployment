@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:StateDiagram">
+    <region>
+      <elements xsi:type="PlantUML:State" name="Env">
+        <regions>
+          <elements xsi:type="PlantUML:State" name="ButtonLedsEnvironment_Env_envLedPort" longName="envLedPort : EnvLedPort" kind="entrypoint"/>
+          <elements xsi:type="PlantUML:State" name="ButtonLedsEnvironment_Env_envButtonPort" longName="envButtonPort : EnvButtonPort" kind="entrypoint"/>
+          <elements xsi:type="PlantUML:State" name="ButtonLedsEnvironment_Env_envLed" longName="envLed : SimulatedLight"/>
+          <elements xsi:type="PlantUML:State" name="ButtonLedsEnvironment_Env_envButton" longName="envButton : SimulatedButton">
+            <regions>
+              <elements xsi:type="PlantUML:State" name="ButtonLedsEnvironment_Env_envButton_ButtonLedsEnvironment_SimulatedButton_peer" longName="peer" kind="entrypoint"/>
+            </regions>
+          </elements>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.3/@regions.0/@elements.0" target="//@element.0/@region/@elements.0/@regions.0/@elements.1" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.0" target="//@element.0/@region/@elements.0/@regions.0/@elements.2" isVertical="true"/>
+        </regions>
+      </elements>
+    </region>
+  </element>
+</PlantUML:Model>

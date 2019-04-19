@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:StateDiagram">
+      <region>
+        <elements xsi:type="PlantUML:State" name="Env">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_buttons" longName="buttons : Buttons"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_clutchPedal" longName="clutchPedal : Pedal"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_breakPedal" longName="breakPedal : Pedal"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_throttlePedal" longName="throttlePedal : Pedal"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_engine" longName="engine : Engine"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_envButtonsPort" longName="envButtonsPort : EnvButtonsPort" kind="entrypoint"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_envClutchPedalPort" longName="envClutchPedalPort : EnvPedalPort" kind="entrypoint"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_envBreakPedalPort" longName="envBreakPedalPort : EnvPedalPort" kind="entrypoint"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_envThrottlePedalPort" longName="envThrottlePedalPort : EnvPedalPort" kind="entrypoint"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_envControlOnOffPort" longName="envControlOnOffPort : EnvControlOnOffPort" kind="entrypoint"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_envSpeedPort" longName="envSpeedPort : EnvSpeedPort" kind="entrypoint"/>
+            <elements xsi:type="PlantUML:State" name="CCIEnvironment_Env_envCruiseSpeedPort" longName="envCruiseSpeedPort : EnvCruiseSpeedPort" kind="entrypoint"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.5" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.6" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.1" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.7" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.2" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.8" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.3" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.9" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.4" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.10" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.4" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.11" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.4" isVertical="true"/>
+          </regions>
+        </elements>
+      </region>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:InternalTransition>
+    <trigger>
+      <parts>speed = 50</parts>
+    </trigger>
+  </PlantUML:InternalTransition>
+</xmi:XMI>

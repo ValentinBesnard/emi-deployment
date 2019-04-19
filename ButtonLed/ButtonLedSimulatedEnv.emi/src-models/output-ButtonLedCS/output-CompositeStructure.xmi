@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:ObjectDiagram">
+    <elements xsi:type="PlantUML:Package" name="Main" stereotype="card">
+      <elements xsi:type="PlantUML:Object" name="ButtonLeds_Main_system" longName="system : System"/>
+      <elements xsi:type="PlantUML:Object" name="ButtonLeds_Main_env" longName="env : Env"/>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="ButtonPort_EnvButtonPort" leftLabel="sysButtonPort" rightLabel="envButtonPort">
+        <members target="//@element.0/@elements.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.1"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="LightPort_EnvLedPort" leftLabel="sysLightPort" rightLabel="envLedPort">
+        <members target="//@element.0/@elements.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.1"/>
+      </elements>
+    </elements>
+  </element>
+</PlantUML:Model>

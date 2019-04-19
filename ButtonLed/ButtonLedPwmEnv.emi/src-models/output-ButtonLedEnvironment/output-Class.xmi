@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:ClassDiagram">
+    <skinparams>
+      <commentsBefore></commentsBefore>
+    </skinparams>
+    <elements xsi:type="PlantUML:Class" name="ACTIVE_DIL_PwmLed" longName="[[DIL%3A%3APwmLed-Class.svg DIL::PwmLed]]"/>
+    <elements xsi:type="PlantUML:Class" name="DAL_ButtonReceiverPort" longName="[[DAL%3A%3AButtonReceiverPort-Class.svg DAL::ButtonReceiverPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="DAL_LightProvider" longName="[[DAL%3A%3ALightProvider-Class.svg DAL::LightProvider]]" isAbstract="true"/>
+    <elements xsi:type="PlantUML:Class" name="DAL_ButtonUser" longName="[[DAL%3A%3AButtonUser-Class.svg DAL::ButtonUser]]" isAbstract="true"/>
+    <elements xsi:type="PlantUML:Class" name="ButtonLedsEnvironment_Env" longName="Env">
+      <features xsi:type="PlantUML:Attribute" name="+&#x2666; envLedPort : [[ButtonLedsEnvironment%3A%3AEnvLedPort-Class.svg EnvLedPort]]"/>
+      <features xsi:type="PlantUML:Attribute" name="+&#x2666; envButtonPort : [[ButtonLedsEnvironment%3A%3AEnvButtonPort-Class.svg EnvButtonPort]]"/>
+      <features xsi:type="PlantUML:Attribute" name="+&#x2666; envLed : [[DIL%3A%3APwmLed-Class.svg PwmLed]]"/>
+      <features xsi:type="PlantUML:Attribute" name="+&#x2666; envButton : [[DIL%3A%3AGpioButton-Class.svg GpioButton]]"/>
+    </elements>
+    <elements xsi:type="PlantUML:Class" name="ButtonLedsEnvironment_EnvLedPort" longName="EnvLedPort"/>
+    <elements xsi:type="PlantUML:Class" name="ButtonLedsEnvironment_EnvButtonPort" longName="EnvButtonPort"/>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.5"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+      <members target="//@element.0/@elements.3"/>
+      <members target="//@element.0/@elements.6"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="led">
+      <members target="//@element.0/@elements.5"/>
+      <members target="//@element.0/@elements.0"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="buttonPort">
+      <members target="//@element.0/@elements.1"/>
+      <members target="//@element.0/@elements.6"/>
+    </elements>
+  </element>
+</PlantUML:Model>

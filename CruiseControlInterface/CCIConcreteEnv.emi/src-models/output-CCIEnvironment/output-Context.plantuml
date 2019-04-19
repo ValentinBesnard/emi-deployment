@@ -1,0 +1,37 @@
+
+
+@startuml
+	rectangle "<u>buttons : Buttons</u>" as CCIEnvironment_Env_buttons
+	rectangle "<u>clutchPedal : Pedal</u>" as CCIEnvironment_Env_clutchPedal
+	rectangle "<u>breakPedal : Pedal</u>" as CCIEnvironment_Env_breakPedal
+	rectangle "<u>throttlePedal : Pedal</u>" as CCIEnvironment_Env_throttlePedal
+	rectangle "<u>engine : Engine</u>" as CCIEnvironment_Env_engine
+	rectangle "<u>buttonStart : GpioButton</u>" as CCIEnvironment_Env_buttonStart
+	rectangle "<u>buttonSet : GpioButton</u>" as CCIEnvironment_Env_buttonSet
+	rectangle "<u>buttonPause : GpioButton</u>" as CCIEnvironment_Env_buttonPause
+	rectangle "<u>buttonResume : GpioButton</u>" as CCIEnvironment_Env_buttonResume
+	rectangle "<u>buttonInc : GpioButton</u>" as CCIEnvironment_Env_buttonInc
+	rectangle "<u>buttonDec : GpioButton</u>" as CCIEnvironment_Env_buttonDec
+	rectangle "<u>buttonStop : GpioButton</u>" as CCIEnvironment_Env_buttonStop
+	rectangle "<u>envButtonsPort : EnvButtonsPort</u>" as CCIEnvironment_Env_envButtonsPort
+	rectangle "<u>envClutchPedalPort : EnvPedalPort</u>" as CCIEnvironment_Env_envClutchPedalPort
+	rectangle "<u>envBreakPedalPort : EnvPedalPort</u>" as CCIEnvironment_Env_envBreakPedalPort
+	rectangle "<u>envThrottlePedalPort : EnvPedalPort</u>" as CCIEnvironment_Env_envThrottlePedalPort
+	rectangle "<u>envControlOnOffPort : EnvControlOnOffPort</u>" as CCIEnvironment_Env_envControlOnOffPort
+	rectangle "<u>envSpeedPort : EnvSpeedPort</u>" as CCIEnvironment_Env_envSpeedPort
+	rectangle "<u>envCruiseSpeedPort : EnvCruiseSpeedPort</u>" as CCIEnvironment_Env_envCruiseSpeedPort
+	CCIEnvironment_Env_buttons -- CCIEnvironment_Env_buttonStart
+	CCIEnvironment_Env_buttons -- CCIEnvironment_Env_buttonSet
+	CCIEnvironment_Env_buttons -- CCIEnvironment_Env_buttonPause
+	CCIEnvironment_Env_buttons -- CCIEnvironment_Env_buttonResume
+	CCIEnvironment_Env_buttons -- CCIEnvironment_Env_buttonInc
+	CCIEnvironment_Env_buttons -- CCIEnvironment_Env_buttonDec
+	CCIEnvironment_Env_buttons -- CCIEnvironment_Env_buttonStop
+	CCIEnvironment_Env_envButtonsPort -- CCIEnvironment_Env_buttons
+	CCIEnvironment_Env_envClutchPedalPort -- CCIEnvironment_Env_clutchPedal
+	CCIEnvironment_Env_envBreakPedalPort -- CCIEnvironment_Env_breakPedal
+	CCIEnvironment_Env_envThrottlePedalPort -- CCIEnvironment_Env_throttlePedal
+	CCIEnvironment_Env_envControlOnOffPort -- CCIEnvironment_Env_engine
+	CCIEnvironment_Env_envSpeedPort -- CCIEnvironment_Env_engine
+	CCIEnvironment_Env_envCruiseSpeedPort -- CCIEnvironment_Env_engine
+@enduml

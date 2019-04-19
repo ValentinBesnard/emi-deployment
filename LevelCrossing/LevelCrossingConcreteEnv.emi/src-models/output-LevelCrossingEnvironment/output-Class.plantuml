@@ -1,0 +1,38 @@
+
+
+@startuml
+
+
+	class "[[DIL%3A%3AButtonPort-Class.svg DIL::ButtonPort]]" as DIL_ButtonPort
+	class "[[DIL%3A%3AGpioLed-Class.svg DIL::GpioLed]]" as ACTIVE_DIL_GpioLed
+	class "[[DAL%3A%3AActivationUser-Class.svg DAL::ActivationUser]]" as DAL_ActivationUser
+	class "[[DAL%3A%3AAuthorizationProvider-Class.svg DAL::AuthorizationProvider]]" as DAL_AuthorizationProvider
+	class "Environment" as LevelCrossingEnvironment_Environment {
+		+♦ tcEntranceSensor : [[DIL%3A%3AGpioButton-Class.svg GpioButton]][2..1]
+		+♦ tcExitSensor : [[DIL%3A%3AGpioButton-Class.svg GpioButton]]
+		+♦ railwaySignLed : [[DIL%3A%3AGpioLed-Class.svg GpioLed]]
+		+♦ sensorInitializer : [[LevelCrossingEnvironment%3A%3ASensorInitializer-Class.svg SensorInitializer]]
+		+♦ tcEntrancePort : [[LevelCrossingEnvironment%3A%3AEnvEntranceTCPort-Class.svg EnvEntranceTCPort]][2..1]
+		+♦ tcExitPort : [[LevelCrossingEnvironment%3A%3AEnvExitTCPort-Class.svg EnvExitTCPort]]
+		+♦ railwaySignPort : [[LevelCrossingEnvironment%3A%3AEnvRailwaySignPort-Class.svg EnvRailwaySignPort]]
+	}
+	class "EnvEntranceTCPort" as LevelCrossingEnvironment_EnvEntranceTCPort
+	class "EnvExitTCPort" as LevelCrossingEnvironment_EnvExitTCPort
+	class "EnvRailwaySignPort" as LevelCrossingEnvironment_EnvRailwaySignPort
+	class "SensorInitializer" as ACTIVE_LevelCrossingEnvironment_SensorInitializer {
+		-tcEntrancePort0 : UML_GpioPort
+		-tcEntrancePin0 : UML_GpioPin
+		-tcEntrancePort1 : UML_GpioPort
+		-tcEntrancePin1 : UML_GpioPin
+		-tcExitPort : UML_GpioPort
+		-tcExitPin : UML_GpioPin
+	}
+	DAL_ActivationUser <|-- LevelCrossingEnvironment_EnvEntranceTCPort
+	DAL_ActivationUser <|-- LevelCrossingEnvironment_EnvExitTCPort
+	DAL_AuthorizationProvider <|-- LevelCrossingEnvironment_EnvRailwaySignPort
+	DIL_ButtonPort -- LevelCrossingEnvironment_EnvEntranceTCPort : tcEntrance
+	DIL_ButtonPort -- LevelCrossingEnvironment_EnvExitTCPort : tcExit
+	ACTIVE_DIL_GpioLed -- LevelCrossingEnvironment_EnvRailwaySignPort : railwaySign
+	DIL_ButtonPort -- ACTIVE_LevelCrossingEnvironment_SensorInitializer : sensorInitializerForEntrance
+	DIL_ButtonPort -- ACTIVE_LevelCrossingEnvironment_SensorInitializer : sensorInitializerForExit
+@enduml

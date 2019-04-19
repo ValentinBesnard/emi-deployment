@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="ButtonLedsSystem" name="ButtonLedsSystem">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.buttonPressed_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.buttonReleased_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.LightUser"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.ButtonProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Interface" href="DAL.uml#DAL.I_Button"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="ButtonLedsSystem.Integer" name="Integer"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsSystem.LightPort" name="LightPort">
+    <generalization xmi:id="a6">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.LightUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsSystem.ButtonPort" name="ButtonPort">
+    <generalization xmi:id="a7">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.ButtonProvider"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsSystem.System" name="System">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="ButtonLedsSystem.System.sysLightPort" name="sysLightPort" type="ButtonLedsSystem.LightPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a8" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a9" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="ButtonLedsSystem.System.sysButtonPort" name="sysButtonPort" type="ButtonLedsSystem.ButtonPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a10" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a11" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="ButtonLedsSystem.System.controller" name="controller" type="ButtonLedsSystem.Controller" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a12" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a13" value="1"/>
+    </ownedAttribute>
+    <ownedConnector xmi:id="ButtonLedsSystem.System.c1" name="c1" type="ButtonLedsSystem.Controller_LightPort">
+      <end xmi:id="a14" role="ButtonLedsSystem.System.controller"/>
+      <end xmi:id="a15" role="ButtonLedsSystem.System.sysLightPort"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="ButtonLedsSystem.System.c2" name="c2" type="ButtonLedsSystem.ButtonPort_Controller">
+      <end xmi:id="a16" role="ButtonLedsSystem.System.sysButtonPort"/>
+      <end xmi:id="a17" role="ButtonLedsSystem.System.controller"/>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="ButtonLedsSystem.Controller_LightPort" name="Controller_LightPort" memberEnd="ButtonLedsSystem.Controller_LightPort.controller ButtonLedsSystem.Controller_LightPort.light">
+    <ownedEnd xmi:id="ButtonLedsSystem.Controller_LightPort.controller" name="controller" type="ButtonLedsSystem.Controller" isUnique="false" association="ButtonLedsSystem.Controller_LightPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a18" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a19" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="ButtonLedsSystem.Controller_LightPort.light" name="light" type="ButtonLedsSystem.LightPort" isUnique="false" association="ButtonLedsSystem.Controller_LightPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a20" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a21" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="ButtonLedsSystem.ButtonPort_Controller" name="ButtonPort_Controller" memberEnd="ButtonLedsSystem.ButtonPort_Controller.button ButtonLedsSystem.ButtonPort_Controller.controller">
+    <ownedEnd xmi:id="ButtonLedsSystem.ButtonPort_Controller.button" name="button" type="ButtonLedsSystem.ButtonPort" isUnique="false" association="ButtonLedsSystem.ButtonPort_Controller">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a22" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a23" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="ButtonLedsSystem.ButtonPort_Controller.controller" name="controller" type="ButtonLedsSystem.Controller" isUnique="false" association="ButtonLedsSystem.ButtonPort_Controller">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a24" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a25" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsSystem.Controller" clientDependency="a27" name="Controller" classifierBehavior="ButtonLedsSystem.Controller.SM" isActive="true">
+    <generalization xmi:id="a26">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.LightUser"/>
+    </generalization>
+    <interfaceRealization xmi:id="a27" client="ButtonLedsSystem.Controller">
+      <supplier xmi:type="uml:Interface" href="DAL.uml#DAL.I_Button"/>
+      <contract href="DAL.uml#DAL.I_Button"/>
+    </interfaceRealization>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="ButtonLedsSystem.Controller.SM" name="SM">
+      <region xmi:id="ButtonLedsSystem.Controller.SM.R" name="R">
+        <transition xmi:id="a28" source="ButtonLedsSystem.Controller.SM.R.Initial" target="ButtonLedsSystem.Controller.SM.R.Idle"/>
+        <transition xmi:id="a29" source="ButtonLedsSystem.Controller.SM.R.Idle" target="ButtonLedsSystem.Controller.SM.R.RedOn">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a30">
+            <language>C</language>
+            <body>SEND(GET(this, light), lightOn);</body>
+          </effect>
+          <trigger xmi:id="a31">
+            <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.buttonPressed_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="a32" source="ButtonLedsSystem.Controller.SM.R.RedOn" target="ButtonLedsSystem.Controller.SM.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a33">
+            <language>C</language>
+            <body>SEND(GET(this, light), lightOff);</body>
+          </effect>
+          <trigger xmi:id="a34">
+            <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.buttonReleased_SE"/>
+          </trigger>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="ButtonLedsSystem.Controller.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="ButtonLedsSystem.Controller.SM.R.Idle" name="Idle"/>
+        <subvertex xmi:type="uml:State" xmi:id="ButtonLedsSystem.Controller.SM.R.RedOn" name="RedOn"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+</uml:Model>

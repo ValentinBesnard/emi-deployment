@@ -1,0 +1,29 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "SimulatedLight" as SimulatedLight {
+		
+			state "Off" as ButtonLedsEnvironment_SimulatedLight_SM_R_Off
+			state "On" as ButtonLedsEnvironment_SimulatedLight_SM_R_On
+			[*] --> ButtonLedsEnvironment_SimulatedLight_SM_R_Off
+			ButtonLedsEnvironment_SimulatedLight_SM_R_Off --> ButtonLedsEnvironment_SimulatedLight_SM_R_On : lightOn / printf(''LED ON'');
+			ButtonLedsEnvironment_SimulatedLight_SM_R_On --> ButtonLedsEnvironment_SimulatedLight_SM_R_Off : lightOff / printf(''LED OFF'');
+		
+	}
+	state "SimulatedButton" as SimulatedButton {
+		
+			state "Released" as ButtonLedsEnvironment_SimulatedButton_SM_R_Released
+			state "Pressed" as ButtonLedsEnvironment_SimulatedButton_SM_R_Pressed
+			[*] --> ButtonLedsEnvironment_SimulatedButton_SM_R_Released
+			ButtonLedsEnvironment_SimulatedButton_SM_R_Released --> ButtonLedsEnvironment_SimulatedButton_SM_R_Pressed : / SEND(GET(this, peer), buttonPressed); printf(''BUTTON PRESSED'');
+			ButtonLedsEnvironment_SimulatedButton_SM_R_Pressed --> ButtonLedsEnvironment_SimulatedButton_SM_R_Released : / SEND(GET(this, peer), buttonReleased); printf(''BUTTON RELEASED'');
+		
+	}
+@enduml

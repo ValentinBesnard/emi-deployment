@@ -1,0 +1,45 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "Buttons" as Buttons {
+		
+			state "Idle" as CCIEnvironment_Buttons_SM_Buttons_R_Idle
+			[*] --> CCIEnvironment_Buttons_SM_Buttons_R_Idle
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : [EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))] / SEND(GET(this, envButtonsPort), start); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : [EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))] / SEND(GET(this, envButtonsPort), set); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : [EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))] / SEND(GET(this, envButtonsPort), pause); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : [EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))] / SEND(GET(this, envButtonsPort), resume); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : [EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))] / SEND(GET(this, envButtonsPort), inc); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : [EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))] / SEND(GET(this, envButtonsPort), dec); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : [EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))] / SEND(GET(this, envButtonsPort), stop); [[ ]]
+		
+	}
+	state "Pedal" as Pedal {
+		
+			state "Released" as CCIEnvironment_Pedal_SM_Pedal_R_Released
+			state "Pressed" as CCIEnvironment_Pedal_SM_Pedal_R_Pressed
+			[*] --> CCIEnvironment_Pedal_SM_Pedal_R_Released
+			CCIEnvironment_Pedal_SM_Pedal_R_Released --> CCIEnvironment_Pedal_SM_Pedal_R_Pressed : [EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))] / SEND(GET(this, envPedalPort), pedalPressed);
+			CCIEnvironment_Pedal_SM_Pedal_R_Pressed --> CCIEnvironment_Pedal_SM_Pedal_R_Released : [EP_IS_EMPTY(GET(GET(ROOT_instMain, env), engine))] / SEND(GET(this, envPedalPort), pedalReleased);
+		
+	}
+	state "Engine" as Engine {
+		
+			state "Idle" as CCIEnvironment_Engine_SM_Engine_R_Idle
+			[*] --> CCIEnvironment_Engine_SM_Engine_R_Idle
+			CCIEnvironment_Engine_SM_Engine_R_Idle : / SEND(GET(this, envSpeedPort), updateSpeed, GET(this, speed)); [[ ]]
+			CCIEnvironment_Engine_SM_Engine_R_Idle : updateSetPoint [[ ]]
+			CCIEnvironment_Engine_SM_Engine_R_Idle : controlOn / SET(this, on, TRUE); [[ ]]
+			CCIEnvironment_Engine_SM_Engine_R_Idle : controlOff / SET(this, on, FALSE); [[ ]]
+			CCIEnvironment_Engine_SM_Engine_R_Idle : [GET(this, speed) < 200] / INC(this, speed, 1); [[ ]]
+			CCIEnvironment_Engine_SM_Engine_R_Idle : [GET(this, speed) > 0] / DEC(this, speed, 1); [[ ]]
+		
+	}
+@enduml

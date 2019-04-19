@@ -1,0 +1,8 @@
+
+
+@startuml
+	rectangle "<u>system : System</u>" as ButtonLeds_Main_system
+	rectangle "<u>env : Env</u>" as ButtonLeds_Main_env
+	ButtonLeds_Main_system -- ButtonLeds_Main_env
+	ButtonLeds_Main_system -- ButtonLeds_Main_env
+@enduml

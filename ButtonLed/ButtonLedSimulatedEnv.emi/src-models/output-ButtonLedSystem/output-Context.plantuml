@@ -1,0 +1,9 @@
+
+
+@startuml
+	rectangle "<u>sysLightPort : LightPort</u>" as ButtonLedsSystem_System_sysLightPort
+	rectangle "<u>sysButtonPort : ButtonPort</u>" as ButtonLedsSystem_System_sysButtonPort
+	rectangle "<u>controller : Controller</u>" as ButtonLedsSystem_System_controller
+	ButtonLedsSystem_System_controller -- ButtonLedsSystem_System_sysLightPort
+	ButtonLedsSystem_System_sysButtonPort -- ButtonLedsSystem_System_controller
+@enduml

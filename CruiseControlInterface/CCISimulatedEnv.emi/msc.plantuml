@@ -1,0 +1,156 @@
+@startuml
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam monochrome true
+participant "<u>instMain_cci_controller:Controller</u>" as instMain_cci_controller
+participant "<u>instMain_cci_actuation:Actuation</u>" as instMain_cci_actuation
+participant "<u>instMain_cci_csm:CruiseSpeedManager</u>" as instMain_cci_csm
+participant "<u>instMain_cci_pm:PedalsManager</u>" as instMain_cci_pm
+participant "<u>instMain_env_buttons:Buttons</u>" as instMain_env_buttons
+participant "<u>instMain_env_clutchPedal:Pedal</u>" as instMain_env_clutchPedal
+participant "<u>instMain_env_breakPedal:Pedal</u>" as instMain_env_breakPedal
+participant "<u>instMain_env_throttlePedal:Pedal</u>" as instMain_env_throttlePedal
+participant "<u>instMain_env_engine:Engine</u>" as instMain_env_engine
+/ hnote over instMain_cci_controller : Off
+instMain_cci_controller -> instMain_cci_csm : resetCS
+/ hnote over instMain_cci_actuation : Disengaged
+/ hnote over instMain_cci_csm : Idle
+/ hnote over instMain_cci_pm : Idle
+/ hnote over instMain_env_buttons : Idle
+/ hnote over instMain_env_clutchPedal : Released
+/ hnote over instMain_env_breakPedal : Released
+/ hnote over instMain_env_throttlePedal : Released
+/ hnote over instMain_env_engine : Idle
+hnote over instMain_cci_controller : Off
+instMain_cci_controller -> instMain_cci_csm : resetCS
+hnote over instMain_cci_actuation : Disengaged
+hnote over instMain_cci_csm : Idle
+hnote over instMain_cci_pm : Idle
+hnote over instMain_env_buttons : Idle
+hnote over instMain_env_clutchPedal : Released
+hnote over instMain_env_breakPedal : Released
+hnote over instMain_env_throttlePedal : Released
+hnote over instMain_env_engine : Idle
+hnote over instMain_cci_csm : Idle
+instMain_env_buttons -> instMain_env_envButtonsPort : start
+instMain_env_envButtonsPort -> instMain_cci_buttonsPort : start
+instMain_cci_buttonsPort -> instMain_cci_controller : start
+hnote over instMain_env_buttons : Idle
+hnote over instMain_cci_controller : On
+instMain_env_buttons -> instMain_env_envButtonsPort : set
+instMain_env_envButtonsPort -> instMain_cci_buttonsPort : set
+instMain_cci_buttonsPort -> instMain_cci_controller : set
+hnote over instMain_env_buttons : Idle
+hnote over instMain_cci_controller : WaitCS
+instMain_cci_controller -> instMain_cci_csm : setCS
+hnote over instMain_cci_csm : WaitSpeed
+instMain_env_engine -> instMain_env_envSpeedPort : updateSpeed
+instMain_env_envSpeedPort -> instMain_cci_speedPort : updateSpeed
+instMain_cci_speedPort -> instMain_cci_actuation : updateSpeed
+hnote over instMain_env_engine : Idle
+hnote over instMain_cci_actuation : ChoiceDisengagedCaptureSpeed
+instMain_cci_actuation -> instMain_cci_csm : speedCaptured
+hnote over instMain_cci_actuation : Disengaged
+instMain_cci_csm -> instMain_cci_controller : ackCS
+hnote over instMain_cci_csm : Idle
+hnote over instMain_cci_controller : WaitPM
+instMain_cci_controller -> instMain_cci_pm : requestPedals
+instMain_cci_pm -> instMain_cci_controller : ackPedals
+hnote over instMain_cci_pm : Idle
+instMain_cci_controller -> instMain_cci_actuation : engage
+hnote over instMain_cci_controller : Engaged
+instMain_cci_actuation -> instMain_cci_controlOnOffPort : controlOn
+instMain_cci_controlOnOffPort -> instMain_env_envControlOnOffPort : controlOn
+instMain_env_envControlOnOffPort -> instMain_env_engine : controlOn
+hnote over instMain_cci_actuation : Engaged
+hnote over instMain_env_engine : Idle
+instMain_env_buttons -> instMain_env_envButtonsPort : inc
+instMain_env_envButtonsPort -> instMain_cci_buttonsPort : inc
+instMain_cci_buttonsPort -> instMain_cci_controller : inc
+hnote over instMain_env_buttons : Idle
+instMain_cci_controller -> instMain_cci_csm : incCS
+hnote over instMain_cci_controller : Engaged
+hnote over instMain_cci_csm : ChoiceIncCS
+hnote over instMain_cci_csm : Idle
+instMain_env_engine -> instMain_env_envSpeedPort : updateSpeed
+instMain_env_envSpeedPort -> instMain_cci_speedPort : updateSpeed
+instMain_cci_speedPort -> instMain_cci_actuation : updateSpeed
+hnote over instMain_env_engine : Idle
+hnote over instMain_cci_actuation : ChoiceEngagedCaptureSpeed
+instMain_cci_actuation -> instMain_cci_csm : speedCaptured
+instMain_cci_actuation -> instMain_cci_csm : requestSetPoint
+hnote over instMain_cci_actuation : Engaged
+hnote over instMain_cci_csm : Idle
+instMain_cci_csm -> instMain_cci_cruiseSpeedPort : updateSetPoint
+instMain_cci_cruiseSpeedPort -> instMain_env_envCruiseSpeedPort : updateSetPoint
+instMain_env_envCruiseSpeedPort -> instMain_env_engine : updateSetPoint
+hnote over instMain_cci_csm : Idle
+hnote over instMain_env_engine : Idle
+instMain_env_breakPedal -> instMain_env_envBreakPedalPort : pedalPressed
+instMain_env_envBreakPedalPort -> instMain_cci_breakPedalPort : pedalPressed
+instMain_cci_breakPedalPort -> instMain_cci_pm_pmBreakPedalPort : pedalPressed
+instMain_cci_pm_pmBreakPedalPort -> instMain_cci_pm : pedalPressed
+hnote over instMain_env_breakPedal : Pressed
+instMain_cci_pm -> instMain_cci_controller : lock
+hnote over instMain_cci_pm : Lock
+instMain_cci_controller -> instMain_cci_actuation : disengage
+hnote over instMain_cci_controller : Lock
+instMain_cci_actuation -> instMain_cci_controlOnOffPort : controlOff
+instMain_cci_controlOnOffPort -> instMain_env_envControlOnOffPort : controlOff
+instMain_env_envControlOnOffPort -> instMain_env_engine : controlOff
+instMain_cci_actuation -> instMain_cci_controller : disengaged
+hnote over instMain_cci_actuation : Disengaged
+hnote over instMain_cci_controller : Lock
+hnote over instMain_env_engine : Idle
+instMain_env_breakPedal -> instMain_env_envBreakPedalPort : pedalReleased
+instMain_env_envBreakPedalPort -> instMain_cci_breakPedalPort : pedalReleased
+instMain_cci_breakPedalPort -> instMain_cci_pm_pmBreakPedalPort : pedalReleased
+instMain_cci_pm_pmBreakPedalPort -> instMain_cci_pm : pedalReleased
+hnote over instMain_env_breakPedal : Released
+hnote over instMain_cci_pm : ChoiceLock
+instMain_cci_pm -> instMain_cci_controller : unlock
+hnote over instMain_cci_pm : Idle
+hnote over instMain_cci_controller : Pause
+instMain_env_buttons -> instMain_env_envButtonsPort : set
+instMain_env_envButtonsPort -> instMain_cci_buttonsPort : set
+instMain_cci_buttonsPort -> instMain_cci_controller : set
+hnote over instMain_env_buttons : Idle
+hnote over instMain_cci_controller : WaitCS
+instMain_cci_controller -> instMain_cci_csm : setCS
+hnote over instMain_cci_csm : WaitSpeed
+instMain_env_engine -> instMain_env_envSpeedPort : updateSpeed
+instMain_env_envSpeedPort -> instMain_cci_speedPort : updateSpeed
+instMain_cci_speedPort -> instMain_cci_actuation : updateSpeed
+hnote over instMain_env_engine : Idle
+hnote over instMain_cci_actuation : ChoiceDisengagedCaptureSpeed
+instMain_cci_actuation -> instMain_cci_csm : speedCaptured
+hnote over instMain_cci_actuation : Disengaged
+instMain_cci_csm -> instMain_cci_controller : ackCS
+hnote over instMain_cci_csm : Idle
+hnote over instMain_cci_controller : WaitPM
+instMain_cci_controller -> instMain_cci_pm : requestPedals
+instMain_cci_pm -> instMain_cci_controller : ackPedals
+hnote over instMain_cci_pm : Idle
+instMain_cci_controller -> instMain_cci_actuation : engage
+hnote over instMain_cci_controller : Engaged
+instMain_cci_actuation -> instMain_cci_controlOnOffPort : controlOn
+instMain_cci_controlOnOffPort -> instMain_env_envControlOnOffPort : controlOn
+instMain_env_envControlOnOffPort -> instMain_env_engine : controlOn
+hnote over instMain_cci_actuation : Engaged
+hnote over instMain_env_engine : Idle
+instMain_env_buttons -> instMain_env_envButtonsPort : stop
+instMain_env_envButtonsPort -> instMain_cci_buttonsPort : stop
+instMain_cci_buttonsPort -> instMain_cci_controller : stop
+hnote over instMain_env_buttons : Idle
+instMain_cci_controller -> instMain_cci_actuation : disengage
+hnote over instMain_cci_controller : WaitDisengaged
+instMain_cci_actuation -> instMain_cci_controlOnOffPort : controlOff
+instMain_cci_controlOnOffPort -> instMain_env_envControlOnOffPort : controlOff
+instMain_env_envControlOnOffPort -> instMain_env_engine : controlOff
+instMain_cci_actuation -> instMain_cci_controller : disengaged
+hnote over instMain_cci_actuation : Disengaged
+hnote over instMain_cci_controller : Off
+instMain_cci_controller -> instMain_cci_csm : resetCS
+hnote over instMain_cci_csm : Idle
+hnote over instMain_env_engine : Idle
+@enduml

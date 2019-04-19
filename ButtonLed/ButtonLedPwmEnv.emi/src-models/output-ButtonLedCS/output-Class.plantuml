@@ -1,0 +1,16 @@
+
+
+@startuml
+
+
+	class "[[ButtonLedsSystem%3A%3AButtonPort-Class.svg ButtonLedsSystem::ButtonPort]]" as ButtonLedsSystem_ButtonPort
+	class "[[ButtonLedsEnvironment%3A%3AEnvButtonPort-Class.svg ButtonLedsEnvironment::EnvButtonPort]]" as ButtonLedsEnvironment_EnvButtonPort
+	class "[[ButtonLedsSystem%3A%3ALightPort-Class.svg ButtonLedsSystem::LightPort]]" as ButtonLedsSystem_LightPort
+	class "[[ButtonLedsEnvironment%3A%3AEnvLedPort-Class.svg ButtonLedsEnvironment::EnvLedPort]]" as ButtonLedsEnvironment_EnvLedPort
+	class "Main" as ButtonLeds_Main {
+		+♦ system : [[ButtonLedsSystem%3A%3ASystem-Class.svg System]]
+		+♦ env : [[ButtonLedsEnvironment%3A%3AEnv-Class.svg Env]]
+	}
+	ButtonLedsSystem_ButtonPort -- ButtonLedsEnvironment_EnvButtonPort : envButtonPort
+	ButtonLedsSystem_LightPort -- ButtonLedsEnvironment_EnvLedPort : envLedPort
+@enduml

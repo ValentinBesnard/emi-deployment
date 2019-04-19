@@ -1,0 +1,99 @@
+model LevelCrossingEnvironment with(
+	private "DAL.uml#DAL.ActivationUser",
+	private "DAL.uml#DAL.AuthorizationProvider",
+
+	private "DIL.uml#DIL.GpioButton",
+	private "DIL.uml#DIL.GpioLed",
+	private "DIL.uml#DIL.ButtonPort",
+
+	private "Target.uml#Target.UML_GpioPort",
+	private "Target.uml#Target.UML_GpioPin",
+	private "Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_A",
+	private "Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_C",
+	private "Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_D",
+	private "Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_1",
+	private "Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_3",
+	private "Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_12"	
+) {
+
+	class Environment {
+		public composite tcEntranceSensor[2-2] : GpioButton;
+		public composite tcExitSensor[1-1] : GpioButton;
+		public composite railwaySignLed[1-1] : GpioLed = instRailwaySignLed;
+		public composite sensorInitializer[1-1] : SensorInitializer = instSensorInitializer;
+
+		public composite port tcEntrancePort[2-2] : EnvEntranceTCPort;
+		public composite port tcExitPort[1-1] : EnvExitTCPort;
+		public composite port railwaySignPort[1-1] : EnvRailwaySignPort;
+		
+		connector "c1" : ButtonPort_EnvEntranceTCPort between tcEntranceSensor.peerButton and tcEntrancePort;
+		connector "c2" : ButtonPort_EnvExitTCPort between tcExitSensor.peerButton and tcExitPort;
+		connector "c3" : RailwaySignLed_EnvRailwaySignPort between railwaySignLed and railwaySignPort;
+		connector "c4" : EntranceButtonPort_SensorInitializer between tcEntranceSensor.peerButton and sensorInitializer;
+		connector "c5" : ExitButtonPort_SensorInitializer between tcExitSensor.peerButton and sensorInitializer;
+	}
+	
+	association ButtonPort_EnvEntranceTCPort {
+		tcEntranceSensor[1-1] : ButtonPort in ButtonPort_EnvEntranceTCPort;
+		tcEntrance[1-1] : EnvEntranceTCPort in ButtonPort_EnvEntranceTCPort;
+	}
+	association ButtonPort_EnvExitTCPort {
+		tcExitSensor[1-1] : ButtonPort in ButtonPort_EnvExitTCPort;
+		tcExit[1-1] : EnvExitTCPort in ButtonPort_EnvExitTCPort;
+	}
+	association RailwaySignLed_EnvRailwaySignPort {
+		railwaySignLed[1-1] : GpioLed in RailwaySignLed_EnvRailwaySignPort;
+		railwaySign[1-1] : EnvRailwaySignPort in RailwaySignLed_EnvRailwaySignPort;
+	}
+	association EntranceButtonPort_SensorInitializer {
+		tcEntrance[2-2] : ButtonPort in EntranceButtonPort_SensorInitializer;
+		sensorInitializerForEntrance[1-1] : SensorInitializer in EntranceButtonPort_SensorInitializer;
+	}
+	association ExitButtonPort_SensorInitializer {
+		tcExit[1-1] : ButtonPort in ExitButtonPort_SensorInitializer;
+		sensorInitializerForExit[1-1] : SensorInitializer in ExitButtonPort_SensorInitializer;
+	}
+
+	class EnvEntranceTCPort extends ActivationUser {}
+
+	class EnvExitTCPort extends ActivationUser {}
+
+	class EnvRailwaySignPort extends AuthorizationProvider {}
+
+	class |SensorInitializer| behavesAs SM {
+		private tcEntrancePort0[1-1] : UML_GpioPort;
+		private tcEntrancePin0[1-1] : UML_GpioPin;
+		private tcEntrancePort1[1-1] : UML_GpioPort;
+		private tcEntrancePin1[1-1] : UML_GpioPin;
+		private tcExitPort[1-1] : UML_GpioPort;
+		private tcExitPin[1-1] : UML_GpioPin;
+
+		stateMachine SM {
+			region R {
+				Initial -> Idle : / 
+						opaqueBehavior = '
+							SEND(AT(GET(this, tcEntrance), 0), initSensor, GET(this, tcEntrancePort0), GET(this, tcEntrancePin0));
+							SEND(AT(GET(this, tcEntrance), 1), initSensor, GET(this, tcEntrancePort1), GET(this, tcEntrancePin1));
+							SEND(GET(this, tcExit), initSensor, GET(this, tcExitPort), GET(this, tcExitPin));
+						' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	instance instRailwaySignLed of GpioLed {
+		"port" = UML_GPIO_PORT_D;
+		pin = UML_GPIO_PIN_12;
+	}
+
+	instance instSensorInitializer of SensorInitializer {
+		tcEntrancePort0 = UML_GPIO_PORT_C;
+		tcEntrancePin0 = UML_GPIO_PIN_1;
+
+		tcEntrancePort1 = UML_GPIO_PORT_C;
+		tcEntrancePin1 = UML_GPIO_PIN_3;
+
+		tcExitPort = UML_GPIO_PORT_A;
+		tcExitPin = UML_GPIO_PIN_1;
+	}
+}

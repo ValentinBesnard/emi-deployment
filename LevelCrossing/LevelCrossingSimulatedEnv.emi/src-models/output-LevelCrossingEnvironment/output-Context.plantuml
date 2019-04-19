@@ -1,0 +1,11 @@
+
+
+@startuml
+	rectangle "<u>train : Train</u>" as LevelCrossingEnvironment_Environment_train
+	rectangle "<u>tcEntrancePort : EnvEntranceTCPort</u>" as LevelCrossingEnvironment_Environment_tcEntrancePort
+	rectangle "<u>tcExitPort : EnvExitTCPort</u>" as LevelCrossingEnvironment_Environment_tcExitPort
+	rectangle "<u>railwaySignPort : EnvRailwaySignPort</u>" as LevelCrossingEnvironment_Environment_railwaySignPort
+	LevelCrossingEnvironment_Environment_train -- LevelCrossingEnvironment_Environment_tcEntrancePort
+	LevelCrossingEnvironment_Environment_train -- LevelCrossingEnvironment_Environment_tcExitPort
+	LevelCrossingEnvironment_Environment_train -- LevelCrossingEnvironment_Environment_railwaySignPort
+@enduml

@@ -1,0 +1,29 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "GpioLed" as GpioLed {
+		
+			state "Idle" as DIL_GpioLed_SM_R_Idle
+			[*] --> DIL_GpioLed_SM_R_Idle
+			DIL_GpioLed_SM_R_Idle : authorization / UML_GpioToggleBits(GET(this, port), GET(this, pin)); [[ ]]
+		
+	}
+	state "GpioButton" as GpioButton {
+		
+			state "Idle" as DIL_GpioButton_SM_R_Idle
+			state "Released" as DIL_GpioButton_SM_R_Released
+			state "Pressed" as DIL_GpioButton_SM_R_Pressed
+			[*] --> DIL_GpioButton_SM_R_Idle
+			DIL_GpioButton_SM_R_Idle --> DIL_GpioButton_SM_R_Released : initSensor / SET(this, port, params->port); SET(this, pin, params->pin);
+			DIL_GpioButton_SM_R_Released --> DIL_GpioButton_SM_R_Pressed : [UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1] / SEND(GET(this, peerButton), activation);
+			DIL_GpioButton_SM_R_Pressed --> DIL_GpioButton_SM_R_Released : [UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0]
+		
+	}
+@enduml

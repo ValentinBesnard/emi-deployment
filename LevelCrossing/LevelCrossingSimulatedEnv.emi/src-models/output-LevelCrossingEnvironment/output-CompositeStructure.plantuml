@@ -1,0 +1,10 @@
+
+
+@startuml
+	package Environment <<card>> {
+		object "train : Train" as LevelCrossingEnvironment_Environment_train
+		LevelCrossingEnvironment_Environment_train -- "tcEntrancePort" Environment : Train_EnvEntranceTCPort
+		LevelCrossingEnvironment_Environment_train -- "tcExitPort" Environment : Train_EnvExitTCPort
+		LevelCrossingEnvironment_Environment_train -- "railwaySignPort" Environment : Train_EnvRailwaySignPort
+	}
+@enduml

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:UseCaseDiagram">
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingEnvironment_Environment_tcEntranceSensor" longName="&lt;u>tcEntranceSensor : GpioButton&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingEnvironment_Environment_tcExitSensor" longName="&lt;u>tcExitSensor : GpioButton&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingEnvironment_Environment_railwaySignLed" longName="&lt;u>railwaySignLed : GpioLed&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingEnvironment_Environment_sensorInitializer" longName="&lt;u>sensorInitializer : SensorInitializer&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingEnvironment_Environment_tcEntrancePort" longName="&lt;u>tcEntrancePort : EnvEntranceTCPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingEnvironment_Environment_tcExitPort" longName="&lt;u>tcExitPort : EnvExitTCPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingEnvironment_Environment_railwaySignPort" longName="&lt;u>railwaySignPort : EnvRailwaySignPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.0"/>
+      <members target="//@element.0/@elements.4"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.1"/>
+      <members target="//@element.0/@elements.5"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.6"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.0"/>
+      <members target="//@element.0/@elements.3"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.1"/>
+      <members target="//@element.0/@elements.3"/>
+    </elements>
+  </element>
+</PlantUML:Model>

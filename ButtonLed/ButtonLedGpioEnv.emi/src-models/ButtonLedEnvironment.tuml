@@ -1,0 +1,49 @@
+model ButtonLedsEnvironment with(
+	private "DAL.uml#DAL.LightProvider",
+	private "DAL.uml#DAL.ButtonUser",
+	private "DAL.uml#DAL.ButtonReceiverPort",
+
+	private "DIL.uml#DIL.GpioLed",
+	private "DIL.uml#DIL.GpioButton",
+
+	private "Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_D",
+	private "Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_14",
+	private "Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_A",
+	private "Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_0"
+) {
+
+	class Env {
+		composite port envLedPort[1-1] : EnvLedPort;
+		composite port envButtonPort[1-1] : EnvButtonPort;
+		composite envLed[1-1] : GpioLed = instRedLed;
+		composite envButton[1-1] : GpioButton = instUserButton;
+
+		connector c2 : EnvButtonPort_ButtonReceiverPort between envButton.peer and envButtonPort;
+		connector c1 : EnvLedPort_GpioLed between envLedPort and envLed;
+	}
+
+	class EnvLedPort extends LightProvider {}
+
+	class EnvButtonPort extends ButtonUser {}
+
+	association EnvLedPort_GpioLed {
+		ledPort[1-1] : EnvLedPort in EnvLedPort_GpioLed;
+		led[1-1] : GpioLed in EnvLedPort_GpioLed;
+	}
+
+	association EnvButtonPort_ButtonReceiverPort {
+		button[1-1] : ButtonReceiverPort in EnvButtonPort_ButtonReceiverPort;
+		buttonPort[1-1] : EnvButtonPort in EnvButtonPort_ButtonReceiverPort;
+	}
+
+	instance instRedLed of GpioLed {
+		"port" = UML_GPIO_PORT_D;
+		pin = UML_GPIO_PIN_14;
+	}
+
+	instance instUserButton of GpioButton {
+		"port" = UML_GPIO_PORT_A;
+		pin = UML_GPIO_PIN_0;
+	}
+
+}

@@ -1,0 +1,63 @@
+model ButtonLedsEnvironment with(
+	private "DAL.uml#DAL.lightOn_SE",
+	private "DAL.uml#DAL.lightOff_SE",
+	private "DAL.uml#DAL.LightProvider",
+	private "DAL.uml#DAL.ButtonUser",
+	private "DAL.uml#DAL.ButtonReceiverPort"
+) {
+
+	class Env {
+		composite port envLedPort[1-1] : EnvLedPort;
+		composite port envButtonPort[1-1] : EnvButtonPort;
+		composite envLed[1-1] : SimulatedLight;
+		composite envButton[1-1] : SimulatedButton;
+
+		connector c2 : EnvButtonPort_ButtonReceiverPort between envButton.peer and envButtonPort;
+		connector c1 : EnvLedPort_SimulatedLight between envLedPort and envLed;
+	}
+
+	class EnvLedPort extends LightProvider {}
+
+	class EnvButtonPort extends ButtonUser {}
+
+	association EnvLedPort_SimulatedLight {
+		ledPort[1-1] : EnvLedPort in EnvLedPort_SimulatedLight;
+		led[1-1] : SimulatedLight in EnvLedPort_SimulatedLight;
+	}
+
+	association EnvButtonPort_ButtonReceiverPort {
+		button[1-1] : ButtonReceiverPort in EnvButtonPort_ButtonReceiverPort;
+		buttonPort[1-1] : EnvButtonPort in EnvButtonPort_ButtonReceiverPort;
+	}
+
+	// TODO: move the Simulated{Light,Button} classes to SimulatedHardware.tuml?
+	class |SimulatedLight| behavesAs SM extends LightProvider {
+
+		stateMachine SM {
+			region R {
+				Initial -> Off;
+				Off -> On : lightOn_SE /
+					opaqueBehavior = 'printf("LED ON\\n");' in C;;
+				On -> Off : lightOff_SE /
+					opaqueBehavior = 'printf("LED OFF\\n");' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |SimulatedButton| behavesAs SM extends ButtonUser {
+		public composite behavior port peer[1-1] : ButtonReceiverPort;
+
+		stateMachine SM {
+			region R {
+				Initial -> Released;
+				Released -> Pressed: /
+					opaqueBehavior = 'SEND(GET(this, peer), buttonPressed); printf("BUTTON PRESSED\\n");' in C;;
+				Pressed -> Released: /
+					opaqueBehavior = 'SEND(GET(this, peer), buttonReleased); printf("BUTTON RELEASED\\n");' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+}

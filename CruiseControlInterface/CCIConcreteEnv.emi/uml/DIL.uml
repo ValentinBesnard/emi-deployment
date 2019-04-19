@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="DIL" name="DIL">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="Target.uml#Target.UML_GpioPort"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="Target.uml#Target.UML_GpioPin"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DIL.buttonPressed" name="buttonPressed"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DIL.buttonPressed_SE" name="buttonPressed_SE" signal="DIL.buttonPressed"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="DIL.I_Button" name="I_Button">
+    <ownedReception xmi:id="DIL.I_Button.buttonPressed" name="buttonPressed" signal="DIL.buttonPressed"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DIL.ButtonProvider" clientDependency="a3" name="ButtonProvider">
+    <interfaceRealization xmi:id="a3" client="DIL.ButtonProvider" supplier="DIL.I_Button" contract="DIL.I_Button"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DIL.ButtonUser" clientDependency="DIL.use_Button_ButtonUser" name="ButtonUser"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="DIL.use_Button_ButtonUser" name="use_Button_ButtonUser" client="DIL.ButtonUser" supplier="DIL.I_Button"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="DIL.ButtonPort" name="ButtonPort">
+    <generalization xmi:id="a4" general="DIL.ButtonUser"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DIL.GpioButton" name="GpioButton" classifierBehavior="DIL.GpioButton.SM" isActive="true">
+    <generalization xmi:id="a5" general="DIL.ButtonUser"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="DIL.GpioButton.buttonPeer" name="buttonPeer" visibility="private" type="DIL.ButtonPort" isUnique="false" aggregation="composite" isBehavior="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a6" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a7" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="DIL.GpioButton.port" name="port" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="Target.uml#Target.UML_GpioPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a8" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a9" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="DIL.GpioButton.pin" name="pin" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="Target.uml#Target.UML_GpioPin"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a10" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a11" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="DIL.GpioButton.SM" name="SM">
+      <region xmi:id="DIL.GpioButton.SM.R" name="R">
+        <transition xmi:id="a12" source="DIL.GpioButton.SM.R.Initial" target="DIL.GpioButton.SM.R.Released"/>
+        <transition xmi:id="a13" source="DIL.GpioButton.SM.R.Released" target="DIL.GpioButton.SM.R.Pressed">
+          <ownedRule xmi:id="a14" name="">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a15">
+              <language>C</language>
+              <body>UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a16">
+            <language>C</language>
+            <body>SEND(GET(this, buttonPeer), buttonPressed);</body>
+          </effect>
+        </transition>
+        <transition xmi:id="a17" source="DIL.GpioButton.SM.R.Pressed" target="DIL.GpioButton.SM.R.Released">
+          <ownedRule xmi:id="a18" name="">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a19">
+              <language>C</language>
+              <body>UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0</body>
+            </specification>
+          </ownedRule>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="DIL.GpioButton.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="DIL.GpioButton.SM.R.Released" name="Released"/>
+        <subvertex xmi:type="uml:State" xmi:id="DIL.GpioButton.SM.R.Pressed" name="Pressed"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+</uml:Model>

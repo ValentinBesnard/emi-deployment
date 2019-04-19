@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="DAL" name="DAL">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="DAL.Integer" name="Integer"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="DAL.Boolean" name="Boolean"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.start" name="start"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.start_SE" name="start_SE" signal="DAL.start"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.stop" name="stop"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.stop_SE" name="stop_SE" signal="DAL.stop"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.set" name="set"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.set_SE" name="set_SE" signal="DAL.set"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.pause" name="pause"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.pause_SE" name="pause_SE" signal="DAL.pause"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.resume" name="resume"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.resume_SE" name="resume_SE" signal="DAL.resume"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.inc" name="inc"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.inc_SE" name="inc_SE" signal="DAL.inc"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.dec" name="dec"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.dec_SE" name="dec_SE" signal="DAL.dec"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.pedalPressed" name="pedalPressed"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.pedalPressed_SE" name="pedalPressed_SE" signal="DAL.pedalPressed"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.pedalReleased" name="pedalReleased"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.pedalReleased_SE" name="pedalReleased_SE" signal="DAL.pedalReleased"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.controlOn" name="controlOn"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.controlOn_SE" name="controlOn_SE" signal="DAL.controlOn"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.controlOff" name="controlOff"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.controlOff_SE" name="controlOff_SE" signal="DAL.controlOff"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.updateSpeed" name="updateSpeed">
+    <ownedAttribute xmi:id="DAL.updateSpeed.speed" name="speed" type="DAL.Integer" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a1" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a2" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.updateSpeed_SE" name="updateSpeed_SE" signal="DAL.updateSpeed"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.updateSetPoint" name="updateSetPoint">
+    <ownedAttribute xmi:id="DAL.updateSetPoint.setPoint" name="setPoint" type="DAL.Integer" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a3" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a4" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.updateSetPoint_SE" name="updateSetPoint_SE" signal="DAL.updateSetPoint"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="DAL.I_Buttons" name="I_Buttons">
+    <ownedReception xmi:id="DAL.I_Buttons.start" name="start" signal="DAL.start"/>
+    <ownedReception xmi:id="DAL.I_Buttons.stop" name="stop" signal="DAL.stop"/>
+    <ownedReception xmi:id="DAL.I_Buttons.set" name="set" signal="DAL.set"/>
+    <ownedReception xmi:id="DAL.I_Buttons.pause" name="pause" signal="DAL.pause"/>
+    <ownedReception xmi:id="DAL.I_Buttons.resume" name="resume" signal="DAL.resume"/>
+    <ownedReception xmi:id="DAL.I_Buttons.inc" name="inc" signal="DAL.inc"/>
+    <ownedReception xmi:id="DAL.I_Buttons.dec" name="dec" signal="DAL.dec"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="DAL.I_Pedal" name="I_Pedal">
+    <ownedReception xmi:id="DAL.I_Pedal.pedalPressed" name="pedalPressed" signal="DAL.pedalPressed"/>
+    <ownedReception xmi:id="DAL.I_Pedal.pedalReleased" name="pedalReleased" signal="DAL.pedalReleased"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="DAL.I_ControlOnOff" name="I_ControlOnOff">
+    <ownedReception xmi:id="DAL.I_ControlOnOff.controlOn" name="controlOn" signal="DAL.controlOn"/>
+    <ownedReception xmi:id="DAL.I_ControlOnOff.controlOff" name="controlOff" signal="DAL.controlOff"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="DAL.I_Speed" name="I_Speed">
+    <ownedReception xmi:id="DAL.I_Speed.updateSpeed" name="updateSpeed" signal="DAL.updateSpeed"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="DAL.I_CruiseSpeed" name="I_CruiseSpeed">
+    <ownedReception xmi:id="DAL.I_CruiseSpeed.updateSetPoint" name="updateSetPoint" signal="DAL.updateSetPoint"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.ButtonsProvider" clientDependency="a5" name="ButtonsProvider">
+    <interfaceRealization xmi:id="a5" client="DAL.ButtonsProvider" supplier="DAL.I_Buttons" contract="DAL.I_Buttons"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.ButtonsUser" clientDependency="DAL.use_Buttons_ButtonsUser" name="ButtonsUser"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="DAL.use_Buttons_ButtonsUser" name="use_Buttons_ButtonsUser" client="DAL.ButtonsUser" supplier="DAL.I_Buttons"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.PedalProvider" clientDependency="a6" name="PedalProvider">
+    <interfaceRealization xmi:id="a6" client="DAL.PedalProvider" supplier="DAL.I_Pedal" contract="DAL.I_Pedal"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.PedalUser" clientDependency="DAL.use_Pedal_PedalUser" name="PedalUser"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="DAL.use_Pedal_PedalUser" name="use_Pedal_PedalUser" client="DAL.PedalUser" supplier="DAL.I_Pedal"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.ControlOnOffProvider" clientDependency="a7" name="ControlOnOffProvider">
+    <interfaceRealization xmi:id="a7" client="DAL.ControlOnOffProvider" supplier="DAL.I_ControlOnOff" contract="DAL.I_ControlOnOff"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.ControlOnOffUser" clientDependency="DAL.use_ControlOnOff_ControlOnOffUser" name="ControlOnOffUser"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="DAL.use_ControlOnOff_ControlOnOffUser" name="use_ControlOnOff_ControlOnOffUser" client="DAL.ControlOnOffUser" supplier="DAL.I_ControlOnOff"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.SpeedProvider" clientDependency="a8" name="SpeedProvider">
+    <interfaceRealization xmi:id="a8" client="DAL.SpeedProvider" supplier="DAL.I_Speed" contract="DAL.I_Speed"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.SpeedUser" clientDependency="DAL.use_Speed_SpeedUser" name="SpeedUser"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="DAL.use_Speed_SpeedUser" name="use_Speed_SpeedUser" client="DAL.SpeedUser" supplier="DAL.I_Speed"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.CruiseSpeedProvider" clientDependency="a9" name="CruiseSpeedProvider">
+    <interfaceRealization xmi:id="a9" client="DAL.CruiseSpeedProvider" supplier="DAL.I_CruiseSpeed" contract="DAL.I_CruiseSpeed"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.CruiseSpeedUser" clientDependency="DAL.use_CruiseSpeed_SpeedUser" name="CruiseSpeedUser"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="DAL.use_CruiseSpeed_SpeedUser" name="use_CruiseSpeed_SpeedUser" client="DAL.CruiseSpeedUser" supplier="DAL.I_CruiseSpeed"/>
+</uml:Model>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:ClassDiagram">
+    <skinparams>
+      <commentsBefore></commentsBefore>
+    </skinparams>
+    <elements xsi:type="PlantUML:Class" name="CCISystem_system_CCIButtonsPort" longName="[[CCISystem%3A%3Asystem%3A%3ACCIButtonsPort-Class.svg CCISystem::system::CCIButtonsPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="CCIEnvironment_EnvButtonsPort" longName="[[CCIEnvironment%3A%3AEnvButtonsPort-Class.svg CCIEnvironment::EnvButtonsPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="CCISystem_system_CCIPedalPort" longName="[[CCISystem%3A%3Asystem%3A%3ACCIPedalPort-Class.svg CCISystem::system::CCIPedalPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="CCIEnvironment_EnvPedalPort" longName="[[CCIEnvironment%3A%3AEnvPedalPort-Class.svg CCIEnvironment::EnvPedalPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="CCISystem_system_CCIControlOnOffPort" longName="[[CCISystem%3A%3Asystem%3A%3ACCIControlOnOffPort-Class.svg CCISystem::system::CCIControlOnOffPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="CCIEnvironment_EnvControlOnOffPort" longName="[[CCIEnvironment%3A%3AEnvControlOnOffPort-Class.svg CCIEnvironment::EnvControlOnOffPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="CCISystem_system_CCISpeedPort" longName="[[CCISystem%3A%3Asystem%3A%3ACCISpeedPort-Class.svg CCISystem::system::CCISpeedPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="CCIEnvironment_EnvSpeedPort" longName="[[CCIEnvironment%3A%3AEnvSpeedPort-Class.svg CCIEnvironment::EnvSpeedPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="CCISystem_system_CCICruiseSpeedPort" longName="[[CCISystem%3A%3Asystem%3A%3ACCICruiseSpeedPort-Class.svg CCISystem::system::CCICruiseSpeedPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="CCIEnvironment_EnvCruiseSpeedPort" longName="[[CCIEnvironment%3A%3AEnvCruiseSpeedPort-Class.svg CCIEnvironment::EnvCruiseSpeedPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="CCICS_Main" longName="Main">
+      <features xsi:type="PlantUML:Attribute" name="+&#x2666; cci : [[CCISystem%3A%3Asystem%3A%3ACCI-Class.svg CCI]]"/>
+      <features xsi:type="PlantUML:Attribute" name="+&#x2666; env : [[CCIEnvironment%3A%3AEnv-Class.svg Env]]"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="envButtonsPort">
+      <members target="//@element.0/@elements.0"/>
+      <members target="//@element.0/@elements.1"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="envPedalPort">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.3"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="envControlOnOffPort">
+      <members target="//@element.0/@elements.4"/>
+      <members target="//@element.0/@elements.5"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="envSpeedPort">
+      <members target="//@element.0/@elements.6"/>
+      <members target="//@element.0/@elements.7"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="envCruiseSpeedPort">
+      <members target="//@element.0/@elements.8"/>
+      <members target="//@element.0/@elements.9"/>
+    </elements>
+  </element>
+</PlantUML:Model>

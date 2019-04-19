@@ -1,0 +1,210 @@
+model CCIEnvironment with(
+	private "DAL.uml#DAL.Integer",
+	private "DAL.uml#DAL.Boolean",
+	private "DAL.uml#DAL.I_ControlOnOff",
+	private "DAL.uml#DAL.I_CruiseSpeed",
+
+	private "DAL.uml#DAL.ButtonsUser",
+	private "DAL.uml#DAL.PedalUser",
+	private "DAL.uml#DAL.ControlOnOffProvider",
+	private "DAL.uml#DAL.SpeedUser",
+	private "DAL.uml#DAL.CruiseSpeedProvider",
+
+	private "DIL.uml#DIL.GpioButton",
+	private "DIL.uml#DIL.ButtonProvider",
+	private "DIL.uml#DIL.ButtonUser",
+	private "DIL.uml#DIL.buttonPressed_SE",
+	private "DIL.uml#DIL.ButtonPort",
+
+	private "DAL.uml#DAL.updateSpeed_SE",
+	private "DAL.uml#DAL.updateSetPoint_SE",
+	private "DAL.uml#DAL.controlOn_SE",
+	private "DAL.uml#DAL.controlOff_SE",
+
+	private "Target.uml#Target.UML_GpioPort",
+	private "Target.uml#Target.UML_GpioPin",
+	private "Target.uml#Target.UML_Timer",
+	private "Target.uml#Target.UML_PwmChannel"
+
+) {
+
+	// Ports for Env
+	class EnvButtonsPort extends ButtonsUser {}
+	class EnvPedalPort extends PedalUser {}
+	class EnvControlOnOffPort extends ControlOnOffProvider {}
+	class EnvSpeedPort extends SpeedUser {}
+	class EnvCruiseSpeedPort extends CruiseSpeedProvider {}
+
+	class Env {
+		public composite buttons[1-1] : Buttons;
+		public composite clutchPedal[1-1] : Pedal;
+		public composite breakPedal[1-1] : Pedal;
+		public composite throttlePedal[1-1] : Pedal;
+		public composite engine[1-1] : Engine = instEngine;
+
+		public composite buttonStart[1-1] : GpioButton;
+		public composite buttonSet[1-1] : GpioButton;
+		public composite buttonPause[1-1] : GpioButton;
+		public composite buttonResume[1-1] : GpioButton;
+		public composite buttonInc[1-1] : GpioButton;
+		public composite buttonDec[1-1] : GpioButton;
+		public composite buttonStop[1-1] : GpioButton;
+
+		public composite port envButtonsPort[1-1] : EnvButtonsPort;
+		public composite port envClutchPedalPort[1-1] : EnvPedalPort;
+		public composite port envBreakPedalPort[1-1] : EnvPedalPort;
+		public composite port envThrottlePedalPort[1-1] : EnvPedalPort;
+		public composite port envControlOnOffPort[1-1] : EnvControlOnOffPort;
+		public composite port envSpeedPort[1-1] : EnvSpeedPort;
+		public composite port envCruiseSpeedPort[1-1] : EnvCruiseSpeedPort;
+
+		connector "c_buttons_buttonStart" : ButtonProvider_ButtonStart between buttons.portStart and buttonStart.buttonPeer;
+		connector "c_buttons_buttonSet" : ButtonProvider_ButtonSet between buttons.portSet and buttonSet.buttonPeer;
+		connector "c_buttons_buttonPause" : ButtonProvider_ButtonPause between buttons.portPause and buttonPause.buttonPeer;
+		connector "c_buttons_buttonResume" : ButtonProvider_ButtonResume between buttons.portResume and buttonResume.buttonPeer;
+		connector "c_buttons_buttonInc" : ButtonProvider_ButtonInc between buttons.portInc and buttonInc.buttonPeer;
+		connector "c_buttons_buttonDec" : ButtonProvider_ButtonDec between buttons.portDec and buttonDec.buttonPeer;
+		connector "c_buttons_buttonStop" : ButtonProvider_ButtonStop between buttons.portStop and buttonStop.buttonPeer;
+
+		connector "c_buttonsPort_buttons" : EnvButtonsPort_Buttons between envButtonsPort and buttons;
+		connector "c_clutchPedalPort_clutchPedal" : EnvPedalPort_Pedal between envClutchPedalPort and clutchPedal.pedalPeer;
+		connector "c_breakPedalPort_breakPedal" : EnvPedalPort_Pedal between envBreakPedalPort and breakPedal.pedalPeer;
+		connector "c_throttlePedalPort_throttlePedal" : EnvPedalPort_Pedal between envThrottlePedalPort and throttlePedal.pedalPeer;
+		connector "c_controlOnOffPort_engine" : EnvControlOnOffPort_Engine between envControlOnOffPort and engine;
+		connector "c_speedPort_engine" : EnvSpeedPort_Engine between envSpeedPort and engine;
+		connector "c_cruiseSpeedPort_engine" : EnvCruiseSpeedPort_Engine between envCruiseSpeedPort and engine;
+	}
+
+	instance instEngine of Engine {
+		speed = 0;
+	}
+	
+	// Associations for Env
+	association EnvButtonsPort_Buttons {
+		envButtonsPort[1-1] : EnvButtonsPort in EnvButtonsPort_Buttons;
+		buttons[1-1] : Buttons in EnvButtonsPort_Buttons;
+	}
+	association EnvPedalPort_Pedal {
+		envPedalPort[1-1] : EnvPedalPort in EnvPedalPort_Pedal;
+		pedal[1-1] : PedalPort in EnvPedalPort_Pedal;
+	}
+	association EnvControlOnOffPort_Engine {
+		envControlOnOffPort[1-1] : EnvControlOnOffPort in EnvControlOnOffPort_Engine;
+		engine[1-1] : Engine in EnvControlOnOffPort_Engine;
+	}
+	association EnvSpeedPort_Engine {
+		envSpeedPort[1-1] : EnvSpeedPort in EnvSpeedPort_Engine;
+		engine[1-1] : Engine in EnvSpeedPort_Engine;
+	}
+	association EnvCruiseSpeedPort_Engine {
+		envCruiseSpeedPort[1-1] : EnvCruiseSpeedPort in EnvCruiseSpeedPort_Engine;
+		engine[1-1] : Engine in EnvCruiseSpeedPort_Engine;
+	}
+
+	association ButtonProvider_ButtonStart {
+		buttonsForStart[1-1] : ButtonsPort in ButtonProvider_ButtonStart;
+		buttonStart[1-1] : ButtonPort in ButtonProvider_ButtonStart;
+	}
+	association ButtonProvider_ButtonSet {
+		buttonsForSet[1-1] : ButtonsPort in ButtonProvider_ButtonSet;
+		buttonSet[1-1] : ButtonPort in ButtonProvider_ButtonSet;
+	}
+	association ButtonProvider_ButtonPause {
+		buttonsForPause[1-1] : ButtonsPort in ButtonProvider_ButtonPause;
+		buttonPause[1-1] : ButtonPort in ButtonProvider_ButtonPause;
+	}
+	association ButtonProvider_ButtonResume {
+		buttonsForResume[1-1] : ButtonsPort in ButtonProvider_ButtonResume;
+		buttonResume[1-1] : ButtonPort in ButtonProvider_ButtonResume;
+	}
+	association ButtonProvider_ButtonInc {
+		buttonsForInc[1-1] : ButtonsPort in ButtonProvider_ButtonInc;
+		buttonInc[1-1] : ButtonPort in ButtonProvider_ButtonInc;
+	}
+	association ButtonProvider_ButtonDec {
+		buttonsForDec[1-1] : ButtonsPort in ButtonProvider_ButtonDec;
+		buttonDec[1-1] : ButtonPort in ButtonProvider_ButtonDec;
+	}
+	association ButtonProvider_ButtonStop {
+		buttonsForStop[1-1] : ButtonsPort in ButtonProvider_ButtonStop;
+		buttonStop[1-1] : ButtonPort in ButtonProvider_ButtonStop;
+	}
+
+	class ButtonsPort extends ButtonProvider {}
+
+	class |Buttons| behavesAs SM_Buttons extends ButtonsUser {
+		private composite behavior port portStart[1-1] : ButtonsPort;
+		private composite behavior port portSet[1-1] : ButtonsPort;
+		private composite behavior port portPause[1-1] : ButtonsPort;
+		private composite behavior port portResume[1-1] : ButtonsPort;
+		private composite behavior port portInc[1-1] : ButtonsPort;
+		private composite behavior port portDec[1-1] : ButtonsPort;
+		private composite behavior port portStop[1-1] : ButtonsPort;
+
+		stateMachine SM_Buttons {
+			region R {
+				Initial -> Idle : Init;
+				Idle -> Idle : Start : buttonPressed_SE from portStart /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), start);' in C;;
+				Idle -> Idle : Set : buttonPressed_SE from portSet /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), set);' in C;;
+				Idle -> Idle : Pause : buttonPressed_SE from portPause /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), pause);' in C;;
+				Idle -> Idle : Resume : buttonPressed_SE from portResume /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), resume);' in C;;
+				Idle -> Idle : Inc : buttonPressed_SE from portInc /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), inc);' in C;;
+				Idle -> Idle : Dec : buttonPressed_SE from portDec /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), dec);' in C;;
+				Idle -> Idle : Stop : buttonPressed_SE from portStop /
+					opaqueBehavior = 'SEND(GET(this, envButtonsPort), stop);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class PedalPort extends PedalUser {}
+
+	class |Pedal| behavesAs SM_Pedal extends PedalUser {
+		private composite behavior port pedalPeer[1-1] : PedalPort;
+		private "port"[1-1] : UML_GpioPort;
+		private pin[1-1] : UML_GpioPin;
+
+		stateMachine SM_Pedal {
+			region R {
+				Initial -> Released : Init ;
+				Released -> Pressed : PressPedal : [constraint is opaqueExpression = 'UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1' in C;] /
+					opaqueBehavior = 'SEND(GET(this, pedalPeer), pedalPressed);' in C;;
+				Pressed -> Released : ReleasePedal : [constraint is opaqueExpression = 'UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0' in C;] /
+					opaqueBehavior = 'SEND(GET(this, pedalPeer), pedalReleased);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |Engine| behavesAs SM_Engine implements I_ControlOnOff, I_CruiseSpeed {
+		private speed[1-1] : Integer;
+		private timer[1-1] : UML_Timer;
+		private channel[1-1] : UML_PwmChannel;
+
+		stateMachine SM_Engine {
+			region R {
+				Initial -> Idle : Init : /
+					opaqueBehavior = 'UML_PwmInit(GET(this, timer), GET(this, channel));' in C;;
+				Idle -> Idle : Tick : /
+					opaqueBehavior = 'SEND(GET(this, envSpeedPort), updateSpeed, GET(this, speed)); UML_PwmRun(GET(this, timer), GET(this, channel), GET(this, speed) / 2);' in C;;
+				Idle -> Idle : UpdateSetPoint : updateSetPoint_SE / ;
+					// No opaque behavior here: abtsraction of the control loop
+				Idle -> Idle : ControlOn : controlOn_SE /
+					opaqueBehavior = 'UML_PwmRun(GET(this, timer), GET(this, channel), GET(this, speed) / 2);' in C;;
+				Idle -> Idle : ControlOff : controlOff_SE /
+					opaqueBehavior = 'UML_PwmStop(GET(this, timer), GET(this, channel));' in C;;
+				Idle -> Idle : IncSpeed : [constraint "guard" is opaqueExpression = 'GET(this, speed) < 200' in C;] /
+					opaqueBehavior = 'INC(this, speed, 1);' in C;;
+				Idle -> Idle : DecSpeed : [constraint "guard" is opaqueExpression = 'GET(this, speed) > 0' in C;] /
+					opaqueBehavior = 'DEC(this, speed, 1);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+}

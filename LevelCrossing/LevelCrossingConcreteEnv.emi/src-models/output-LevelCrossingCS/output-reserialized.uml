@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="LevelCrossingCS" name="LevelCrossingCS">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../LevelCrossingSystem.uml#LevelCrossingSystem.System"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../LevelCrossingSystem.uml#LevelCrossingSystem.EntranceTCPort"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../LevelCrossingSystem.uml#LevelCrossingSystem.ExitTCPort"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../LevelCrossingSystem.uml#LevelCrossingSystem.RailwaySignPort"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.Environment"/>
+  </elementImport>
+  <elementImport xmi:id="a6" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.EnvEntranceTCPort"/>
+  </elementImport>
+  <elementImport xmi:id="a7" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.EnvExitTCPort"/>
+  </elementImport>
+  <elementImport xmi:id="a8" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.EnvRailwaySignPort"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingCS.Main" name="Main">
+    <ownedAttribute xmi:id="LevelCrossingCS.Main.env" name="env" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.Environment"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a9" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a10" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingCS.Main.sys" name="sys" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="../LevelCrossingSystem.uml#LevelCrossingSystem.System"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a11" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a12" value="1"/>
+    </ownedAttribute>
+    <ownedConnector xmi:id="LevelCrossingCS.Main.c1" name="c1" type="LevelCrossingCS.EntranceTCPort_EnvEntranceTCPort">
+      <end xmi:id="a13" partWithPort="LevelCrossingCS.Main.sys">
+        <role xmi:type="uml:Port" href="../LevelCrossingSystem.uml#LevelCrossingSystem.System.tcEntrancePort"/>
+      </end>
+      <end xmi:id="a14" partWithPort="LevelCrossingCS.Main.env">
+        <role xmi:type="uml:Port" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.Environment.tcEntrancePort"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingCS.Main.c2" name="c2" type="LevelCrossingCS.ExitTCPort_EnvExitTCPort">
+      <end xmi:id="a15" partWithPort="LevelCrossingCS.Main.sys">
+        <role xmi:type="uml:Port" href="../LevelCrossingSystem.uml#LevelCrossingSystem.System.tcExitPort"/>
+      </end>
+      <end xmi:id="a16" partWithPort="LevelCrossingCS.Main.env">
+        <role xmi:type="uml:Port" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.Environment.tcExitPort"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingCS.Main.c3" name="c3" type="LevelCrossingCS.RailwaySignPort_EnvRailwaySignPort">
+      <end xmi:id="a17" partWithPort="LevelCrossingCS.Main.sys">
+        <role xmi:type="uml:Port" href="../LevelCrossingSystem.uml#LevelCrossingSystem.System.railwaySignPort"/>
+      </end>
+      <end xmi:id="a18" partWithPort="LevelCrossingCS.Main.env">
+        <role xmi:type="uml:Port" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.Environment.railwaySignPort"/>
+      </end>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="LevelCrossingCS.instMain" name="instMain" classifier="LevelCrossingCS.Main"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingCS.EntranceTCPort_EnvEntranceTCPort" name="EntranceTCPort_EnvEntranceTCPort" memberEnd="LevelCrossingCS.EntranceTCPort_EnvEntranceTCPort.sysTcEntrancePort LevelCrossingCS.EntranceTCPort_EnvEntranceTCPort.envTcEntrancePort">
+    <ownedEnd xmi:id="LevelCrossingCS.EntranceTCPort_EnvEntranceTCPort.sysTcEntrancePort" name="sysTcEntrancePort" isUnique="false" association="LevelCrossingCS.EntranceTCPort_EnvEntranceTCPort">
+      <type xmi:type="uml:Class" href="../LevelCrossingSystem.uml#LevelCrossingSystem.EntranceTCPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a19" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a20" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingCS.EntranceTCPort_EnvEntranceTCPort.envTcEntrancePort" name="envTcEntrancePort" isUnique="false" association="LevelCrossingCS.EntranceTCPort_EnvEntranceTCPort">
+      <type xmi:type="uml:Class" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.EnvEntranceTCPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a21" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a22" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingCS.ExitTCPort_EnvExitTCPort" name="ExitTCPort_EnvExitTCPort" memberEnd="LevelCrossingCS.ExitTCPort_EnvExitTCPort.sysTcExitPort LevelCrossingCS.ExitTCPort_EnvExitTCPort.envTcExitPort">
+    <ownedEnd xmi:id="LevelCrossingCS.ExitTCPort_EnvExitTCPort.sysTcExitPort" name="sysTcExitPort" isUnique="false" association="LevelCrossingCS.ExitTCPort_EnvExitTCPort">
+      <type xmi:type="uml:Class" href="../LevelCrossingSystem.uml#LevelCrossingSystem.ExitTCPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a23" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a24" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingCS.ExitTCPort_EnvExitTCPort.envTcExitPort" name="envTcExitPort" isUnique="false" association="LevelCrossingCS.ExitTCPort_EnvExitTCPort">
+      <type xmi:type="uml:Class" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.EnvExitTCPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a25" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a26" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingCS.RailwaySignPort_EnvRailwaySignPort" name="RailwaySignPort_EnvRailwaySignPort" memberEnd="LevelCrossingCS.RailwaySignPort_EnvRailwaySignPort.sysRailwaySignPort LevelCrossingCS.RailwaySignPort_EnvRailwaySignPort.envRailwaySignPort">
+    <ownedEnd xmi:id="LevelCrossingCS.RailwaySignPort_EnvRailwaySignPort.sysRailwaySignPort" name="sysRailwaySignPort" isUnique="false" association="LevelCrossingCS.RailwaySignPort_EnvRailwaySignPort">
+      <type xmi:type="uml:Class" href="../LevelCrossingSystem.uml#LevelCrossingSystem.RailwaySignPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a27" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a28" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingCS.RailwaySignPort_EnvRailwaySignPort.envRailwaySignPort" name="envRailwaySignPort" isUnique="false" association="LevelCrossingCS.RailwaySignPort_EnvRailwaySignPort">
+      <type xmi:type="uml:Class" href="../LevelCrossingEnvironment.uml#LevelCrossingEnvironment.EnvRailwaySignPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a29" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a30" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

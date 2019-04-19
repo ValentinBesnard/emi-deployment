@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:StateDiagram">
+    <region>
+      <elements xsi:type="PlantUML:State" name="CCI">
+        <regions>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_controller" longName="controller : Controller"/>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_actuation" longName="actuation : Actuation"/>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_csm" longName="csm : CruiseSpeedManager"/>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_pm" longName="pm : PedalsManager">
+            <regions>
+              <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_pm_CCISystem_system_PedalsManager_pmClutchPedalPort" longName="pmClutchPedalPort" kind="entrypoint"/>
+              <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_pm_CCISystem_system_PedalsManager_pmBreakPedalPort" longName="pmBreakPedalPort" kind="entrypoint"/>
+              <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_pm_CCISystem_system_PedalsManager_pmThrottlePedalPort" longName="pmThrottlePedalPort" kind="entrypoint"/>
+            </regions>
+          </elements>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_buttonsPort" longName="buttonsPort : CCIButtonsPort" kind="entrypoint"/>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_clutchPedalPort" longName="clutchPedalPort : CCIPedalPort" kind="entrypoint"/>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_breakPedalPort" longName="breakPedalPort : CCIPedalPort" kind="entrypoint"/>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_throttlePedalPort" longName="throttlePedalPort : CCIPedalPort" kind="entrypoint"/>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_controlOnOffPort" longName="controlOnOffPort : CCIControlOnOffPort" kind="entrypoint"/>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_speedPort" longName="speedPort : CCISpeedPort" kind="entrypoint"/>
+          <elements xsi:type="PlantUML:State" name="CCISystem_system_CCI_cruiseSpeedPort" longName="cruiseSpeedPort : CCICruiseSpeedPort" kind="entrypoint"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.3/@regions.0/@elements.0" target="//@element.0/@region/@elements.0/@regions.0/@elements.5" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.3/@regions.0/@elements.1" target="//@element.0/@region/@elements.0/@regions.0/@elements.6" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.3/@regions.0/@elements.2" target="//@element.0/@region/@elements.0/@regions.0/@elements.7" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.4" target="//@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.8" target="//@element.0/@region/@elements.0/@regions.0/@elements.1" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.9" target="//@element.0/@region/@elements.0/@regions.0/@elements.1" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.10" target="//@element.0/@region/@elements.0/@regions.0/@elements.2" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.3" target="//@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.1" target="//@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.2" target="//@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+          <elements xsi:type="PlantUML:ExternalTransition" source="//@element.0/@region/@elements.0/@regions.0/@elements.1" target="//@element.0/@region/@elements.0/@regions.0/@elements.2" isVertical="true"/>
+        </regions>
+      </elements>
+    </region>
+  </element>
+</PlantUML:Model>

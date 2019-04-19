@@ -1,0 +1,24 @@
+
+
+@startuml
+	package System <<card>> {
+		object "tcEntrance : EntranceTC" as LevelCrossingSystem_System_tcEntrance {
+			id = 1
+		}
+		object "tcExit : ExitTC" as LevelCrossingSystem_System_tcExit {
+			id = 2
+		}
+		object "controller : Controller" as LevelCrossingSystem_System_controller
+		object "railwaySign : RailwaySign" as LevelCrossingSystem_System_railwaySign
+		object "roadSign : RoadSign" as LevelCrossingSystem_System_roadSign
+		object "gate : Gate" as LevelCrossingSystem_System_gate
+		LevelCrossingSystem_System_controller -- LevelCrossingSystem_System_gate : Controller_Gate
+		LevelCrossingSystem_System_controller -- LevelCrossingSystem_System_tcEntrance : Controller_EntranceTC
+		LevelCrossingSystem_System_controller -- LevelCrossingSystem_System_tcExit : Controller_ExitTC
+		LevelCrossingSystem_System_controller -- LevelCrossingSystem_System_roadSign : Controller_RoadSign
+		System "tcEntrancePort" -- LevelCrossingSystem_System_tcEntrance : EntranceTCPort_EntranceTC
+		System "tcExitPort" -- LevelCrossingSystem_System_tcExit : ExitTCPort_ExitTC
+		LevelCrossingSystem_System_controller -- LevelCrossingSystem_System_railwaySign : Controller_RailwaySign
+		LevelCrossingSystem_System_railwaySign -- "railwaySignPort" System : RailwaySign_RailwaySignPort
+	}
+@enduml

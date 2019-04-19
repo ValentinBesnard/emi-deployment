@@ -1,0 +1,54 @@
+model CCICS with(
+	private "CCISystem.uml#CCISystem.system.CCI",
+	private "CCISystem.uml#CCISystem.system.CCIButtonsPort",
+	private "CCISystem.uml#CCISystem.system.CCIPedalPort",
+	private "CCISystem.uml#CCISystem.system.CCIControlOnOffPort",
+	private "CCISystem.uml#CCISystem.system.CCISpeedPort",
+	private "CCISystem.uml#CCISystem.system.CCICruiseSpeedPort",
+
+	private "CCIEnvironment.uml#CCIEnvironment.Env",
+	private "CCIEnvironment.uml#CCIEnvironment.EnvButtonsPort",
+	private "CCIEnvironment.uml#CCIEnvironment.EnvPedalPort",
+	private "CCIEnvironment.uml#CCIEnvironment.EnvControlOnOffPort",
+	private "CCIEnvironment.uml#CCIEnvironment.EnvSpeedPort",
+	private "CCIEnvironment.uml#CCIEnvironment.EnvCruiseSpeedPort"
+) {
+
+	class Main {
+		public composite cci[1-1] : CCI;
+		public composite env[1-1] : Env;
+
+		connector "c_cciButtonsPort_envButtonsPort" : CCIButtonsPort_EnvButtonsPort between cci.buttonsPort and env.envButtonsPort;
+		connector "c_cciClutchPedalPort_envClutchPedalPort" : CCIPedalPort_EnvPedalPort between cci.clutchPedalPort and env.envClutchPedalPort;
+		connector "c_cciBreakPedalPort_envBreakPedalPort" : CCIPedalPort_EnvPedalPort between cci.breakPedalPort and env.envBreakPedalPort;
+		connector "c_cciThrottlePedalPort_envThrottlePedalPort" : CCIPedalPort_EnvPedalPort between cci.throttlePedalPort and env.envThrottlePedalPort;
+		connector "c_cciControlOnOffPort_envControlOnOffPort" : CCIControlOnOffPort_EnvControlOnOffPort between cci.controlOnOffPort and env.envControlOnOffPort;
+		connector "c_cciSpeedPort_envSpeedPort" : CCISpeedPort_EnvSpeedPort between cci.speedPort and env.envSpeedPort;
+		connector "c_cciCruiseSpeedPort_envCruiseSpeedPort" : CCICruiseSpeedPort_EnvCruiseSpeedPort between cci.cruiseSpeedPort and env.envCruiseSpeedPort;
+	}
+
+	instance instMain of Main {}
+
+	// Associations for Main
+	association CCIButtonsPort_EnvButtonsPort {
+		cciButtonsPort[1-1] : CCIButtonsPort in CCIButtonsPort_EnvButtonsPort;
+		envButtonsPort[1-1] : EnvButtonsPort in CCIButtonsPort_EnvButtonsPort;
+	}
+	association CCIPedalPort_EnvPedalPort {
+		cciPedalPort[1-1] : CCIPedalPort in CCIPedalPort_EnvPedalPort;
+		envPedalPort[1-1] : EnvPedalPort in CCIPedalPort_EnvPedalPort;
+	}
+	association CCIControlOnOffPort_EnvControlOnOffPort {
+		cciControlOnOffPort[1-1] : CCIControlOnOffPort in CCIControlOnOffPort_EnvControlOnOffPort;
+		envControlOnOffPort[1-1] : EnvControlOnOffPort in CCIControlOnOffPort_EnvControlOnOffPort;
+	}
+	association CCISpeedPort_EnvSpeedPort {
+		cciSpeedPort[1-1] : CCISpeedPort in CCISpeedPort_EnvSpeedPort;
+		envSpeedPort[1-1] : EnvSpeedPort in CCISpeedPort_EnvSpeedPort;
+	}
+	association CCICruiseSpeedPort_EnvCruiseSpeedPort {
+		cciCruiseSpeedPort[1-1] : CCICruiseSpeedPort in CCICruiseSpeedPort_EnvCruiseSpeedPort;
+		envCruiseSpeedPort[1-1] : EnvCruiseSpeedPort in CCICruiseSpeedPort_EnvCruiseSpeedPort;
+	}
+
+}

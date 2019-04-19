@@ -1,0 +1,15 @@
+
+
+@startuml
+	state Environment {
+		
+			state "train : Train" as LevelCrossingEnvironment_Environment_train
+			state "tcEntrancePort : EnvEntranceTCPort" as LevelCrossingEnvironment_Environment_tcEntrancePort <<entrypoint>>
+			state "tcExitPort : EnvExitTCPort" as LevelCrossingEnvironment_Environment_tcExitPort <<entrypoint>>
+			state "railwaySignPort : EnvRailwaySignPort" as LevelCrossingEnvironment_Environment_railwaySignPort <<entrypoint>>
+			LevelCrossingEnvironment_Environment_train --> LevelCrossingEnvironment_Environment_tcEntrancePort
+			LevelCrossingEnvironment_Environment_train --> LevelCrossingEnvironment_Environment_tcExitPort
+			LevelCrossingEnvironment_Environment_train --> LevelCrossingEnvironment_Environment_railwaySignPort
+		
+	}
+@enduml

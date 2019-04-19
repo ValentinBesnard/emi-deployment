@@ -1,0 +1,47 @@
+# Mode (remote or standalone).
+mode=standalone
+
+# The IP address used for the connection.
+# Default is "127.0.0.1"
+address=localhost
+
+# The port used for the connection.
+# For standalone mode, default is 12345.
+# For remote mode, default is 12346. 
+port=12345
+
+#======= The following is useless if you choose the remote mode =======
+
+# The file containing the UML model (The path must be absolute or relative to the location of this file).
+emiModel=..
+
+# The path to the home directory of the EMI interpreter (The path must be absolute).
+# Default is the path given by the environment variable EMI_HOME.
+#emiHome=/home/vbesnard/Doctorat/Recherche/code/gits/uml-interpreter-c/
+
+# Allow to visualize the configuration.
+# Default is true.
+with_translation=true
+
+# Allow to evaluate atomic propositions.
+# Default is true.
+with_atom_evaluation=true
+
+# The target on which the interpreter is running ("host" or "stm32f4discovery")
+# Default is "host".
+target=host
+
+# The compiler used to compile atomic propositions.
+# Default is "gcc" for host target  and "" for other targets.
+compiler=gcc
+# compiler = clang
+
+# The make tool used to compile atomic propositions.
+# Default is "make".
+# makeTool=make
+
+# The dwarf tool used to translate the configuration.
+# Default is "pahole".
+# dwarfTool=pahole
+# dwarfTool=objdump
+# dwarfTool=dwarfdump

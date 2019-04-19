@@ -1,0 +1,16 @@
+
+
+@startuml
+	package Env <<card>> {
+		object "envLed : PwmLed" as ButtonLedsEnvironment_Env_envLed {
+			timer = UML_TIM_4
+			channel = UML_PWM_CH_3
+		}
+		object "envButton : GpioButton" as ButtonLedsEnvironment_Env_envButton {
+			port = UML_GPIO_PORT_A
+			pin = UML_GPIO_PIN_0
+		}
+		ButtonLedsEnvironment_Env_envButton "peer" -- "envButtonPort" Env : EnvButtonPort_ButtonReceiverPort
+		Env "envLedPort" -- ButtonLedsEnvironment_Env_envLed : EnvLedPort_PwmLed
+	}
+@enduml

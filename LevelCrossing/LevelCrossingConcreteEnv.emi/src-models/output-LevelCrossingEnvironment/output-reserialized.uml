@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="LevelCrossingEnvironment" name="LevelCrossingEnvironment">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DAL.uml#DAL.ActivationUser"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DAL.uml#DAL.AuthorizationProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DIL.uml#DIL.GpioButton"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DIL.uml#DIL.GpioLed"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DIL.uml#DIL.ButtonPort"/>
+  </elementImport>
+  <elementImport xmi:id="a6" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPort"/>
+  </elementImport>
+  <elementImport xmi:id="a7" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPin"/>
+  </elementImport>
+  <elementImport xmi:id="a8" visibility="private">
+    <importedElement xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_A"/>
+  </elementImport>
+  <elementImport xmi:id="a9" visibility="private">
+    <importedElement xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_C"/>
+  </elementImport>
+  <elementImport xmi:id="a10" visibility="private">
+    <importedElement xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_D"/>
+  </elementImport>
+  <elementImport xmi:id="a11" visibility="private">
+    <importedElement xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_1"/>
+  </elementImport>
+  <elementImport xmi:id="a12" visibility="private">
+    <importedElement xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_3"/>
+  </elementImport>
+  <elementImport xmi:id="a13" visibility="private">
+    <importedElement xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_12"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingEnvironment.Environment" name="Environment">
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.Environment.tcEntranceSensor" name="tcEntranceSensor" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="../DIL.uml#DIL.GpioButton"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a14" value="2"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a15" value="2"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.Environment.tcExitSensor" name="tcExitSensor" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="../DIL.uml#DIL.GpioButton"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a16" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a17" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.Environment.railwaySignLed" name="railwaySignLed" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="../DIL.uml#DIL.GpioLed"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a18" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a19" value="1"/>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="a20" instance="LevelCrossingEnvironment.instRailwaySignLed"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.Environment.sensorInitializer" name="sensorInitializer" type="LevelCrossingEnvironment.SensorInitializer" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a21" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a22" value="1"/>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="a23" instance="LevelCrossingEnvironment.instSensorInitializer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="LevelCrossingEnvironment.Environment.tcEntrancePort" name="tcEntrancePort" type="LevelCrossingEnvironment.EnvEntranceTCPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a24" value="2"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a25" value="2"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="LevelCrossingEnvironment.Environment.tcExitPort" name="tcExitPort" type="LevelCrossingEnvironment.EnvExitTCPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a26" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a27" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="LevelCrossingEnvironment.Environment.railwaySignPort" name="railwaySignPort" type="LevelCrossingEnvironment.EnvRailwaySignPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a28" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a29" value="1"/>
+    </ownedAttribute>
+    <ownedConnector xmi:id="LevelCrossingEnvironment.Environment.c1" name="c1" type="LevelCrossingEnvironment.ButtonPort_EnvEntranceTCPort">
+      <end xmi:id="a30" partWithPort="LevelCrossingEnvironment.Environment.tcEntranceSensor">
+        <role xmi:type="uml:Port" href="../DIL.uml#DIL.GpioButton.peerButton"/>
+      </end>
+      <end xmi:id="a31" role="LevelCrossingEnvironment.Environment.tcEntrancePort"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingEnvironment.Environment.c2" name="c2" type="LevelCrossingEnvironment.ButtonPort_EnvExitTCPort">
+      <end xmi:id="a32" partWithPort="LevelCrossingEnvironment.Environment.tcExitSensor">
+        <role xmi:type="uml:Port" href="../DIL.uml#DIL.GpioButton.peerButton"/>
+      </end>
+      <end xmi:id="a33" role="LevelCrossingEnvironment.Environment.tcExitPort"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingEnvironment.Environment.c3" name="c3" type="LevelCrossingEnvironment.RailwaySignLed_EnvRailwaySignPort">
+      <end xmi:id="a34" role="LevelCrossingEnvironment.Environment.railwaySignLed"/>
+      <end xmi:id="a35" role="LevelCrossingEnvironment.Environment.railwaySignPort"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingEnvironment.Environment.c4" name="c4" type="LevelCrossingEnvironment.EntranceButtonPort_SensorInitializer">
+      <end xmi:id="a36" partWithPort="LevelCrossingEnvironment.Environment.tcEntranceSensor">
+        <role xmi:type="uml:Port" href="../DIL.uml#DIL.GpioButton.peerButton"/>
+      </end>
+      <end xmi:id="a37" role="LevelCrossingEnvironment.Environment.sensorInitializer"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingEnvironment.Environment.c5" name="c5" type="LevelCrossingEnvironment.ExitButtonPort_SensorInitializer">
+      <end xmi:id="a38" partWithPort="LevelCrossingEnvironment.Environment.tcExitSensor">
+        <role xmi:type="uml:Port" href="../DIL.uml#DIL.GpioButton.peerButton"/>
+      </end>
+      <end xmi:id="a39" role="LevelCrossingEnvironment.Environment.sensorInitializer"/>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingEnvironment.ButtonPort_EnvEntranceTCPort" name="ButtonPort_EnvEntranceTCPort" memberEnd="LevelCrossingEnvironment.ButtonPort_EnvEntranceTCPort.tcEntranceSensor LevelCrossingEnvironment.ButtonPort_EnvEntranceTCPort.tcEntrance">
+    <ownedEnd xmi:id="LevelCrossingEnvironment.ButtonPort_EnvEntranceTCPort.tcEntranceSensor" name="tcEntranceSensor" isUnique="false" association="LevelCrossingEnvironment.ButtonPort_EnvEntranceTCPort">
+      <type xmi:type="uml:Class" href="../DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a40" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a41" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingEnvironment.ButtonPort_EnvEntranceTCPort.tcEntrance" name="tcEntrance" type="LevelCrossingEnvironment.EnvEntranceTCPort" isUnique="false" association="LevelCrossingEnvironment.ButtonPort_EnvEntranceTCPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a42" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a43" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingEnvironment.ButtonPort_EnvExitTCPort" name="ButtonPort_EnvExitTCPort" memberEnd="LevelCrossingEnvironment.ButtonPort_EnvExitTCPort.tcExitSensor LevelCrossingEnvironment.ButtonPort_EnvExitTCPort.tcExit">
+    <ownedEnd xmi:id="LevelCrossingEnvironment.ButtonPort_EnvExitTCPort.tcExitSensor" name="tcExitSensor" isUnique="false" association="LevelCrossingEnvironment.ButtonPort_EnvExitTCPort">
+      <type xmi:type="uml:Class" href="../DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a44" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a45" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingEnvironment.ButtonPort_EnvExitTCPort.tcExit" name="tcExit" type="LevelCrossingEnvironment.EnvExitTCPort" isUnique="false" association="LevelCrossingEnvironment.ButtonPort_EnvExitTCPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a46" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a47" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingEnvironment.RailwaySignLed_EnvRailwaySignPort" name="RailwaySignLed_EnvRailwaySignPort" memberEnd="LevelCrossingEnvironment.RailwaySignLed_EnvRailwaySignPort.railwaySignLed LevelCrossingEnvironment.RailwaySignLed_EnvRailwaySignPort.railwaySign">
+    <ownedEnd xmi:id="LevelCrossingEnvironment.RailwaySignLed_EnvRailwaySignPort.railwaySignLed" name="railwaySignLed" isUnique="false" association="LevelCrossingEnvironment.RailwaySignLed_EnvRailwaySignPort">
+      <type xmi:type="uml:Class" href="../DIL.uml#DIL.GpioLed"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a48" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a49" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingEnvironment.RailwaySignLed_EnvRailwaySignPort.railwaySign" name="railwaySign" type="LevelCrossingEnvironment.EnvRailwaySignPort" isUnique="false" association="LevelCrossingEnvironment.RailwaySignLed_EnvRailwaySignPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a50" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a51" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingEnvironment.EntranceButtonPort_SensorInitializer" name="EntranceButtonPort_SensorInitializer" memberEnd="LevelCrossingEnvironment.EntranceButtonPort_SensorInitializer.tcEntrance LevelCrossingEnvironment.EntranceButtonPort_SensorInitializer.sensorInitializerForEntrance">
+    <ownedEnd xmi:id="LevelCrossingEnvironment.EntranceButtonPort_SensorInitializer.tcEntrance" name="tcEntrance" isUnique="false" association="LevelCrossingEnvironment.EntranceButtonPort_SensorInitializer">
+      <type xmi:type="uml:Class" href="../DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a52" value="2"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a53" value="2"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingEnvironment.EntranceButtonPort_SensorInitializer.sensorInitializerForEntrance" name="sensorInitializerForEntrance" type="LevelCrossingEnvironment.SensorInitializer" isUnique="false" association="LevelCrossingEnvironment.EntranceButtonPort_SensorInitializer">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a54" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a55" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingEnvironment.ExitButtonPort_SensorInitializer" name="ExitButtonPort_SensorInitializer" memberEnd="LevelCrossingEnvironment.ExitButtonPort_SensorInitializer.tcExit LevelCrossingEnvironment.ExitButtonPort_SensorInitializer.sensorInitializerForExit">
+    <ownedEnd xmi:id="LevelCrossingEnvironment.ExitButtonPort_SensorInitializer.tcExit" name="tcExit" isUnique="false" association="LevelCrossingEnvironment.ExitButtonPort_SensorInitializer">
+      <type xmi:type="uml:Class" href="../DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a56" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a57" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingEnvironment.ExitButtonPort_SensorInitializer.sensorInitializerForExit" name="sensorInitializerForExit" type="LevelCrossingEnvironment.SensorInitializer" isUnique="false" association="LevelCrossingEnvironment.ExitButtonPort_SensorInitializer">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a58" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a59" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingEnvironment.EnvEntranceTCPort" name="EnvEntranceTCPort">
+    <generalization xmi:id="a60">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.ActivationUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingEnvironment.EnvExitTCPort" name="EnvExitTCPort">
+    <generalization xmi:id="a61">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.ActivationUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingEnvironment.EnvRailwaySignPort" name="EnvRailwaySignPort">
+    <generalization xmi:id="a62">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.AuthorizationProvider"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingEnvironment.SensorInitializer" name="SensorInitializer" classifierBehavior="LevelCrossingEnvironment.SensorInitializer.SM" isActive="true">
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.SensorInitializer.tcEntrancePort0" name="tcEntrancePort0" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a63" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a64" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.SensorInitializer.tcEntrancePin0" name="tcEntrancePin0" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPin"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a65" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a66" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.SensorInitializer.tcEntrancePort1" name="tcEntrancePort1" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a67" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a68" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.SensorInitializer.tcEntrancePin1" name="tcEntrancePin1" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPin"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a69" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a70" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.SensorInitializer.tcExitPort" name="tcExitPort" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a71" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a72" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.SensorInitializer.tcExitPin" name="tcExitPin" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPin"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a73" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a74" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="LevelCrossingEnvironment.SensorInitializer.SM" name="SM">
+      <region xmi:id="LevelCrossingEnvironment.SensorInitializer.SM.R" name="R">
+        <transition xmi:id="a75" source="LevelCrossingEnvironment.SensorInitializer.SM.R.Initial" target="LevelCrossingEnvironment.SensorInitializer.SM.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a76">
+            <language>C</language>
+            <body>&#xD;
+							SEND(AT(GET(this, tcEntrance), 0), initSensor, GET(this, tcEntrancePort0), GET(this, tcEntrancePin0));&#xD;
+							SEND(AT(GET(this, tcEntrance), 1), initSensor, GET(this, tcEntrancePort1), GET(this, tcEntrancePin1));&#xD;
+							SEND(GET(this, tcExit), initSensor, GET(this, tcExitPort), GET(this, tcExitPin));&#xD;
+						</body>
+          </effect>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="LevelCrossingEnvironment.SensorInitializer.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingEnvironment.SensorInitializer.SM.R.Idle" name="Idle"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="LevelCrossingEnvironment.instRailwaySignLed" name="instRailwaySignLed">
+    <classifier xmi:type="uml:Class" href="../DIL.uml#DIL.GpioLed"/>
+    <slot xmi:id="a77">
+      <definingFeature xmi:type="uml:Property" href="../DIL.uml#DIL.GpioLed.port"/>
+      <value xmi:type="uml:InstanceValue" xmi:id="a78">
+        <instance xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_D"/>
+      </value>
+    </slot>
+    <slot xmi:id="a79">
+      <definingFeature xmi:type="uml:Property" href="../DIL.uml#DIL.GpioLed.pin"/>
+      <value xmi:type="uml:InstanceValue" xmi:id="a80">
+        <instance xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_12"/>
+      </value>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="LevelCrossingEnvironment.instSensorInitializer" name="instSensorInitializer" classifier="LevelCrossingEnvironment.SensorInitializer">
+    <slot xmi:id="a81" definingFeature="LevelCrossingEnvironment.SensorInitializer.tcEntrancePort0">
+      <value xmi:type="uml:InstanceValue" xmi:id="a82">
+        <instance xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_C"/>
+      </value>
+    </slot>
+    <slot xmi:id="a83" definingFeature="LevelCrossingEnvironment.SensorInitializer.tcEntrancePin0">
+      <value xmi:type="uml:InstanceValue" xmi:id="a84">
+        <instance xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_1"/>
+      </value>
+    </slot>
+    <slot xmi:id="a85" definingFeature="LevelCrossingEnvironment.SensorInitializer.tcEntrancePort1">
+      <value xmi:type="uml:InstanceValue" xmi:id="a86">
+        <instance xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_C"/>
+      </value>
+    </slot>
+    <slot xmi:id="a87" definingFeature="LevelCrossingEnvironment.SensorInitializer.tcEntrancePin1">
+      <value xmi:type="uml:InstanceValue" xmi:id="a88">
+        <instance xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_3"/>
+      </value>
+    </slot>
+    <slot xmi:id="a89" definingFeature="LevelCrossingEnvironment.SensorInitializer.tcExitPort">
+      <value xmi:type="uml:InstanceValue" xmi:id="a90">
+        <instance xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_A"/>
+      </value>
+    </slot>
+    <slot xmi:id="a91" definingFeature="LevelCrossingEnvironment.SensorInitializer.tcExitPin">
+      <value xmi:type="uml:InstanceValue" xmi:id="a92">
+        <instance xmi:type="uml:EnumerationLiteral" href="../Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_1"/>
+      </value>
+    </slot>
+  </packagedElement>
+</uml:Model>

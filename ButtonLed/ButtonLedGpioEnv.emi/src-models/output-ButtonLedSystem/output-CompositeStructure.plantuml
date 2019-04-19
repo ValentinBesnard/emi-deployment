@@ -1,0 +1,9 @@
+
+
+@startuml
+	package System <<card>> {
+		object "controller : Controller" as ButtonLedsSystem_System_controller
+		ButtonLedsSystem_System_controller -- "sysLightPort" System : Controller_LightPort
+		System "sysButtonPort" -- ButtonLedsSystem_System_controller : ButtonPort_Controller
+	}
+@enduml

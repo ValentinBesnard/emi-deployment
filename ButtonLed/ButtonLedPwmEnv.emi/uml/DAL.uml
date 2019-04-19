@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="DAL" name="DAL">
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.lightOn" name="lightOn"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.lightOn_SE" name="lightOn_SE" signal="DAL.lightOn"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.lightOff" name="lightOff"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.lightOff_SE" name="lightOff_SE" signal="DAL.lightOff"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="DAL.I_Light" name="I_Light">
+    <ownedReception xmi:id="DAL.I_Light.lightOn" name="lightOn" signal="DAL.lightOn"/>
+    <ownedReception xmi:id="DAL.I_Light.lightOff" name="lightOff" signal="DAL.lightOff"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.LightProvider" clientDependency="a1" name="LightProvider" isAbstract="true">
+    <interfaceRealization xmi:id="a1" client="DAL.LightProvider" supplier="DAL.I_Light" contract="DAL.I_Light"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.LightUser" clientDependency="DAL.use_I_Light_LightUser" name="LightUser" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="DAL.use_I_Light_LightUser" name="use_I_Light_LightUser" client="DAL.LightUser" supplier="DAL.I_Light"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.buttonPressed" name="buttonPressed"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.buttonPressed_SE" name="buttonPressed_SE" signal="DAL.buttonPressed"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.buttonReleased" name="buttonReleased"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.buttonReleased_SE" name="buttonReleased_SE" signal="DAL.buttonReleased"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="DAL.I_Button" name="I_Button">
+    <ownedReception xmi:id="DAL.I_Button.buttonPressed" name="buttonPressed" signal="DAL.buttonPressed"/>
+    <ownedReception xmi:id="DAL.I_Button.buttonReleased" name="buttonReleased" signal="DAL.buttonReleased"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.ButtonProvider" clientDependency="a2" name="ButtonProvider" isAbstract="true">
+    <interfaceRealization xmi:id="a2" client="DAL.ButtonProvider" supplier="DAL.I_Button" contract="DAL.I_Button"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.ButtonUser" clientDependency="DAL.use_I_Button_ButtonUser" name="ButtonUser" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="DAL.use_I_Button_ButtonUser" name="use_I_Button_ButtonUser" client="DAL.ButtonUser" supplier="DAL.I_Button"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.ButtonReceiverPort" name="ButtonReceiverPort">
+    <generalization xmi:id="a3" general="DAL.ButtonUser"/>
+  </packagedElement>
+</uml:Model>

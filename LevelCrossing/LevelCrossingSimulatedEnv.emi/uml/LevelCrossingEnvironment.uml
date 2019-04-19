@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="LevelCrossingEnvironment" name="LevelCrossingEnvironment">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.authorization_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:Interface" href="DAL.uml#DAL.I_Authorization"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.ActivationUser"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.AuthorizationProvider"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingEnvironment.Environment" name="Environment">
+    <ownedAttribute xmi:id="LevelCrossingEnvironment.Environment.train" name="train" type="LevelCrossingEnvironment.Train" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a5" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a6" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="LevelCrossingEnvironment.Environment.tcEntrancePort" name="tcEntrancePort" type="LevelCrossingEnvironment.EnvEntranceTCPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a7" value="2"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a8" value="2"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="LevelCrossingEnvironment.Environment.tcExitPort" name="tcExitPort" type="LevelCrossingEnvironment.EnvExitTCPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a9" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a10" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="LevelCrossingEnvironment.Environment.railwaySignPort" name="railwaySignPort" type="LevelCrossingEnvironment.EnvRailwaySignPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a11" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a12" value="1"/>
+    </ownedAttribute>
+    <ownedConnector xmi:id="LevelCrossingEnvironment.Environment.c1" name="c1" type="LevelCrossingEnvironment.Train_EnvEntranceTCPort">
+      <end xmi:id="a13" role="LevelCrossingEnvironment.Environment.train"/>
+      <end xmi:id="a14" role="LevelCrossingEnvironment.Environment.tcEntrancePort"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingEnvironment.Environment.c2" name="c2" type="LevelCrossingEnvironment.Train_EnvExitTCPort">
+      <end xmi:id="a15" role="LevelCrossingEnvironment.Environment.train"/>
+      <end xmi:id="a16" role="LevelCrossingEnvironment.Environment.tcExitPort"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingEnvironment.Environment.c3" name="c3" type="LevelCrossingEnvironment.Train_EnvRailwaySignPort">
+      <end xmi:id="a17" role="LevelCrossingEnvironment.Environment.train"/>
+      <end xmi:id="a18" role="LevelCrossingEnvironment.Environment.railwaySignPort"/>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingEnvironment.Train_EnvEntranceTCPort" name="Train_EnvEntranceTCPort" memberEnd="LevelCrossingEnvironment.Train_EnvEntranceTCPort.train LevelCrossingEnvironment.Train_EnvEntranceTCPort.tcEntrance">
+    <ownedEnd xmi:id="LevelCrossingEnvironment.Train_EnvEntranceTCPort.train" name="train" type="LevelCrossingEnvironment.Train" isUnique="false" association="LevelCrossingEnvironment.Train_EnvEntranceTCPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a19" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a20" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingEnvironment.Train_EnvEntranceTCPort.tcEntrance" name="tcEntrance" type="LevelCrossingEnvironment.EnvEntranceTCPort" isUnique="false" association="LevelCrossingEnvironment.Train_EnvEntranceTCPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a21" value="2"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a22" value="2"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingEnvironment.Train_EnvExitTCPort" name="Train_EnvExitTCPort" memberEnd="LevelCrossingEnvironment.Train_EnvExitTCPort.train LevelCrossingEnvironment.Train_EnvExitTCPort.tcExit">
+    <ownedEnd xmi:id="LevelCrossingEnvironment.Train_EnvExitTCPort.train" name="train" type="LevelCrossingEnvironment.Train" isUnique="false" association="LevelCrossingEnvironment.Train_EnvExitTCPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a23" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a24" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingEnvironment.Train_EnvExitTCPort.tcExit" name="tcExit" type="LevelCrossingEnvironment.EnvExitTCPort" isUnique="false" association="LevelCrossingEnvironment.Train_EnvExitTCPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a25" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a26" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingEnvironment.Train_EnvRailwaySignPort" name="Train_EnvRailwaySignPort" memberEnd="LevelCrossingEnvironment.Train_EnvRailwaySignPort.train LevelCrossingEnvironment.Train_EnvRailwaySignPort.railwaySign">
+    <ownedEnd xmi:id="LevelCrossingEnvironment.Train_EnvRailwaySignPort.train" name="train" type="LevelCrossingEnvironment.Train" isUnique="false" association="LevelCrossingEnvironment.Train_EnvRailwaySignPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a27" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a28" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingEnvironment.Train_EnvRailwaySignPort.railwaySign" name="railwaySign" type="LevelCrossingEnvironment.EnvRailwaySignPort" isUnique="false" association="LevelCrossingEnvironment.Train_EnvRailwaySignPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a29" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a30" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingEnvironment.EnvEntranceTCPort" name="EnvEntranceTCPort">
+    <generalization xmi:id="a31">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.ActivationUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingEnvironment.EnvExitTCPort" name="EnvExitTCPort">
+    <generalization xmi:id="a32">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.ActivationUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingEnvironment.EnvRailwaySignPort" name="EnvRailwaySignPort">
+    <generalization xmi:id="a33">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.AuthorizationProvider"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingEnvironment.Train" clientDependency="a35" name="Train" classifierBehavior="LevelCrossingEnvironment.Train.SM" isActive="true">
+    <generalization xmi:id="a34">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.ActivationUser"/>
+    </generalization>
+    <interfaceRealization xmi:id="a35" client="LevelCrossingEnvironment.Train">
+      <supplier xmi:type="uml:Interface" href="DAL.uml#DAL.I_Authorization"/>
+      <contract href="DAL.uml#DAL.I_Authorization"/>
+    </interfaceRealization>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="LevelCrossingEnvironment.Train.SM" name="SM">
+      <region xmi:id="LevelCrossingEnvironment.Train.SM.R" name="R">
+        <transition xmi:id="a36" source="LevelCrossingEnvironment.Train.SM.R.Initial" target="LevelCrossingEnvironment.Train.SM.R.Idle"/>
+        <transition xmi:id="a37" source="LevelCrossingEnvironment.Train.SM.R.Idle" target="LevelCrossingEnvironment.Train.SM.R.Far">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a38">
+            <language>C</language>
+            <body>SEND(AT(GET(this, tcEntrance), 0), activation, 0);</body>
+          </effect>
+        </transition>
+        <transition xmi:id="a39" source="LevelCrossingEnvironment.Train.SM.R.Far" target="LevelCrossingEnvironment.Train.SM.R.Close">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a40">
+            <language>C</language>
+            <body>SEND(AT(GET(this, tcEntrance), 1), activation, 1);</body>
+          </effect>
+        </transition>
+        <transition xmi:id="a41" source="LevelCrossingEnvironment.Train.SM.R.Close" target="LevelCrossingEnvironment.Train.SM.R.Passing">
+          <trigger xmi:id="a42">
+            <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.authorization_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="a43" source="LevelCrossingEnvironment.Train.SM.R.Passing" target="LevelCrossingEnvironment.Train.SM.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a44">
+            <language>C</language>
+            <body>SEND(GET(this, tcExit), activation);</body>
+          </effect>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="LevelCrossingEnvironment.Train.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingEnvironment.Train.SM.R.Idle" name="Idle"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingEnvironment.Train.SM.R.Far" name="Far"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingEnvironment.Train.SM.R.Close" name="Close"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingEnvironment.Train.SM.R.Passing" name="Passing"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+</uml:Model>

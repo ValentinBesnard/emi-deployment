@@ -1,0 +1,52 @@
+model DIL with (
+	private "Target.uml#Target.UML_GpioPort",
+	private "Target.uml#Target.UML_GpioPin",
+
+	private "DAL.uml#DAL.Integer",
+	private "DAL.uml#DAL.AuthorizationProvider",
+	private "DAL.uml#DAL.authorization_SE",
+	private "DAL.uml#DAL.ActivationUser"
+) {
+
+	class |GpioLed| behavesAs SM extends AuthorizationProvider {
+		private "port"[1-1] : UML_GpioPort;
+		private pin[1-1] : UML_GpioPin;
+
+		stateMachine SM {
+			region R {
+				Initial -> Idle;
+				Idle -> Idle : authorization_SE /
+						opaqueBehavior = 'UML_GpioToggleBits(GET(this, port), GET(this, pin));' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class ButtonPort extends ActivationUser implements I_InitSensor {}
+
+	signal initSensor {
+		"port"[1-1] : Integer;
+		pin[1-1] : Integer;
+	}
+	signalEvent initSensor_SE of initSensor;
+	interface I_InitSensor receives initSensor(initSensor) {}
+
+	class |GpioButton| behavesAs SM extends ActivationUser implements I_InitSensor {
+		private composite behavior port peerButton[1-1] : ButtonPort;
+		private "port"[1-1] : UML_GpioPort;
+		private pin[1-1] : UML_GpioPin;
+
+		stateMachine SM {
+			region R {
+				Initial -> Idle;
+				Idle -> Released : initSensor_SE /
+					opaqueBehavior = 'SET(this, port, params->port); SET(this, pin, params->pin);' in C;;
+				Released -> Pressed: [constraint "" is opaqueExpression = 'UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1' in C;] /
+					opaqueBehavior = 'SEND(GET(this, peerButton), activation);' in C;;
+				Pressed -> Released: [constraint "" is opaqueExpression = 'UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0' in C;] / ;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+}

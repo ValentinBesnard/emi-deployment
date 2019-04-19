@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="ButtonLedsEnvironment" name="ButtonLedsEnvironment">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.LightProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.ButtonUser"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.ButtonReceiverPort"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DIL.uml#DIL.PwmLed"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+  </elementImport>
+  <elementImport xmi:id="a6" visibility="private">
+    <importedElement xmi:type="uml:EnumerationLiteral" href="Target.uml#Target.UML_Timer.UML_TIM_4"/>
+  </elementImport>
+  <elementImport xmi:id="a7" visibility="private">
+    <importedElement xmi:type="uml:EnumerationLiteral" href="Target.uml#Target.UML_PwmChannel.UML_PWM_CH_3"/>
+  </elementImport>
+  <elementImport xmi:id="a8" visibility="private">
+    <importedElement xmi:type="uml:EnumerationLiteral" href="Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_A"/>
+  </elementImport>
+  <elementImport xmi:id="a9" visibility="private">
+    <importedElement xmi:type="uml:EnumerationLiteral" href="Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_0"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsEnvironment.Env" name="Env">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="ButtonLedsEnvironment.Env.envLedPort" name="envLedPort" type="ButtonLedsEnvironment.EnvLedPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a10" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a11" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="ButtonLedsEnvironment.Env.envButtonPort" name="envButtonPort" type="ButtonLedsEnvironment.EnvButtonPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a12" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a13" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="ButtonLedsEnvironment.Env.envLed" name="envLed" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.PwmLed"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a14" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a15" value="1"/>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="a16" instance="ButtonLedsEnvironment.instRedLed"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="ButtonLedsEnvironment.Env.envButton" name="envButton" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a17" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a18" value="1"/>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="a19" instance="ButtonLedsEnvironment.instUserButton"/>
+    </ownedAttribute>
+    <ownedConnector xmi:id="ButtonLedsEnvironment.Env.c2" name="c2" type="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort">
+      <end xmi:id="a20" partWithPort="ButtonLedsEnvironment.Env.envButton">
+        <role xmi:type="uml:Port" href="DIL.uml#DIL.GpioButton.peer"/>
+      </end>
+      <end xmi:id="a21" role="ButtonLedsEnvironment.Env.envButtonPort"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="ButtonLedsEnvironment.Env.c1" name="c1" type="ButtonLedsEnvironment.EnvLedPort_PwmLed">
+      <end xmi:id="a22" role="ButtonLedsEnvironment.Env.envLedPort"/>
+      <end xmi:id="a23" role="ButtonLedsEnvironment.Env.envLed"/>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsEnvironment.EnvLedPort" name="EnvLedPort">
+    <generalization xmi:id="a24">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.LightProvider"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsEnvironment.EnvButtonPort" name="EnvButtonPort">
+    <generalization xmi:id="a25">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.ButtonUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="ButtonLedsEnvironment.EnvLedPort_PwmLed" name="EnvLedPort_PwmLed" memberEnd="ButtonLedsEnvironment.EnvLedPort_PwmLed.ledPort ButtonLedsEnvironment.EnvLedPort_PwmLed.led">
+    <ownedEnd xmi:id="ButtonLedsEnvironment.EnvLedPort_PwmLed.ledPort" name="ledPort" type="ButtonLedsEnvironment.EnvLedPort" isUnique="false" association="ButtonLedsEnvironment.EnvLedPort_PwmLed">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a26" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a27" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="ButtonLedsEnvironment.EnvLedPort_PwmLed.led" name="led" isUnique="false" association="ButtonLedsEnvironment.EnvLedPort_PwmLed">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.PwmLed"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a28" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a29" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort" name="EnvButtonPort_ButtonReceiverPort" memberEnd="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort.button ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort.buttonPort">
+    <ownedEnd xmi:id="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort.button" name="button" isUnique="false" association="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort">
+      <type xmi:type="uml:Class" href="DAL.uml#DAL.ButtonReceiverPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a30" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a31" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort.buttonPort" name="buttonPort" type="ButtonLedsEnvironment.EnvButtonPort" isUnique="false" association="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a32" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a33" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="ButtonLedsEnvironment.instRedLed" name="instRedLed">
+    <classifier xmi:type="uml:Class" href="DIL.uml#DIL.PwmLed"/>
+    <slot xmi:id="a34">
+      <definingFeature xmi:type="uml:Property" href="DIL.uml#DIL.PwmLed.timer"/>
+      <value xmi:type="uml:InstanceValue" xmi:id="a35">
+        <instance xmi:type="uml:EnumerationLiteral" href="Target.uml#Target.UML_Timer.UML_TIM_4"/>
+      </value>
+    </slot>
+    <slot xmi:id="a36">
+      <definingFeature xmi:type="uml:Property" href="DIL.uml#DIL.PwmLed.channel"/>
+      <value xmi:type="uml:InstanceValue" xmi:id="a37">
+        <instance xmi:type="uml:EnumerationLiteral" href="Target.uml#Target.UML_PwmChannel.UML_PWM_CH_3"/>
+      </value>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="ButtonLedsEnvironment.instUserButton" name="instUserButton">
+    <classifier xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+    <slot xmi:id="a38">
+      <definingFeature xmi:type="uml:Property" href="DIL.uml#DIL.GpioButton.port"/>
+      <value xmi:type="uml:InstanceValue" xmi:id="a39">
+        <instance xmi:type="uml:EnumerationLiteral" href="Target.uml#Target.UML_GpioPort.UML_GPIO_PORT_A"/>
+      </value>
+    </slot>
+    <slot xmi:id="a40">
+      <definingFeature xmi:type="uml:Property" href="DIL.uml#DIL.GpioButton.pin"/>
+      <value xmi:type="uml:InstanceValue" xmi:id="a41">
+        <instance xmi:type="uml:EnumerationLiteral" href="Target.uml#Target.UML_GpioPin.UML_GPIO_PIN_0"/>
+      </value>
+    </slot>
+  </packagedElement>
+</uml:Model>

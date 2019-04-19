@@ -1,0 +1,9 @@
+
+
+@startuml
+	rectangle "<u>env : Environment</u>" as LevelCrossingCS_Main_env
+	rectangle "<u>sys : System</u>" as LevelCrossingCS_Main_sys
+	LevelCrossingCS_Main_sys -- LevelCrossingCS_Main_env
+	LevelCrossingCS_Main_sys -- LevelCrossingCS_Main_env
+	LevelCrossingCS_Main_sys -- LevelCrossingCS_Main_env
+@enduml

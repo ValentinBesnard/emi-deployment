@@ -1,0 +1,55 @@
+model LevelCrossingEnvironment with(
+	private "DAL.uml#DAL.authorization_SE",
+	private "DAL.uml#DAL.I_Authorization",
+	private "DAL.uml#DAL.ActivationUser",
+	private "DAL.uml#DAL.AuthorizationProvider"
+) {
+
+	class Environment {
+		public composite train[1-1] : Train;
+
+		public composite port tcEntrancePort[2-2] : EnvEntranceTCPort;
+		public composite port tcExitPort[1-1] : EnvExitTCPort;
+		public composite port railwaySignPort[1-1] : EnvRailwaySignPort;
+
+		connector "c1" : Train_EnvEntranceTCPort between train and tcEntrancePort;
+		connector "c2" : Train_EnvExitTCPort between train and tcExitPort;
+		connector "c3" : Train_EnvRailwaySignPort between train and railwaySignPort;
+	}
+	
+	association Train_EnvEntranceTCPort {
+		train[1-1] : Train in Train_EnvEntranceTCPort;
+		tcEntrance[2-2] : EnvEntranceTCPort in Train_EnvEntranceTCPort;
+	}
+	association Train_EnvExitTCPort {
+		train[1-1] : Train in Train_EnvExitTCPort;
+		tcExit[1-1] : EnvExitTCPort in Train_EnvExitTCPort;
+	}
+	association Train_EnvRailwaySignPort {
+		train[1-1] : Train in Train_EnvRailwaySignPort;
+		railwaySign[1-1] : EnvRailwaySignPort in Train_EnvRailwaySignPort;
+	}
+
+	class EnvEntranceTCPort extends ActivationUser {}
+
+	class EnvExitTCPort extends ActivationUser {}
+
+	class EnvRailwaySignPort extends AuthorizationProvider {}
+
+	class |Train| behavesAs SM extends ActivationUser implements I_Authorization {
+		stateMachine SM {
+			region R {
+				Initial -> Idle;
+				Idle -> Far : / 
+						opaqueBehavior = 'SEND(AT(GET(this, tcEntrance), 0), activation, 0);' in C;;
+				Far -> Close :  /
+						opaqueBehavior = 'SEND(AT(GET(this, tcEntrance), 1), activation, 1);' in C;;
+				Close -> Passing : authorization_SE / ;
+				Passing -> Idle :  /
+						opaqueBehavior = 'SEND(GET(this, tcExit), activation);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+}

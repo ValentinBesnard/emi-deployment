@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:ClassDiagram">
+      <skinparams>
+        <commentsBefore></commentsBefore>
+      </skinparams>
+      <elements xsi:type="PlantUML:Class" name="DAL_ActivationProvider" longName="[[DAL%3A%3AActivationProvider-Class.svg DAL::ActivationProvider]]"/>
+      <elements xsi:type="PlantUML:Class" name="DAL_AuthorizationUser" longName="[[DAL%3A%3AAuthorizationUser-Class.svg DAL::AuthorizationUser]]"/>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_Integer" longName="Integer" stereotype="DataType"/>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_Boolean" longName="Boolean" stereotype="DataType"/>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_System" longName="System">
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; tcEntrance : [[LevelCrossingSystem%3A%3AEntranceTC-Class.svg EntranceTC]][2..1]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; tcExit : [[LevelCrossingSystem%3A%3AExitTC-Class.svg ExitTC]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; controller : [[LevelCrossingSystem%3A%3AController-Class.svg Controller]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; railwaySign : [[LevelCrossingSystem%3A%3ARailwaySign-Class.svg RailwaySign]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; roadSign : [[LevelCrossingSystem%3A%3ARoadSign-Class.svg RoadSign]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; gate : [[LevelCrossingSystem%3A%3AGate-Class.svg Gate]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; tcEntrancePort : [[LevelCrossingSystem%3A%3AEntranceTCPort-Class.svg EntranceTCPort]][2..1]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; tcExitPort : [[LevelCrossingSystem%3A%3AExitTCPort-Class.svg ExitTCPort]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; railwaySignPort : [[LevelCrossingSystem%3A%3ARailwaySignPort-Class.svg RailwaySignPort]]"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_entranceDetection" longName="entranceDetection" stereotype="signal">
+        <features xsi:type="PlantUML:Attribute" name="+id : Integer"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_exitDetection" longName="exitDetection" stereotype="signal">
+        <features xsi:type="PlantUML:Attribute" name="+id : Integer"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_EntranceTCPort" longName="EntranceTCPort"/>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_ExitTCPort" longName="ExitTCPort"/>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_RailwaySignPort" longName="RailwaySignPort"/>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_LevelCrossingSystem_EntranceTC" longName="EntranceTC">
+        <features xsi:type="PlantUML:Attribute" name="-id : Integer"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_LevelCrossingSystem_ExitTC" longName="ExitTC">
+        <features xsi:type="PlantUML:Attribute" name="-id : Integer"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_LevelCrossingSystem_Controller" longName="Controller">
+        <features xsi:type="PlantUML:Attribute" name="-nbEngagedTrains : Integer"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> entranceDetection()"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> exitDetection()"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> roadSignOn()"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> roadSignOff()"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> railwaySignOn()"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> gateOpen()"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> gateClosed()"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_LevelCrossingSystem_RoadSign" longName="RoadSign">
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> switchOn()"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> switchOff()"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_LevelCrossingSystem_Gate" longName="Gate">
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> open()"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> close()"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_LevelCrossingSystem_RailwaySign" longName="RailwaySign">
+        <features xsi:type="PlantUML:Attribute" name="-id : Integer"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> switchOn()"/>
+        <features xsi:type="PlantUML:Attribute" name="+&lt;&lt;signal>> switchOff()"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.7"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.8"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.1"/>
+        <members target="/0/@element.0/@elements.9"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.10"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.11"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.1"/>
+        <members target="/0/@element.0/@elements.15"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="gate">
+        <members target="/0/@element.0/@elements.12"/>
+        <members target="/0/@element.0/@elements.14"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="tcEntrance[2..1]">
+        <members target="/0/@element.0/@elements.12"/>
+        <members target="/0/@element.0/@elements.10"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="tcExit">
+        <members target="/0/@element.0/@elements.12"/>
+        <members target="/0/@element.0/@elements.11"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="roadSign">
+        <members target="/0/@element.0/@elements.12"/>
+        <members target="/0/@element.0/@elements.13"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="tcEntrance">
+        <members target="/0/@element.0/@elements.7"/>
+        <members target="/0/@element.0/@elements.10"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="tcExit">
+        <members target="/0/@element.0/@elements.8"/>
+        <members target="/0/@element.0/@elements.11"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="railwaySign">
+        <members target="/0/@element.0/@elements.12"/>
+        <members target="/0/@element.0/@elements.15"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="train">
+        <members target="/0/@element.0/@elements.15"/>
+        <members target="/0/@element.0/@elements.9"/>
+      </elements>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:Class name="LevelCrossingSystem_EntranceTC_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="LevelCrossingSystem_EntranceTC_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_ExitTC_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="LevelCrossingSystem_ExitTC_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_Controller_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="LevelCrossingSystem_Controller_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_Controller_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_Controller_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_Controller_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_Controller_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_Controller_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_Controller_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_RoadSign_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="LevelCrossingSystem_RoadSign_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_RoadSign_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_Gate_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="LevelCrossingSystem_Gate_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_Gate_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_RailwaySign_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="LevelCrossingSystem_RailwaySign_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="LevelCrossingSystem_RailwaySign_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@31531d0d" longName="unnamed" stereotype="OpaqueBehavior"/>
+</xmi:XMI>

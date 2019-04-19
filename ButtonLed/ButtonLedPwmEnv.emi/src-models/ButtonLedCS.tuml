@@ -1,0 +1,33 @@
+model ButtonLeds with(
+	private "ButtonLedSystem.uml#ButtonLedsSystem.System",
+	private "ButtonLedSystem.uml#ButtonLedsSystem.LightPort",
+	private "ButtonLedSystem.uml#ButtonLedsSystem.ButtonPort",
+
+	private "ButtonLedEnvironment.uml#ButtonLedsEnvironment.Env",
+	private "ButtonLedEnvironment.uml#ButtonLedsEnvironment.EnvLedPort",
+	private "ButtonLedEnvironment.uml#ButtonLedsEnvironment.EnvButtonPort"
+) {
+
+	class Main {
+		composite system[1-1] : System;
+		composite env[1-1] : Env;
+
+		connector c1 : ButtonPort_EnvButtonPort between system.sysButtonPort and env.envButtonPort;
+		connector c2 : LightPort_EnvLedPort between system.sysLightPort and env.envLedPort;
+	}
+
+	instance instMain of Main {
+
+	}
+
+	association ButtonPort_EnvButtonPort {
+		systemButtonPort[1-1] : ButtonPort in ButtonPort_EnvButtonPort;
+		envButtonPort[1-1] : EnvButtonPort in ButtonPort_EnvButtonPort;
+	}
+
+	association LightPort_EnvLedPort {
+		systemLightPort[1-1] : LightPort in LightPort_EnvLedPort;
+		envLedPort[1-1] : EnvLedPort in LightPort_EnvLedPort;
+	}
+	
+}

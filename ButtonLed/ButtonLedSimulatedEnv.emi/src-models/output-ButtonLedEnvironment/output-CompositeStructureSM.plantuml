@@ -1,0 +1,18 @@
+
+
+@startuml
+	state Env {
+		
+			state "envLedPort : EnvLedPort" as ButtonLedsEnvironment_Env_envLedPort <<entrypoint>>
+			state "envButtonPort : EnvButtonPort" as ButtonLedsEnvironment_Env_envButtonPort <<entrypoint>>
+			state "envLed : SimulatedLight" as ButtonLedsEnvironment_Env_envLed
+			state "envButton : SimulatedButton" as ButtonLedsEnvironment_Env_envButton {
+				
+					state "peer" as ButtonLedsEnvironment_Env_envButton_ButtonLedsEnvironment_SimulatedButton_peer <<entrypoint>>
+				
+			}
+			ButtonLedsEnvironment_Env_envButton_ButtonLedsEnvironment_SimulatedButton_peer --> ButtonLedsEnvironment_Env_envButtonPort
+			ButtonLedsEnvironment_Env_envLedPort --> ButtonLedsEnvironment_Env_envLed
+		
+	}
+@enduml

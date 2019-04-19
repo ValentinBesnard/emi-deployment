@@ -1,0 +1,54 @@
+@startuml
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam monochrome true
+participant "<u>instMain_system_controller:Controller</u>" as instMain_system_controller
+participant "<u>instMain_env_envLed:SimulatedLight</u>" as instMain_env_envLed
+participant "<u>instMain_env_envButton:SimulatedButton</u>" as instMain_env_envButton
+/ hnote over instMain_system_controller : Idle
+/ hnote over instMain_env_envLed : Off
+/ hnote over instMain_env_envButton : Released
+hnote over instMain_system_controller : Idle
+hnote over instMain_env_envLed : Off
+hnote over instMain_env_envButton : Released
+instMain_env_envButton -> instMain_env_envButton_peer : buttonPressed
+instMain_env_envButton_peer -> instMain_env_envButtonPort : buttonPressed
+instMain_env_envButtonPort -> instMain_system_sysButtonPort : buttonPressed
+instMain_system_sysButtonPort -> instMain_system_controller : buttonPressed
+hnote over instMain_env_envButton : Pressed
+instMain_system_controller -> instMain_system_sysLightPort : lightOn
+instMain_system_sysLightPort -> instMain_env_envLedPort : lightOn
+instMain_env_envLedPort -> instMain_env_envLed : lightOn
+hnote over instMain_system_controller : RedOn
+hnote over instMain_env_envLed : On
+instMain_env_envButton -> instMain_env_envButton_peer : buttonReleased
+instMain_env_envButton_peer -> instMain_env_envButtonPort : buttonReleased
+instMain_env_envButtonPort -> instMain_system_sysButtonPort : buttonReleased
+instMain_system_sysButtonPort -> instMain_system_controller : buttonReleased
+hnote over instMain_env_envButton : Released
+instMain_system_controller -> instMain_system_sysLightPort : lightOff
+instMain_system_sysLightPort -> instMain_env_envLedPort : lightOff
+instMain_env_envLedPort -> instMain_env_envLed : lightOff
+hnote over instMain_system_controller : Idle
+hnote over instMain_env_envLed : Off
+instMain_env_envButton -> instMain_env_envButton_peer : buttonPressed
+instMain_env_envButton_peer -> instMain_env_envButtonPort : buttonPressed
+instMain_env_envButtonPort -> instMain_system_sysButtonPort : buttonPressed
+instMain_system_sysButtonPort -> instMain_system_controller : buttonPressed
+hnote over instMain_env_envButton : Pressed
+instMain_system_controller -> instMain_system_sysLightPort : lightOn
+instMain_system_sysLightPort -> instMain_env_envLedPort : lightOn
+instMain_env_envLedPort -> instMain_env_envLed : lightOn
+hnote over instMain_system_controller : RedOn
+hnote over instMain_env_envLed : On
+instMain_env_envButton -> instMain_env_envButton_peer : buttonReleased
+instMain_env_envButton_peer -> instMain_env_envButtonPort : buttonReleased
+instMain_env_envButtonPort -> instMain_system_sysButtonPort : buttonReleased
+instMain_system_sysButtonPort -> instMain_system_controller : buttonReleased
+hnote over instMain_env_envButton : Released
+instMain_system_controller -> instMain_system_sysLightPort : lightOff
+instMain_system_sysLightPort -> instMain_env_envLedPort : lightOff
+instMain_env_envLedPort -> instMain_env_envLed : lightOff
+hnote over instMain_system_controller : Idle
+hnote over instMain_env_envLed : Off
+@enduml

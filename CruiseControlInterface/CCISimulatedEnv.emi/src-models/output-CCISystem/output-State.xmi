@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:StateDiagram">
+      <skinparams>
+        <commentsBefore>hide empty description
+skinparam shadowing false
+skinparam &lt;&lt;junction>>stateBackgroundColor white
+skinparam &lt;&lt;junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+</commentsBefore>
+      </skinparams>
+      <region>
+        <elements xsi:type="PlantUML:State" name="Observer1" longName="Observer1">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="CCISystem_observers_Observer1_SM_R_Disengaged" longName="Disengaged"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_observers_Observer1_SM_R_Fail" longName="Fail"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_observers_Observer1_SM_R_Engaged" longName="Engaged"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/1" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.1" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}]]&lt;/font>
+&lt;font color=red>[[#{missing ABCD body}							EP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), csm), cciCruiseSpeedPort), SIGNAL_updateSetPoint)]]&lt;/font>
+&lt;font color=red>[[#{missing ABCD body}						]]&lt;/font></guard>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}]]&lt;/font>
+&lt;font color=red>[[#{missing ABCD body}							EP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), actuation), cciControlOnOffPort), SIGNAL_controlOn)]]&lt;/font>
+&lt;font color=red>[[#{missing ABCD body}						]]&lt;/font></guard>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}]]&lt;/font>
+&lt;font color=red>[[#{missing ABCD body}							EP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), actuation), cciControlOnOffPort), SIGNAL_controlOff)]]&lt;/font>
+&lt;font color=red>[[#{missing ABCD body}						]]&lt;/font></guard>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="Observer2" longName="Observer2">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="CCISystem_observers_Observer2_SM_R_Running" longName="Running"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_observers_Observer2_SM_R_Fail" longName="Fail"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/2" target="/0/@element.0/@region/@elements.1/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.1/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.1/@regions.0/@elements.1" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}]]&lt;/font>
+&lt;font color=red>[[#{missing ABCD body}							!((GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) >= 40 &amp;&amp; GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) &lt;= 180) || GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) == -1)]]&lt;/font>
+&lt;font color=red>[[#{missing ABCD body}						]]&lt;/font></guard>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="Observer3" longName="Observer3">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="CCISystem_observers_Observer3_SM_R_Running" longName="Running"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_observers_Observer3_SM_R_Fail" longName="Fail"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/3" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.2/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.1" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}]]&lt;/font>
+&lt;font color=red>[[#{missing ABCD body}							GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) == -1 &amp;&amp; IS_IN_STATE(GET(GET(ROOT_instMain, cci), actuation), STATE_Actuation_Engaged)]]&lt;/font>
+&lt;font color=red>[[#{missing ABCD body}						]]&lt;/font></guard>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="Actuation" longName="Actuation">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Actuation_SM_Actuation_R_ChoiceEngagedCaptureSpeed" longName="ChoiceEngagedCaptureSpeed" kind="choice"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Actuation_SM_Actuation_R_ChoiceDisengagedCaptureSpeed" longName="ChoiceDisengagedCaptureSpeed" kind="choice"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Actuation_SM_Actuation_R_Disengaged" longName="Disengaged"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Actuation_SM_Actuation_R_Engaged" longName="Engaged"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/4" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.2" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.3/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.3" isVertical="true">
+              <trigger>
+                <parts>engage</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, cciControlOnOffPort), controlOn);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.3/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.2" isVertical="true">
+              <trigger>
+                <parts>disengage</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, cciControlOnOffPort), controlOff); SEND(GET(this, controller), disengaged);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.3/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>updateSpeed</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.3/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.3" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}params->speed >= 40 &amp;&amp; params->speed &lt;= 180]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, csm), speedCaptured, params->speed); SEND(GET(this, csm), requestSetPoint);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.3/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.3" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}else]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, csm), speedNotCaptured); SEND(GET(this, controller), pause);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.3/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.1" isVertical="true">
+              <trigger>
+                <parts>updateSpeed</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.3/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}params->speed >= 40 &amp;&amp; params->speed &lt;= 180]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, csm), speedCaptured, params->speed);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.3/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}else]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, csm), speedNotCaptured);]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="CruiseSpeedManager" longName="CruiseSpeedManager">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_ChoiceIncCS" longName="ChoiceIncCS" kind="choice"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_ChoiceDecCS" longName="ChoiceDecCS" kind="choice"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle" longName="Idle"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_WaitSpeed" longName="WaitSpeed"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/5" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" isVertical="true">
+              <effect>&lt;font color=red>[[#{missing ABCD body}SET(this, cruiseSpeed, -1);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.3" isVertical="true">
+              <trigger>
+                <parts>setCS</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" isVertical="true">
+              <trigger>
+                <parts>speedCaptured</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SET(this, cruiseSpeed, params->speed); SEND(GET(this, controller), ackCS);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" isVertical="true">
+              <trigger>
+                <parts>speedNotCaptured</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SET(this, cruiseSpeed, -1); SEND(GET(this, controller), nackCS);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" isVertical="true">
+              <trigger>
+                <parts>resetCS</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SET(this, cruiseSpeed, -1);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.4/@regions.0/@elements.2">
+              <trigger>
+                <parts>resetCS</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SET(this, cruiseSpeed, -1);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>incCS</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}GET(this, cruiseSpeed) &lt; 180]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}INC(this, cruiseSpeed, 1);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}else]]&lt;/font></guard>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.1" isVertical="true">
+              <trigger>
+                <parts>decCS</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}GET(this, cruiseSpeed) > 40]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}DEC(this, cruiseSpeed, 1);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}else]]&lt;/font></guard>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.4/@regions.0/@elements.2">
+              <trigger>
+                <parts>requestSetPoint</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, cciCruiseSpeedPort), updateSetPoint, GET(this, cruiseSpeed));]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.4/@regions.0/@elements.3">
+              <trigger>
+                <parts>setCS</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.4/@regions.0/@elements.3">
+              <trigger>
+                <parts>incCS</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.4/@regions.0/@elements.3">
+              <trigger>
+                <parts>decCS</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.4/@regions.0/@elements.2">
+              <trigger>
+                <parts>speedCaptured</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.4/@regions.0/@elements.2">
+              <trigger>
+                <parts>speedNotCaptured</parts>
+              </trigger>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="PedalsManager" longName="PedalsManager">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_PedalsManager_SM_PedalsManager_R_ChoiceLock" longName="ChoiceLock" kind="choice"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_PedalsManager_SM_PedalsManager_R_ChoiceResume" longName="ChoiceResume" kind="choice"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_PedalsManager_SM_PedalsManager_R_Idle" longName="Idle"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_PedalsManager_SM_PedalsManager_R_Lock" longName="Lock"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/6" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.2" isVertical="true"/>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.5/@regions.0/@elements.2">
+              <trigger>
+                <parts>pedalPressed</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), pause); SET(this, canResume, TRUE);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.5/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.1" isVertical="true">
+              <trigger>
+                <parts>pedalReleased</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.5/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}GET(this, canResume) == TRUE]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), resume);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.5/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}else]]&lt;/font></guard>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.5/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.3" isVertical="true">
+              <trigger>
+                <parts>pedalPressed</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}INC(this, nbLocks, 1); SET(this, canResume, FALSE); SEND(GET(this, controller), lock);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.5/@regions.0/@elements.3">
+              <trigger>
+                <parts>pedalPressed</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}INC(this, nbLocks, 1);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.5/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>pedalReleased</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}DEC(this, nbLocks, 1);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.5/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.3" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}GET(this, nbLocks) > 0]]&lt;/font></guard>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.5/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}else]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), unlock);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.5/@regions.0/@elements.2">
+              <trigger>
+                <parts>requestPedals</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), ackPedals);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.5/@regions.0/@elements.3">
+              <trigger>
+                <parts>requestPedals</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), nackPedals);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.5/@regions.0/@elements.3">
+              <trigger>
+                <parts>pedalPressed</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.5/@regions.0/@elements.3">
+              <trigger>
+                <parts>pedalReleased</parts>
+              </trigger>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="Controller" longName="Controller">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Controller_SM_Controller_R_WaitCS" longName="WaitCS"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Controller_SM_Controller_R_WaitPM" longName="WaitPM"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Controller_SM_Controller_R_Off" longName="Off"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Controller_SM_Controller_R_On" longName="On"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Controller_SM_Controller_R_Pause" longName="Pause"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Controller_SM_Controller_R_Engaged" longName="Engaged"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Controller_SM_Controller_R_Lock" longName="Lock"/>
+            <elements xsi:type="PlantUML:State" name="CCISystem_system_Controller_SM_Controller_R_WaitDisengaged" longName="WaitDisengaged"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/7" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.2" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.3" isVertical="true">
+              <trigger>
+                <parts>start</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.2" isVertical="true">
+              <trigger>
+                <parts>stop</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>set</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.4" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>set</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.5" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>set</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, actuation), disengage);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.1" isVertical="true">
+              <trigger>
+                <parts>ackCS</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.3" isVertical="true">
+              <trigger>
+                <parts>nackCS</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.5" isVertical="true">
+              <trigger>
+                <parts>ackPedals</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, actuation), engage);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.3" isVertical="true">
+              <trigger>
+                <parts>nackPedals</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.5">
+              <trigger>
+                <parts>inc</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, csm), incCS);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.5">
+              <trigger>
+                <parts>dec</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, csm), decCS);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.4">
+              <trigger>
+                <parts>inc</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, csm), incCS);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.4">
+              <trigger>
+                <parts>dec</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, csm), decCS);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.5" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.4" isVertical="true">
+              <trigger>
+                <parts>pause</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, actuation), disengage);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.4" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.5" isVertical="true">
+              <trigger>
+                <parts>resume</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, actuation), engage);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.5" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.6" isVertical="true">
+              <trigger>
+                <parts>lock</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, actuation), disengage);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.4" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.6" isVertical="true">
+              <trigger>
+                <parts>lock</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.6" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.4" isVertical="true">
+              <trigger>
+                <parts>unlock</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.2" isVertical="true">
+              <trigger>
+                <parts>stop</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.4" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.2" isVertical="true">
+              <trigger>
+                <parts>stop</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.6" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.2" isVertical="true">
+              <trigger>
+                <parts>stop</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.5" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.7" isVertical="true">
+              <trigger>
+                <parts>stop</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, actuation), disengage);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.6/@regions.0/@elements.7" target="/0/@element.0/@region/@elements.6/@regions.0/@elements.2" isVertical="true">
+              <trigger>
+                <parts>disengaged</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.2">
+              <trigger>
+                <parts>stop</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.2">
+              <trigger>
+                <parts>set</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.2">
+              <trigger>
+                <parts>inc</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.2">
+              <trigger>
+                <parts>dec</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.2">
+              <trigger>
+                <parts>pause</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.2">
+              <trigger>
+                <parts>resume</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.2">
+              <trigger>
+                <parts>lock</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.2">
+              <trigger>
+                <parts>unlock</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.3">
+              <trigger>
+                <parts>start</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.3">
+              <trigger>
+                <parts>inc</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.3">
+              <trigger>
+                <parts>dec</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.3">
+              <trigger>
+                <parts>pause</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.3">
+              <trigger>
+                <parts>resume</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.3">
+              <trigger>
+                <parts>lock</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.3">
+              <trigger>
+                <parts>unlock</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.4">
+              <trigger>
+                <parts>start</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.4">
+              <trigger>
+                <parts>pause</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.4">
+              <trigger>
+                <parts>disengaged</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.5">
+              <trigger>
+                <parts>start</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.5">
+              <trigger>
+                <parts>resume</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.6">
+              <trigger>
+                <parts>start</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.6">
+              <trigger>
+                <parts>inc</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.6">
+              <trigger>
+                <parts>dec</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.6">
+              <trigger>
+                <parts>set</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.6">
+              <trigger>
+                <parts>pause</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.6">
+              <trigger>
+                <parts>resume</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.6">
+              <trigger>
+                <parts>disengaged</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.0">
+              <trigger>
+                <parts>start</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.0">
+              <trigger>
+                <parts>inc</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.0">
+              <trigger>
+                <parts>dec</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.0">
+              <trigger>
+                <parts>set</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.0">
+              <trigger>
+                <parts>pause</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.0">
+              <trigger>
+                <parts>resume</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.0">
+              <trigger>
+                <parts>lock</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.0">
+              <trigger>
+                <parts>unlock</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.0">
+              <trigger>
+                <parts>disengaged</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.0">
+              <trigger>
+                <parts>entry</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, csm), setCS);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.1">
+              <trigger>
+                <parts>entry</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, pm), requestPedals);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.6/@regions.0/@elements.2">
+              <trigger>
+                <parts>entry</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, csm), resetCS);]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+      </region>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+</xmi:XMI>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:StateDiagram">
+    <skinparams>
+      <commentsBefore>hide empty description
+skinparam shadowing false
+skinparam &lt;&lt;junction>>stateBackgroundColor white
+skinparam &lt;&lt;junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+</commentsBefore>
+    </skinparams>
+    <region/>
+  </element>
+</PlantUML:Model>

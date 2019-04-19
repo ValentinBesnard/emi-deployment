@@ -1,0 +1,1580 @@
+struct _IO_FILE {
+	int                        _flags;               /*     0     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	char *                     _IO_read_ptr;         /*     8     8 */
+	char *                     _IO_read_end;         /*    16     8 */
+	char *                     _IO_read_base;        /*    24     8 */
+	char *                     _IO_write_base;       /*    32     8 */
+	char *                     _IO_write_ptr;        /*    40     8 */
+	char *                     _IO_write_end;        /*    48     8 */
+	char *                     _IO_buf_base;         /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	char *                     _IO_buf_end;          /*    64     8 */
+	char *                     _IO_save_base;        /*    72     8 */
+	char *                     _IO_backup_base;      /*    80     8 */
+	char *                     _IO_save_end;         /*    88     8 */
+	struct _IO_marker *        _markers;             /*    96     8 */
+	struct _IO_FILE *          _chain;               /*   104     8 */
+	int                        _fileno;              /*   112     4 */
+	int                        _flags2;              /*   116     4 */
+	__off_t                    _old_offset;          /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	short unsigned int         _cur_column;          /*   128     2 */
+	signed char                _vtable_offset;       /*   130     1 */
+	char                       _shortbuf[1];         /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	_IO_lock_t *               _lock;                /*   136     8 */
+	__off64_t                  _offset;              /*   144     8 */
+	void *                     __pad1;               /*   152     8 */
+	void *                     __pad2;               /*   160     8 */
+	void *                     __pad3;               /*   168     8 */
+	void *                     __pad4;               /*   176     8 */
+	size_t                     __pad5;               /*   184     8 */
+	/* --- cacheline 3 boundary (192 bytes) --- */
+	int                        _mode;                /*   192     4 */
+	char                       _unused2[20];         /*   196    20 */
+
+	/* size: 216, cachelines: 4, members: 29 */
+	/* sum members: 208, holes: 2, sum holes: 8 */
+	/* last cacheline: 24 bytes */
+};
+struct _IO_marker {
+	struct _IO_marker *        _next;                /*     0     8 */
+	struct _IO_FILE *          _sbuf;                /*     8     8 */
+	int                        _pos;                 /*    16     4 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* padding: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct C_UML_Model {
+	char *                     name;                 /*     0     8 */
+	UML_Signal * *             uml_signal;           /*     8     8 */
+	UML_SignalEvent * *        uml_signal_event;     /*    16     8 */
+	UML_Class * *              uml_class;            /*    24     8 */
+	UML_Association * *        uml_association;      /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 5 */
+	/* last cacheline: 40 bytes */
+};
+struct UML_Constraint {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_ValueSpecification *   specification;        /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_ConnectorEnd {
+	DescriptorType             c_type;               /*     0     4 */
+	int                        lower;                /*     4     4 */
+	UML_Property *             role;                 /*     8     8 */
+	UML_Property *             partWithPort;         /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_SignalEvent {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	NbEnumerationLiteral_t     c_index;              /*    16     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	UML_Signal *               signal;               /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 5 */
+	/* sum members: 25, holes: 1, sum holes: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct UML_Connector {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_ConnectorEnd *         end;                  /*    16     8 */
+	UML_Association *          type;                 /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 5 */
+	/* last cacheline: 32 bytes */
+};
+struct UML_InterfaceRealization {
+	DescriptorType             c_type;               /*     0     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Interface *            contract;             /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* sum members: 12, holes: 1, sum holes: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct UML_Interface {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_ClassifierKind       c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Property * *           ownedAttribute;       /*    24     8 */
+	UML_Reception * *          ownedReception;       /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 6 */
+	/* sum members: 36, holes: 1, sum holes: 4 */
+	/* last cacheline: 40 bytes */
+};
+struct UML_Reception {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Signal *               signal;               /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Pseudostate {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_VertexKind           c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Transition * *         incoming;             /*    24     8 */
+	UML_Transition * *         outgoing;             /*    32     8 */
+	UML_PseudostateKind        kind;                 /*    40     4 */
+
+	/* size: 48, cachelines: 1, members: 7 */
+	/* sum members: 40, holes: 1, sum holes: 4 */
+	/* padding: 4 */
+	/* last cacheline: 48 bytes */
+};
+struct UML_Vertex {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_VertexKind           c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Transition * *         incoming;             /*    24     8 */
+	UML_Transition * *         outgoing;             /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 6 */
+	/* sum members: 36, holes: 1, sum holes: 4 */
+	/* last cacheline: 40 bytes */
+};
+struct UML_Association {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_ClassifierKind       c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Property * *           memberEnd;            /*    24     8 */
+	UML_Property * *           ownedEnd;             /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 6 */
+	/* sum members: 36, holes: 1, sum holes: 4 */
+	/* last cacheline: 40 bytes */
+};
+struct UML_ValueSpecification {
+	DescriptorType             c_type;               /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct UML_Property {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Class *                type;                 /*    16     8 */
+	int                        lower;                /*    24     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Association *          association;          /*    32     8 */
+	UML_AggregationKind        aggregation;          /*    40     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Class *                class;                /*    48     8 */
+
+	/* size: 56, cachelines: 1, members: 8 */
+	/* sum members: 48, holes: 2, sum holes: 8 */
+	/* last cacheline: 56 bytes */
+};
+struct UML_Transition {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Constraint *           guard;                /*    16     8 */
+	UML_Behavior *             effect;               /*    24     8 */
+	UML_Trigger *              trigger;              /*    32     8 */
+	UML_Vertex *               source;               /*    40     8 */
+	UML_Vertex *               target;               /*    48     8 */
+
+	/* size: 56, cachelines: 1, members: 8 */
+	/* last cacheline: 56 bytes */
+};
+struct UML_PrimitiveType {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_ClassifierKind       c_kind;               /*    16     4 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* padding: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_StateMachine {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Region * *             region;               /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Behavior {
+	DescriptorType             c_type;               /*     0     4 */
+	C_UML_BehaviorKind         c_kind;               /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct UML_OpaqueBehavior {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_BehaviorKind         c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	void *                     c_function;           /*    24     8 */
+	char * *                   language;             /*    32     8 */
+	char * *                   body;                 /*    40     8 */
+
+	/* size: 48, cachelines: 1, members: 7 */
+	/* sum members: 44, holes: 1, sum holes: 4 */
+	/* last cacheline: 48 bytes */
+};
+struct UML_State {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_VertexKind           c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Transition * *         incoming;             /*    24     8 */
+	UML_Transition * *         outgoing;             /*    32     8 */
+	UML_Behavior *             entry;                /*    40     8 */
+	UML_Behavior *             exit;                 /*    48     8 */
+	UML_Trigger *              deferrableTrigger;    /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+
+	/* size: 64, cachelines: 1, members: 9 */
+	/* sum members: 60, holes: 1, sum holes: 4 */
+};
+struct UML_Trigger {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Port * *               port;                 /*    16     8 */
+	UML_SignalEvent *          event;                /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 5 */
+	/* last cacheline: 32 bytes */
+};
+struct UML_Signal {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Property * *           ownedAttribute;       /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Class {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Connector * *          ownedConnector;       /*    16     8 */
+	UML_Property * *           ownedAttribute;       /*    24     8 */
+	UML_Behavior *             classifierBehavior;   /*    32     8 */
+	UML_InterfaceRealization * * interfaceRealization; /*    40     8 */
+	UML_Port * *               ownedPort;            /*    48     8 */
+	C_UML_ClassifierKind       c_kind;               /*    56     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	UML_Class * *              superClass;           /*    64     8 */
+	_Bool                      isActive;             /*    72     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	UML_Reception * *          ownedReception;       /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 12 */
+	/* sum members: 77, holes: 2, sum holes: 11 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Region {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Vertex * *             subvertex;            /*    16     8 */
+	UML_Transition * *         transition;           /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 5 */
+	/* last cacheline: 32 bytes */
+};
+struct UML_Port {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Association *          association;          /*    16     8 */
+	UML_AggregationKind        aggregation;          /*    24     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Class *                class;                /*    32     8 */
+	UML_Class *                type;                 /*    40     8 */
+	UML_ConnectorEnd *         end;                  /*    48     8 */
+	int                        lower;                /*    56     4 */
+	NbEnumerationLiteral_t     c_index;              /*    60     1 */
+	_Bool                      isConjugated;         /*    61     1 */
+
+	/* XXX 2 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	UML_Interface * *          provided;             /*    64     8 */
+	_Bool                      isBehavior;           /*    72     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	UML_Interface * *          required;             /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 14 */
+	/* sum members: 75, holes: 3, sum holes: 13 */
+	/* last cacheline: 24 bytes */
+};
+struct Fifo {
+	void * *                   data;                 /*     0     8 */
+	uint8_t                    nb_layers;            /*     8     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	uint32_t *                 element_size;         /*    16     8 */
+	NbFifoElements_t *         nb;                   /*    24     8 */
+	NbFifoElements_t           size;                 /*    32     1 */
+	NbFifoElements_t           writing;              /*    33     1 */
+
+	/* XXX 6 bytes hole, try to pack */
+
+	void *                     reorganize_buffer;    /*    40     8 */
+
+	/* size: 48, cachelines: 1, members: 7 */
+	/* sum members: 35, holes: 2, sum holes: 13 */
+	/* last cacheline: 48 bytes */
+};
+struct EventPool {
+	Fifo                       fifo;                 /*     0    48 */
+	EventPoolMeta              meta;                 /*    48    24 */
+	/* --- cacheline 1 boundary (64 bytes) was 8 bytes ago --- */
+
+	/* size: 72, cachelines: 2, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct EventPoolStore {
+	NbEvents_t                 nbEvents;             /*     0     1 */
+	EventId                    eventOccurred[4];     /*     1     8 */
+
+	/* size: 9, cachelines: 1, members: 2 */
+	/* last cacheline: 9 bytes */
+};
+struct EventPoolMeta {
+	EventSetSize_t             eventSetSize;         /*     0     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	UML_Signal * *             eventSet;             /*     8     8 */
+	uint32_t                   paramsSize;           /*    16     4 */
+	NbEvents_t                 nbDeferred;           /*    20     1 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* sum members: 14, holes: 1, sum holes: 7 */
+	/* padding: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct EventId {
+	NbSignalEvents_t           signalEventId;        /*     0     1 */
+	NbPorts_t                  portId;               /*     1     1 */
+
+	/* size: 2, cachelines: 1, members: 2 */
+	/* last cacheline: 2 bytes */
+};
+struct EventMetaData {
+	uint64_t                   timestamp;            /*     0     8 */
+	char *                     sender;               /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct ClassInfo {
+	UML_Class *                type;                 /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct Object {
+	char *                     name;                 /*     0     8 */
+	ClassInfo *                classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	void *                     properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	void *                     store;                /*    40     8 */
+	void *                     operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* size: 64, cachelines: 1, members: 8 */
+	/* sum members: 50, holes: 1, sum holes: 7 */
+	/* padding: 7 */
+};
+struct PassiveObject {
+	char *                     name;                 /*     0     8 */
+	ClassInfo *                classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	void *                     properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	void *                     store;                /*    40     8 */
+	void *                     operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	void *                     properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct ActiveObject {
+	char *                     name;                 /*     0     8 */
+	ClassInfo *                classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	void *                     properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	void *                     store;                /*    40     8 */
+	void *                     operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	void *                     properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct lightOn_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct lightOff_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct buttonPressed_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct buttonReleased_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct LightPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct LightPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct System_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct System_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Controller_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Controller_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Env_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Env_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvLedPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvLedPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvButtonPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvButtonPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct SimulatedLight_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct SimulatedLight_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct SimulatedButton_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct SimulatedButton_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonReceiverPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonReceiverPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Main_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Main_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Store {
+	uint32_t                   scheduling_state;     /*     0     4 */
+	Main_store                 instMain;             /*     4     0 */
+	System_store               instMain_system;      /*     4     0 */
+	LightPort_store            instMain_system_sysLightPort; /*     4     0 */
+	ButtonPort_store           instMain_system_sysButtonPort; /*     4     0 */
+	Controller_store           instMain_system_controller; /*     4    16 */
+	Env_store                  instMain_env;         /*    20     0 */
+	EnvLedPort_store           instMain_env_envLedPort; /*    20     0 */
+	EnvButtonPort_store        instMain_env_envButtonPort; /*    20     0 */
+	SimulatedLight_store       instMain_env_envLed;  /*    20    16 */
+	SimulatedButton_store      instMain_env_envButton; /*    36    16 */
+	ButtonReceiverPort_store   instMain_env_envButton_peer; /*    52     0 */
+
+	/* size: 52, cachelines: 1, members: 12 */
+	/* last cacheline: 52 bytes */
+};
+struct SignalEvents {
+	UML_SignalEvent *          lightOn;              /*     0     8 */
+	UML_SignalEvent *          lightOff;             /*     8     8 */
+	UML_SignalEvent *          buttonPressed;        /*    16     8 */
+	UML_SignalEvent *          buttonReleased;       /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 4 */
+	/* last cacheline: 32 bytes */
+};
+struct ButtonPort_properties_ro {
+	Controller_Object *        controller;           /*     0     8 */
+	EnvButtonPort_Object *     envButtonPort;        /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct Main_properties_ro {
+	Env_Object *               env;                  /*     0     8 */
+	System_Object *            system;               /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct Controller_properties_ro {
+	LightPort_Object *         light;                /*     0     8 */
+	ButtonPort_Object *        button;               /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct ButtonReceiverPort_properties_ro {
+	EnvButtonPort_Object *     buttonPort;           /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct LightPort_properties_ro {
+	EnvLedPort_Object *        envLedPort;           /*     0     8 */
+	Controller_Object *        controller;           /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct SimulatedButton_properties_ro {
+	ButtonReceiverPort_Object * peer;                /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvButtonPort_properties_ro {
+	ButtonPort_Object *        systemButtonPort;     /*     0     8 */
+	ButtonReceiverPort_Object * button;              /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct Env_properties_ro {
+	EnvButtonPort_Object *     envButtonPort;        /*     0     8 */
+	SimulatedButton_Object *   envButton;            /*     8     8 */
+	EnvLedPort_Object *        envLedPort;           /*    16     8 */
+	SimulatedLight_Object *    envLed;               /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 4 */
+	/* last cacheline: 32 bytes */
+};
+struct EnvLedPort_properties_ro {
+	SimulatedLight_Object *    led;                  /*     0     8 */
+	LightPort_Object *         systemLightPort;      /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct System_properties_ro {
+	ButtonPort_Object *        sysButtonPort;        /*     0     8 */
+	Controller_Object *        controller;           /*     8     8 */
+	LightPort_Object *         sysLightPort;         /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct SimulatedLight_properties_ro {
+	EnvLedPort_Object *        ledPort;              /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct PropertiesRO {
+	Main_properties_ro         instMain;             /*     0    16 */
+	System_properties_ro       instMain_system;      /*    16    24 */
+	LightPort_properties_ro    instMain_system_sysLightPort; /*    40    16 */
+	ButtonPort_properties_ro   instMain_system_sysButtonPort; /*    56    16 */
+	/* --- cacheline 1 boundary (64 bytes) was 8 bytes ago --- */
+	Controller_properties_ro   instMain_system_controller; /*    72    16 */
+	Env_properties_ro          instMain_env;         /*    88    32 */
+	EnvLedPort_properties_ro   instMain_env_envLedPort; /*   120    16 */
+	/* --- cacheline 2 boundary (128 bytes) was 8 bytes ago --- */
+	EnvButtonPort_properties_ro instMain_env_envButtonPort; /*   136    16 */
+	SimulatedLight_properties_ro instMain_env_envLed; /*   152     8 */
+	SimulatedButton_properties_ro instMain_env_envButton; /*   160     8 */
+	ButtonReceiverPort_properties_ro instMain_env_envButton_peer; /*   168     8 */
+
+	/* size: 176, cachelines: 3, members: 11 */
+	/* last cacheline: 48 bytes */
+};
+struct LightPort_mutability {
+	_Bool                      envLedPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      controller_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct ButtonPort_mutability {
+	_Bool                      controller_isMutable:1; /*     0: 7  1 */
+	_Bool                      envButtonPort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct System_mutability {
+	_Bool                      sysButtonPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      controller_isMutable:1; /*     0: 6  1 */
+	_Bool                      sysLightPort_isMutable:1; /*     0: 5  1 */
+
+	/* size: 1, cachelines: 1, members: 3 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Controller_mutability {
+	_Bool                      light_isMutable:1;    /*     0: 7  1 */
+	_Bool                      button_isMutable:1;   /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Env_mutability {
+	_Bool                      envButtonPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      envButton_isMutable:1; /*     0: 6  1 */
+	_Bool                      envLedPort_isMutable:1; /*     0: 5  1 */
+	_Bool                      envLed_isMutable:1;   /*     0: 4  1 */
+
+	/* size: 1, cachelines: 1, members: 4 */
+	/* bit_padding: 4 bits */
+	/* last cacheline: 1 bytes */
+};
+struct EnvLedPort_mutability {
+	_Bool                      led_isMutable:1;      /*     0: 7  1 */
+	_Bool                      systemLightPort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct EnvButtonPort_mutability {
+	_Bool                      systemButtonPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      button_isMutable:1;   /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct SimulatedLight_mutability {
+	_Bool                      ledPort_isMutable:1;  /*     0: 7  1 */
+
+	/* size: 1, cachelines: 1, members: 1 */
+	/* bit_padding: 7 bits */
+	/* last cacheline: 1 bytes */
+};
+struct SimulatedButton_mutability {
+	_Bool                      peer_isMutable:1;     /*     0: 7  1 */
+
+	/* size: 1, cachelines: 1, members: 1 */
+	/* bit_padding: 7 bits */
+	/* last cacheline: 1 bytes */
+};
+struct LightProvider_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct LightUser_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonProvider_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonUser_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonReceiverPort_mutability {
+	_Bool                      buttonPort_isMutable:1; /*     0: 7  1 */
+
+	/* size: 1, cachelines: 1, members: 1 */
+	/* bit_padding: 7 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Main_mutability {
+	_Bool                      env_isMutable:1;      /*     0: 7  1 */
+	_Bool                      system_isMutable:1;   /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct LightPort_PropertiesTypes {
+	LightPort_properties_ro *  envLedPort_type;      /*     0     8 */
+	LightPort_properties_ro *  controller_type;      /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct ButtonPort_PropertiesTypes {
+	ButtonPort_properties_ro * controller_type;      /*     0     8 */
+	ButtonPort_properties_ro * envButtonPort_type;   /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct System_PropertiesTypes {
+	System_properties_ro *     sysButtonPort_type;   /*     0     8 */
+	System_properties_ro *     controller_type;      /*     8     8 */
+	System_properties_ro *     sysLightPort_type;    /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct Controller_PropertiesTypes {
+	Controller_properties_ro * light_type;           /*     0     8 */
+	Controller_properties_ro * button_type;          /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct Env_PropertiesTypes {
+	Env_properties_ro *        envButtonPort_type;   /*     0     8 */
+	Env_properties_ro *        envButton_type;       /*     8     8 */
+	Env_properties_ro *        envLedPort_type;      /*    16     8 */
+	Env_properties_ro *        envLed_type;          /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 4 */
+	/* last cacheline: 32 bytes */
+};
+struct EnvLedPort_PropertiesTypes {
+	EnvLedPort_properties_ro * led_type;             /*     0     8 */
+	EnvLedPort_properties_ro * systemLightPort_type; /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvButtonPort_PropertiesTypes {
+	EnvButtonPort_properties_ro * systemButtonPort_type; /*     0     8 */
+	EnvButtonPort_properties_ro * button_type;       /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct SimulatedLight_PropertiesTypes {
+	SimulatedLight_properties_ro * ledPort_type;     /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct SimulatedButton_PropertiesTypes {
+	SimulatedButton_properties_ro * peer_type;       /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct LightProvider_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct LightUser_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonProvider_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonUser_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonReceiverPort_PropertiesTypes {
+	ButtonReceiverPort_properties_ro * buttonPort_type; /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct Main_PropertiesTypes {
+	Main_properties_ro *       env_type;             /*     0     8 */
+	Main_properties_ro *       system_type;          /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct LightPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const LightPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	LightPort_mutability       mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct ButtonPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const ButtonPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	ButtonPort_mutability      mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct System_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const System_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	System_mutability          mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct Controller_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const Controller_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	Controller_mutability      mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct Env_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const Env_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	Env_mutability             mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvLedPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const EnvLedPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	EnvLedPort_mutability      mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvButtonPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const EnvButtonPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	EnvButtonPort_mutability   mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct SimulatedLight_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const SimulatedLight_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	SimulatedLight_mutability  mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct SimulatedButton_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const SimulatedButton_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	SimulatedButton_mutability mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct LightProvider_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const LightProvider_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	LightProvider_mutability   mutability;           /*     8     0 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct LightUser_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const LightUser_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	LightUser_mutability       mutability;           /*     8     0 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct ButtonProvider_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const ButtonProvider_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	ButtonProvider_mutability  mutability;           /*     8     0 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct ButtonUser_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const ButtonUser_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	ButtonUser_mutability      mutability;           /*     8     0 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct ButtonReceiverPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const ButtonReceiverPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	ButtonReceiverPort_mutability mutability;        /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct Main_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const Main_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	Main_mutability            mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct Controller_Object {
+	char *                     name;                 /*     0     8 */
+	Controller_classInfo *     classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	Controller_properties_ro * properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	Controller_store *         store;                /*    40     8 */
+	Controller_operations *    operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	Controller_od *            properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct SimulatedLight_Object {
+	char *                     name;                 /*     0     8 */
+	SimulatedLight_classInfo * classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	SimulatedLight_properties_ro * properties_ro;    /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	SimulatedLight_store *     store;                /*    40     8 */
+	SimulatedLight_operations * operations;          /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	SimulatedLight_od *        properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct SimulatedButton_Object {
+	char *                     name;                 /*     0     8 */
+	SimulatedButton_classInfo * classInfo;           /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	SimulatedButton_properties_ro * properties_ro;   /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	SimulatedButton_store *    store;                /*    40     8 */
+	SimulatedButton_operations * operations;         /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	SimulatedButton_od *       properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct ActiveObjects {
+	Controller_Object *        instMain_system_controller; /*     0     8 */
+	SimulatedLight_Object *    instMain_env_envLed;  /*     8     8 */
+	SimulatedButton_Object *   instMain_env_envButton; /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct LightPort_Object {
+	char *                     name;                 /*     0     8 */
+	LightPort_classInfo *      classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	LightPort_properties_ro *  properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	LightPort_store *          store;                /*    40     8 */
+	LightPort_operations *     operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	LightPort_od *             properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct ButtonPort_Object {
+	char *                     name;                 /*     0     8 */
+	ButtonPort_classInfo *     classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	ButtonPort_properties_ro * properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	ButtonPort_store *         store;                /*    40     8 */
+	ButtonPort_operations *    operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	ButtonPort_od *            properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct System_Object {
+	char *                     name;                 /*     0     8 */
+	System_classInfo *         classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	System_properties_ro *     properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	System_store *             store;                /*    40     8 */
+	System_operations *        operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	System_od *                properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct Env_Object {
+	char *                     name;                 /*     0     8 */
+	Env_classInfo *            classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	Env_properties_ro *        properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	Env_store *                store;                /*    40     8 */
+	Env_operations *           operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	Env_od *                   properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct EnvLedPort_Object {
+	char *                     name;                 /*     0     8 */
+	EnvLedPort_classInfo *     classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	EnvLedPort_properties_ro * properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	EnvLedPort_store *         store;                /*    40     8 */
+	EnvLedPort_operations *    operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EnvLedPort_od *            properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct EnvButtonPort_Object {
+	char *                     name;                 /*     0     8 */
+	EnvButtonPort_classInfo *  classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	EnvButtonPort_properties_ro * properties_ro;     /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	EnvButtonPort_store *      store;                /*    40     8 */
+	EnvButtonPort_operations * operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EnvButtonPort_od *         properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct ButtonReceiverPort_Object {
+	char *                     name;                 /*     0     8 */
+	ButtonReceiverPort_classInfo * classInfo;        /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	ButtonReceiverPort_properties_ro * properties_ro; /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	ButtonReceiverPort_store * store;                /*    40     8 */
+	ButtonReceiverPort_operations * operations;      /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	ButtonReceiverPort_od *    properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct Main_Object {
+	char *                     name;                 /*     0     8 */
+	Main_classInfo *           classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	Main_properties_ro *       properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	Main_store *               store;                /*    40     8 */
+	Main_operations *          operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	Main_od *                  properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct PassiveObjects {
+	Main_Object *              instMain;             /*     0     8 */
+	System_Object *            instMain_system;      /*     8     8 */
+	LightPort_Object *         instMain_system_sysLightPort; /*    16     8 */
+	ButtonPort_Object *        instMain_system_sysButtonPort; /*    24     8 */
+	Env_Object *               instMain_env;         /*    32     8 */
+	EnvLedPort_Object *        instMain_env_envLedPort; /*    40     8 */
+	EnvButtonPort_Object *     instMain_env_envButtonPort; /*    48     8 */
+	ButtonReceiverPort_Object * instMain_env_envButton_peer; /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+
+	/* size: 64, cachelines: 1, members: 8 */
+};
+struct ButtonPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Main_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Controller_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonReceiverPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct LightPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct SimulatedButton_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvButtonPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Env_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvLedPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct System_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct SimulatedLight_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Ports {
+	UML_Port *                 ButtonLedsSystem__POINT__System__POINT__sysLightPort; /*     0     8 */
+	UML_Port *                 ButtonLedsSystem__POINT__System__POINT__sysButtonPort; /*     8     8 */
+	UML_Port *                 ButtonLedsEnvironment__POINT__Env__POINT__envLedPort; /*    16     8 */
+	UML_Port *                 ButtonLedsEnvironment__POINT__Env__POINT__envButtonPort; /*    24     8 */
+	UML_Port *                 ButtonLedsEnvironment__POINT__SimulatedButton__POINT__peer; /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 5 */
+	/* last cacheline: 40 bytes */
+};
+struct Interpreter {
+	InterpreterMode            status;               /*     0     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	ActiveObject * *           activeObjects;        /*     8     8 */
+	NbActiveObjects_t          offsetActiveObjectsId; /*    16     1 */
+	NbActiveObjects_t          nbActiveObjects;      /*    17     1 */
+
+	/* XXX 6 bytes hole, try to pack */
+
+	PassiveObject * *          passiveObjects;       /*    24     8 */
+	NbPassiveObjects_t         nbPassiveObjects;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	void *                     store;                /*    40     8 */
+	StoreSize_t                storeSize;            /*    48     2 */
+
+	/* size: 56, cachelines: 1, members: 8 */
+	/* sum members: 33, holes: 3, sum holes: 17 */
+	/* padding: 6 */
+	/* last cacheline: 56 bytes */
+};

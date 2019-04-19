@@ -1,0 +1,15 @@
+
+
+@startuml
+	package Main <<card>> {
+		object "cci : CCI" as CCICS_Main_cci
+		object "env : Env" as CCICS_Main_env
+		CCICS_Main_cci "buttonsPort" -- "envButtonsPort" CCICS_Main_env : CCIButtonsPort_EnvButtonsPort
+		CCICS_Main_cci "clutchPedalPort" -- "envClutchPedalPort" CCICS_Main_env : CCIPedalPort_EnvPedalPort
+		CCICS_Main_cci "breakPedalPort" -- "envBreakPedalPort" CCICS_Main_env : CCIPedalPort_EnvPedalPort
+		CCICS_Main_cci "throttlePedalPort" -- "envThrottlePedalPort" CCICS_Main_env : CCIPedalPort_EnvPedalPort
+		CCICS_Main_cci "controlOnOffPort" -- "envControlOnOffPort" CCICS_Main_env : CCIControlOnOffPort_EnvControlOnOffPort
+		CCICS_Main_cci "speedPort" -- "envSpeedPort" CCICS_Main_env : CCISpeedPort_EnvSpeedPort
+		CCICS_Main_cci "cruiseSpeedPort" -- "envCruiseSpeedPort" CCICS_Main_env : CCICruiseSpeedPort_EnvCruiseSpeedPort
+	}
+@enduml

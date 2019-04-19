@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="LevelCrossingSystem" name="LevelCrossingSystem">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.activation_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:Interface" href="../DAL.uml#DAL.I_Activation"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Interface" href="../DAL.uml#DAL.I_Authorization"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DAL.uml#DAL.ActivationProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DAL.uml#DAL.AuthorizationUser"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="LevelCrossingSystem.Integer" name="Integer"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="LevelCrossingSystem.Boolean" name="Boolean"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="LevelCrossingSystem.instEntranceTrackCircuit" name="instEntranceTrackCircuit" classifier="LevelCrossingSystem.EntranceTC">
+    <slot xmi:id="a6" definingFeature="LevelCrossingSystem.EntranceTC.id">
+      <value xmi:type="uml:LiteralInteger" xmi:id="a7" value="1"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="LevelCrossingSystem.instExitTC" name="instExitTC" classifier="LevelCrossingSystem.ExitTC">
+    <slot xmi:id="a8" definingFeature="LevelCrossingSystem.ExitTC.id">
+      <value xmi:type="uml:LiteralInteger" xmi:id="a9" value="2"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingSystem.System" name="System">
+    <ownedAttribute xmi:id="LevelCrossingSystem.System.tcEntrance" name="tcEntrance" type="LevelCrossingSystem.EntranceTC" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a10" value="2"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a11" value="2"/>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="a12" instance="LevelCrossingSystem.instEntranceTrackCircuit"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingSystem.System.tcExit" name="tcExit" type="LevelCrossingSystem.ExitTC" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a13" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a14" value="1"/>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="a15" instance="LevelCrossingSystem.instExitTC"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingSystem.System.controller" name="controller" type="LevelCrossingSystem.Controller" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a16" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a17" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingSystem.System.railwaySign" name="railwaySign" type="LevelCrossingSystem.RailwaySign" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a18" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a19" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingSystem.System.roadSign" name="roadSign" type="LevelCrossingSystem.RoadSign" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a20" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a21" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LevelCrossingSystem.System.gate" name="gate" type="LevelCrossingSystem.Gate" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a22" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a23" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="LevelCrossingSystem.System.tcEntrancePort" name="tcEntrancePort" type="LevelCrossingSystem.EntranceTCPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a24" value="2"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a25" value="2"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="LevelCrossingSystem.System.tcExitPort" name="tcExitPort" type="LevelCrossingSystem.ExitTCPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a26" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a27" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="LevelCrossingSystem.System.railwaySignPort" name="railwaySignPort" type="LevelCrossingSystem.RailwaySignPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a28" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a29" value="1"/>
+    </ownedAttribute>
+    <ownedConnector xmi:id="LevelCrossingSystem.System.c1" name="c1" type="LevelCrossingSystem.Controller_Gate">
+      <end xmi:id="a30" role="LevelCrossingSystem.System.controller"/>
+      <end xmi:id="a31" role="LevelCrossingSystem.System.gate"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingSystem.System.c2" name="c2" type="LevelCrossingSystem.Controller_EntranceTC">
+      <end xmi:id="a32" role="LevelCrossingSystem.System.controller"/>
+      <end xmi:id="a33" role="LevelCrossingSystem.System.tcEntrance"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingSystem.System.c3" name="c3" type="LevelCrossingSystem.Controller_ExitTC">
+      <end xmi:id="a34" role="LevelCrossingSystem.System.controller"/>
+      <end xmi:id="a35" role="LevelCrossingSystem.System.tcExit"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingSystem.System.c4" name="c4" type="LevelCrossingSystem.Controller_RoadSign">
+      <end xmi:id="a36" role="LevelCrossingSystem.System.controller"/>
+      <end xmi:id="a37" role="LevelCrossingSystem.System.roadSign"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingSystem.System.c5" name="c5" type="LevelCrossingSystem.EntranceTCPort_EntranceTC">
+      <end xmi:id="a38" role="LevelCrossingSystem.System.tcEntrancePort"/>
+      <end xmi:id="a39" role="LevelCrossingSystem.System.tcEntrance"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingSystem.System.c6" name="c6" type="LevelCrossingSystem.ExitTCPort_ExitTC">
+      <end xmi:id="a40" role="LevelCrossingSystem.System.tcExitPort"/>
+      <end xmi:id="a41" role="LevelCrossingSystem.System.tcExit"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingSystem.System.c7" name="c7" type="LevelCrossingSystem.Controller_RailwaySign">
+      <end xmi:id="a42" role="LevelCrossingSystem.System.controller"/>
+      <end xmi:id="a43" role="LevelCrossingSystem.System.railwaySign"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="LevelCrossingSystem.System.c8" name="c8" type="LevelCrossingSystem.RailwaySign_RailwaySignPort">
+      <end xmi:id="a44" role="LevelCrossingSystem.System.railwaySign"/>
+      <end xmi:id="a45" role="LevelCrossingSystem.System.railwaySignPort"/>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.entranceDetection" name="entranceDetection">
+    <ownedAttribute xmi:id="LevelCrossingSystem.entranceDetection.id" name="id" type="LevelCrossingSystem.Integer" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a46" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a47" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.entranceDetection_SE" name="entranceDetection_SE" signal="LevelCrossingSystem.entranceDetection"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.exitDetection" name="exitDetection">
+    <ownedAttribute xmi:id="LevelCrossingSystem.exitDetection.id" name="id" type="LevelCrossingSystem.Integer" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a48" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a49" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.exitDetection_SE" name="exitDetection_SE" signal="LevelCrossingSystem.exitDetection"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.switchOn" name="switchOn"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.switchOn_SE" name="switchOn_SE" signal="LevelCrossingSystem.switchOn"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.switchOff" name="switchOff"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.switchOff_SE" name="switchOff_SE" signal="LevelCrossingSystem.switchOff"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.roadSignOn" name="roadSignOn"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.roadSignOn_SE" name="roadSignOn_SE" signal="LevelCrossingSystem.roadSignOn"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.roadSignOff" name="roadSignOff"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.roadSignOff_SE" name="roadSignOff_SE" signal="LevelCrossingSystem.roadSignOff"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.open" name="open"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.open_SE" name="open_SE" signal="LevelCrossingSystem.open"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.close" name="close"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.close_SE" name="close_SE" signal="LevelCrossingSystem.close"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.gateOpen" name="gateOpen"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.gateOpen_SE" name="gateOpen_SE" signal="LevelCrossingSystem.gateOpen"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.gateClosed" name="gateClosed"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.gateClosed_SE" name="gateClosed_SE" signal="LevelCrossingSystem.gateClosed"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="LevelCrossingSystem.railwaySignOn" name="railwaySignOn"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="LevelCrossingSystem.railwaySignOn_SE" name="railwaySignOn_SE" signal="LevelCrossingSystem.railwaySignOn"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingSystem.Controller_Gate" name="Controller_Gate" memberEnd="LevelCrossingSystem.Controller_Gate.controller LevelCrossingSystem.Controller_Gate.gate">
+    <ownedEnd xmi:id="LevelCrossingSystem.Controller_Gate.controller" name="controller" type="LevelCrossingSystem.Controller" isUnique="false" association="LevelCrossingSystem.Controller_Gate">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a50" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a51" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingSystem.Controller_Gate.gate" name="gate" type="LevelCrossingSystem.Gate" isUnique="false" association="LevelCrossingSystem.Controller_Gate">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a52" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a53" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingSystem.Controller_EntranceTC" name="Controller_EntranceTC" memberEnd="LevelCrossingSystem.Controller_EntranceTC.controller LevelCrossingSystem.Controller_EntranceTC.tcEntrance">
+    <ownedEnd xmi:id="LevelCrossingSystem.Controller_EntranceTC.controller" name="controller" type="LevelCrossingSystem.Controller" isUnique="false" association="LevelCrossingSystem.Controller_EntranceTC">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a54" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a55" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingSystem.Controller_EntranceTC.tcEntrance" name="tcEntrance" type="LevelCrossingSystem.EntranceTC" isUnique="false" association="LevelCrossingSystem.Controller_EntranceTC">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a56" value="2"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a57" value="2"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingSystem.Controller_ExitTC" name="Controller_ExitTC" memberEnd="LevelCrossingSystem.Controller_ExitTC.controller LevelCrossingSystem.Controller_ExitTC.tcExit">
+    <ownedEnd xmi:id="LevelCrossingSystem.Controller_ExitTC.controller" name="controller" type="LevelCrossingSystem.Controller" isUnique="false" association="LevelCrossingSystem.Controller_ExitTC">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a58" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a59" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingSystem.Controller_ExitTC.tcExit" name="tcExit" type="LevelCrossingSystem.ExitTC" isUnique="false" association="LevelCrossingSystem.Controller_ExitTC">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a60" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a61" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingSystem.Controller_RoadSign" name="Controller_RoadSign" memberEnd="LevelCrossingSystem.Controller_RoadSign.controller LevelCrossingSystem.Controller_RoadSign.roadSign">
+    <ownedEnd xmi:id="LevelCrossingSystem.Controller_RoadSign.controller" name="controller" type="LevelCrossingSystem.Controller" isUnique="false" association="LevelCrossingSystem.Controller_RoadSign">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a62" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a63" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingSystem.Controller_RoadSign.roadSign" name="roadSign" type="LevelCrossingSystem.RoadSign" isUnique="false" association="LevelCrossingSystem.Controller_RoadSign">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a64" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a65" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingSystem.EntranceTCPort_EntranceTC" name="EntranceTCPort_EntranceTC" memberEnd="LevelCrossingSystem.EntranceTCPort_EntranceTC.train LevelCrossingSystem.EntranceTCPort_EntranceTC.tcEntrance">
+    <ownedEnd xmi:id="LevelCrossingSystem.EntranceTCPort_EntranceTC.train" name="train" type="LevelCrossingSystem.EntranceTCPort" isUnique="false" association="LevelCrossingSystem.EntranceTCPort_EntranceTC">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a66" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a67" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingSystem.EntranceTCPort_EntranceTC.tcEntrance" name="tcEntrance" type="LevelCrossingSystem.EntranceTC" isUnique="false" association="LevelCrossingSystem.EntranceTCPort_EntranceTC">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a68" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a69" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingSystem.ExitTCPort_ExitTC" name="ExitTCPort_ExitTC" memberEnd="LevelCrossingSystem.ExitTCPort_ExitTC.tcExitPort LevelCrossingSystem.ExitTCPort_ExitTC.tcExit">
+    <ownedEnd xmi:id="LevelCrossingSystem.ExitTCPort_ExitTC.tcExitPort" name="tcExitPort" type="LevelCrossingSystem.ExitTCPort" isUnique="false" association="LevelCrossingSystem.ExitTCPort_ExitTC">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a70" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a71" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingSystem.ExitTCPort_ExitTC.tcExit" name="tcExit" type="LevelCrossingSystem.ExitTC" isUnique="false" association="LevelCrossingSystem.ExitTCPort_ExitTC">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a72" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a73" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingSystem.Controller_RailwaySign" name="Controller_RailwaySign" memberEnd="LevelCrossingSystem.Controller_RailwaySign.controller LevelCrossingSystem.Controller_RailwaySign.railwaySign">
+    <ownedEnd xmi:id="LevelCrossingSystem.Controller_RailwaySign.controller" name="controller" type="LevelCrossingSystem.Controller" isUnique="false" association="LevelCrossingSystem.Controller_RailwaySign">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a74" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a75" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingSystem.Controller_RailwaySign.railwaySign" name="railwaySign" type="LevelCrossingSystem.RailwaySign" isUnique="false" association="LevelCrossingSystem.Controller_RailwaySign">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a76" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a77" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="LevelCrossingSystem.RailwaySign_RailwaySignPort" name="RailwaySign_RailwaySignPort" memberEnd="LevelCrossingSystem.RailwaySign_RailwaySignPort.railwaySign LevelCrossingSystem.RailwaySign_RailwaySignPort.train">
+    <ownedEnd xmi:id="LevelCrossingSystem.RailwaySign_RailwaySignPort.railwaySign" name="railwaySign" type="LevelCrossingSystem.RailwaySign" isUnique="false" association="LevelCrossingSystem.RailwaySign_RailwaySignPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a78" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a79" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="LevelCrossingSystem.RailwaySign_RailwaySignPort.train" name="train" type="LevelCrossingSystem.RailwaySignPort" isUnique="false" association="LevelCrossingSystem.RailwaySign_RailwaySignPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a80" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a81" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingSystem.EntranceTCPort" name="EntranceTCPort">
+    <generalization xmi:id="a82">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.ActivationProvider"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingSystem.ExitTCPort" name="ExitTCPort">
+    <generalization xmi:id="a83">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.ActivationProvider"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingSystem.RailwaySignPort" name="RailwaySignPort">
+    <generalization xmi:id="a84">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.AuthorizationUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingSystem.EntranceTC" name="EntranceTC" classifierBehavior="LevelCrossingSystem.EntranceTC.SM" isActive="true">
+    <generalization xmi:id="a85">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.ActivationProvider"/>
+    </generalization>
+    <ownedAttribute xmi:id="LevelCrossingSystem.EntranceTC.id" name="id" visibility="private" type="LevelCrossingSystem.Integer" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a86" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a87" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="LevelCrossingSystem.EntranceTC.SM" name="SM">
+      <region xmi:id="LevelCrossingSystem.EntranceTC.SM.R" name="R">
+        <transition xmi:id="a88" source="LevelCrossingSystem.EntranceTC.SM.R.Initial" target="LevelCrossingSystem.EntranceTC.SM.R.Detection"/>
+        <transition xmi:id="a89" source="LevelCrossingSystem.EntranceTC.SM.R.Detection" target="LevelCrossingSystem.EntranceTC.SM.R.Detection">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a90">
+            <language>C</language>
+            <body>SEND(GET(this, controller), entranceDetection, params->id);</body>
+          </effect>
+          <trigger xmi:id="a91">
+            <event xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.activation_SE"/>
+          </trigger>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="LevelCrossingSystem.EntranceTC.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.EntranceTC.SM.R.Detection" name="Detection"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingSystem.ExitTC" name="ExitTC" classifierBehavior="LevelCrossingSystem.ExitTC.SM" isActive="true">
+    <generalization xmi:id="a92">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.ActivationProvider"/>
+    </generalization>
+    <ownedAttribute xmi:id="LevelCrossingSystem.ExitTC.id" name="id" visibility="private" type="LevelCrossingSystem.Integer" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a93" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a94" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="LevelCrossingSystem.ExitTC.SM" name="SM">
+      <region xmi:id="LevelCrossingSystem.ExitTC.SM.R" name="R">
+        <transition xmi:id="a95" source="LevelCrossingSystem.ExitTC.SM.R.Initial" target="LevelCrossingSystem.ExitTC.SM.R.Detection"/>
+        <transition xmi:id="a96" source="LevelCrossingSystem.ExitTC.SM.R.Detection" target="LevelCrossingSystem.ExitTC.SM.R.Detection">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a97">
+            <language>C</language>
+            <body>SEND(GET(this, controller), exitDetection, GET(this, id));</body>
+          </effect>
+          <trigger xmi:id="a98">
+            <event xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.activation_SE"/>
+          </trigger>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="LevelCrossingSystem.ExitTC.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.ExitTC.SM.R.Detection" name="Detection"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingSystem.Controller" name="Controller" classifierBehavior="LevelCrossingSystem.Controller.SM" isActive="true">
+    <ownedAttribute xmi:id="LevelCrossingSystem.Controller.nbEngagedTrains" name="nbEngagedTrains" visibility="private" type="LevelCrossingSystem.Integer" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a99" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a100" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="LevelCrossingSystem.Controller.SM" name="SM">
+      <region xmi:id="LevelCrossingSystem.Controller.SM.R" name="R">
+        <transition xmi:id="a101" source="LevelCrossingSystem.Controller.SM.R.Initial" target="LevelCrossingSystem.Controller.SM.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a102">
+            <language>C</language>
+            <body>SET(this, nbEngagedTrains, 0);</body>
+          </effect>
+        </transition>
+        <transition xmi:id="a103" source="LevelCrossingSystem.Controller.SM.R.Idle" target="LevelCrossingSystem.Controller.SM.R.WaitRoadSignOn">
+          <ownedRule xmi:id="a104" name="">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a105">
+              <language>C</language>
+              <body>GET(this, nbEngagedTrains) == 0</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a106">
+            <language>C</language>
+            <body>SEND(GET(this, roadSign), switchOn);</body>
+          </effect>
+          <trigger xmi:id="a107" event="LevelCrossingSystem.entranceDetection_SE"/>
+        </transition>
+        <transition xmi:id="a108" source="LevelCrossingSystem.Controller.SM.R.WaitRoadSignOn" target="LevelCrossingSystem.Controller.SM.R.FarDetection">
+          <trigger xmi:id="a109" event="LevelCrossingSystem.roadSignOn_SE"/>
+        </transition>
+        <transition xmi:id="a110" source="LevelCrossingSystem.Controller.SM.R.FarDetection" target="LevelCrossingSystem.Controller.SM.R.CloseDetection">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a111">
+            <language>C</language>
+            <body>SEND(GET(this, gate), close); INC(this, nbEngagedTrains, 1);</body>
+          </effect>
+          <trigger xmi:id="a112" event="LevelCrossingSystem.entranceDetection_SE"/>
+        </transition>
+        <transition xmi:id="a113" source="LevelCrossingSystem.Controller.SM.R.CloseDetection" target="LevelCrossingSystem.Controller.SM.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a114">
+            <language>C</language>
+            <body>SEND(GET(this, railwaySign), switchOff);</body>
+          </effect>
+          <trigger xmi:id="a115" event="LevelCrossingSystem.gateClosed_SE"/>
+        </transition>
+        <transition xmi:id="a116" source="LevelCrossingSystem.Controller.SM.R.Idle" target="LevelCrossingSystem.Controller.SM.R.WaitRailwaySignOn">
+          <ownedRule xmi:id="a117" name="">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a118">
+              <language>C</language>
+              <body>GET(this, nbEngagedTrains) == 1</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a119">
+            <language>C</language>
+            <body>SEND(GET(this, railwaySign), switchOn);</body>
+          </effect>
+          <trigger xmi:id="a120" event="LevelCrossingSystem.exitDetection_SE"/>
+        </transition>
+        <transition xmi:id="a121" source="LevelCrossingSystem.Controller.SM.R.WaitRailwaySignOn" target="LevelCrossingSystem.Controller.SM.R.WaitGateOpen">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a122">
+            <language>C</language>
+            <body>SEND(GET(this, gate), open); DEC(this, nbEngagedTrains, 1);</body>
+          </effect>
+          <trigger xmi:id="a123" event="LevelCrossingSystem.railwaySignOn_SE"/>
+        </transition>
+        <transition xmi:id="a124" source="LevelCrossingSystem.Controller.SM.R.WaitGateOpen" target="LevelCrossingSystem.Controller.SM.R.WaitRoadSignOff">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a125">
+            <language>C</language>
+            <body>SEND(GET(this, roadSign), switchOff);</body>
+          </effect>
+          <trigger xmi:id="a126" event="LevelCrossingSystem.gateOpen_SE"/>
+        </transition>
+        <transition xmi:id="a127" source="LevelCrossingSystem.Controller.SM.R.WaitRoadSignOff" target="LevelCrossingSystem.Controller.SM.R.Idle">
+          <trigger xmi:id="a128" event="LevelCrossingSystem.roadSignOff_SE"/>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="LevelCrossingSystem.Controller.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.Controller.SM.R.Idle" name="Idle"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.Controller.SM.R.WaitRoadSignOn" name="WaitRoadSignOn"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.Controller.SM.R.FarDetection" name="FarDetection"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.Controller.SM.R.CloseDetection" name="CloseDetection"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.Controller.SM.R.WaitRailwaySignOn" name="WaitRailwaySignOn"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.Controller.SM.R.WaitGateOpen" name="WaitGateOpen"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.Controller.SM.R.WaitRoadSignOff" name="WaitRoadSignOff"/>
+      </region>
+    </ownedBehavior>
+    <ownedReception xmi:id="LevelCrossingSystem.Controller.entranceDetection" name="entranceDetection" signal="LevelCrossingSystem.entranceDetection"/>
+    <ownedReception xmi:id="LevelCrossingSystem.Controller.exitDetection" name="exitDetection" signal="LevelCrossingSystem.exitDetection"/>
+    <ownedReception xmi:id="LevelCrossingSystem.Controller.roadSignOn" name="roadSignOn" signal="LevelCrossingSystem.roadSignOn"/>
+    <ownedReception xmi:id="LevelCrossingSystem.Controller.roadSignOff" name="roadSignOff" signal="LevelCrossingSystem.roadSignOff"/>
+    <ownedReception xmi:id="LevelCrossingSystem.Controller.railwaySignOn" name="railwaySignOn" signal="LevelCrossingSystem.railwaySignOn"/>
+    <ownedReception xmi:id="LevelCrossingSystem.Controller.gateOpen" name="gateOpen" signal="LevelCrossingSystem.gateOpen"/>
+    <ownedReception xmi:id="LevelCrossingSystem.Controller.gateClosed" name="gateClosed" signal="LevelCrossingSystem.gateClosed"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingSystem.RoadSign" name="RoadSign" classifierBehavior="LevelCrossingSystem.RoadSign.SM" isActive="true">
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="LevelCrossingSystem.RoadSign.SM" name="SM">
+      <region xmi:id="LevelCrossingSystem.RoadSign.SM.R" name="R">
+        <transition xmi:id="a129" source="LevelCrossingSystem.RoadSign.SM.R.Initial" target="LevelCrossingSystem.RoadSign.SM.R.Inactive"/>
+        <transition xmi:id="a130" source="LevelCrossingSystem.RoadSign.SM.R.Inactive" target="LevelCrossingSystem.RoadSign.SM.R.Active">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a131">
+            <language>C</language>
+            <body>SEND(GET(this, controller), roadSignOn);</body>
+          </effect>
+          <trigger xmi:id="a132" event="LevelCrossingSystem.switchOn_SE"/>
+        </transition>
+        <transition xmi:id="a133" source="LevelCrossingSystem.RoadSign.SM.R.Active" target="LevelCrossingSystem.RoadSign.SM.R.Inactive">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a134">
+            <language>C</language>
+            <body>SEND(GET(this, controller), roadSignOff);</body>
+          </effect>
+          <trigger xmi:id="a135" event="LevelCrossingSystem.switchOff_SE"/>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="LevelCrossingSystem.RoadSign.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.RoadSign.SM.R.Inactive" name="Inactive"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.RoadSign.SM.R.Active" name="Active"/>
+      </region>
+    </ownedBehavior>
+    <ownedReception xmi:id="LevelCrossingSystem.RoadSign.switchOn" name="switchOn" signal="LevelCrossingSystem.switchOn"/>
+    <ownedReception xmi:id="LevelCrossingSystem.RoadSign.switchOff" name="switchOff" signal="LevelCrossingSystem.switchOff"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingSystem.Gate" name="Gate" classifierBehavior="LevelCrossingSystem.Gate.SM" isActive="true">
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="LevelCrossingSystem.Gate.SM" name="SM">
+      <region xmi:id="LevelCrossingSystem.Gate.SM.R" name="R">
+        <transition xmi:id="a136" source="LevelCrossingSystem.Gate.SM.R.Initial" target="LevelCrossingSystem.Gate.SM.R.Open"/>
+        <transition xmi:id="a137" source="LevelCrossingSystem.Gate.SM.R.Open" target="LevelCrossingSystem.Gate.SM.R.Closed">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a138">
+            <language>C</language>
+            <body>SEND(GET(this, controller), gateClosed);</body>
+          </effect>
+          <trigger xmi:id="a139" event="LevelCrossingSystem.close_SE"/>
+        </transition>
+        <transition xmi:id="a140" source="LevelCrossingSystem.Gate.SM.R.Closed" target="LevelCrossingSystem.Gate.SM.R.Open">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a141">
+            <language>C</language>
+            <body>SEND(GET(this, controller), gateOpen);</body>
+          </effect>
+          <trigger xmi:id="a142" event="LevelCrossingSystem.open_SE"/>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="LevelCrossingSystem.Gate.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.Gate.SM.R.Open" name="Open"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.Gate.SM.R.Closed" name="Closed"/>
+      </region>
+    </ownedBehavior>
+    <ownedReception xmi:id="LevelCrossingSystem.Gate.open" name="open" signal="LevelCrossingSystem.open"/>
+    <ownedReception xmi:id="LevelCrossingSystem.Gate.close" name="close" signal="LevelCrossingSystem.close"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LevelCrossingSystem.RailwaySign" name="RailwaySign" classifierBehavior="LevelCrossingSystem.RailwaySign.SM" isActive="true">
+    <generalization xmi:id="a143">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.AuthorizationUser"/>
+    </generalization>
+    <ownedAttribute xmi:id="LevelCrossingSystem.RailwaySign.id" name="id" visibility="private" type="LevelCrossingSystem.Integer" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a144" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a145" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="LevelCrossingSystem.RailwaySign.SM" name="SM">
+      <region xmi:id="LevelCrossingSystem.RailwaySign.SM.R" name="R">
+        <transition xmi:id="a146" source="LevelCrossingSystem.RailwaySign.SM.R.Initial" target="LevelCrossingSystem.RailwaySign.SM.R.Active"/>
+        <transition xmi:id="a147" source="LevelCrossingSystem.RailwaySign.SM.R.Active" target="LevelCrossingSystem.RailwaySign.SM.R.Inactive">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a148">
+            <language>C</language>
+            <body>SEND(GET(this, train), authorization);</body>
+          </effect>
+          <trigger xmi:id="a149" event="LevelCrossingSystem.switchOff_SE"/>
+        </transition>
+        <transition xmi:id="a150" source="LevelCrossingSystem.RailwaySign.SM.R.Inactive" target="LevelCrossingSystem.RailwaySign.SM.R.Active">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a151">
+            <language>C</language>
+            <body>SEND(GET(this, controller), railwaySignOn);</body>
+          </effect>
+          <trigger xmi:id="a152" event="LevelCrossingSystem.switchOn_SE"/>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="LevelCrossingSystem.RailwaySign.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.RailwaySign.SM.R.Active" name="Active"/>
+        <subvertex xmi:type="uml:State" xmi:id="LevelCrossingSystem.RailwaySign.SM.R.Inactive" name="Inactive"/>
+      </region>
+    </ownedBehavior>
+    <ownedReception xmi:id="LevelCrossingSystem.RailwaySign.switchOn" name="switchOn" signal="LevelCrossingSystem.switchOn"/>
+    <ownedReception xmi:id="LevelCrossingSystem.RailwaySign.switchOff" name="switchOff" signal="LevelCrossingSystem.switchOff"/>
+  </packagedElement>
+</uml:Model>

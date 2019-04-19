@@ -1,0 +1,27 @@
+
+
+@startuml
+
+
+	class "[[DAL%3A%3AButtonReceiverPort-Class.svg DAL::ButtonReceiverPort]]" as DAL_ButtonReceiverPort
+	abstract class "[[DAL%3A%3ALightProvider-Class.svg DAL::LightProvider]]" as DAL_LightProvider
+	abstract class "[[DAL%3A%3AButtonUser-Class.svg DAL::ButtonUser]]" as DAL_ButtonUser
+	class "Env" as ButtonLedsEnvironment_Env {
+		+♦ envLedPort : [[ButtonLedsEnvironment%3A%3AEnvLedPort-Class.svg EnvLedPort]]
+		+♦ envButtonPort : [[ButtonLedsEnvironment%3A%3AEnvButtonPort-Class.svg EnvButtonPort]]
+		+♦ envLed : [[ButtonLedsEnvironment%3A%3ASimulatedLight-Class.svg SimulatedLight]]
+		+♦ envButton : [[ButtonLedsEnvironment%3A%3ASimulatedButton-Class.svg SimulatedButton]]
+	}
+	class "EnvLedPort" as ButtonLedsEnvironment_EnvLedPort
+	class "EnvButtonPort" as ButtonLedsEnvironment_EnvButtonPort
+	class "SimulatedLight" as ACTIVE_ButtonLedsEnvironment_SimulatedLight
+	class "SimulatedButton" as ACTIVE_ButtonLedsEnvironment_SimulatedButton {
+		+♦ peer : [[DAL%3A%3AButtonReceiverPort-Class.svg ButtonReceiverPort]]
+	}
+	DAL_LightProvider <|-- ButtonLedsEnvironment_EnvLedPort
+	DAL_ButtonUser <|-- ButtonLedsEnvironment_EnvButtonPort
+	DAL_LightProvider <|-- ACTIVE_ButtonLedsEnvironment_SimulatedLight
+	DAL_ButtonUser <|-- ACTIVE_ButtonLedsEnvironment_SimulatedButton
+	ButtonLedsEnvironment_EnvLedPort -- ACTIVE_ButtonLedsEnvironment_SimulatedLight : led
+	DAL_ButtonReceiverPort -- ButtonLedsEnvironment_EnvButtonPort : buttonPort
+@enduml

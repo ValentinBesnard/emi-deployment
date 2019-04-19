@@ -1,0 +1,10 @@
+
+
+@startuml
+	rectangle "<u>envLedPort : EnvLedPort</u>" as ButtonLedsEnvironment_Env_envLedPort
+	rectangle "<u>envButtonPort : EnvButtonPort</u>" as ButtonLedsEnvironment_Env_envButtonPort
+	rectangle "<u>envLed : PwmLed</u>" as ButtonLedsEnvironment_Env_envLed
+	rectangle "<u>envButton : GpioButton</u>" as ButtonLedsEnvironment_Env_envButton
+	ButtonLedsEnvironment_Env_envButton -- ButtonLedsEnvironment_Env_envButtonPort
+	ButtonLedsEnvironment_Env_envLedPort -- ButtonLedsEnvironment_Env_envLed
+@enduml

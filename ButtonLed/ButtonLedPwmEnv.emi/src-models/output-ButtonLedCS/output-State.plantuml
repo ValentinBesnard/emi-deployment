@@ -1,0 +1,12 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	
+@enduml

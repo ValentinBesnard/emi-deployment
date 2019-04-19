@@ -1,0 +1,3497 @@
+struct C_UML_Model {
+	char *                     name;                 /*     0     4 */
+	UML_Signal * *             uml_signal;           /*     4     4 */
+	UML_SignalEvent * *        uml_signal_event;     /*     8     4 */
+	UML_Class * *              uml_class;            /*    12     4 */
+	UML_Association * *        uml_association;      /*    16     4 */
+
+	/* size: 20, cachelines: 1, members: 5 */
+	/* last cacheline: 20 bytes */
+};
+struct UML_Constraint {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_ValueSpecification *   specification;        /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct UML_ConnectorEnd {
+	DescriptorType             c_type;               /*     0     4 */
+	int                        lower;                /*     4     4 */
+	UML_Property *             role;                 /*     8     4 */
+	UML_Property *             partWithPort;         /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct UML_SignalEvent {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	NbEnumerationLiteral_t     c_index;              /*    12     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	UML_Signal *               signal;               /*    16     4 */
+
+	/* size: 20, cachelines: 1, members: 5 */
+	/* sum members: 17, holes: 1, sum holes: 3 */
+	/* last cacheline: 20 bytes */
+};
+struct UML_Connector {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_ConnectorEnd *         end;                  /*    12     4 */
+	UML_Association *          type;                 /*    16     4 */
+
+	/* size: 20, cachelines: 1, members: 5 */
+	/* last cacheline: 20 bytes */
+};
+struct UML_InterfaceRealization {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_Interface *            contract;             /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct UML_OpaqueExpression {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	void *                     c_function;           /*    12     4 */
+	char * *                   language;             /*    16     4 */
+	char * *                   body;                 /*    20     4 */
+
+	/* size: 24, cachelines: 1, members: 6 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Interface {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	C_UML_ClassifierKind       c_kind;               /*    12     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	UML_Property * *           ownedAttribute;       /*    16     4 */
+	UML_Reception * *          ownedReception;       /*    20     4 */
+
+	/* size: 24, cachelines: 1, members: 6 */
+	/* sum members: 21, holes: 1, sum holes: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Reception {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_Signal *               signal;               /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct UML_Pseudostate {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	C_UML_VertexKind           c_kind;               /*    12     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	UML_Transition * *         incoming;             /*    16     4 */
+	UML_Transition * *         outgoing;             /*    20     4 */
+	UML_PseudostateKind        kind;                 /*    24     4 */
+
+	/* size: 28, cachelines: 1, members: 7 */
+	/* sum members: 25, holes: 1, sum holes: 3 */
+	/* last cacheline: 28 bytes */
+};
+struct UML_Vertex {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	C_UML_VertexKind           c_kind;               /*    12     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	UML_Transition * *         incoming;             /*    16     4 */
+	UML_Transition * *         outgoing;             /*    20     4 */
+
+	/* size: 24, cachelines: 1, members: 6 */
+	/* sum members: 21, holes: 1, sum holes: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Association {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	C_UML_ClassifierKind       c_kind;               /*    12     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	UML_Property * *           memberEnd;            /*    16     4 */
+	UML_Property * *           ownedEnd;             /*    20     4 */
+
+	/* size: 24, cachelines: 1, members: 6 */
+	/* sum members: 21, holes: 1, sum holes: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_ValueSpecification {
+	DescriptorType             c_type;               /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct UML_Property {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_Class *                type;                 /*    12     4 */
+	int                        lower;                /*    16     4 */
+	UML_Association *          association;          /*    20     4 */
+	UML_AggregationKind        aggregation;          /*    24     4 */
+	UML_Class *                class;                /*    28     4 */
+
+	/* size: 32, cachelines: 1, members: 8 */
+	/* last cacheline: 32 bytes */
+};
+struct UML_Transition {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_Constraint *           guard;                /*    12     4 */
+	UML_Behavior *             effect;               /*    16     4 */
+	UML_Trigger *              trigger;              /*    20     4 */
+	UML_Vertex *               source;               /*    24     4 */
+	UML_Vertex *               target;               /*    28     4 */
+
+	/* size: 32, cachelines: 1, members: 8 */
+	/* last cacheline: 32 bytes */
+};
+struct UML_PrimitiveType {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	C_UML_ClassifierKind       c_kind;               /*    12     1 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct UML_StateMachine {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_Region * *             region;               /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct UML_Behavior {
+	DescriptorType             c_type;               /*     0     4 */
+	C_UML_BehaviorKind         c_kind;               /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct UML_OpaqueBehavior {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	C_UML_BehaviorKind         c_kind;               /*    12     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     c_function;           /*    16     4 */
+	char * *                   language;             /*    20     4 */
+	char * *                   body;                 /*    24     4 */
+
+	/* size: 28, cachelines: 1, members: 7 */
+	/* sum members: 25, holes: 1, sum holes: 3 */
+	/* last cacheline: 28 bytes */
+};
+struct UML_State {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	C_UML_VertexKind           c_kind;               /*    12     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	UML_Transition * *         incoming;             /*    16     4 */
+	UML_Transition * *         outgoing;             /*    20     4 */
+	UML_Behavior *             entry;                /*    24     4 */
+	UML_Behavior *             exit;                 /*    28     4 */
+	UML_Trigger *              deferrableTrigger;    /*    32     4 */
+
+	/* size: 36, cachelines: 1, members: 9 */
+	/* sum members: 33, holes: 1, sum holes: 3 */
+	/* last cacheline: 36 bytes */
+};
+struct UML_Trigger {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_Port * *               port;                 /*    12     4 */
+	UML_SignalEvent *          event;                /*    16     4 */
+
+	/* size: 20, cachelines: 1, members: 5 */
+	/* last cacheline: 20 bytes */
+};
+struct UML_Signal {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_Property * *           ownedAttribute;       /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct UML_Class {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_Connector * *          ownedConnector;       /*    12     4 */
+	UML_Property * *           ownedAttribute;       /*    16     4 */
+	UML_Behavior *             classifierBehavior;   /*    20     4 */
+	UML_InterfaceRealization * * interfaceRealization; /*    24     4 */
+	UML_Port * *               ownedPort;            /*    28     4 */
+	C_UML_ClassifierKind       c_kind;               /*    32     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	UML_Class * *              superClass;           /*    36     4 */
+	_Bool                      isActive;             /*    40     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	UML_Reception * *          ownedReception;       /*    44     4 */
+
+	/* size: 48, cachelines: 1, members: 12 */
+	/* sum members: 42, holes: 2, sum holes: 6 */
+	/* last cacheline: 48 bytes */
+};
+struct UML_Region {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_Vertex * *             subvertex;            /*    12     4 */
+	UML_Transition * *         transition;           /*    16     4 */
+
+	/* size: 20, cachelines: 1, members: 5 */
+	/* last cacheline: 20 bytes */
+};
+struct UML_Enumeration {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_EnumerationLiteral * * ownedLiteral;         /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct UML_Port {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	UML_Association *          association;          /*    12     4 */
+	UML_AggregationKind        aggregation;          /*    16     4 */
+	UML_Class *                class;                /*    20     4 */
+	UML_Class *                type;                 /*    24     4 */
+	UML_ConnectorEnd *         end;                  /*    28     4 */
+	int                        lower;                /*    32     4 */
+	NbEnumerationLiteral_t     c_index;              /*    36     1 */
+	_Bool                      isConjugated;         /*    37     1 */
+
+	/* XXX 2 bytes hole, try to pack */
+
+	UML_Interface * *          provided;             /*    40     4 */
+	_Bool                      isBehavior;           /*    44     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	UML_Interface * *          required;             /*    48     4 */
+
+	/* size: 52, cachelines: 1, members: 14 */
+	/* sum members: 47, holes: 2, sum holes: 5 */
+	/* last cacheline: 52 bytes */
+};
+struct UML_EnumerationLiteral {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     4 */
+	NbEnumerationLiteral_t     c_index;              /*    12     1 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Fifo {
+	void * *                   data;                 /*     0     4 */
+	uint8_t                    nb_layers;            /*     4     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	uint32_t *                 element_size;         /*     8     4 */
+	NbFifoElements_t *         nb;                   /*    12     4 */
+	NbFifoElements_t           size;                 /*    16     1 */
+	NbFifoElements_t           writing;              /*    17     1 */
+
+	/* XXX 2 bytes hole, try to pack */
+
+	void *                     reorganize_buffer;    /*    20     4 */
+
+	/* size: 24, cachelines: 1, members: 7 */
+	/* sum members: 19, holes: 2, sum holes: 5 */
+	/* last cacheline: 24 bytes */
+};
+struct EventPool {
+	Fifo                       fifo;                 /*     0    24 */
+	EventPoolMeta              meta;                 /*    24    16 */
+
+	/* size: 40, cachelines: 1, members: 2 */
+	/* last cacheline: 40 bytes */
+};
+struct EventPoolStore {
+	NbEvents_t                 nbEvents;             /*     0     1 */
+	EventId                    eventOccurred[4];     /*     1     8 */
+
+	/* size: 9, cachelines: 1, members: 2 */
+	/* last cacheline: 9 bytes */
+};
+struct EventPoolMeta {
+	EventSetSize_t             eventSetSize;         /*     0     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	UML_Signal * *             eventSet;             /*     4     4 */
+	uint32_t                   paramsSize;           /*     8     4 */
+	NbEvents_t                 nbDeferred;           /*    12     1 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* sum members: 10, holes: 1, sum holes: 3 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct EventId {
+	NbSignalEvents_t           signalEventId;        /*     0     1 */
+	NbPorts_t                  portId;               /*     1     1 */
+
+	/* size: 2, cachelines: 1, members: 2 */
+	/* last cacheline: 2 bytes */
+};
+struct ClassInfo {
+	UML_Class *                type;                 /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct Object {
+	char *                     name;                 /*     0     4 */
+	ClassInfo *                classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	void *                     properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     store;                /*    20     4 */
+	void *                     operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* size: 32, cachelines: 1, members: 8 */
+	/* sum members: 26, holes: 1, sum holes: 3 */
+	/* padding: 3 */
+	/* last cacheline: 32 bytes */
+};
+struct PassiveObject {
+	char *                     name;                 /*     0     4 */
+	ClassInfo *                classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	void *                     properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     store;                /*    20     4 */
+	void *                     operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	void *                     properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct ActiveObject {
+	char *                     name;                 /*     0     4 */
+	ClassInfo *                classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	void *                     properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     store;                /*    20     4 */
+	void *                     operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	void *                     properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct buttonPressed_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct lock_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct unlock_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct requestPedals_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ackPedals_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct nackPedals_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct setCS_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct incCS_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct decCS_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ackCS_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct nackCS_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct resetCS_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct engage_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct disengage_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct disengaged_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct speedCaptured_signal_parameters {
+	int32_t                    speed;                /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct speedNotCaptured_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct requestSetPoint_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct start_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct stop_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct set_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct pause_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct resume_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct inc_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct dec_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct pedalPressed_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct pedalReleased_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct controlOn_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct controlOff_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct updateSpeed_signal_parameters {
+	int32_t                    speed;                /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct updateSetPoint_signal_parameters {
+	int32_t                    setPoint;             /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct Actuation_events {
+	union {
+		updateSpeed_signal_parameters updateSpeed_params; /*           4 */
+	};                                               /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct CruiseSpeedManager_events {
+	union {
+		speedCaptured_signal_parameters speedCaptured_params; /*           4 */
+	};                                               /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct Engine_events {
+	union {
+		updateSetPoint_signal_parameters updateSetPoint_params; /*           4 */
+	};                                               /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct EnvButtonsPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvButtonsPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvPedalPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvPedalPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvControlOnOffPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvControlOnOffPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvSpeedPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvSpeedPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvCruiseSpeedPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvCruiseSpeedPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Env_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Env_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonsPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonsPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Buttons_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Buttons_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct PedalPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct PedalPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Pedal_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+	Pedal_od                   od;                   /*    13     2 */
+
+	/* size: 16, cachelines: 1, members: 3 */
+	/* padding: 1 */
+	/* last cacheline: 16 bytes */
+};
+struct Pedal_od {
+	NbEnumerationLiteral_t     port;                 /*     0     1 */
+	NbEnumerationLiteral_t     pin;                  /*     1     1 */
+
+	/* size: 2, cachelines: 1, members: 2 */
+	/* last cacheline: 2 bytes */
+};
+struct Engine_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Engine_ep_params           ep_params;            /*    16    16 */
+	Engine_od                  od;                   /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 4 */
+	/* sum members: 37, holes: 1, sum holes: 3 */
+	/* last cacheline: 40 bytes */
+};
+struct Engine_ep_params {
+	Engine_events              eventOccurred[4];     /*     0    16 */
+
+	/* size: 16, cachelines: 1, members: 1 */
+	/* last cacheline: 16 bytes */
+};
+struct Engine_od {
+	int32_t                    speed;                /*     0     4 */
+	NbEnumerationLiteral_t     timer;                /*     4     1 */
+	NbEnumerationLiteral_t     channel;              /*     5     1 */
+
+	/* size: 8, cachelines: 1, members: 3 */
+	/* padding: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct Main_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Main_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct GpioButton_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+	GpioButton_od              od;                   /*    13     2 */
+
+	/* size: 16, cachelines: 1, members: 3 */
+	/* padding: 1 */
+	/* last cacheline: 16 bytes */
+};
+struct GpioButton_od {
+	NbEnumerationLiteral_t     port;                 /*     0     1 */
+	NbEnumerationLiteral_t     pin;                  /*     1     1 */
+
+	/* size: 2, cachelines: 1, members: 2 */
+	/* last cacheline: 2 bytes */
+};
+struct Obs_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Obs_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Observer1_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Observer1_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Observer2_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Observer2_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Observer3_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Observer3_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIButtonsPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIButtonsPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIPedalPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIPedalPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIControlOnOffPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIControlOnOffPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCISpeedPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCISpeedPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCICruiseSpeedPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCICruiseSpeedPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct PedalsManagerPedalPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct PedalsManagerPedalPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCI_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCI_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Actuation_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Actuation_ep_params        ep_params;            /*    16    16 */
+
+	/* size: 32, cachelines: 1, members: 3 */
+	/* sum members: 29, holes: 1, sum holes: 3 */
+	/* last cacheline: 32 bytes */
+};
+struct Actuation_ep_params {
+	Actuation_events           eventOccurred[4];     /*     0    16 */
+
+	/* size: 16, cachelines: 1, members: 1 */
+	/* last cacheline: 16 bytes */
+};
+struct Actuation_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CruiseSpeedManager_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	CruiseSpeedManager_ep_params ep_params;          /*    16    16 */
+	CruiseSpeedManager_od      od;                   /*    32     4 */
+
+	/* size: 36, cachelines: 1, members: 4 */
+	/* sum members: 33, holes: 1, sum holes: 3 */
+	/* last cacheline: 36 bytes */
+};
+struct CruiseSpeedManager_ep_params {
+	CruiseSpeedManager_events  eventOccurred[4];     /*     0    16 */
+
+	/* size: 16, cachelines: 1, members: 1 */
+	/* last cacheline: 16 bytes */
+};
+struct CruiseSpeedManager_od {
+	int32_t                    cruiseSpeed;          /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct PedalsManager_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	PedalsManager_od           od;                   /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* sum members: 21, holes: 1, sum holes: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct PedalsManager_od {
+	int32_t                    nbLocks;              /*     0     4 */
+	int8_t                     canResume;            /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct Controller_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Controller_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Store {
+	uint32_t                   scheduling_state;     /*     0     4 */
+	Main_store                 instMain;             /*     4     0 */
+	CCI_store                  instMain_cci;         /*     4     0 */
+	Controller_store           instMain_cci_controller; /*     4    16 */
+	Actuation_store            instMain_cci_actuation; /*    20    32 */
+	CruiseSpeedManager_store   instMain_cci_csm;     /*    52    36 */
+	/* --- cacheline 1 boundary (64 bytes) was 24 bytes ago --- */
+	PedalsManager_store        instMain_cci_pm;      /*    88    24 */
+	PedalsManagerPedalPort_store instMain_cci_pm_pmClutchPedalPort; /*   112     0 */
+	PedalsManagerPedalPort_store instMain_cci_pm_pmBreakPedalPort; /*   112     0 */
+	PedalsManagerPedalPort_store instMain_cci_pm_pmThrottlePedalPort; /*   112     0 */
+	CCIButtonsPort_store       instMain_cci_buttonsPort; /*   112     0 */
+	CCIPedalPort_store         instMain_cci_clutchPedalPort; /*   112     0 */
+	CCIPedalPort_store         instMain_cci_breakPedalPort; /*   112     0 */
+	CCIPedalPort_store         instMain_cci_throttlePedalPort; /*   112     0 */
+	CCIControlOnOffPort_store  instMain_cci_controlOnOffPort; /*   112     0 */
+	CCISpeedPort_store         instMain_cci_speedPort; /*   112     0 */
+	CCICruiseSpeedPort_store   instMain_cci_cruiseSpeedPort; /*   112     0 */
+	Env_store                  instMain_env;         /*   112     0 */
+	Buttons_store              instMain_env_buttons; /*   112    16 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	ButtonsPort_store          instMain_env_buttons_portStart; /*   128     0 */
+	ButtonsPort_store          instMain_env_buttons_portSet; /*   128     0 */
+	ButtonsPort_store          instMain_env_buttons_portPause; /*   128     0 */
+	ButtonsPort_store          instMain_env_buttons_portResume; /*   128     0 */
+	ButtonsPort_store          instMain_env_buttons_portInc; /*   128     0 */
+	ButtonsPort_store          instMain_env_buttons_portDec; /*   128     0 */
+	ButtonsPort_store          instMain_env_buttons_portStop; /*   128     0 */
+	Pedal_store                instMain_env_clutchPedal; /*   128    16 */
+	PedalPort_store            instMain_env_clutchPedal_pedalPeer; /*   144     0 */
+	Pedal_store                instMain_env_breakPedal; /*   144    16 */
+	PedalPort_store            instMain_env_breakPedal_pedalPeer; /*   160     0 */
+	Pedal_store                instMain_env_throttlePedal; /*   160    16 */
+	PedalPort_store            instMain_env_throttlePedal_pedalPeer; /*   176     0 */
+	Engine_store               instMain_env_engine;  /*   176    40 */
+	/* --- cacheline 3 boundary (192 bytes) was 24 bytes ago --- */
+	GpioButton_store           instMain_env_buttonStart; /*   216    16 */
+	ButtonPort_store           instMain_env_buttonStart_buttonPeer; /*   232     0 */
+	GpioButton_store           instMain_env_buttonSet; /*   232    16 */
+	ButtonPort_store           instMain_env_buttonSet_buttonPeer; /*   248     0 */
+	GpioButton_store           instMain_env_buttonPause; /*   248    16 */
+	/* --- cacheline 4 boundary (256 bytes) was 8 bytes ago --- */
+	ButtonPort_store           instMain_env_buttonPause_buttonPeer; /*   264     0 */
+	GpioButton_store           instMain_env_buttonResume; /*   264    16 */
+	ButtonPort_store           instMain_env_buttonResume_buttonPeer; /*   280     0 */
+	GpioButton_store           instMain_env_buttonInc; /*   280    16 */
+	ButtonPort_store           instMain_env_buttonInc_buttonPeer; /*   296     0 */
+	GpioButton_store           instMain_env_buttonDec; /*   296    16 */
+	ButtonPort_store           instMain_env_buttonDec_buttonPeer; /*   312     0 */
+	GpioButton_store           instMain_env_buttonStop; /*   312    16 */
+	/* --- cacheline 5 boundary (320 bytes) was 8 bytes ago --- */
+	ButtonPort_store           instMain_env_buttonStop_buttonPeer; /*   328     0 */
+	EnvButtonsPort_store       instMain_env_envButtonsPort; /*   328     0 */
+	EnvPedalPort_store         instMain_env_envClutchPedalPort; /*   328     0 */
+	EnvPedalPort_store         instMain_env_envBreakPedalPort; /*   328     0 */
+	EnvPedalPort_store         instMain_env_envThrottlePedalPort; /*   328     0 */
+	EnvControlOnOffPort_store  instMain_env_envControlOnOffPort; /*   328     0 */
+	EnvSpeedPort_store         instMain_env_envSpeedPort; /*   328     0 */
+	EnvCruiseSpeedPort_store   instMain_env_envCruiseSpeedPort; /*   328     0 */
+	Obs_store                  instObs;              /*   328     0 */
+	Observer1_store            instObs_observer1;    /*   328    16 */
+	Observer2_store            instObs_observer2;    /*   344    16 */
+	Observer3_store            instObs_observer3;    /*   360    16 */
+
+	/* size: 376, cachelines: 6, members: 58 */
+	/* last cacheline: 56 bytes */
+};
+struct SignalEvents {
+	UML_SignalEvent *          buttonPressed;        /*     0     4 */
+	UML_SignalEvent *          lock;                 /*     4     4 */
+	UML_SignalEvent *          unlock;               /*     8     4 */
+	UML_SignalEvent *          requestPedals;        /*    12     4 */
+	UML_SignalEvent *          ackPedals;            /*    16     4 */
+	UML_SignalEvent *          nackPedals;           /*    20     4 */
+	UML_SignalEvent *          setCS;                /*    24     4 */
+	UML_SignalEvent *          incCS;                /*    28     4 */
+	UML_SignalEvent *          decCS;                /*    32     4 */
+	UML_SignalEvent *          ackCS;                /*    36     4 */
+	UML_SignalEvent *          nackCS;               /*    40     4 */
+	UML_SignalEvent *          resetCS;              /*    44     4 */
+	UML_SignalEvent *          engage;               /*    48     4 */
+	UML_SignalEvent *          disengage;            /*    52     4 */
+	UML_SignalEvent *          disengaged;           /*    56     4 */
+	UML_SignalEvent *          speedCaptured;        /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	UML_SignalEvent *          speedNotCaptured;     /*    64     4 */
+	UML_SignalEvent *          requestSetPoint;      /*    68     4 */
+	UML_SignalEvent *          start;                /*    72     4 */
+	UML_SignalEvent *          stop;                 /*    76     4 */
+	UML_SignalEvent *          set;                  /*    80     4 */
+	UML_SignalEvent *          pause;                /*    84     4 */
+	UML_SignalEvent *          resume;               /*    88     4 */
+	UML_SignalEvent *          inc;                  /*    92     4 */
+	UML_SignalEvent *          dec;                  /*    96     4 */
+	UML_SignalEvent *          pedalPressed;         /*   100     4 */
+	UML_SignalEvent *          pedalReleased;        /*   104     4 */
+	UML_SignalEvent *          controlOn;            /*   108     4 */
+	UML_SignalEvent *          controlOff;           /*   112     4 */
+	UML_SignalEvent *          updateSpeed;          /*   116     4 */
+	UML_SignalEvent *          updateSetPoint;       /*   120     4 */
+
+	/* size: 124, cachelines: 2, members: 31 */
+	/* last cacheline: 60 bytes */
+};
+struct PedalPort_properties_ro {
+	EnvPedalPort_Object *      envPedalPort;         /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct PedalsManagerPedalPort_properties_ro {
+	CCIPedalPort_Object *      cciPedalPort;         /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct CCI_properties_ro {
+	CCISpeedPort_Object *      speedPort;            /*     0     4 */
+	CCICruiseSpeedPort_Object * cruiseSpeedPort;     /*     4     4 */
+	Actuation_Object *         actuation;            /*     8     4 */
+	CCIPedalPort_Object *      throttlePedalPort;    /*    12     4 */
+	CCIPedalPort_Object *      clutchPedalPort;      /*    16     4 */
+	PedalsManager_Object *     pm;                   /*    20     4 */
+	CCIButtonsPort_Object *    buttonsPort;          /*    24     4 */
+	CCIPedalPort_Object *      breakPedalPort;       /*    28     4 */
+	Controller_Object *        controller;           /*    32     4 */
+	CruiseSpeedManager_Object * csm;                 /*    36     4 */
+	CCIControlOnOffPort_Object * controlOnOffPort;   /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* last cacheline: 44 bytes */
+};
+struct Observer1_properties_ro {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Main_properties_ro {
+	Env_Object *               env;                  /*     0     4 */
+	CCI_Object *               cci;                  /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct Pedal_properties_ro {
+	PedalPort_Object *         pedalPeer;            /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct CCIControlOnOffPort_properties_ro {
+	EnvControlOnOffPort_Object * envControlOnOffPort; /*     0     4 */
+	Actuation_Object *         actuation;            /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct CCIButtonsPort_properties_ro {
+	EnvButtonsPort_Object *    envButtonsPort;       /*     0     4 */
+	Controller_Object *        controller;           /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct Controller_properties_ro {
+	CCIButtonsPort_Object *    cciButtonsPort;       /*     0     4 */
+	PedalsManager_Object *     pm;                   /*     4     4 */
+	Actuation_Object *         actuation;            /*     8     4 */
+	CruiseSpeedManager_Object * csm;                 /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct Actuation_properties_ro {
+	CCIControlOnOffPort_Object * cciControlOnOffPort; /*     0     4 */
+	CruiseSpeedManager_Object * csm;                 /*     4     4 */
+	CCISpeedPort_Object *      cciSpeedPort;         /*     8     4 */
+	Controller_Object *        controller;           /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct Engine_properties_ro {
+	EnvControlOnOffPort_Object * envControlOnOffPort; /*     0     4 */
+	EnvSpeedPort_Object *      envSpeedPort;         /*     4     4 */
+	EnvCruiseSpeedPort_Object * envCruiseSpeedPort;  /*     8     4 */
+
+	/* size: 12, cachelines: 1, members: 3 */
+	/* last cacheline: 12 bytes */
+};
+struct Env_properties_ro {
+	EnvPedalPort_Object *      envClutchPedalPort;   /*     0     4 */
+	GpioButton_Object *        buttonStart;          /*     4     4 */
+	Engine_Object *            engine;               /*     8     4 */
+	EnvControlOnOffPort_Object * envControlOnOffPort; /*    12     4 */
+	Pedal_Object *             throttlePedal;        /*    16     4 */
+	Buttons_Object *           buttons;              /*    20     4 */
+	GpioButton_Object *        buttonPause;          /*    24     4 */
+	GpioButton_Object *        buttonDec;            /*    28     4 */
+	GpioButton_Object *        buttonInc;            /*    32     4 */
+	EnvPedalPort_Object *      envBreakPedalPort;    /*    36     4 */
+	EnvSpeedPort_Object *      envSpeedPort;         /*    40     4 */
+	GpioButton_Object *        buttonResume;         /*    44     4 */
+	EnvCruiseSpeedPort_Object * envCruiseSpeedPort;  /*    48     4 */
+	EnvButtonsPort_Object *    envButtonsPort;       /*    52     4 */
+	GpioButton_Object *        buttonSet;            /*    56     4 */
+	Pedal_Object *             breakPedal;           /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	EnvPedalPort_Object *      envThrottlePedalPort; /*    64     4 */
+	Pedal_Object *             clutchPedal;          /*    68     4 */
+	GpioButton_Object *        buttonStop;           /*    72     4 */
+
+	/* size: 76, cachelines: 2, members: 19 */
+	/* last cacheline: 12 bytes */
+};
+struct Buttons_properties_ro {
+	EnvButtonsPort_Object *    envButtonsPort;       /*     0     4 */
+	ButtonsPort_Object *       portDec;              /*     4     4 */
+	ButtonsPort_Object *       portStart;            /*     8     4 */
+	ButtonsPort_Object *       portResume;           /*    12     4 */
+	ButtonsPort_Object *       portSet;              /*    16     4 */
+	ButtonsPort_Object *       portStop;             /*    20     4 */
+	ButtonsPort_Object *       portInc;              /*    24     4 */
+	ButtonsPort_Object *       portPause;            /*    28     4 */
+
+	/* size: 32, cachelines: 1, members: 8 */
+	/* last cacheline: 32 bytes */
+};
+struct PedalsManager_properties_ro {
+	PedalsManagerPedalPort_Object * pmBreakPedalPort; /*     0     4 */
+	PedalsManagerPedalPort_Object * pmThrottlePedalPort; /*     4     4 */
+	Controller_Object *        controller;           /*     8     4 */
+	PedalsManagerPedalPort_Object * pmClutchPedalPort; /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvButtonsPort_properties_ro {
+	Buttons_Object *           buttons;              /*     0     4 */
+	CCIButtonsPort_Object *    cciButtonsPort;       /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvPedalPort_properties_ro {
+	CCIPedalPort_Object *      cciPedalPort;         /*     0     4 */
+	PedalPort_Object *         pedal;                /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvControlOnOffPort_properties_ro {
+	CCIControlOnOffPort_Object * cciControlOnOffPort; /*     0     4 */
+	Engine_Object *            engine;               /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct ButtonPort_properties_ro {
+	ButtonsPort_Object *       buttonsForDec;        /*     0     4 */
+	ButtonsPort_Object *       buttonsForStop;       /*     4     4 */
+	ButtonsPort_Object *       buttonsForStart;      /*     8     4 */
+	ButtonsPort_Object *       buttonsForSet;        /*    12     4 */
+	ButtonsPort_Object *       buttonsForPause;      /*    16     4 */
+	ButtonsPort_Object *       buttonsForResume;     /*    20     4 */
+	ButtonsPort_Object *       buttonsForInc;        /*    24     4 */
+
+	/* size: 28, cachelines: 1, members: 7 */
+	/* last cacheline: 28 bytes */
+};
+struct CruiseSpeedManager_properties_ro {
+	Actuation_Object *         actuation;            /*     0     4 */
+	CCICruiseSpeedPort_Object * cciCruiseSpeedPort;  /*     4     4 */
+	Controller_Object *        controller;           /*     8     4 */
+
+	/* size: 12, cachelines: 1, members: 3 */
+	/* last cacheline: 12 bytes */
+};
+struct EnvSpeedPort_properties_ro {
+	Engine_Object *            engine;               /*     0     4 */
+	CCISpeedPort_Object *      cciSpeedPort;         /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct Obs_properties_ro {
+	Observer1_Object *         observer1;            /*     0     4 */
+	Observer3_Object *         observer3;            /*     4     4 */
+	Observer2_Object *         observer2;            /*     8     4 */
+
+	/* size: 12, cachelines: 1, members: 3 */
+	/* last cacheline: 12 bytes */
+};
+struct CCICruiseSpeedPort_properties_ro {
+	CruiseSpeedManager_Object * csm;                 /*     0     4 */
+	EnvCruiseSpeedPort_Object * envCruiseSpeedPort;  /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvCruiseSpeedPort_properties_ro {
+	Engine_Object *            engine;               /*     0     4 */
+	CCICruiseSpeedPort_Object * cciCruiseSpeedPort;  /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct GpioButton_properties_ro {
+	ButtonPort_Object *        buttonPeer;           /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct ButtonsPort_properties_ro {
+	ButtonPort_Object *        buttonSet;            /*     0     4 */
+	ButtonPort_Object *        buttonStart;          /*     4     4 */
+	ButtonPort_Object *        buttonResume;         /*     8     4 */
+	ButtonPort_Object *        buttonDec;            /*    12     4 */
+	ButtonPort_Object *        buttonStop;           /*    16     4 */
+	ButtonPort_Object *        buttonInc;            /*    20     4 */
+	ButtonPort_Object *        buttonPause;          /*    24     4 */
+
+	/* size: 28, cachelines: 1, members: 7 */
+	/* last cacheline: 28 bytes */
+};
+struct Observer3_properties_ro {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIPedalPort_properties_ro {
+	EnvPedalPort_Object *      envPedalPort;         /*     0     4 */
+	PedalsManagerPedalPort_Object * pmPedalPort;     /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct Observer2_properties_ro {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCISpeedPort_properties_ro {
+	Actuation_Object *         actuation;            /*     0     4 */
+	EnvSpeedPort_Object *      envSpeedPort;         /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct PropertiesRO {
+	Main_properties_ro         instMain;             /*     0     8 */
+	CCI_properties_ro          instMain_cci;         /*     8    44 */
+	Controller_properties_ro   instMain_cci_controller; /*    52    16 */
+	/* --- cacheline 1 boundary (64 bytes) was 4 bytes ago --- */
+	Actuation_properties_ro    instMain_cci_actuation; /*    68    16 */
+	CruiseSpeedManager_properties_ro instMain_cci_csm; /*    84    12 */
+	PedalsManager_properties_ro instMain_cci_pm;     /*    96    16 */
+	PedalsManagerPedalPort_properties_ro instMain_cci_pm_pmClutchPedalPort; /*   112     4 */
+	PedalsManagerPedalPort_properties_ro instMain_cci_pm_pmBreakPedalPort; /*   116     4 */
+	PedalsManagerPedalPort_properties_ro instMain_cci_pm_pmThrottlePedalPort; /*   120     4 */
+	CCIButtonsPort_properties_ro instMain_cci_buttonsPort; /*   124     8 */
+	/* --- cacheline 2 boundary (128 bytes) was 4 bytes ago --- */
+	CCIPedalPort_properties_ro instMain_cci_clutchPedalPort; /*   132     8 */
+	CCIPedalPort_properties_ro instMain_cci_breakPedalPort; /*   140     8 */
+	CCIPedalPort_properties_ro instMain_cci_throttlePedalPort; /*   148     8 */
+	CCIControlOnOffPort_properties_ro instMain_cci_controlOnOffPort; /*   156     8 */
+	CCISpeedPort_properties_ro instMain_cci_speedPort; /*   164     8 */
+	CCICruiseSpeedPort_properties_ro instMain_cci_cruiseSpeedPort; /*   172     8 */
+	Env_properties_ro          instMain_env;         /*   180    76 */
+	/* --- cacheline 4 boundary (256 bytes) --- */
+	Buttons_properties_ro      instMain_env_buttons; /*   256    32 */
+	ButtonsPort_properties_ro  instMain_env_buttons_portStart; /*   288    28 */
+	ButtonsPort_properties_ro  instMain_env_buttons_portSet; /*   316    28 */
+	/* --- cacheline 5 boundary (320 bytes) was 24 bytes ago --- */
+	ButtonsPort_properties_ro  instMain_env_buttons_portPause; /*   344    28 */
+	ButtonsPort_properties_ro  instMain_env_buttons_portResume; /*   372    28 */
+	/* --- cacheline 6 boundary (384 bytes) was 16 bytes ago --- */
+	ButtonsPort_properties_ro  instMain_env_buttons_portInc; /*   400    28 */
+	ButtonsPort_properties_ro  instMain_env_buttons_portDec; /*   428    28 */
+	/* --- cacheline 7 boundary (448 bytes) was 8 bytes ago --- */
+	ButtonsPort_properties_ro  instMain_env_buttons_portStop; /*   456    28 */
+	Pedal_properties_ro        instMain_env_clutchPedal; /*   484     4 */
+	PedalPort_properties_ro    instMain_env_clutchPedal_pedalPeer; /*   488     4 */
+	Pedal_properties_ro        instMain_env_breakPedal; /*   492     4 */
+	PedalPort_properties_ro    instMain_env_breakPedal_pedalPeer; /*   496     4 */
+	Pedal_properties_ro        instMain_env_throttlePedal; /*   500     4 */
+	PedalPort_properties_ro    instMain_env_throttlePedal_pedalPeer; /*   504     4 */
+	Engine_properties_ro       instMain_env_engine;  /*   508    12 */
+	/* --- cacheline 8 boundary (512 bytes) was 8 bytes ago --- */
+	GpioButton_properties_ro   instMain_env_buttonStart; /*   520     4 */
+	ButtonPort_properties_ro   instMain_env_buttonStart_buttonPeer; /*   524    28 */
+	GpioButton_properties_ro   instMain_env_buttonSet; /*   552     4 */
+	ButtonPort_properties_ro   instMain_env_buttonSet_buttonPeer; /*   556    28 */
+	/* --- cacheline 9 boundary (576 bytes) was 8 bytes ago --- */
+	GpioButton_properties_ro   instMain_env_buttonPause; /*   584     4 */
+	ButtonPort_properties_ro   instMain_env_buttonPause_buttonPeer; /*   588    28 */
+	GpioButton_properties_ro   instMain_env_buttonResume; /*   616     4 */
+	ButtonPort_properties_ro   instMain_env_buttonResume_buttonPeer; /*   620    28 */
+	/* --- cacheline 10 boundary (640 bytes) was 8 bytes ago --- */
+	GpioButton_properties_ro   instMain_env_buttonInc; /*   648     4 */
+	ButtonPort_properties_ro   instMain_env_buttonInc_buttonPeer; /*   652    28 */
+	GpioButton_properties_ro   instMain_env_buttonDec; /*   680     4 */
+	ButtonPort_properties_ro   instMain_env_buttonDec_buttonPeer; /*   684    28 */
+	/* --- cacheline 11 boundary (704 bytes) was 8 bytes ago --- */
+	GpioButton_properties_ro   instMain_env_buttonStop; /*   712     4 */
+	ButtonPort_properties_ro   instMain_env_buttonStop_buttonPeer; /*   716    28 */
+	EnvButtonsPort_properties_ro instMain_env_envButtonsPort; /*   744     8 */
+	EnvPedalPort_properties_ro instMain_env_envClutchPedalPort; /*   752     8 */
+	EnvPedalPort_properties_ro instMain_env_envBreakPedalPort; /*   760     8 */
+	/* --- cacheline 12 boundary (768 bytes) --- */
+	EnvPedalPort_properties_ro instMain_env_envThrottlePedalPort; /*   768     8 */
+	EnvControlOnOffPort_properties_ro instMain_env_envControlOnOffPort; /*   776     8 */
+	EnvSpeedPort_properties_ro instMain_env_envSpeedPort; /*   784     8 */
+	EnvCruiseSpeedPort_properties_ro instMain_env_envCruiseSpeedPort; /*   792     8 */
+	Obs_properties_ro          instObs;              /*   800    12 */
+	Observer1_properties_ro    instObs_observer1;    /*   812     0 */
+	Observer2_properties_ro    instObs_observer2;    /*   812     0 */
+	Observer3_properties_ro    instObs_observer3;    /*   812     0 */
+
+	/* size: 812, cachelines: 13, members: 57 */
+	/* last cacheline: 44 bytes */
+};
+struct EnvButtonsPort_mutability {
+	_Bool                      buttons_isMutable:1;  /*     0: 7  1 */
+	_Bool                      cciButtonsPort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct EnvPedalPort_mutability {
+	_Bool                      cciPedalPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      pedal_isMutable:1;    /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct EnvControlOnOffPort_mutability {
+	_Bool                      cciControlOnOffPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      engine_isMutable:1;   /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct EnvSpeedPort_mutability {
+	_Bool                      engine_isMutable:1;   /*     0: 7  1 */
+	_Bool                      cciSpeedPort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct EnvCruiseSpeedPort_mutability {
+	_Bool                      engine_isMutable:1;   /*     0: 7  1 */
+	_Bool                      cciCruiseSpeedPort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Env_mutability {
+	_Bool                      envClutchPedalPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      buttonStart_isMutable:1; /*     0: 6  1 */
+	_Bool                      engine_isMutable:1;   /*     0: 5  1 */
+	_Bool                      envControlOnOffPort_isMutable:1; /*     0: 4  1 */
+	_Bool                      throttlePedal_isMutable:1; /*     0: 3  1 */
+	_Bool                      buttons_isMutable:1;  /*     0: 2  1 */
+	_Bool                      buttonPause_isMutable:1; /*     0: 1  1 */
+	_Bool                      buttonDec_isMutable:1; /*     0: 0  1 */
+	_Bool                      buttonInc_isMutable:1; /*     1: 7  1 */
+	_Bool                      envBreakPedalPort_isMutable:1; /*     1: 6  1 */
+	_Bool                      envSpeedPort_isMutable:1; /*     1: 5  1 */
+	_Bool                      buttonResume_isMutable:1; /*     1: 4  1 */
+	_Bool                      envCruiseSpeedPort_isMutable:1; /*     1: 3  1 */
+	_Bool                      envButtonsPort_isMutable:1; /*     1: 2  1 */
+	_Bool                      buttonSet_isMutable:1; /*     1: 1  1 */
+	_Bool                      breakPedal_isMutable:1; /*     1: 0  1 */
+	_Bool                      envThrottlePedalPort_isMutable:1; /*     2: 7  1 */
+	_Bool                      clutchPedal_isMutable:1; /*     2: 6  1 */
+	_Bool                      buttonStop_isMutable:1; /*     2: 5  1 */
+
+	/* size: 3, cachelines: 1, members: 19 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 3 bytes */
+};
+struct ButtonsPort_mutability {
+	_Bool                      buttonSet_isMutable:1; /*     0: 7  1 */
+	_Bool                      buttonStart_isMutable:1; /*     0: 6  1 */
+	_Bool                      buttonResume_isMutable:1; /*     0: 5  1 */
+	_Bool                      buttonDec_isMutable:1; /*     0: 4  1 */
+	_Bool                      buttonStop_isMutable:1; /*     0: 3  1 */
+	_Bool                      buttonInc_isMutable:1; /*     0: 2  1 */
+	_Bool                      buttonPause_isMutable:1; /*     0: 1  1 */
+
+	/* size: 1, cachelines: 1, members: 7 */
+	/* bit_padding: 1 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Buttons_mutability {
+	_Bool                      envButtonsPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      portDec_isMutable:1;  /*     0: 6  1 */
+	_Bool                      portStart_isMutable:1; /*     0: 5  1 */
+	_Bool                      portResume_isMutable:1; /*     0: 4  1 */
+	_Bool                      portSet_isMutable:1;  /*     0: 3  1 */
+	_Bool                      portStop_isMutable:1; /*     0: 2  1 */
+	_Bool                      portInc_isMutable:1;  /*     0: 1  1 */
+	_Bool                      portPause_isMutable:1; /*     0: 0  1 */
+
+	/* size: 1, cachelines: 1, members: 8 */
+	/* last cacheline: 1 bytes */
+};
+struct PedalPort_mutability {
+	_Bool                      envPedalPort_isMutable:1; /*     0: 7  1 */
+
+	/* size: 1, cachelines: 1, members: 1 */
+	/* bit_padding: 7 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Pedal_mutability {
+	_Bool                      pedalPeer_isMutable:1; /*     0: 7  1 */
+	_Bool                      port_isMutable:1;     /*     0: 6  1 */
+	_Bool                      pin_isMutable:1;      /*     0: 5  1 */
+
+	/* size: 1, cachelines: 1, members: 3 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Engine_mutability {
+	_Bool                      envControlOnOffPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      envSpeedPort_isMutable:1; /*     0: 6  1 */
+	_Bool                      envCruiseSpeedPort_isMutable:1; /*     0: 5  1 */
+	_Bool                      speed_isMutable:1;    /*     0: 4  1 */
+	_Bool                      timer_isMutable:1;    /*     0: 3  1 */
+	_Bool                      channel_isMutable:1;  /*     0: 2  1 */
+
+	/* size: 1, cachelines: 1, members: 6 */
+	/* bit_padding: 2 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Main_mutability {
+	_Bool                      env_isMutable:1;      /*     0: 7  1 */
+	_Bool                      cci_isMutable:1;      /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct ButtonProvider_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonUser_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonPort_mutability {
+	_Bool                      buttonsForDec_isMutable:1; /*     0: 7  1 */
+	_Bool                      buttonsForStop_isMutable:1; /*     0: 6  1 */
+	_Bool                      buttonsForStart_isMutable:1; /*     0: 5  1 */
+	_Bool                      buttonsForSet_isMutable:1; /*     0: 4  1 */
+	_Bool                      buttonsForPause_isMutable:1; /*     0: 3  1 */
+	_Bool                      buttonsForResume_isMutable:1; /*     0: 2  1 */
+	_Bool                      buttonsForInc_isMutable:1; /*     0: 1  1 */
+
+	/* size: 1, cachelines: 1, members: 7 */
+	/* bit_padding: 1 bits */
+	/* last cacheline: 1 bytes */
+};
+struct GpioButton_mutability {
+	_Bool                      buttonPeer_isMutable:1; /*     0: 7  1 */
+	_Bool                      port_isMutable:1;     /*     0: 6  1 */
+	_Bool                      pin_isMutable:1;      /*     0: 5  1 */
+
+	/* size: 1, cachelines: 1, members: 3 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Obs_mutability {
+	_Bool                      observer1_isMutable:1; /*     0: 7  1 */
+	_Bool                      observer3_isMutable:1; /*     0: 6  1 */
+	_Bool                      observer2_isMutable:1; /*     0: 5  1 */
+
+	/* size: 1, cachelines: 1, members: 3 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Observer1_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Observer2_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Observer3_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIButtonsPort_mutability {
+	_Bool                      envButtonsPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      controller_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct CCIPedalPort_mutability {
+	_Bool                      envPedalPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      pmPedalPort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct CCIControlOnOffPort_mutability {
+	_Bool                      envControlOnOffPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      actuation_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct CCISpeedPort_mutability {
+	_Bool                      actuation_isMutable:1; /*     0: 7  1 */
+	_Bool                      envSpeedPort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct CCICruiseSpeedPort_mutability {
+	_Bool                      csm_isMutable:1;      /*     0: 7  1 */
+	_Bool                      envCruiseSpeedPort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct PedalsManagerPedalPort_mutability {
+	_Bool                      cciPedalPort_isMutable:1; /*     0: 7  1 */
+
+	/* size: 1, cachelines: 1, members: 1 */
+	/* bit_padding: 7 bits */
+	/* last cacheline: 1 bytes */
+};
+struct CCI_mutability {
+	_Bool                      speedPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      cruiseSpeedPort_isMutable:1; /*     0: 6  1 */
+	_Bool                      actuation_isMutable:1; /*     0: 5  1 */
+	_Bool                      throttlePedalPort_isMutable:1; /*     0: 4  1 */
+	_Bool                      clutchPedalPort_isMutable:1; /*     0: 3  1 */
+	_Bool                      pm_isMutable:1;       /*     0: 2  1 */
+	_Bool                      buttonsPort_isMutable:1; /*     0: 1  1 */
+	_Bool                      breakPedalPort_isMutable:1; /*     0: 0  1 */
+	_Bool                      controller_isMutable:1; /*     1: 7  1 */
+	_Bool                      csm_isMutable:1;      /*     1: 6  1 */
+	_Bool                      controlOnOffPort_isMutable:1; /*     1: 5  1 */
+
+	/* size: 2, cachelines: 1, members: 11 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 2 bytes */
+};
+struct Actuation_mutability {
+	_Bool                      cciControlOnOffPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      csm_isMutable:1;      /*     0: 6  1 */
+	_Bool                      cciSpeedPort_isMutable:1; /*     0: 5  1 */
+	_Bool                      controller_isMutable:1; /*     0: 4  1 */
+
+	/* size: 1, cachelines: 1, members: 4 */
+	/* bit_padding: 4 bits */
+	/* last cacheline: 1 bytes */
+};
+struct CruiseSpeedManager_mutability {
+	_Bool                      actuation_isMutable:1; /*     0: 7  1 */
+	_Bool                      cciCruiseSpeedPort_isMutable:1; /*     0: 6  1 */
+	_Bool                      controller_isMutable:1; /*     0: 5  1 */
+	_Bool                      cruiseSpeed_isMutable:1; /*     0: 4  1 */
+
+	/* size: 1, cachelines: 1, members: 4 */
+	/* bit_padding: 4 bits */
+	/* last cacheline: 1 bytes */
+};
+struct PedalsManager_mutability {
+	_Bool                      pmBreakPedalPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      pmThrottlePedalPort_isMutable:1; /*     0: 6  1 */
+	_Bool                      controller_isMutable:1; /*     0: 5  1 */
+	_Bool                      pmClutchPedalPort_isMutable:1; /*     0: 4  1 */
+	_Bool                      nbLocks_isMutable:1;  /*     0: 3  1 */
+	_Bool                      canResume_isMutable:1; /*     0: 2  1 */
+
+	/* size: 1, cachelines: 1, members: 6 */
+	/* bit_padding: 2 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Controller_mutability {
+	_Bool                      cciButtonsPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      pm_isMutable:1;       /*     0: 6  1 */
+	_Bool                      actuation_isMutable:1; /*     0: 5  1 */
+	_Bool                      csm_isMutable:1;      /*     0: 4  1 */
+
+	/* size: 1, cachelines: 1, members: 4 */
+	/* bit_padding: 4 bits */
+	/* last cacheline: 1 bytes */
+};
+struct ButtonsProvider_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonsUser_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct PedalProvider_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct PedalUser_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ControlOnOffProvider_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ControlOnOffUser_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct SpeedProvider_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct SpeedUser_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CruiseSpeedProvider_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CruiseSpeedUser_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvButtonsPort_PropertiesTypes {
+	EnvButtonsPort_properties_ro * buttons_type;     /*     0     4 */
+	EnvButtonsPort_properties_ro * cciButtonsPort_type; /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvPedalPort_PropertiesTypes {
+	EnvPedalPort_properties_ro * cciPedalPort_type;  /*     0     4 */
+	EnvPedalPort_properties_ro * pedal_type;         /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvControlOnOffPort_PropertiesTypes {
+	EnvControlOnOffPort_properties_ro * cciControlOnOffPort_type; /*     0     4 */
+	EnvControlOnOffPort_properties_ro * engine_type; /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvSpeedPort_PropertiesTypes {
+	EnvSpeedPort_properties_ro * engine_type;        /*     0     4 */
+	EnvSpeedPort_properties_ro * cciSpeedPort_type;  /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvCruiseSpeedPort_PropertiesTypes {
+	EnvCruiseSpeedPort_properties_ro * engine_type;  /*     0     4 */
+	EnvCruiseSpeedPort_properties_ro * cciCruiseSpeedPort_type; /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct Env_PropertiesTypes {
+	Env_properties_ro *        envClutchPedalPort_type; /*     0     4 */
+	Env_properties_ro *        buttonStart_type;     /*     4     4 */
+	Env_properties_ro *        engine_type;          /*     8     4 */
+	Env_properties_ro *        envControlOnOffPort_type; /*    12     4 */
+	Env_properties_ro *        throttlePedal_type;   /*    16     4 */
+	Env_properties_ro *        buttons_type;         /*    20     4 */
+	Env_properties_ro *        buttonPause_type;     /*    24     4 */
+	Env_properties_ro *        buttonDec_type;       /*    28     4 */
+	Env_properties_ro *        buttonInc_type;       /*    32     4 */
+	Env_properties_ro *        envBreakPedalPort_type; /*    36     4 */
+	Env_properties_ro *        envSpeedPort_type;    /*    40     4 */
+	Env_properties_ro *        buttonResume_type;    /*    44     4 */
+	Env_properties_ro *        envCruiseSpeedPort_type; /*    48     4 */
+	Env_properties_ro *        envButtonsPort_type;  /*    52     4 */
+	Env_properties_ro *        buttonSet_type;       /*    56     4 */
+	Env_properties_ro *        breakPedal_type;      /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	Env_properties_ro *        envThrottlePedalPort_type; /*    64     4 */
+	Env_properties_ro *        clutchPedal_type;     /*    68     4 */
+	Env_properties_ro *        buttonStop_type;      /*    72     4 */
+
+	/* size: 76, cachelines: 2, members: 19 */
+	/* last cacheline: 12 bytes */
+};
+struct ButtonsPort_PropertiesTypes {
+	ButtonsPort_properties_ro * buttonSet_type;      /*     0     4 */
+	ButtonsPort_properties_ro * buttonStart_type;    /*     4     4 */
+	ButtonsPort_properties_ro * buttonResume_type;   /*     8     4 */
+	ButtonsPort_properties_ro * buttonDec_type;      /*    12     4 */
+	ButtonsPort_properties_ro * buttonStop_type;     /*    16     4 */
+	ButtonsPort_properties_ro * buttonInc_type;      /*    20     4 */
+	ButtonsPort_properties_ro * buttonPause_type;    /*    24     4 */
+
+	/* size: 28, cachelines: 1, members: 7 */
+	/* last cacheline: 28 bytes */
+};
+struct Buttons_PropertiesTypes {
+	Buttons_properties_ro *    envButtonsPort_type;  /*     0     4 */
+	Buttons_properties_ro *    portDec_type;         /*     4     4 */
+	Buttons_properties_ro *    portStart_type;       /*     8     4 */
+	Buttons_properties_ro *    portResume_type;      /*    12     4 */
+	Buttons_properties_ro *    portSet_type;         /*    16     4 */
+	Buttons_properties_ro *    portStop_type;        /*    20     4 */
+	Buttons_properties_ro *    portInc_type;         /*    24     4 */
+	Buttons_properties_ro *    portPause_type;       /*    28     4 */
+
+	/* size: 32, cachelines: 1, members: 8 */
+	/* last cacheline: 32 bytes */
+};
+struct PedalPort_PropertiesTypes {
+	PedalPort_properties_ro *  envPedalPort_type;    /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct Pedal_PropertiesTypes {
+	Pedal_properties_ro *      pedalPeer_type;       /*     0     4 */
+	Pedal_od *                 port_type;            /*     4     4 */
+	Pedal_od *                 pin_type;             /*     8     4 */
+
+	/* size: 12, cachelines: 1, members: 3 */
+	/* last cacheline: 12 bytes */
+};
+struct Engine_PropertiesTypes {
+	Engine_properties_ro *     envControlOnOffPort_type; /*     0     4 */
+	Engine_properties_ro *     envSpeedPort_type;    /*     4     4 */
+	Engine_properties_ro *     envCruiseSpeedPort_type; /*     8     4 */
+	Engine_od *                speed_type;           /*    12     4 */
+	Engine_od *                timer_type;           /*    16     4 */
+	Engine_od *                channel_type;         /*    20     4 */
+
+	/* size: 24, cachelines: 1, members: 6 */
+	/* last cacheline: 24 bytes */
+};
+struct Main_PropertiesTypes {
+	Main_properties_ro *       env_type;             /*     0     4 */
+	Main_properties_ro *       cci_type;             /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct ButtonProvider_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonUser_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonPort_PropertiesTypes {
+	ButtonPort_properties_ro * buttonsForDec_type;   /*     0     4 */
+	ButtonPort_properties_ro * buttonsForStop_type;  /*     4     4 */
+	ButtonPort_properties_ro * buttonsForStart_type; /*     8     4 */
+	ButtonPort_properties_ro * buttonsForSet_type;   /*    12     4 */
+	ButtonPort_properties_ro * buttonsForPause_type; /*    16     4 */
+	ButtonPort_properties_ro * buttonsForResume_type; /*    20     4 */
+	ButtonPort_properties_ro * buttonsForInc_type;   /*    24     4 */
+
+	/* size: 28, cachelines: 1, members: 7 */
+	/* last cacheline: 28 bytes */
+};
+struct GpioButton_PropertiesTypes {
+	GpioButton_properties_ro * buttonPeer_type;      /*     0     4 */
+	GpioButton_od *            port_type;            /*     4     4 */
+	GpioButton_od *            pin_type;             /*     8     4 */
+
+	/* size: 12, cachelines: 1, members: 3 */
+	/* last cacheline: 12 bytes */
+};
+struct Obs_PropertiesTypes {
+	Obs_properties_ro *        observer1_type;       /*     0     4 */
+	Obs_properties_ro *        observer3_type;       /*     4     4 */
+	Obs_properties_ro *        observer2_type;       /*     8     4 */
+
+	/* size: 12, cachelines: 1, members: 3 */
+	/* last cacheline: 12 bytes */
+};
+struct Observer1_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Observer2_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Observer3_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIButtonsPort_PropertiesTypes {
+	CCIButtonsPort_properties_ro * envButtonsPort_type; /*     0     4 */
+	CCIButtonsPort_properties_ro * controller_type;  /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct CCIPedalPort_PropertiesTypes {
+	CCIPedalPort_properties_ro * envPedalPort_type;  /*     0     4 */
+	CCIPedalPort_properties_ro * pmPedalPort_type;   /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct CCIControlOnOffPort_PropertiesTypes {
+	CCIControlOnOffPort_properties_ro * envControlOnOffPort_type; /*     0     4 */
+	CCIControlOnOffPort_properties_ro * actuation_type; /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct CCISpeedPort_PropertiesTypes {
+	CCISpeedPort_properties_ro * actuation_type;     /*     0     4 */
+	CCISpeedPort_properties_ro * envSpeedPort_type;  /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct CCICruiseSpeedPort_PropertiesTypes {
+	CCICruiseSpeedPort_properties_ro * csm_type;     /*     0     4 */
+	CCICruiseSpeedPort_properties_ro * envCruiseSpeedPort_type; /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct PedalsManagerPedalPort_PropertiesTypes {
+	PedalsManagerPedalPort_properties_ro * cciPedalPort_type; /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct CCI_PropertiesTypes {
+	CCI_properties_ro *        speedPort_type;       /*     0     4 */
+	CCI_properties_ro *        cruiseSpeedPort_type; /*     4     4 */
+	CCI_properties_ro *        actuation_type;       /*     8     4 */
+	CCI_properties_ro *        throttlePedalPort_type; /*    12     4 */
+	CCI_properties_ro *        clutchPedalPort_type; /*    16     4 */
+	CCI_properties_ro *        pm_type;              /*    20     4 */
+	CCI_properties_ro *        buttonsPort_type;     /*    24     4 */
+	CCI_properties_ro *        breakPedalPort_type;  /*    28     4 */
+	CCI_properties_ro *        controller_type;      /*    32     4 */
+	CCI_properties_ro *        csm_type;             /*    36     4 */
+	CCI_properties_ro *        controlOnOffPort_type; /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* last cacheline: 44 bytes */
+};
+struct Actuation_PropertiesTypes {
+	Actuation_properties_ro *  cciControlOnOffPort_type; /*     0     4 */
+	Actuation_properties_ro *  csm_type;             /*     4     4 */
+	Actuation_properties_ro *  cciSpeedPort_type;    /*     8     4 */
+	Actuation_properties_ro *  controller_type;      /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct CruiseSpeedManager_PropertiesTypes {
+	CruiseSpeedManager_properties_ro * actuation_type; /*     0     4 */
+	CruiseSpeedManager_properties_ro * cciCruiseSpeedPort_type; /*     4     4 */
+	CruiseSpeedManager_properties_ro * controller_type; /*     8     4 */
+	CruiseSpeedManager_od *    cruiseSpeed_type;     /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct PedalsManager_PropertiesTypes {
+	PedalsManager_properties_ro * pmBreakPedalPort_type; /*     0     4 */
+	PedalsManager_properties_ro * pmThrottlePedalPort_type; /*     4     4 */
+	PedalsManager_properties_ro * controller_type;   /*     8     4 */
+	PedalsManager_properties_ro * pmClutchPedalPort_type; /*    12     4 */
+	PedalsManager_od *         nbLocks_type;         /*    16     4 */
+	PedalsManager_od *         canResume_type;       /*    20     4 */
+
+	/* size: 24, cachelines: 1, members: 6 */
+	/* last cacheline: 24 bytes */
+};
+struct Controller_PropertiesTypes {
+	Controller_properties_ro * cciButtonsPort_type;  /*     0     4 */
+	Controller_properties_ro * pm_type;              /*     4     4 */
+	Controller_properties_ro * actuation_type;       /*     8     4 */
+	Controller_properties_ro * csm_type;             /*    12     4 */
+
+	/* size: 16, cachelines: 1, members: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct ButtonsProvider_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonsUser_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct PedalProvider_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct PedalUser_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ControlOnOffProvider_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ControlOnOffUser_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct SpeedProvider_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct SpeedUser_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CruiseSpeedProvider_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CruiseSpeedUser_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvButtonsPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const EnvButtonsPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	EnvButtonsPort_mutability  mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvPedalPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const EnvPedalPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	EnvPedalPort_mutability    mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvControlOnOffPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const EnvControlOnOffPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	EnvControlOnOffPort_mutability mutability;       /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvSpeedPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const EnvSpeedPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	EnvSpeedPort_mutability    mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct EnvCruiseSpeedPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const EnvCruiseSpeedPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	EnvCruiseSpeedPort_mutability mutability;        /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct Env_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Env_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Env_mutability             mutability;           /*     4     3 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct ButtonsPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const ButtonsPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	ButtonsPort_mutability     mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct Buttons_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Buttons_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Buttons_mutability         mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct PedalPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const PedalPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	PedalPort_mutability       mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct Pedal_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Pedal_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Pedal_mutability           mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct Engine_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Engine_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Engine_mutability          mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct Main_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Main_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Main_mutability            mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct ButtonProvider_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const ButtonProvider_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	ButtonProvider_mutability  mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct ButtonUser_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const ButtonUser_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	ButtonUser_mutability      mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct ButtonPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const ButtonPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	ButtonPort_mutability      mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct GpioButton_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const GpioButton_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	GpioButton_mutability      mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct Obs_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Obs_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Obs_mutability             mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct Observer1_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Observer1_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Observer1_mutability       mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct Observer2_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Observer2_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Observer2_mutability       mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct Observer3_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Observer3_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Observer3_mutability       mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct CCIButtonsPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const CCIButtonsPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	CCIButtonsPort_mutability  mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct CCIPedalPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const CCIPedalPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	CCIPedalPort_mutability    mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct CCIControlOnOffPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const CCIControlOnOffPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	CCIControlOnOffPort_mutability mutability;       /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct CCISpeedPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const CCISpeedPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	CCISpeedPort_mutability    mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct CCICruiseSpeedPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const CCICruiseSpeedPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	CCICruiseSpeedPort_mutability mutability;        /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct PedalsManagerPedalPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const PedalsManagerPedalPort_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	PedalsManagerPedalPort_mutability mutability;    /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct CCI_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const CCI_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	CCI_mutability             mutability;           /*     4     2 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct Actuation_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Actuation_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Actuation_mutability       mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct CruiseSpeedManager_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const CruiseSpeedManager_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	CruiseSpeedManager_mutability mutability;        /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct PedalsManager_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const PedalsManager_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	PedalsManager_mutability   mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct Controller_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const Controller_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	Controller_mutability      mutability;           /*     4     1 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 8 bytes */
+};
+struct ButtonsProvider_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const ButtonsProvider_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	ButtonsProvider_mutability mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct ButtonsUser_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const ButtonsUser_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	ButtonsUser_mutability     mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct PedalProvider_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const PedalProvider_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	PedalProvider_mutability   mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct PedalUser_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const PedalUser_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	PedalUser_mutability       mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct ControlOnOffProvider_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const ControlOnOffProvider_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	ControlOnOffProvider_mutability mutability;      /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct ControlOnOffUser_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const ControlOnOffUser_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	ControlOnOffUser_mutability mutability;          /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct SpeedProvider_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const SpeedProvider_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	SpeedProvider_mutability   mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct SpeedUser_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const SpeedUser_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	SpeedUser_mutability       mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct CruiseSpeedProvider_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const CruiseSpeedProvider_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	CruiseSpeedProvider_mutability mutability;       /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct CruiseSpeedUser_classInfo {
+	union {
+		UML_Class *        type;                 /*           4 */
+		const CruiseSpeedUser_PropertiesTypes  * properties_types; /*           4 */
+	};                                               /*     0     4 */
+	CruiseSpeedUser_mutability mutability;           /*     4     0 */
+
+	/* size: 4, cachelines: 1, members: 2 */
+	/* last cacheline: 4 bytes */
+};
+struct Buttons_Object {
+	char *                     name;                 /*     0     4 */
+	Buttons_classInfo *        classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Buttons_properties_ro *    properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Buttons_store *            store;                /*    20     4 */
+	Buttons_operations *       operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Buttons_od *               properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Pedal_Object {
+	char *                     name;                 /*     0     4 */
+	Pedal_classInfo *          classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Pedal_properties_ro *      properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Pedal_store *              store;                /*    20     4 */
+	Pedal_operations *         operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Pedal_od *                 properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Engine_Object {
+	char *                     name;                 /*     0     4 */
+	Engine_classInfo *         classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Engine_properties_ro *     properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Engine_store *             store;                /*    20     4 */
+	Engine_operations *        operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Engine_od *                properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct GpioButton_Object {
+	char *                     name;                 /*     0     4 */
+	GpioButton_classInfo *     classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	GpioButton_properties_ro * properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	GpioButton_store *         store;                /*    20     4 */
+	GpioButton_operations *    operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	GpioButton_od *            properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Observer1_Object {
+	char *                     name;                 /*     0     4 */
+	Observer1_classInfo *      classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Observer1_properties_ro *  properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Observer1_store *          store;                /*    20     4 */
+	Observer1_operations *     operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Observer1_od *             properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Observer2_Object {
+	char *                     name;                 /*     0     4 */
+	Observer2_classInfo *      classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Observer2_properties_ro *  properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Observer2_store *          store;                /*    20     4 */
+	Observer2_operations *     operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Observer2_od *             properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Observer3_Object {
+	char *                     name;                 /*     0     4 */
+	Observer3_classInfo *      classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Observer3_properties_ro *  properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Observer3_store *          store;                /*    20     4 */
+	Observer3_operations *     operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Observer3_od *             properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Actuation_Object {
+	char *                     name;                 /*     0     4 */
+	Actuation_classInfo *      classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Actuation_properties_ro *  properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Actuation_store *          store;                /*    20     4 */
+	Actuation_operations *     operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Actuation_od *             properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct CruiseSpeedManager_Object {
+	char *                     name;                 /*     0     4 */
+	CruiseSpeedManager_classInfo * classInfo;        /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	CruiseSpeedManager_properties_ro * properties_ro; /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	CruiseSpeedManager_store * store;                /*    20     4 */
+	CruiseSpeedManager_operations * operations;      /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	CruiseSpeedManager_od *    properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct PedalsManager_Object {
+	char *                     name;                 /*     0     4 */
+	PedalsManager_classInfo *  classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	PedalsManager_properties_ro * properties_ro;     /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	PedalsManager_store *      store;                /*    20     4 */
+	PedalsManager_operations * operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	PedalsManager_od *         properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Controller_Object {
+	char *                     name;                 /*     0     4 */
+	Controller_classInfo *     classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Controller_properties_ro * properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Controller_store *         store;                /*    20     4 */
+	Controller_operations *    operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Controller_od *            properties_rw;        /*    40     4 */
+	UML_StateMachine *         stateMachine;         /*    44     4 */
+	uint32_t                   eventParamsSize;      /*    48     4 */
+	EventPool *                eventPool;            /*    52     4 */
+	void *                     reorganize_buffer;    /*    56     4 */
+	NbOutgoings_t *            fireables;            /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	NbFireables_t              nbFireables;          /*    64     1 */
+	NbOutgoings_t              maxOutgoings;         /*    65     1 */
+	NbFireables_t              fireablesMax;         /*    66     1 */
+	FireablesLength_t          fireablesLength;      /*    67     1 */
+	uint32_t *                 store_cs;             /*    68     4 */
+	void *                     store_ep_params;      /*    72     4 */
+	_Bool                      in_environment;       /*    76     1 */
+
+	/* size: 80, cachelines: 2, members: 23 */
+	/* sum members: 71, holes: 2, sum holes: 6 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct ActiveObjects {
+	Controller_Object *        instMain_cci_controller; /*     0     4 */
+	Actuation_Object *         instMain_cci_actuation; /*     4     4 */
+	CruiseSpeedManager_Object * instMain_cci_csm;    /*     8     4 */
+	PedalsManager_Object *     instMain_cci_pm;      /*    12     4 */
+	Buttons_Object *           instMain_env_buttons; /*    16     4 */
+	Pedal_Object *             instMain_env_clutchPedal; /*    20     4 */
+	Pedal_Object *             instMain_env_breakPedal; /*    24     4 */
+	Pedal_Object *             instMain_env_throttlePedal; /*    28     4 */
+	Engine_Object *            instMain_env_engine;  /*    32     4 */
+	GpioButton_Object *        instMain_env_buttonStart; /*    36     4 */
+	GpioButton_Object *        instMain_env_buttonSet; /*    40     4 */
+	GpioButton_Object *        instMain_env_buttonPause; /*    44     4 */
+	GpioButton_Object *        instMain_env_buttonResume; /*    48     4 */
+	GpioButton_Object *        instMain_env_buttonInc; /*    52     4 */
+	GpioButton_Object *        instMain_env_buttonDec; /*    56     4 */
+	GpioButton_Object *        instMain_env_buttonStop; /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	Observer1_Object *         instObs_observer1;    /*    64     4 */
+	Observer2_Object *         instObs_observer2;    /*    68     4 */
+	Observer3_Object *         instObs_observer3;    /*    72     4 */
+
+	/* size: 76, cachelines: 2, members: 19 */
+	/* last cacheline: 12 bytes */
+};
+struct EnvButtonsPort_Object {
+	char *                     name;                 /*     0     4 */
+	EnvButtonsPort_classInfo * classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	EnvButtonsPort_properties_ro * properties_ro;    /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	EnvButtonsPort_store *     store;                /*    20     4 */
+	EnvButtonsPort_operations * operations;          /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	EnvButtonsPort_od *        properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct EnvPedalPort_Object {
+	char *                     name;                 /*     0     4 */
+	EnvPedalPort_classInfo *   classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	EnvPedalPort_properties_ro * properties_ro;      /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	EnvPedalPort_store *       store;                /*    20     4 */
+	EnvPedalPort_operations *  operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	EnvPedalPort_od *          properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct EnvControlOnOffPort_Object {
+	char *                     name;                 /*     0     4 */
+	EnvControlOnOffPort_classInfo * classInfo;       /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	EnvControlOnOffPort_properties_ro * properties_ro; /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	EnvControlOnOffPort_store * store;               /*    20     4 */
+	EnvControlOnOffPort_operations * operations;     /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	EnvControlOnOffPort_od *   properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct EnvSpeedPort_Object {
+	char *                     name;                 /*     0     4 */
+	EnvSpeedPort_classInfo *   classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	EnvSpeedPort_properties_ro * properties_ro;      /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	EnvSpeedPort_store *       store;                /*    20     4 */
+	EnvSpeedPort_operations *  operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	EnvSpeedPort_od *          properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct EnvCruiseSpeedPort_Object {
+	char *                     name;                 /*     0     4 */
+	EnvCruiseSpeedPort_classInfo * classInfo;        /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	EnvCruiseSpeedPort_properties_ro * properties_ro; /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	EnvCruiseSpeedPort_store * store;                /*    20     4 */
+	EnvCruiseSpeedPort_operations * operations;      /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	EnvCruiseSpeedPort_od *    properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct Env_Object {
+	char *                     name;                 /*     0     4 */
+	Env_classInfo *            classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Env_properties_ro *        properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Env_store *                store;                /*    20     4 */
+	Env_operations *           operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Env_od *                   properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct ButtonsPort_Object {
+	char *                     name;                 /*     0     4 */
+	ButtonsPort_classInfo *    classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	ButtonsPort_properties_ro * properties_ro;       /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	ButtonsPort_store *        store;                /*    20     4 */
+	ButtonsPort_operations *   operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	ButtonsPort_od *           properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct PedalPort_Object {
+	char *                     name;                 /*     0     4 */
+	PedalPort_classInfo *      classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	PedalPort_properties_ro *  properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	PedalPort_store *          store;                /*    20     4 */
+	PedalPort_operations *     operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	PedalPort_od *             properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct Main_Object {
+	char *                     name;                 /*     0     4 */
+	Main_classInfo *           classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Main_properties_ro *       properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Main_store *               store;                /*    20     4 */
+	Main_operations *          operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Main_od *                  properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct ButtonPort_Object {
+	char *                     name;                 /*     0     4 */
+	ButtonPort_classInfo *     classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	ButtonPort_properties_ro * properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	ButtonPort_store *         store;                /*    20     4 */
+	ButtonPort_operations *    operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	ButtonPort_od *            properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct Obs_Object {
+	char *                     name;                 /*     0     4 */
+	Obs_classInfo *            classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	Obs_properties_ro *        properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Obs_store *                store;                /*    20     4 */
+	Obs_operations *           operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	Obs_od *                   properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct CCIButtonsPort_Object {
+	char *                     name;                 /*     0     4 */
+	CCIButtonsPort_classInfo * classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	CCIButtonsPort_properties_ro * properties_ro;    /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	CCIButtonsPort_store *     store;                /*    20     4 */
+	CCIButtonsPort_operations * operations;          /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	CCIButtonsPort_od *        properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct CCIPedalPort_Object {
+	char *                     name;                 /*     0     4 */
+	CCIPedalPort_classInfo *   classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	CCIPedalPort_properties_ro * properties_ro;      /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	CCIPedalPort_store *       store;                /*    20     4 */
+	CCIPedalPort_operations *  operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	CCIPedalPort_od *          properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct CCIControlOnOffPort_Object {
+	char *                     name;                 /*     0     4 */
+	CCIControlOnOffPort_classInfo * classInfo;       /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	CCIControlOnOffPort_properties_ro * properties_ro; /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	CCIControlOnOffPort_store * store;               /*    20     4 */
+	CCIControlOnOffPort_operations * operations;     /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	CCIControlOnOffPort_od *   properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct CCISpeedPort_Object {
+	char *                     name;                 /*     0     4 */
+	CCISpeedPort_classInfo *   classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	CCISpeedPort_properties_ro * properties_ro;      /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	CCISpeedPort_store *       store;                /*    20     4 */
+	CCISpeedPort_operations *  operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	CCISpeedPort_od *          properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct CCICruiseSpeedPort_Object {
+	char *                     name;                 /*     0     4 */
+	CCICruiseSpeedPort_classInfo * classInfo;        /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	CCICruiseSpeedPort_properties_ro * properties_ro; /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	CCICruiseSpeedPort_store * store;                /*    20     4 */
+	CCICruiseSpeedPort_operations * operations;      /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	CCICruiseSpeedPort_od *    properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct PedalsManagerPedalPort_Object {
+	char *                     name;                 /*     0     4 */
+	PedalsManagerPedalPort_classInfo * classInfo;    /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	PedalsManagerPedalPort_properties_ro * properties_ro; /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	PedalsManagerPedalPort_store * store;            /*    20     4 */
+	PedalsManagerPedalPort_operations * operations;  /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	PedalsManagerPedalPort_od * properties_rw;       /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct CCI_Object {
+	char *                     name;                 /*     0     4 */
+	CCI_classInfo *            classInfo;            /*     4     4 */
+	UML_Property *             part;                 /*     8     4 */
+	CCI_properties_ro *        properties_ro;        /*    12     4 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	CCI_store *                store;                /*    20     4 */
+	CCI_operations *           operations;           /*    24     4 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    28     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     instance;             /*    32     4 */
+	uint32_t                   instanceSize;         /*    36     4 */
+	CCI_od *                   properties_rw;        /*    40     4 */
+
+	/* size: 44, cachelines: 1, members: 11 */
+	/* sum members: 38, holes: 2, sum holes: 6 */
+	/* last cacheline: 44 bytes */
+};
+struct PassiveObjects {
+	Main_Object *              instMain;             /*     0     4 */
+	CCI_Object *               instMain_cci;         /*     4     4 */
+	PedalsManagerPedalPort_Object * instMain_cci_pm_pmClutchPedalPort; /*     8     4 */
+	PedalsManagerPedalPort_Object * instMain_cci_pm_pmBreakPedalPort; /*    12     4 */
+	PedalsManagerPedalPort_Object * instMain_cci_pm_pmThrottlePedalPort; /*    16     4 */
+	CCIButtonsPort_Object *    instMain_cci_buttonsPort; /*    20     4 */
+	CCIPedalPort_Object *      instMain_cci_clutchPedalPort; /*    24     4 */
+	CCIPedalPort_Object *      instMain_cci_breakPedalPort; /*    28     4 */
+	CCIPedalPort_Object *      instMain_cci_throttlePedalPort; /*    32     4 */
+	CCIControlOnOffPort_Object * instMain_cci_controlOnOffPort; /*    36     4 */
+	CCISpeedPort_Object *      instMain_cci_speedPort; /*    40     4 */
+	CCICruiseSpeedPort_Object * instMain_cci_cruiseSpeedPort; /*    44     4 */
+	Env_Object *               instMain_env;         /*    48     4 */
+	ButtonsPort_Object *       instMain_env_buttons_portStart; /*    52     4 */
+	ButtonsPort_Object *       instMain_env_buttons_portSet; /*    56     4 */
+	ButtonsPort_Object *       instMain_env_buttons_portPause; /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	ButtonsPort_Object *       instMain_env_buttons_portResume; /*    64     4 */
+	ButtonsPort_Object *       instMain_env_buttons_portInc; /*    68     4 */
+	ButtonsPort_Object *       instMain_env_buttons_portDec; /*    72     4 */
+	ButtonsPort_Object *       instMain_env_buttons_portStop; /*    76     4 */
+	PedalPort_Object *         instMain_env_clutchPedal_pedalPeer; /*    80     4 */
+	PedalPort_Object *         instMain_env_breakPedal_pedalPeer; /*    84     4 */
+	PedalPort_Object *         instMain_env_throttlePedal_pedalPeer; /*    88     4 */
+	ButtonPort_Object *        instMain_env_buttonStart_buttonPeer; /*    92     4 */
+	ButtonPort_Object *        instMain_env_buttonSet_buttonPeer; /*    96     4 */
+	ButtonPort_Object *        instMain_env_buttonPause_buttonPeer; /*   100     4 */
+	ButtonPort_Object *        instMain_env_buttonResume_buttonPeer; /*   104     4 */
+	ButtonPort_Object *        instMain_env_buttonInc_buttonPeer; /*   108     4 */
+	ButtonPort_Object *        instMain_env_buttonDec_buttonPeer; /*   112     4 */
+	ButtonPort_Object *        instMain_env_buttonStop_buttonPeer; /*   116     4 */
+	EnvButtonsPort_Object *    instMain_env_envButtonsPort; /*   120     4 */
+	EnvPedalPort_Object *      instMain_env_envClutchPedalPort; /*   124     4 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	EnvPedalPort_Object *      instMain_env_envBreakPedalPort; /*   128     4 */
+	EnvPedalPort_Object *      instMain_env_envThrottlePedalPort; /*   132     4 */
+	EnvControlOnOffPort_Object * instMain_env_envControlOnOffPort; /*   136     4 */
+	EnvSpeedPort_Object *      instMain_env_envSpeedPort; /*   140     4 */
+	EnvCruiseSpeedPort_Object * instMain_env_envCruiseSpeedPort; /*   144     4 */
+	Obs_Object *               instObs;              /*   148     4 */
+
+	/* size: 152, cachelines: 3, members: 38 */
+	/* last cacheline: 24 bytes */
+};
+struct PedalPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct PedalsManagerPedalPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCI_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Observer1_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Main_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Pedal_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIControlOnOffPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIButtonsPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Controller_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Actuation_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Engine_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Env_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Buttons_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct PedalsManager_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvButtonsPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvPedalPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvControlOnOffPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CruiseSpeedManager_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvSpeedPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Obs_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCICruiseSpeedPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvCruiseSpeedPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct GpioButton_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonsPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Observer3_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCIPedalPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Observer2_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct CCISpeedPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Ports {
+	UML_Port *                 CCIEnvironment__POINT__Env__POINT__envButtonsPort; /*     0     4 */
+	UML_Port *                 CCIEnvironment__POINT__Env__POINT__envClutchPedalPort; /*     4     4 */
+	UML_Port *                 CCIEnvironment__POINT__Env__POINT__envBreakPedalPort; /*     8     4 */
+	UML_Port *                 CCIEnvironment__POINT__Env__POINT__envThrottlePedalPort; /*    12     4 */
+	UML_Port *                 CCIEnvironment__POINT__Env__POINT__envControlOnOffPort; /*    16     4 */
+	UML_Port *                 CCIEnvironment__POINT__Env__POINT__envSpeedPort; /*    20     4 */
+	UML_Port *                 CCIEnvironment__POINT__Env__POINT__envCruiseSpeedPort; /*    24     4 */
+	UML_Port *                 CCIEnvironment__POINT__Buttons__POINT__portStart; /*    28     4 */
+	UML_Port *                 CCIEnvironment__POINT__Buttons__POINT__portSet; /*    32     4 */
+	UML_Port *                 CCIEnvironment__POINT__Buttons__POINT__portPause; /*    36     4 */
+	UML_Port *                 CCIEnvironment__POINT__Buttons__POINT__portResume; /*    40     4 */
+	UML_Port *                 CCIEnvironment__POINT__Buttons__POINT__portInc; /*    44     4 */
+	UML_Port *                 CCIEnvironment__POINT__Buttons__POINT__portDec; /*    48     4 */
+	UML_Port *                 CCIEnvironment__POINT__Buttons__POINT__portStop; /*    52     4 */
+	UML_Port *                 CCIEnvironment__POINT__Pedal__POINT__pedalPeer; /*    56     4 */
+	UML_Port *                 DIL__POINT__GpioButton__POINT__buttonPeer; /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	UML_Port *                 CCISystem__POINT__system__POINT__CCI__POINT__buttonsPort; /*    64     4 */
+	UML_Port *                 CCISystem__POINT__system__POINT__CCI__POINT__clutchPedalPort; /*    68     4 */
+	UML_Port *                 CCISystem__POINT__system__POINT__CCI__POINT__breakPedalPort; /*    72     4 */
+	UML_Port *                 CCISystem__POINT__system__POINT__CCI__POINT__throttlePedalPort; /*    76     4 */
+	UML_Port *                 CCISystem__POINT__system__POINT__CCI__POINT__controlOnOffPort; /*    80     4 */
+	UML_Port *                 CCISystem__POINT__system__POINT__CCI__POINT__speedPort; /*    84     4 */
+	UML_Port *                 CCISystem__POINT__system__POINT__CCI__POINT__cruiseSpeedPort; /*    88     4 */
+	UML_Port *                 CCISystem__POINT__system__POINT__PedalsManager__POINT__pmClutchPedalPort; /*    92     4 */
+	UML_Port *                 CCISystem__POINT__system__POINT__PedalsManager__POINT__pmBreakPedalPort; /*    96     4 */
+	UML_Port *                 CCISystem__POINT__system__POINT__PedalsManager__POINT__pmThrottlePedalPort; /*   100     4 */
+
+	/* size: 104, cachelines: 2, members: 26 */
+	/* last cacheline: 40 bytes */
+};
+struct Interpreter {
+	InterpreterMode            status;               /*     0     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	ActiveObject * *           activeObjects;        /*     4     4 */
+	NbActiveObjects_t          offsetActiveObjectsId; /*     8     1 */
+	NbActiveObjects_t          nbActiveObjects;      /*     9     1 */
+
+	/* XXX 2 bytes hole, try to pack */
+
+	PassiveObject * *          passiveObjects;       /*    12     4 */
+	NbPassiveObjects_t         nbPassiveObjects;     /*    16     1 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	void *                     store;                /*    20     4 */
+	StoreSize_t                storeSize;            /*    24     2 */
+
+	/* size: 28, cachelines: 1, members: 8 */
+	/* sum members: 18, holes: 3, sum holes: 8 */
+	/* padding: 2 */
+	/* last cacheline: 28 bytes */
+};

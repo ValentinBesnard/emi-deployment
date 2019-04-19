@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:StateDiagram">
+      <skinparams>
+        <commentsBefore>hide empty description
+skinparam shadowing false
+skinparam &lt;&lt;junction>>stateBackgroundColor white
+skinparam &lt;&lt;junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+</commentsBefore>
+      </skinparams>
+      <region>
+        <elements xsi:type="PlantUML:State" name="GpioLed" longName="GpioLed">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="DIL_GpioLed_SM_R_Idle" longName="Idle"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/1" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.0/@regions.0/@elements.0">
+              <trigger>
+                <parts>authorization</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}UML_GpioToggleBits(GET(this, port), GET(this, pin));]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="GpioButton" longName="GpioButton">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="DIL_GpioButton_SM_R_Idle" longName="Idle"/>
+            <elements xsi:type="PlantUML:State" name="DIL_GpioButton_SM_R_Released" longName="Released"/>
+            <elements xsi:type="PlantUML:State" name="DIL_GpioButton_SM_R_Pressed" longName="Pressed"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/2" target="/0/@element.0/@region/@elements.1/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.1/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.1/@regions.0/@elements.1" isVertical="true">
+              <trigger>
+                <parts>initSensor</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SET(this, port, params->port); SET(this, pin, params->pin);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.1/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.1/@regions.0/@elements.2" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, peerButton), activation);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.1/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.1/@regions.0/@elements.1" isVertical="true">
+              <guard>&lt;font color=red>[[#{missing ABCD body}UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0]]&lt;/font></guard>
+            </elements>
+          </regions>
+        </elements>
+      </region>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+</xmi:XMI>

@@ -1,0 +1,13 @@
+
+
+@startuml
+	state System {
+		
+			state "sysLightPort : LightPort" as ButtonLedsSystem_System_sysLightPort <<entrypoint>>
+			state "sysButtonPort : ButtonPort" as ButtonLedsSystem_System_sysButtonPort <<entrypoint>>
+			state "controller : Controller" as ButtonLedsSystem_System_controller
+			ButtonLedsSystem_System_controller --> ButtonLedsSystem_System_sysLightPort
+			ButtonLedsSystem_System_sysButtonPort --> ButtonLedsSystem_System_controller
+		
+	}
+@enduml

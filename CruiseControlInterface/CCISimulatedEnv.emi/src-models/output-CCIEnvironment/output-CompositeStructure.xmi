@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:ObjectDiagram">
+    <elements xsi:type="PlantUML:Package" name="Env" stereotype="card">
+      <elements xsi:type="PlantUML:Object" name="CCIEnvironment_Env_buttons" longName="buttons : Buttons"/>
+      <elements xsi:type="PlantUML:Object" name="CCIEnvironment_Env_clutchPedal" longName="clutchPedal : Pedal"/>
+      <elements xsi:type="PlantUML:Object" name="CCIEnvironment_Env_breakPedal" longName="breakPedal : Pedal"/>
+      <elements xsi:type="PlantUML:Object" name="CCIEnvironment_Env_throttlePedal" longName="throttlePedal : Pedal"/>
+      <elements xsi:type="PlantUML:Object" name="CCIEnvironment_Env_engine" longName="engine : Engine">
+        <slots name="speed" value="50"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="EnvButtonsPort_Buttons" leftLabel="envButtonsPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="EnvPedalPort_Pedal" leftLabel="envClutchPedalPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.1"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="EnvPedalPort_Pedal" leftLabel="envBreakPedalPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.2"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="EnvPedalPort_Pedal" leftLabel="envThrottlePedalPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.3"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="EnvControlOnOffPort_Engine" leftLabel="envControlOnOffPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.4"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="EnvSpeedPort_Engine" leftLabel="envSpeedPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.4"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="EnvCruiseSpeedPort_Engine" leftLabel="envCruiseSpeedPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.4"/>
+      </elements>
+    </elements>
+  </element>
+</PlantUML:Model>

@@ -1,0 +1,58 @@
+// Target model for the STM32 discovery board
+model Target {
+
+	enumeration UML_GpioPort {
+		literal UML_GPIO_PORT_A;
+		literal UML_GPIO_PORT_B;
+		literal UML_GPIO_PORT_C;
+		literal UML_GPIO_PORT_D;
+		literal UML_GPIO_PORT_E;
+		literal UML_GPIO_PORT_F;
+	}
+
+	enumeration UML_GpioPin {
+		literal UML_GPIO_PIN_0;
+		literal UML_GPIO_PIN_1;
+		literal UML_GPIO_PIN_2;
+		literal UML_GPIO_PIN_3;
+		literal UML_GPIO_PIN_4;
+		literal UML_GPIO_PIN_5;
+		literal UML_GPIO_PIN_6;
+		literal UML_GPIO_PIN_7;
+		literal UML_GPIO_PIN_8;
+		literal UML_GPIO_PIN_9;
+		literal UML_GPIO_PIN_10;
+		literal UML_GPIO_PIN_11;
+		literal UML_GPIO_PIN_12;
+		literal UML_GPIO_PIN_13;
+		literal UML_GPIO_PIN_14;
+		literal UML_GPIO_PIN_15;
+	}
+
+	enumeration UML_Timer {
+		literal UML_TIM_0;
+		literal UML_TIM_1;
+		literal UML_TIM_2;
+		literal UML_TIM_3;
+		literal UML_TIM_4;
+		literal UML_TIM_5;
+		literal UML_TIM_6;
+		literal UML_TIM_7;
+		literal UML_TIM_8;
+		literal UML_TIM_9;
+		literal UML_TIM_10;
+		literal UML_TIM_11;
+		literal UML_TIM_12;
+		literal UML_TIM_13;
+		literal UML_TIM_14;
+	}
+
+	enumeration UML_PwmChannel {
+		literal UML_PWM_CH_0;
+		literal UML_PWM_CH_1;
+		literal UML_PWM_CH_2;
+		literal UML_PWM_CH_3;
+		literal UML_PWM_CH_4;
+	}
+
+}

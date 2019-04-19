@@ -1,0 +1,24 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "Train" as Train {
+		
+			state "Idle" as LevelCrossingEnvironment_Train_SM_R_Idle
+			state "Far" as LevelCrossingEnvironment_Train_SM_R_Far
+			state "Close" as LevelCrossingEnvironment_Train_SM_R_Close
+			state "Passing" as LevelCrossingEnvironment_Train_SM_R_Passing
+			[*] --> LevelCrossingEnvironment_Train_SM_R_Idle
+			LevelCrossingEnvironment_Train_SM_R_Idle --> LevelCrossingEnvironment_Train_SM_R_Far : / SEND(AT(GET(this, tcEntrance), 0), activation, 0);
+			LevelCrossingEnvironment_Train_SM_R_Far --> LevelCrossingEnvironment_Train_SM_R_Close : / SEND(AT(GET(this, tcEntrance), 1), activation, 1);
+			LevelCrossingEnvironment_Train_SM_R_Close --> LevelCrossingEnvironment_Train_SM_R_Passing : authorization
+			LevelCrossingEnvironment_Train_SM_R_Passing --> LevelCrossingEnvironment_Train_SM_R_Idle : / SEND(GET(this, tcExit), activation);
+		
+	}
+@enduml

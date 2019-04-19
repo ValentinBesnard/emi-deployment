@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:UseCaseDiagram">
+    <elements xsi:type="PlantUML:Rectangle" name="ButtonLedsEnvironment_Env_envLedPort" longName="&lt;u>envLedPort : EnvLedPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="ButtonLedsEnvironment_Env_envButtonPort" longName="&lt;u>envButtonPort : EnvButtonPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="ButtonLedsEnvironment_Env_envLed" longName="&lt;u>envLed : SimulatedLight&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="ButtonLedsEnvironment_Env_envButton" longName="&lt;u>envButton : SimulatedButton&lt;/u>"/>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.3"/>
+      <members target="//@element.0/@elements.1"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.0"/>
+      <members target="//@element.0/@elements.2"/>
+    </elements>
+  </element>
+</PlantUML:Model>

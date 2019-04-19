@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:StateDiagram">
+      <skinparams>
+        <commentsBefore>hide empty description
+skinparam shadowing false
+skinparam &lt;&lt;junction>>stateBackgroundColor white
+skinparam &lt;&lt;junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+</commentsBefore>
+      </skinparams>
+      <region>
+        <elements xsi:type="PlantUML:State" name="EntranceTC" longName="EntranceTC">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_EntranceTC_SM_R_Detection" longName="Detection"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/1" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.0/@regions.0/@elements.0">
+              <trigger>
+                <parts>activation</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), entranceDetection, params->id);]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="ExitTC" longName="ExitTC">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_ExitTC_SM_R_Detection" longName="Detection"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/2" target="/0/@element.0/@region/@elements.1/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:InternalTransition" state="/0/@element.0/@region/@elements.1/@regions.0/@elements.0">
+              <trigger>
+                <parts>activation</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), exitDetection, GET(this, id));]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="Controller" longName="Controller">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_Controller_SM_R_Idle" longName="Idle"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_Controller_SM_R_WaitRoadSignOn" longName="WaitRoadSignOn"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_Controller_SM_R_FarDetection" longName="FarDetection"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_Controller_SM_R_CloseDetection" longName="CloseDetection"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_Controller_SM_R_WaitRailwaySignOn" longName="WaitRailwaySignOn"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_Controller_SM_R_WaitGateOpen" longName="WaitGateOpen"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_Controller_SM_R_WaitRoadSignOff" longName="WaitRoadSignOff"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/3" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.0" isVertical="true">
+              <effect>&lt;font color=red>[[#{missing ABCD body}SET(this, nbEngagedTrains, 0);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.2/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.1" isVertical="true">
+              <trigger>
+                <parts>entranceDetection</parts>
+              </trigger>
+              <guard>&lt;font color=red>[[#{missing ABCD body}GET(this, nbEngagedTrains) == 0]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, roadSign), switchOn);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.2/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.2" isVertical="true">
+              <trigger>
+                <parts>roadSignOn</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.2/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.3" isVertical="true">
+              <trigger>
+                <parts>entranceDetection</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, gate), close); INC(this, nbEngagedTrains, 1);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.2/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>gateClosed</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, railwaySign), switchOff);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.2/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.4" isVertical="true">
+              <trigger>
+                <parts>exitDetection</parts>
+              </trigger>
+              <guard>&lt;font color=red>[[#{missing ABCD body}GET(this, nbEngagedTrains) == 1]]&lt;/font></guard>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, railwaySign), switchOn);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.2/@regions.0/@elements.4" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.5" isVertical="true">
+              <trigger>
+                <parts>railwaySignOn</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, gate), open); DEC(this, nbEngagedTrains, 1);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.2/@regions.0/@elements.5" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.6" isVertical="true">
+              <trigger>
+                <parts>gateOpen</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, roadSign), switchOff);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.2/@regions.0/@elements.6" target="/0/@element.0/@region/@elements.2/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>roadSignOff</parts>
+              </trigger>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="RoadSign" longName="RoadSign">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_RoadSign_SM_R_Inactive" longName="Inactive"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_RoadSign_SM_R_Active" longName="Active"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/4" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.3/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.1" isVertical="true">
+              <trigger>
+                <parts>switchOn</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), roadSignOn);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.3/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.3/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>switchOff</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), roadSignOff);]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="Gate" longName="Gate">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_Gate_SM_R_Open" longName="Open"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_Gate_SM_R_Closed" longName="Closed"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/5" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.1" isVertical="true">
+              <trigger>
+                <parts>close</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), gateClosed);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.4/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.4/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>open</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), gateOpen);]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="RailwaySign" longName="RailwaySign">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_RailwaySign_SM_R_Active" longName="Active"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_RailwaySign_SM_R_Inactive" longName="Inactive"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/6" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.5/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.1" isVertical="true">
+              <trigger>
+                <parts>switchOff</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, train), authorization);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.5/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.5/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>switchOn</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, controller), railwaySignOn);]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+      </region>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+</xmi:XMI>

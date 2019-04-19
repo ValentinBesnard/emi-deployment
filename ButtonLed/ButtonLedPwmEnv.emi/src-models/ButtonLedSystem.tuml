@@ -1,0 +1,48 @@
+model ButtonLedsSystem with(
+	private "DAL.uml#DAL.buttonPressed_SE",
+	private "DAL.uml#DAL.buttonReleased_SE",
+	private "DAL.uml#DAL.LightUser",
+	private "DAL.uml#DAL.ButtonProvider",
+	private "DAL.uml#DAL.I_Button"
+) {
+
+	primitiveType Integer;
+
+	class LightPort extends LightUser {}
+	class ButtonPort extends ButtonProvider {}
+
+	class System {
+		public composite port sysLightPort[1-1] : LightPort;
+		public composite port sysButtonPort[1-1] : ButtonPort;
+		public composite controller[1-1] : Controller;
+
+		connector "c1" : Controller_LightPort between controller and sysLightPort;
+		connector "c2" : ButtonPort_Controller between sysButtonPort and controller;
+	}
+
+	association Controller_LightPort {
+		controller[1-1] : Controller in Controller_LightPort;
+		light[1-1] : LightPort in Controller_LightPort;
+	}
+
+	association ButtonPort_Controller {
+		button[1-1] : ButtonPort in ButtonPort_Controller;
+		controller[1-1] : Controller in ButtonPort_Controller;
+	}
+
+	class |Controller| behavesAs SM extends LightUser implements I_Button {
+		
+		stateMachine SM {
+			region R {
+				Initial -> Idle;
+				Idle -> RedOn : buttonPressed_SE / 
+						opaqueBehavior = 'SEND(GET(this, light), lightOn);' in C;;
+				RedOn -> Idle : buttonReleased_SE / 
+						opaqueBehavior = 'SEND(GET(this, light), lightOff);' in C;;
+
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+}

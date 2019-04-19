@@ -1,0 +1,16 @@
+
+
+@startuml
+	rectangle "<u>tcEntranceSensor : GpioButton</u>" as LevelCrossingEnvironment_Environment_tcEntranceSensor
+	rectangle "<u>tcExitSensor : GpioButton</u>" as LevelCrossingEnvironment_Environment_tcExitSensor
+	rectangle "<u>railwaySignLed : GpioLed</u>" as LevelCrossingEnvironment_Environment_railwaySignLed
+	rectangle "<u>sensorInitializer : SensorInitializer</u>" as LevelCrossingEnvironment_Environment_sensorInitializer
+	rectangle "<u>tcEntrancePort : EnvEntranceTCPort</u>" as LevelCrossingEnvironment_Environment_tcEntrancePort
+	rectangle "<u>tcExitPort : EnvExitTCPort</u>" as LevelCrossingEnvironment_Environment_tcExitPort
+	rectangle "<u>railwaySignPort : EnvRailwaySignPort</u>" as LevelCrossingEnvironment_Environment_railwaySignPort
+	LevelCrossingEnvironment_Environment_tcEntranceSensor -- LevelCrossingEnvironment_Environment_tcEntrancePort
+	LevelCrossingEnvironment_Environment_tcExitSensor -- LevelCrossingEnvironment_Environment_tcExitPort
+	LevelCrossingEnvironment_Environment_railwaySignLed -- LevelCrossingEnvironment_Environment_railwaySignPort
+	LevelCrossingEnvironment_Environment_tcEntranceSensor -- LevelCrossingEnvironment_Environment_sensorInitializer
+	LevelCrossingEnvironment_Environment_tcExitSensor -- LevelCrossingEnvironment_Environment_sensorInitializer
+@enduml

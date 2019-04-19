@@ -1,0 +1,16 @@
+
+
+@startuml
+	state Main {
+		
+			state "system : System" as ButtonLeds_Main_system {
+				
+					
+				
+			}
+			state "env : Env" as ButtonLeds_Main_env {
+				
+					
+				
+			}
+			

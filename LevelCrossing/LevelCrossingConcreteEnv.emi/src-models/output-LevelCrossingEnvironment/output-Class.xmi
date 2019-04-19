@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:ClassDiagram">
+      <skinparams>
+        <commentsBefore></commentsBefore>
+      </skinparams>
+      <elements xsi:type="PlantUML:Class" name="DIL_ButtonPort" longName="[[DIL%3A%3AButtonPort-Class.svg DIL::ButtonPort]]"/>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_DIL_GpioLed" longName="[[DIL%3A%3AGpioLed-Class.svg DIL::GpioLed]]"/>
+      <elements xsi:type="PlantUML:Class" name="DAL_ActivationUser" longName="[[DAL%3A%3AActivationUser-Class.svg DAL::ActivationUser]]"/>
+      <elements xsi:type="PlantUML:Class" name="DAL_AuthorizationProvider" longName="[[DAL%3A%3AAuthorizationProvider-Class.svg DAL::AuthorizationProvider]]"/>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingEnvironment_Environment" longName="Environment">
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; tcEntranceSensor : [[DIL%3A%3AGpioButton-Class.svg GpioButton]][2..1]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; tcExitSensor : [[DIL%3A%3AGpioButton-Class.svg GpioButton]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; railwaySignLed : [[DIL%3A%3AGpioLed-Class.svg GpioLed]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; sensorInitializer : [[LevelCrossingEnvironment%3A%3ASensorInitializer-Class.svg SensorInitializer]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; tcEntrancePort : [[LevelCrossingEnvironment%3A%3AEnvEntranceTCPort-Class.svg EnvEntranceTCPort]][2..1]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; tcExitPort : [[LevelCrossingEnvironment%3A%3AEnvExitTCPort-Class.svg EnvExitTCPort]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; railwaySignPort : [[LevelCrossingEnvironment%3A%3AEnvRailwaySignPort-Class.svg EnvRailwaySignPort]]"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingEnvironment_EnvEntranceTCPort" longName="EnvEntranceTCPort"/>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingEnvironment_EnvExitTCPort" longName="EnvExitTCPort"/>
+      <elements xsi:type="PlantUML:Class" name="LevelCrossingEnvironment_EnvRailwaySignPort" longName="EnvRailwaySignPort"/>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_LevelCrossingEnvironment_SensorInitializer" longName="SensorInitializer">
+        <features xsi:type="PlantUML:Attribute" name="-tcEntrancePort0 : UML_GpioPort"/>
+        <features xsi:type="PlantUML:Attribute" name="-tcEntrancePin0 : UML_GpioPin"/>
+        <features xsi:type="PlantUML:Attribute" name="-tcEntrancePort1 : UML_GpioPort"/>
+        <features xsi:type="PlantUML:Attribute" name="-tcEntrancePin1 : UML_GpioPin"/>
+        <features xsi:type="PlantUML:Attribute" name="-tcExitPort : UML_GpioPort"/>
+        <features xsi:type="PlantUML:Attribute" name="-tcExitPin : UML_GpioPin"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.2"/>
+        <members target="/0/@element.0/@elements.5"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.2"/>
+        <members target="/0/@element.0/@elements.6"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.3"/>
+        <members target="/0/@element.0/@elements.7"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="tcEntrance">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.5"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="tcExit">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.6"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="railwaySign">
+        <members target="/0/@element.0/@elements.1"/>
+        <members target="/0/@element.0/@elements.7"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="sensorInitializerForEntrance">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.8"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="sensorInitializerForExit">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.8"/>
+      </elements>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:Class name="LevelCrossingEnvironment_SensorInitializer_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="LevelCrossingEnvironment_SensorInitializer_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@7ca0166c_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@7ca0166c" longName="unnamed" stereotype="OpaqueBehavior"/>
+</xmi:XMI>

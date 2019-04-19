@@ -1,0 +1,39 @@
+model LevelCrossingCS with(
+	private "LevelCrossingSystem.uml#LevelCrossingSystem.System",
+	private "LevelCrossingSystem.uml#LevelCrossingSystem.EntranceTCPort",
+	private "LevelCrossingSystem.uml#LevelCrossingSystem.ExitTCPort",
+	private "LevelCrossingSystem.uml#LevelCrossingSystem.RailwaySignPort",
+
+	private "LevelCrossingEnvironment.uml#LevelCrossingEnvironment.Environment",
+	private "LevelCrossingEnvironment.uml#LevelCrossingEnvironment.EnvEntranceTCPort",
+	private "LevelCrossingEnvironment.uml#LevelCrossingEnvironment.EnvExitTCPort",
+	private "LevelCrossingEnvironment.uml#LevelCrossingEnvironment.EnvRailwaySignPort"
+) {
+
+	class Main {
+		public composite env[1-1] : Environment;
+		public composite sys[1-1] : System;
+
+		connector "c1" : EntranceTCPort_EnvEntranceTCPort between sys.tcEntrancePort and env.tcEntrancePort;
+		connector "c2" : ExitTCPort_EnvExitTCPort between sys.tcExitPort and env.tcExitPort;
+		connector "c3" : RailwaySignPort_EnvRailwaySignPort between sys.railwaySignPort and env.railwaySignPort;
+	}
+
+	instance instMain of Main {
+
+	}
+	
+	association EntranceTCPort_EnvEntranceTCPort {
+		sysTcEntrancePort[1-1] : EntranceTCPort in EntranceTCPort_EnvEntranceTCPort;
+		envTcEntrancePort[1-1] : EnvEntranceTCPort in EntranceTCPort_EnvEntranceTCPort;
+	}
+	association ExitTCPort_EnvExitTCPort {
+		sysTcExitPort[1-1] : ExitTCPort in ExitTCPort_EnvExitTCPort;
+		envTcExitPort[1-1] : EnvExitTCPort in ExitTCPort_EnvExitTCPort;
+	}
+	association RailwaySignPort_EnvRailwaySignPort {
+		sysRailwaySignPort[1-1] : RailwaySignPort in RailwaySignPort_EnvRailwaySignPort;
+		envRailwaySignPort[1-1] : EnvRailwaySignPort in RailwaySignPort_EnvRailwaySignPort;
+	}
+
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:ClassDiagram">
+    <skinparams>
+      <commentsBefore></commentsBefore>
+    </skinparams>
+    <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_EntranceTCPort" longName="[[LevelCrossingSystem%3A%3AEntranceTCPort-Class.svg LevelCrossingSystem::EntranceTCPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="LevelCrossingEnvironment_EnvEntranceTCPort" longName="[[LevelCrossingEnvironment%3A%3AEnvEntranceTCPort-Class.svg LevelCrossingEnvironment::EnvEntranceTCPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_ExitTCPort" longName="[[LevelCrossingSystem%3A%3AExitTCPort-Class.svg LevelCrossingSystem::ExitTCPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="LevelCrossingEnvironment_EnvExitTCPort" longName="[[LevelCrossingEnvironment%3A%3AEnvExitTCPort-Class.svg LevelCrossingEnvironment::EnvExitTCPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="LevelCrossingSystem_RailwaySignPort" longName="[[LevelCrossingSystem%3A%3ARailwaySignPort-Class.svg LevelCrossingSystem::RailwaySignPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="LevelCrossingEnvironment_EnvRailwaySignPort" longName="[[LevelCrossingEnvironment%3A%3AEnvRailwaySignPort-Class.svg LevelCrossingEnvironment::EnvRailwaySignPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="LevelCrossingCS_Main" longName="Main">
+      <features xsi:type="PlantUML:Attribute" name="+&#x2666; env : [[LevelCrossingEnvironment%3A%3AEnvironment-Class.svg Environment]]"/>
+      <features xsi:type="PlantUML:Attribute" name="+&#x2666; sys : [[LevelCrossingSystem%3A%3ASystem-Class.svg System]]"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="envTcEntrancePort">
+      <members target="//@element.0/@elements.0"/>
+      <members target="//@element.0/@elements.1"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="envTcExitPort">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.3"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="envRailwaySignPort">
+      <members target="//@element.0/@elements.4"/>
+      <members target="//@element.0/@elements.5"/>
+    </elements>
+  </element>
+</PlantUML:Model>

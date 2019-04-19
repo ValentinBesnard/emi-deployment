@@ -1,0 +1,34 @@
+
+
+@startuml
+	package Env <<card>> {
+		object "buttons : Buttons" as CCIEnvironment_Env_buttons
+		object "clutchPedal : Pedal" as CCIEnvironment_Env_clutchPedal
+		object "breakPedal : Pedal" as CCIEnvironment_Env_breakPedal
+		object "throttlePedal : Pedal" as CCIEnvironment_Env_throttlePedal
+		object "engine : Engine" as CCIEnvironment_Env_engine {
+			speed = 0
+		}
+		object "buttonStart : GpioButton" as CCIEnvironment_Env_buttonStart
+		object "buttonSet : GpioButton" as CCIEnvironment_Env_buttonSet
+		object "buttonPause : GpioButton" as CCIEnvironment_Env_buttonPause
+		object "buttonResume : GpioButton" as CCIEnvironment_Env_buttonResume
+		object "buttonInc : GpioButton" as CCIEnvironment_Env_buttonInc
+		object "buttonDec : GpioButton" as CCIEnvironment_Env_buttonDec
+		object "buttonStop : GpioButton" as CCIEnvironment_Env_buttonStop
+		CCIEnvironment_Env_buttons "portStart" -- "buttonPeer" CCIEnvironment_Env_buttonStart : ButtonProvider_ButtonStart
+		CCIEnvironment_Env_buttons "portSet" -- "buttonPeer" CCIEnvironment_Env_buttonSet : ButtonProvider_ButtonSet
+		CCIEnvironment_Env_buttons "portPause" -- "buttonPeer" CCIEnvironment_Env_buttonPause : ButtonProvider_ButtonPause
+		CCIEnvironment_Env_buttons "portResume" -- "buttonPeer" CCIEnvironment_Env_buttonResume : ButtonProvider_ButtonResume
+		CCIEnvironment_Env_buttons "portInc" -- "buttonPeer" CCIEnvironment_Env_buttonInc : ButtonProvider_ButtonInc
+		CCIEnvironment_Env_buttons "portDec" -- "buttonPeer" CCIEnvironment_Env_buttonDec : ButtonProvider_ButtonDec
+		CCIEnvironment_Env_buttons "portStop" -- "buttonPeer" CCIEnvironment_Env_buttonStop : ButtonProvider_ButtonStop
+		Env "envButtonsPort" -- CCIEnvironment_Env_buttons : EnvButtonsPort_Buttons
+		Env "envClutchPedalPort" -- "pedalPeer" CCIEnvironment_Env_clutchPedal : EnvPedalPort_Pedal
+		Env "envBreakPedalPort" -- "pedalPeer" CCIEnvironment_Env_breakPedal : EnvPedalPort_Pedal
+		Env "envThrottlePedalPort" -- "pedalPeer" CCIEnvironment_Env_throttlePedal : EnvPedalPort_Pedal
+		Env "envControlOnOffPort" -- CCIEnvironment_Env_engine : EnvControlOnOffPort_Engine
+		Env "envSpeedPort" -- CCIEnvironment_Env_engine : EnvSpeedPort_Engine
+		Env "envCruiseSpeedPort" -- CCIEnvironment_Env_engine : EnvCruiseSpeedPort_Engine
+	}
+@enduml

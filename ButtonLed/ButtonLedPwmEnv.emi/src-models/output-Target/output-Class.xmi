@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:ClassDiagram">
+    <skinparams>
+      <commentsBefore></commentsBefore>
+    </skinparams>
+    <elements xsi:type="PlantUML:Enumeration" name="Target_UML_GpioPort" longName="UML_GpioPort">
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PORT_A"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PORT_B"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PORT_C"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PORT_D"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PORT_E"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PORT_F"/>
+    </elements>
+    <elements xsi:type="PlantUML:Enumeration" name="Target_UML_GpioPin" longName="UML_GpioPin">
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_0"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_1"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_2"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_3"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_4"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_5"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_6"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_7"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_8"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_9"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_10"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_11"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_12"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_13"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_14"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_GPIO_PIN_15"/>
+    </elements>
+    <elements xsi:type="PlantUML:Enumeration" name="Target_UML_Timer" longName="UML_Timer">
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_0"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_1"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_2"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_3"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_4"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_5"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_6"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_7"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_8"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_9"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_10"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_11"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_12"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_13"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_TIM_14"/>
+    </elements>
+    <elements xsi:type="PlantUML:Enumeration" name="Target_UML_PwmChannel" longName="UML_PwmChannel">
+      <features xsi:type="PlantUML:Attribute" name="UML_PWM_CH_0"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_PWM_CH_1"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_PWM_CH_2"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_PWM_CH_3"/>
+      <features xsi:type="PlantUML:Attribute" name="UML_PWM_CH_4"/>
+    </elements>
+  </element>
+</PlantUML:Model>

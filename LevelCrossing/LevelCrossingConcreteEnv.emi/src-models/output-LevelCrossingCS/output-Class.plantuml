@@ -1,0 +1,19 @@
+
+
+@startuml
+
+
+	class "[[LevelCrossingSystem%3A%3AEntranceTCPort-Class.svg LevelCrossingSystem::EntranceTCPort]]" as LevelCrossingSystem_EntranceTCPort
+	class "[[LevelCrossingEnvironment%3A%3AEnvEntranceTCPort-Class.svg LevelCrossingEnvironment::EnvEntranceTCPort]]" as LevelCrossingEnvironment_EnvEntranceTCPort
+	class "[[LevelCrossingSystem%3A%3AExitTCPort-Class.svg LevelCrossingSystem::ExitTCPort]]" as LevelCrossingSystem_ExitTCPort
+	class "[[LevelCrossingEnvironment%3A%3AEnvExitTCPort-Class.svg LevelCrossingEnvironment::EnvExitTCPort]]" as LevelCrossingEnvironment_EnvExitTCPort
+	class "[[LevelCrossingSystem%3A%3ARailwaySignPort-Class.svg LevelCrossingSystem::RailwaySignPort]]" as LevelCrossingSystem_RailwaySignPort
+	class "[[LevelCrossingEnvironment%3A%3AEnvRailwaySignPort-Class.svg LevelCrossingEnvironment::EnvRailwaySignPort]]" as LevelCrossingEnvironment_EnvRailwaySignPort
+	class "Main" as LevelCrossingCS_Main {
+		+♦ env : [[LevelCrossingEnvironment%3A%3AEnvironment-Class.svg Environment]]
+		+♦ sys : [[LevelCrossingSystem%3A%3ASystem-Class.svg System]]
+	}
+	LevelCrossingSystem_EntranceTCPort -- LevelCrossingEnvironment_EnvEntranceTCPort : envTcEntrancePort
+	LevelCrossingSystem_ExitTCPort -- LevelCrossingEnvironment_EnvExitTCPort : envTcExitPort
+	LevelCrossingSystem_RailwaySignPort -- LevelCrossingEnvironment_EnvRailwaySignPort : envRailwaySignPort
+@enduml

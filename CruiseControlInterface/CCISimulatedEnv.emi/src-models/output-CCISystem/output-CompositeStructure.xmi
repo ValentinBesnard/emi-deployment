@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:ObjectDiagram">
+    <elements xsi:type="PlantUML:Package" name="CCI" stereotype="card">
+      <elements xsi:type="PlantUML:Object" name="CCISystem_system_CCI_controller" longName="controller : Controller"/>
+      <elements xsi:type="PlantUML:Object" name="CCISystem_system_CCI_actuation" longName="actuation : Actuation"/>
+      <elements xsi:type="PlantUML:Object" name="CCISystem_system_CCI_csm" longName="csm : CruiseSpeedManager"/>
+      <elements xsi:type="PlantUML:Object" name="CCISystem_system_CCI_pm" longName="pm : PedalsManager"/>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="PedalsManagerPedalPort_CCIPedalPort" leftLabel="pmClutchPedalPort" rightLabel="clutchPedalPort">
+        <members target="//@element.0/@elements.0/@elements.3"/>
+        <members target="//@element.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="PedalsManagerPedalPort_CCIPedalPort" leftLabel="pmBreakPedalPort" rightLabel="breakPedalPort">
+        <members target="//@element.0/@elements.0/@elements.3"/>
+        <members target="//@element.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="PedalsManagerPedalPort_CCIPedalPort" leftLabel="pmThrottlePedalPort" rightLabel="throttlePedalPort">
+        <members target="//@element.0/@elements.0/@elements.3"/>
+        <members target="//@element.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="CCIButtonsPort_Controller" leftLabel="buttonsPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="CCIControlOnOffPort_Actuation" leftLabel="controlOnOffPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.1"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="CCISpeedPort_Actuation" leftLabel="speedPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.1"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="CCICruiseSpeedPort_CruiseSpeedManager" leftLabel="cruiseSpeedPort">
+        <members target="//@element.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.2"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="PedalsManager_Controller">
+        <members target="//@element.0/@elements.0/@elements.3"/>
+        <members target="//@element.0/@elements.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="Actuation_Controller">
+        <members target="//@element.0/@elements.0/@elements.1"/>
+        <members target="//@element.0/@elements.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="CruiseSpeedManager_Controller">
+        <members target="//@element.0/@elements.0/@elements.2"/>
+        <members target="//@element.0/@elements.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="Actuation_CruiseSpeedManager">
+        <members target="//@element.0/@elements.0/@elements.1"/>
+        <members target="//@element.0/@elements.0/@elements.2"/>
+      </elements>
+    </elements>
+  </element>
+</PlantUML:Model>

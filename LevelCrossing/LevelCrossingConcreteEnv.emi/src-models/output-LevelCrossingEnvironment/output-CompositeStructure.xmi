@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:ObjectDiagram">
+    <elements xsi:type="PlantUML:Package" name="Environment" stereotype="card">
+      <elements xsi:type="PlantUML:Object" name="LevelCrossingEnvironment_Environment_tcEntranceSensor" longName="tcEntranceSensor : GpioButton"/>
+      <elements xsi:type="PlantUML:Object" name="LevelCrossingEnvironment_Environment_tcExitSensor" longName="tcExitSensor : GpioButton"/>
+      <elements xsi:type="PlantUML:Object" name="LevelCrossingEnvironment_Environment_railwaySignLed" longName="railwaySignLed : GpioLed">
+        <slots name="port" value="UML_GPIO_PORT_D"/>
+        <slots name="pin" value="UML_GPIO_PIN_12"/>
+      </elements>
+      <elements xsi:type="PlantUML:Object" name="LevelCrossingEnvironment_Environment_sensorInitializer" longName="sensorInitializer : SensorInitializer">
+        <slots name="tcEntrancePort0" value="UML_GPIO_PORT_C"/>
+        <slots name="tcEntrancePin0" value="UML_GPIO_PIN_1"/>
+        <slots name="tcEntrancePort1" value="UML_GPIO_PORT_C"/>
+        <slots name="tcEntrancePin1" value="UML_GPIO_PIN_3"/>
+        <slots name="tcExitPort" value="UML_GPIO_PORT_A"/>
+        <slots name="tcExitPin" value="UML_GPIO_PIN_1"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="ButtonPort_EnvEntranceTCPort" leftLabel="peerButton" rightLabel="tcEntrancePort">
+        <members target="//@element.0/@elements.0/@elements.0"/>
+        <members target="//@element.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="ButtonPort_EnvExitTCPort" leftLabel="peerButton" rightLabel="tcExitPort">
+        <members target="//@element.0/@elements.0/@elements.1"/>
+        <members target="//@element.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="RailwaySignLed_EnvRailwaySignPort" rightLabel="railwaySignPort">
+        <members target="//@element.0/@elements.0/@elements.2"/>
+        <members target="//@element.0/@elements.0"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="EntranceButtonPort_SensorInitializer" leftLabel="peerButton">
+        <members target="//@element.0/@elements.0/@elements.0"/>
+        <members target="//@element.0/@elements.0/@elements.3"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="ExitButtonPort_SensorInitializer" leftLabel="peerButton">
+        <members target="//@element.0/@elements.0/@elements.1"/>
+        <members target="//@element.0/@elements.0/@elements.3"/>
+      </elements>
+    </elements>
+  </element>
+</PlantUML:Model>

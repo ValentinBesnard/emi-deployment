@@ -1,0 +1,13 @@
+
+
+@startuml
+	rectangle "<u>cci : CCI</u>" as CCICS_Main_cci
+	rectangle "<u>env : Env</u>" as CCICS_Main_env
+	CCICS_Main_cci -- CCICS_Main_env
+	CCICS_Main_cci -- CCICS_Main_env
+	CCICS_Main_cci -- CCICS_Main_env
+	CCICS_Main_cci -- CCICS_Main_env
+	CCICS_Main_cci -- CCICS_Main_env
+	CCICS_Main_cci -- CCICS_Main_env
+	CCICS_Main_cci -- CCICS_Main_env
+@enduml

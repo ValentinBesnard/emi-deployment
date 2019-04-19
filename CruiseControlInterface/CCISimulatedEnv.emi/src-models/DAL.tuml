@@ -1,0 +1,67 @@
+model DAL {
+
+	primitiveType Integer;
+	primitiveType Boolean;
+	
+	signal start;
+	signalEvent start_SE of start;
+	signal stop;
+	signalEvent stop_SE of stop;
+	signal set;
+	signalEvent set_SE of set;
+	signal pause;
+	signalEvent pause_SE of pause;
+	signal resume;
+	signalEvent resume_SE of resume;
+	signal inc;
+	signalEvent inc_SE of inc;
+	signal dec;
+	signalEvent dec_SE of dec;
+
+	signal pedalPressed;
+	signalEvent pedalPressed_SE of pedalPressed;
+	signal pedalReleased;
+	signalEvent pedalReleased_SE of pedalReleased;
+
+	signal controlOn;
+	signalEvent controlOn_SE of controlOn;
+	signal controlOff;
+	signalEvent controlOff_SE of controlOff;
+
+	signal updateSpeed {
+		speed[1-1] : Integer;
+	}
+	signalEvent updateSpeed_SE of updateSpeed;
+
+	signal updateSetPoint {
+		setPoint[1-1] : Integer;
+	}
+	signalEvent updateSetPoint_SE of updateSetPoint;
+
+	interface I_Buttons receives start(start), stop(stop), set(set), pause(pause), resume(resume), inc(inc), dec(dec) {}
+	interface I_Pedal receives pedalPressed(pedalPressed), pedalReleased(pedalReleased) {}
+	interface I_ControlOnOff receives controlOn(controlOn), controlOff(controlOff) {}
+	interface I_Speed receives updateSpeed(updateSpeed) {}
+	interface I_CruiseSpeed receives updateSetPoint(updateSetPoint) {}
+
+	class ButtonsProvider implements I_Buttons {}
+	class ButtonsUser {}
+	usage use_Buttons_ButtonsUser of I_Buttons by ButtonsUser;
+
+	class PedalProvider implements I_Pedal {}
+	class PedalUser {}
+	usage use_Pedal_PedalUser of I_Pedal by PedalUser;
+
+	class ControlOnOffProvider implements I_ControlOnOff {}
+	class ControlOnOffUser {}
+	usage use_ControlOnOff_ControlOnOffUser of I_ControlOnOff by ControlOnOffUser;
+
+	class SpeedProvider implements I_Speed {}
+	class SpeedUser {}
+	usage use_Speed_SpeedUser of I_Speed by SpeedUser;
+
+	class CruiseSpeedProvider implements I_CruiseSpeed {}
+	class CruiseSpeedUser {}
+	usage use_CruiseSpeed_SpeedUser of I_CruiseSpeed by CruiseSpeedUser;
+	
+}

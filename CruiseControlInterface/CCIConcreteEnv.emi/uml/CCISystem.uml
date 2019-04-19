@@ -1,0 +1,1116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="CCISystem" name="CCISystem">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:PrimitiveType" href="DAL.uml#DAL.Integer"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:PrimitiveType" href="DAL.uml#DAL.Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Interface" href="DAL.uml#DAL.I_Speed"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.ButtonsProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.PedalProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a6" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.ControlOnOffUser"/>
+  </elementImport>
+  <elementImport xmi:id="a7" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.SpeedProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a8" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.CruiseSpeedUser"/>
+  </elementImport>
+  <elementImport xmi:id="a9" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.start_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a10" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.stop_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a11" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.set_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a12" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pause_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a13" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.resume_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a14" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.inc_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a15" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.dec_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a16" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pedalPressed_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a17" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pedalReleased_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a18" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.updateSpeed_SE"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="CCISystem.observers" name="observers">
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.observers.Obs" name="Obs">
+      <ownedAttribute xmi:id="CCISystem.observers.Obs.observer1" name="observer1" type="CCISystem.observers.Observer1" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a19" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a20" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="CCISystem.observers.Obs.observer2" name="observer2" type="CCISystem.observers.Observer2" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a21" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a22" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="CCISystem.observers.Obs.observer3" name="observer3" type="CCISystem.observers.Observer3" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a23" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a24" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.observers.Observer1" name="Observer1" classifierBehavior="CCISystem.observers.Observer1.SM" isActive="true">
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="CCISystem.observers.Observer1.SM" name="SM">
+        <region xmi:id="CCISystem.observers.Observer1.SM.R" name="R">
+          <transition xmi:id="a25" source="CCISystem.observers.Observer1.SM.R.Initial" target="CCISystem.observers.Observer1.SM.R.Disengaged"/>
+          <transition xmi:id="a26" source="CCISystem.observers.Observer1.SM.R.Disengaged" target="CCISystem.observers.Observer1.SM.R.Fail">
+            <ownedRule xmi:id="a27" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a28">
+                <language>C</language>
+                <body>
+							EP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), csm), cciCruiseSpeedPort), SIGNAL_updateSetPoint)
+						</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:id="a29" source="CCISystem.observers.Observer1.SM.R.Disengaged" target="CCISystem.observers.Observer1.SM.R.Engaged">
+            <ownedRule xmi:id="a30" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a31">
+                <language>C</language>
+                <body>
+							EP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), actuation), cciControlOnOffPort), SIGNAL_controlOn)
+						</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:id="a32" source="CCISystem.observers.Observer1.SM.R.Engaged" target="CCISystem.observers.Observer1.SM.R.Disengaged">
+            <ownedRule xmi:id="a33" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a34">
+                <language>C</language>
+                <body>
+							EP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), actuation), cciControlOnOffPort), SIGNAL_controlOff)
+						</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.observers.Observer1.SM.R.Initial" name="Initial"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.observers.Observer1.SM.R.Disengaged" name="Disengaged"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.observers.Observer1.SM.R.Fail" name="Fail"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.observers.Observer1.SM.R.Engaged" name="Engaged"/>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.observers.Observer2" name="Observer2" classifierBehavior="CCISystem.observers.Observer2.SM" isActive="true">
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="CCISystem.observers.Observer2.SM" name="SM">
+        <region xmi:id="CCISystem.observers.Observer2.SM.R" name="R">
+          <transition xmi:id="a35" source="CCISystem.observers.Observer2.SM.R.Initial" target="CCISystem.observers.Observer2.SM.R.Running"/>
+          <transition xmi:id="a36" source="CCISystem.observers.Observer2.SM.R.Running" target="CCISystem.observers.Observer2.SM.R.Fail">
+            <ownedRule xmi:id="a37" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a38">
+                <language>C</language>
+                <body>
+							!((GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) >= 40 &amp;&amp; GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) &lt;= 180) || GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) == -1)
+						</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.observers.Observer2.SM.R.Initial" name="Initial"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.observers.Observer2.SM.R.Running" name="Running"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.observers.Observer2.SM.R.Fail" name="Fail"/>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.observers.Observer3" name="Observer3" classifierBehavior="CCISystem.observers.Observer3.SM" isActive="true">
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="CCISystem.observers.Observer3.SM" name="SM">
+        <region xmi:id="CCISystem.observers.Observer3.SM.R" name="R">
+          <transition xmi:id="a39" source="CCISystem.observers.Observer3.SM.R.Initial" target="CCISystem.observers.Observer3.SM.R.Running"/>
+          <transition xmi:id="a40" source="CCISystem.observers.Observer3.SM.R.Running" target="CCISystem.observers.Observer3.SM.R.Fail">
+            <ownedRule xmi:id="a41" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a42">
+                <language>C</language>
+                <body>
+							GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) == -1 &amp;&amp; IS_IN_STATE(GET(GET(ROOT_instMain, cci), actuation), STATE_Actuation_Engaged)
+						</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.observers.Observer3.SM.R.Initial" name="Initial"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.observers.Observer3.SM.R.Running" name="Running"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.observers.Observer3.SM.R.Fail" name="Fail"/>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="CCISystem.observers.instObs" name="instObs" classifier="CCISystem.observers.Obs"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="CCISystem.system" name="system">
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.CCIButtonsPort" name="CCIButtonsPort">
+      <generalization xmi:id="a43">
+        <general xmi:type="uml:Class" href="DAL.uml#DAL.ButtonsProvider"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.CCIPedalPort" name="CCIPedalPort">
+      <generalization xmi:id="a44">
+        <general xmi:type="uml:Class" href="DAL.uml#DAL.PedalProvider"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.CCIControlOnOffPort" name="CCIControlOnOffPort">
+      <generalization xmi:id="a45">
+        <general xmi:type="uml:Class" href="DAL.uml#DAL.ControlOnOffUser"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.CCISpeedPort" name="CCISpeedPort">
+      <generalization xmi:id="a46">
+        <general xmi:type="uml:Class" href="DAL.uml#DAL.SpeedProvider"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.CCICruiseSpeedPort" name="CCICruiseSpeedPort">
+      <generalization xmi:id="a47">
+        <general xmi:type="uml:Class" href="DAL.uml#DAL.CruiseSpeedUser"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.PedalsManagerPedalPort" name="PedalsManagerPedalPort">
+      <generalization xmi:id="a48">
+        <general xmi:type="uml:Class" href="DAL.uml#DAL.PedalProvider"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.CCI" name="CCI">
+      <ownedAttribute xmi:id="CCISystem.system.CCI.controller" name="controller" type="CCISystem.system.Controller" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a49" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a50" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="CCISystem.system.CCI.actuation" name="actuation" type="CCISystem.system.Actuation" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a51" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a52" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="CCISystem.system.CCI.csm" name="csm" type="CCISystem.system.CruiseSpeedManager" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a53" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a54" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="CCISystem.system.CCI.pm" name="pm" type="CCISystem.system.PedalsManager" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a55" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a56" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="CCISystem.system.CCI.buttonsPort" name="buttonsPort" type="CCISystem.system.CCIButtonsPort" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a57" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a58" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="CCISystem.system.CCI.clutchPedalPort" name="clutchPedalPort" type="CCISystem.system.CCIPedalPort" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a59" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a60" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="CCISystem.system.CCI.breakPedalPort" name="breakPedalPort" type="CCISystem.system.CCIPedalPort" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a61" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a62" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="CCISystem.system.CCI.throttlePedalPort" name="throttlePedalPort" type="CCISystem.system.CCIPedalPort" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a63" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a64" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="CCISystem.system.CCI.controlOnOffPort" name="controlOnOffPort" type="CCISystem.system.CCIControlOnOffPort" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a65" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a66" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="CCISystem.system.CCI.speedPort" name="speedPort" type="CCISystem.system.CCISpeedPort" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a67" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a68" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="CCISystem.system.CCI.cruiseSpeedPort" name="cruiseSpeedPort" type="CCISystem.system.CCICruiseSpeedPort" isUnique="false" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a69" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a70" value="1"/>
+      </ownedAttribute>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_pmClutchPedalPort_clutchPedalPort" name="c_pmClutchPedalPort_clutchPedalPort" type="CCISystem.system.PedalsManagerPedalPort_CCIPedalPort">
+        <end xmi:id="a71" partWithPort="CCISystem.system.CCI.pm" role="CCISystem.system.PedalsManager.pmClutchPedalPort"/>
+        <end xmi:id="a72" role="CCISystem.system.CCI.clutchPedalPort"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_pmBreakPedalPort_breakPedalPort" name="c_pmBreakPedalPort_breakPedalPort" type="CCISystem.system.PedalsManagerPedalPort_CCIPedalPort">
+        <end xmi:id="a73" partWithPort="CCISystem.system.CCI.pm" role="CCISystem.system.PedalsManager.pmBreakPedalPort"/>
+        <end xmi:id="a74" role="CCISystem.system.CCI.breakPedalPort"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_pmThrottlePedalPort_throttlePedalPort" name="c_pmThrottlePedalPort_throttlePedalPort" type="CCISystem.system.PedalsManagerPedalPort_CCIPedalPort">
+        <end xmi:id="a75" partWithPort="CCISystem.system.CCI.pm" role="CCISystem.system.PedalsManager.pmThrottlePedalPort"/>
+        <end xmi:id="a76" role="CCISystem.system.CCI.throttlePedalPort"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_buttonsPort_controller" name="c_buttonsPort_controller" type="CCISystem.system.CCIButtonsPort_Controller">
+        <end xmi:id="a77" role="CCISystem.system.CCI.buttonsPort"/>
+        <end xmi:id="a78" role="CCISystem.system.CCI.controller"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_controlOnOffPort_actuation" name="c_controlOnOffPort_actuation" type="CCISystem.system.CCIControlOnOffPort_Actuation">
+        <end xmi:id="a79" role="CCISystem.system.CCI.controlOnOffPort"/>
+        <end xmi:id="a80" role="CCISystem.system.CCI.actuation"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_speedPort_actuation" name="c_speedPort_actuation" type="CCISystem.system.CCISpeedPort_Actuation">
+        <end xmi:id="a81" role="CCISystem.system.CCI.speedPort"/>
+        <end xmi:id="a82" role="CCISystem.system.CCI.actuation"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_cruiseSpeedPort_csm" name="c_cruiseSpeedPort_csm" type="CCISystem.system.CCICruiseSpeedPort_CruiseSpeedManager">
+        <end xmi:id="a83" role="CCISystem.system.CCI.cruiseSpeedPort"/>
+        <end xmi:id="a84" role="CCISystem.system.CCI.csm"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_pm_controller" name="c_pm_controller" type="CCISystem.system.PedalsManager_Controller">
+        <end xmi:id="a85" role="CCISystem.system.CCI.pm"/>
+        <end xmi:id="a86" role="CCISystem.system.CCI.controller"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_actuation_controller" name="c_actuation_controller" type="CCISystem.system.Actuation_Controller">
+        <end xmi:id="a87" role="CCISystem.system.CCI.actuation"/>
+        <end xmi:id="a88" role="CCISystem.system.CCI.controller"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_csm_controller" name="c_csm_controller" type="CCISystem.system.CruiseSpeedManager_Controller">
+        <end xmi:id="a89" role="CCISystem.system.CCI.csm"/>
+        <end xmi:id="a90" role="CCISystem.system.CCI.controller"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="CCISystem.system.CCI.c_actuation_csm" name="c_actuation_csm" type="CCISystem.system.Actuation_CruiseSpeedManager">
+        <end xmi:id="a91" role="CCISystem.system.CCI.actuation"/>
+        <end xmi:id="a92" role="CCISystem.system.CCI.csm"/>
+      </ownedConnector>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="CCISystem.system.CCIButtonsPort_Controller" name="CCIButtonsPort_Controller" memberEnd="CCISystem.system.CCIButtonsPort_Controller.cciButtonsPort CCISystem.system.CCIButtonsPort_Controller.controller">
+      <ownedEnd xmi:id="CCISystem.system.CCIButtonsPort_Controller.cciButtonsPort" name="cciButtonsPort" type="CCISystem.system.CCIButtonsPort" isUnique="false" association="CCISystem.system.CCIButtonsPort_Controller">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a93" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a94" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="CCISystem.system.CCIButtonsPort_Controller.controller" name="controller" type="CCISystem.system.Controller" isUnique="false" association="CCISystem.system.CCIButtonsPort_Controller">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a95" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a96" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="CCISystem.system.PedalsManagerPedalPort_CCIPedalPort" name="PedalsManagerPedalPort_CCIPedalPort" memberEnd="CCISystem.system.PedalsManagerPedalPort_CCIPedalPort.pmPedalPort CCISystem.system.PedalsManagerPedalPort_CCIPedalPort.cciPedalPort">
+      <ownedEnd xmi:id="CCISystem.system.PedalsManagerPedalPort_CCIPedalPort.pmPedalPort" name="pmPedalPort" type="CCISystem.system.PedalsManagerPedalPort" isUnique="false" association="CCISystem.system.PedalsManagerPedalPort_CCIPedalPort">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a97" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a98" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="CCISystem.system.PedalsManagerPedalPort_CCIPedalPort.cciPedalPort" name="cciPedalPort" type="CCISystem.system.CCIPedalPort" isUnique="false" association="CCISystem.system.PedalsManagerPedalPort_CCIPedalPort">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a99" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a100" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="CCISystem.system.CCIControlOnOffPort_Actuation" name="CCIControlOnOffPort_Actuation" memberEnd="CCISystem.system.CCIControlOnOffPort_Actuation.cciControlOnOffPort CCISystem.system.CCIControlOnOffPort_Actuation.actuation">
+      <ownedEnd xmi:id="CCISystem.system.CCIControlOnOffPort_Actuation.cciControlOnOffPort" name="cciControlOnOffPort" type="CCISystem.system.CCIControlOnOffPort" isUnique="false" association="CCISystem.system.CCIControlOnOffPort_Actuation">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a101" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a102" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="CCISystem.system.CCIControlOnOffPort_Actuation.actuation" name="actuation" type="CCISystem.system.Actuation" isUnique="false" association="CCISystem.system.CCIControlOnOffPort_Actuation">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a103" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a104" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="CCISystem.system.CCISpeedPort_Actuation" name="CCISpeedPort_Actuation" memberEnd="CCISystem.system.CCISpeedPort_Actuation.cciSpeedPort CCISystem.system.CCISpeedPort_Actuation.actuation">
+      <ownedEnd xmi:id="CCISystem.system.CCISpeedPort_Actuation.cciSpeedPort" name="cciSpeedPort" type="CCISystem.system.CCISpeedPort" isUnique="false" association="CCISystem.system.CCISpeedPort_Actuation">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a105" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a106" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="CCISystem.system.CCISpeedPort_Actuation.actuation" name="actuation" type="CCISystem.system.Actuation" isUnique="false" association="CCISystem.system.CCISpeedPort_Actuation">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a107" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a108" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="CCISystem.system.CCICruiseSpeedPort_CruiseSpeedManager" name="CCICruiseSpeedPort_CruiseSpeedManager" memberEnd="CCISystem.system.CCICruiseSpeedPort_CruiseSpeedManager.cciCruiseSpeedPort CCISystem.system.CCICruiseSpeedPort_CruiseSpeedManager.csm">
+      <ownedEnd xmi:id="CCISystem.system.CCICruiseSpeedPort_CruiseSpeedManager.cciCruiseSpeedPort" name="cciCruiseSpeedPort" type="CCISystem.system.CCICruiseSpeedPort" isUnique="false" association="CCISystem.system.CCICruiseSpeedPort_CruiseSpeedManager">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a109" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a110" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="CCISystem.system.CCICruiseSpeedPort_CruiseSpeedManager.csm" name="csm" type="CCISystem.system.CruiseSpeedManager" isUnique="false" association="CCISystem.system.CCICruiseSpeedPort_CruiseSpeedManager">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a111" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a112" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="CCISystem.system.PedalsManager_Controller" name="PedalsManager_Controller" memberEnd="CCISystem.system.PedalsManager_Controller.pm CCISystem.system.PedalsManager_Controller.controller">
+      <ownedEnd xmi:id="CCISystem.system.PedalsManager_Controller.pm" name="pm" type="CCISystem.system.PedalsManager" isUnique="false" association="CCISystem.system.PedalsManager_Controller">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a113" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a114" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="CCISystem.system.PedalsManager_Controller.controller" name="controller" type="CCISystem.system.Controller" isUnique="false" association="CCISystem.system.PedalsManager_Controller">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a115" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a116" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="CCISystem.system.Actuation_Controller" name="Actuation_Controller" memberEnd="CCISystem.system.Actuation_Controller.actuation CCISystem.system.Actuation_Controller.controller">
+      <ownedEnd xmi:id="CCISystem.system.Actuation_Controller.actuation" name="actuation" type="CCISystem.system.Actuation" isUnique="false" association="CCISystem.system.Actuation_Controller">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a117" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a118" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="CCISystem.system.Actuation_Controller.controller" name="controller" type="CCISystem.system.Controller" isUnique="false" association="CCISystem.system.Actuation_Controller">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a119" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a120" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="CCISystem.system.CruiseSpeedManager_Controller" name="CruiseSpeedManager_Controller" memberEnd="CCISystem.system.CruiseSpeedManager_Controller.csm CCISystem.system.CruiseSpeedManager_Controller.controller">
+      <ownedEnd xmi:id="CCISystem.system.CruiseSpeedManager_Controller.csm" name="csm" type="CCISystem.system.CruiseSpeedManager" isUnique="false" association="CCISystem.system.CruiseSpeedManager_Controller">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a121" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a122" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="CCISystem.system.CruiseSpeedManager_Controller.controller" name="controller" type="CCISystem.system.Controller" isUnique="false" association="CCISystem.system.CruiseSpeedManager_Controller">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a123" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a124" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="CCISystem.system.Actuation_CruiseSpeedManager" name="Actuation_CruiseSpeedManager" memberEnd="CCISystem.system.Actuation_CruiseSpeedManager.actuation CCISystem.system.Actuation_CruiseSpeedManager.csm">
+      <ownedEnd xmi:id="CCISystem.system.Actuation_CruiseSpeedManager.actuation" name="actuation" type="CCISystem.system.Actuation" isUnique="false" association="CCISystem.system.Actuation_CruiseSpeedManager">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a125" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a126" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="CCISystem.system.Actuation_CruiseSpeedManager.csm" name="csm" type="CCISystem.system.CruiseSpeedManager" isUnique="false" association="CCISystem.system.Actuation_CruiseSpeedManager">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a127" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a128" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.lock" name="lock"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.lock_SE" name="lock_SE" signal="CCISystem.system.lock"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.unlock" name="unlock"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.unlock_SE" name="unlock_SE" signal="CCISystem.system.unlock"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.requestPedals" name="requestPedals"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.requestPedals_SE" name="requestPedals_SE" signal="CCISystem.system.requestPedals"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.ackPedals" name="ackPedals"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.ackPedals_SE" name="ackPedals_SE" signal="CCISystem.system.ackPedals"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.nackPedals" name="nackPedals"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.nackPedals_SE" name="nackPedals_SE" signal="CCISystem.system.nackPedals"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.setCS" name="setCS"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.setCS_SE" name="setCS_SE" signal="CCISystem.system.setCS"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.incCS" name="incCS"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.incCS_SE" name="incCS_SE" signal="CCISystem.system.incCS"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.decCS" name="decCS"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.decCS_SE" name="decCS_SE" signal="CCISystem.system.decCS"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.ackCS" name="ackCS"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.ackCS_SE" name="ackCS_SE" signal="CCISystem.system.ackCS"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.nackCS" name="nackCS"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.nackCS_SE" name="nackCS_SE" signal="CCISystem.system.nackCS"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.resetCS" name="resetCS"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.resetCS_SE" name="resetCS_SE" signal="CCISystem.system.resetCS"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.engage" name="engage"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.engage_SE" name="engage_SE" signal="CCISystem.system.engage"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.disengage" name="disengage"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.disengage_SE" name="disengage_SE" signal="CCISystem.system.disengage"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.disengaged" name="disengaged"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.disengaged_SE" name="disengaged_SE" signal="CCISystem.system.disengaged"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.speedCaptured" name="speedCaptured">
+      <ownedAttribute xmi:id="CCISystem.system.speedCaptured.speed" name="speed" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="DAL.uml#DAL.Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a129" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a130" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.speedCaptured_SE" name="speedCaptured_SE" signal="CCISystem.system.speedCaptured"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.speedNotCaptured" name="speedNotCaptured"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.speedNotCaptured_SE" name="speedNotCaptured_SE" signal="CCISystem.system.speedNotCaptured"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="CCISystem.system.requestSetPoint" name="requestSetPoint"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="CCISystem.system.requestSetPoint_SE" name="requestSetPoint_SE" signal="CCISystem.system.requestSetPoint"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.Actuation" clientDependency="a132" name="Actuation" classifierBehavior="CCISystem.system.Actuation.SM_Actuation" isActive="true">
+      <generalization xmi:id="a131">
+        <general xmi:type="uml:Class" href="DAL.uml#DAL.ControlOnOffUser"/>
+      </generalization>
+      <interfaceRealization xmi:id="a132" client="CCISystem.system.Actuation">
+        <supplier xmi:type="uml:Interface" href="DAL.uml#DAL.I_Speed"/>
+        <contract href="DAL.uml#DAL.I_Speed"/>
+      </interfaceRealization>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="CCISystem.system.Actuation.SM_Actuation" name="SM_Actuation">
+        <region xmi:id="CCISystem.system.Actuation.SM_Actuation.R" name="R">
+          <transition xmi:id="CCISystem.system.Actuation.SM_Actuation.R.Init" name="Init" source="CCISystem.system.Actuation.SM_Actuation.R.Initial" target="CCISystem.system.Actuation.SM_Actuation.R.Disengaged"/>
+          <transition xmi:id="CCISystem.system.Actuation.SM_Actuation.R.Engage" name="Engage" source="CCISystem.system.Actuation.SM_Actuation.R.Disengaged" target="CCISystem.system.Actuation.SM_Actuation.R.Engaged">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a133">
+              <language>C</language>
+              <body>SEND(GET(this, cciControlOnOffPort), controlOn);</body>
+            </effect>
+            <trigger xmi:id="a134" event="CCISystem.system.engage_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.Actuation.SM_Actuation.R.Disengage" name="Disengage" source="CCISystem.system.Actuation.SM_Actuation.R.Engaged" target="CCISystem.system.Actuation.SM_Actuation.R.Disengaged">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a135">
+              <language>C</language>
+              <body>SEND(GET(this, cciControlOnOffPort), controlOff); SEND(GET(this, controller), disengaged);</body>
+            </effect>
+            <trigger xmi:id="a136" event="CCISystem.system.disengage_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.Actuation.SM_Actuation.R.updateSpeedWhenEngaged" name="updateSpeedWhenEngaged" source="CCISystem.system.Actuation.SM_Actuation.R.Engaged" target="CCISystem.system.Actuation.SM_Actuation.R.ChoiceEngagedCaptureSpeed">
+            <trigger xmi:id="a137">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.updateSpeed_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a138" source="CCISystem.system.Actuation.SM_Actuation.R.ChoiceEngagedCaptureSpeed" target="CCISystem.system.Actuation.SM_Actuation.R.Engaged">
+            <ownedRule xmi:id="a139" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a140">
+                <language>C</language>
+                <body>params->speed >= 40 &amp;&amp; params->speed &lt;= 180</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a141">
+              <language>C</language>
+              <body>SEND(GET(this, csm), speedCaptured, params->speed); SEND(GET(this, csm), requestSetPoint);</body>
+            </effect>
+          </transition>
+          <transition xmi:id="a142" source="CCISystem.system.Actuation.SM_Actuation.R.ChoiceEngagedCaptureSpeed" target="CCISystem.system.Actuation.SM_Actuation.R.Engaged">
+            <ownedRule xmi:id="a143" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a144">
+                <language>C</language>
+                <body>else</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a145">
+              <language>C</language>
+              <body>SEND(GET(this, csm), speedNotCaptured); SEND(GET(this, controller), pause);</body>
+            </effect>
+          </transition>
+          <transition xmi:id="CCISystem.system.Actuation.SM_Actuation.R.updateSpeedWhenDisengaged" name="updateSpeedWhenDisengaged" source="CCISystem.system.Actuation.SM_Actuation.R.Disengaged" target="CCISystem.system.Actuation.SM_Actuation.R.ChoiceDisengagedCaptureSpeed">
+            <trigger xmi:id="a146">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.updateSpeed_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a147" source="CCISystem.system.Actuation.SM_Actuation.R.ChoiceDisengagedCaptureSpeed" target="CCISystem.system.Actuation.SM_Actuation.R.Disengaged">
+            <ownedRule xmi:id="a148" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a149">
+                <language>C</language>
+                <body>params->speed >= 40 &amp;&amp; params->speed &lt;= 180</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a150">
+              <language>C</language>
+              <body>SEND(GET(this, csm), speedCaptured, params->speed);</body>
+            </effect>
+          </transition>
+          <transition xmi:id="a151" source="CCISystem.system.Actuation.SM_Actuation.R.ChoiceDisengagedCaptureSpeed" target="CCISystem.system.Actuation.SM_Actuation.R.Disengaged">
+            <ownedRule xmi:id="a152" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a153">
+                <language>C</language>
+                <body>else</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a154">
+              <language>C</language>
+              <body>SEND(GET(this, csm), speedNotCaptured);</body>
+            </effect>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.system.Actuation.SM_Actuation.R.Initial" name="Initial"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.system.Actuation.SM_Actuation.R.ChoiceEngagedCaptureSpeed" name="ChoiceEngagedCaptureSpeed" kind="choice"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.system.Actuation.SM_Actuation.R.ChoiceDisengagedCaptureSpeed" name="ChoiceDisengagedCaptureSpeed" kind="choice"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.Actuation.SM_Actuation.R.Disengaged" name="Disengaged"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.Actuation.SM_Actuation.R.Engaged" name="Engaged"/>
+        </region>
+      </ownedBehavior>
+      <ownedReception xmi:id="CCISystem.system.Actuation.engage" name="engage" signal="CCISystem.system.engage"/>
+      <ownedReception xmi:id="CCISystem.system.Actuation.disengage" name="disengage" signal="CCISystem.system.disengage"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.CruiseSpeedManager" name="CruiseSpeedManager" classifierBehavior="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager" isActive="true">
+      <generalization xmi:id="a155">
+        <general xmi:type="uml:Class" href="DAL.uml#DAL.CruiseSpeedUser"/>
+      </generalization>
+      <ownedAttribute xmi:id="CCISystem.system.CruiseSpeedManager.cruiseSpeed" name="cruiseSpeed" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="DAL.uml#DAL.Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a156" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a157" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager" name="SM_CruiseSpeedManager">
+        <region xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R" name="R">
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Init" name="Init" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Initial" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a158">
+              <language>C</language>
+              <body>SET(this, cruiseSpeed, -1);</body>
+            </effect>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.SetCS" name="SetCS" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed">
+            <trigger xmi:id="a159" event="CCISystem.system.setCS_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.SpeedCaptured" name="SpeedCaptured" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a160">
+              <language>C</language>
+              <body>SET(this, cruiseSpeed, params->speed); SEND(GET(this, controller), ackCS);</body>
+            </effect>
+            <trigger xmi:id="a161" event="CCISystem.system.speedCaptured_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.SpeedNotCaptured" name="SpeedNotCaptured" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a162">
+              <language>C</language>
+              <body>SET(this, cruiseSpeed, -1); SEND(GET(this, controller), nackCS);</body>
+            </effect>
+            <trigger xmi:id="a163" event="CCISystem.system.speedNotCaptured_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.SpeedReset" name="SpeedReset" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a164">
+              <language>C</language>
+              <body>SET(this, cruiseSpeed, -1);</body>
+            </effect>
+            <trigger xmi:id="a165" event="CCISystem.system.resetCS_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.ResetCS" name="ResetCS" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a166">
+              <language>C</language>
+              <body>SET(this, cruiseSpeed, -1);</body>
+            </effect>
+            <trigger xmi:id="a167" event="CCISystem.system.resetCS_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Inc" name="Inc" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.ChoiceIncCS">
+            <trigger xmi:id="a168" event="CCISystem.system.incCS_SE"/>
+          </transition>
+          <transition xmi:id="a169" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.ChoiceIncCS" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <ownedRule xmi:id="a170" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a171">
+                <language>C</language>
+                <body>GET(this, cruiseSpeed) &lt; 180</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a172">
+              <language>C</language>
+              <body>INC(this, cruiseSpeed, 1);</body>
+            </effect>
+          </transition>
+          <transition xmi:id="a173" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.ChoiceIncCS" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <ownedRule xmi:id="a174" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a175">
+                <language>C</language>
+                <body>else</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Dec" name="Dec" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.ChoiceDecCS">
+            <trigger xmi:id="a176" event="CCISystem.system.decCS_SE"/>
+          </transition>
+          <transition xmi:id="a177" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.ChoiceDecCS" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <ownedRule xmi:id="a178" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a179">
+                <language>C</language>
+                <body>GET(this, cruiseSpeed) > 40</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a180">
+              <language>C</language>
+              <body>DEC(this, cruiseSpeed, 1);</body>
+            </effect>
+          </transition>
+          <transition xmi:id="a181" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.ChoiceDecCS" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <ownedRule xmi:id="a182" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a183">
+                <language>C</language>
+                <body>else</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.RequestSetPoint" name="RequestSetPoint" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a184">
+              <language>C</language>
+              <body>SEND(GET(this, cciCruiseSpeedPort), updateSetPoint, GET(this, cruiseSpeed));</body>
+            </effect>
+            <trigger xmi:id="a185" event="CCISystem.system.requestSetPoint_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.IgnoreSetCS" name="IgnoreSetCS" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed">
+            <trigger xmi:id="a186" event="CCISystem.system.setCS_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.IgnoreIncCS" name="IgnoreIncCS" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed">
+            <trigger xmi:id="a187" event="CCISystem.system.incCS_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.IgnoreDecCS" name="IgnoreDecCS" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed">
+            <trigger xmi:id="a188" event="CCISystem.system.decCS_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.IgnoreSpeedCaptured" name="IgnoreSpeedCaptured" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <trigger xmi:id="a189" event="CCISystem.system.speedCaptured_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.IgnoreSpeedNotCaptured" name="IgnoreSpeedNotCaptured" source="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle" target="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle">
+            <trigger xmi:id="a190" event="CCISystem.system.speedNotCaptured_SE"/>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Initial" name="Initial"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.ChoiceIncCS" name="ChoiceIncCS" kind="choice"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.ChoiceDecCS" name="ChoiceDecCS" kind="choice"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.Idle" name="Idle"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.CruiseSpeedManager.SM_CruiseSpeedManager.R.WaitSpeed" name="WaitSpeed"/>
+        </region>
+      </ownedBehavior>
+      <ownedReception xmi:id="CCISystem.system.CruiseSpeedManager.incCS" name="incCS" signal="CCISystem.system.incCS"/>
+      <ownedReception xmi:id="CCISystem.system.CruiseSpeedManager.decCS" name="decCS" signal="CCISystem.system.decCS"/>
+      <ownedReception xmi:id="CCISystem.system.CruiseSpeedManager.setCS" name="setCS" signal="CCISystem.system.setCS"/>
+      <ownedReception xmi:id="CCISystem.system.CruiseSpeedManager.resetCS" name="resetCS" signal="CCISystem.system.resetCS"/>
+      <ownedReception xmi:id="CCISystem.system.CruiseSpeedManager.speedCaptured" name="speedCaptured" signal="CCISystem.system.speedCaptured"/>
+      <ownedReception xmi:id="CCISystem.system.CruiseSpeedManager.speedNotCaptured" name="speedNotCaptured" signal="CCISystem.system.speedNotCaptured"/>
+      <ownedReception xmi:id="CCISystem.system.CruiseSpeedManager.requestSetPoint" name="requestSetPoint" signal="CCISystem.system.requestSetPoint"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.PedalsManager" name="PedalsManager" classifierBehavior="CCISystem.system.PedalsManager.SM_PedalsManager" isActive="true">
+      <generalization xmi:id="a191">
+        <general xmi:type="uml:Class" href="DAL.uml#DAL.PedalProvider"/>
+      </generalization>
+      <ownedAttribute xmi:id="CCISystem.system.PedalsManager.nbLocks" name="nbLocks" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="DAL.uml#DAL.Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a192" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a193" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="CCISystem.system.PedalsManager.canResume" name="canResume" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="DAL.uml#DAL.Boolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a194" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a195" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="CCISystem.system.PedalsManager.pmClutchPedalPort" name="pmClutchPedalPort" type="CCISystem.system.PedalsManagerPedalPort" isUnique="false" aggregation="composite" isBehavior="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a196" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a197" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="CCISystem.system.PedalsManager.pmBreakPedalPort" name="pmBreakPedalPort" type="CCISystem.system.PedalsManagerPedalPort" isUnique="false" aggregation="composite" isBehavior="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a198" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a199" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="CCISystem.system.PedalsManager.pmThrottlePedalPort" name="pmThrottlePedalPort" type="CCISystem.system.PedalsManagerPedalPort" isUnique="false" aggregation="composite" isBehavior="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a200" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="a201" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="CCISystem.system.PedalsManager.SM_PedalsManager" name="SM_PedalsManager">
+        <region xmi:id="CCISystem.system.PedalsManager.SM_PedalsManager.R" name="R">
+          <transition xmi:id="CCISystem.system.PedalsManager.SM_PedalsManager.R.Init" name="Init" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.Initial" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle"/>
+          <transition xmi:id="a202" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a203">
+              <language>C</language>
+              <body>SEND(GET(this, controller), pause); SET(this, canResume, TRUE);</body>
+            </effect>
+            <trigger xmi:id="a204" port="CCISystem.system.PedalsManager.pmThrottlePedalPort">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pedalPressed_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a205" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.ChoiceResume">
+            <trigger xmi:id="a206" port="CCISystem.system.PedalsManager.pmThrottlePedalPort">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pedalReleased_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a207" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.ChoiceResume" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle">
+            <ownedRule xmi:id="a208" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a209">
+                <language>C</language>
+                <body>GET(this, canResume) == TRUE</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a210">
+              <language>C</language>
+              <body>SEND(GET(this, controller), resume);</body>
+            </effect>
+          </transition>
+          <transition xmi:id="a211" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.ChoiceResume" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle">
+            <ownedRule xmi:id="a212" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a213">
+                <language>C</language>
+                <body>else</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:id="a214" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a215">
+              <language>C</language>
+              <body>INC(this, nbLocks, 1); SET(this, canResume, FALSE); SEND(GET(this, controller), lock);</body>
+            </effect>
+            <trigger xmi:id="a216" port="CCISystem.system.PedalsManager.pmClutchPedalPort CCISystem.system.PedalsManager.pmBreakPedalPort">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pedalPressed_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a217" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a218">
+              <language>C</language>
+              <body>INC(this, nbLocks, 1);</body>
+            </effect>
+            <trigger xmi:id="a219" port="CCISystem.system.PedalsManager.pmClutchPedalPort CCISystem.system.PedalsManager.pmBreakPedalPort">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pedalPressed_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a220" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.ChoiceLock">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a221">
+              <language>C</language>
+              <body>DEC(this, nbLocks, 1);</body>
+            </effect>
+            <trigger xmi:id="a222" port="CCISystem.system.PedalsManager.pmClutchPedalPort CCISystem.system.PedalsManager.pmBreakPedalPort">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pedalReleased_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a223" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.ChoiceLock" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock">
+            <ownedRule xmi:id="a224" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a225">
+                <language>C</language>
+                <body>GET(this, nbLocks) > 0</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:id="a226" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.ChoiceLock" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle">
+            <ownedRule xmi:id="a227" name="guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a228">
+                <language>C</language>
+                <body>else</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a229">
+              <language>C</language>
+              <body>SEND(GET(this, controller), unlock);</body>
+            </effect>
+          </transition>
+          <transition xmi:id="a230" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a231">
+              <language>C</language>
+              <body>SEND(GET(this, controller), ackPedals);</body>
+            </effect>
+            <trigger xmi:id="a232" event="CCISystem.system.requestPedals_SE"/>
+          </transition>
+          <transition xmi:id="a233" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a234">
+              <language>C</language>
+              <body>SEND(GET(this, controller), nackPedals);</body>
+            </effect>
+            <trigger xmi:id="a235" event="CCISystem.system.requestPedals_SE"/>
+          </transition>
+          <transition xmi:id="CCISystem.system.PedalsManager.SM_PedalsManager.R.IgnoreThrottlePressed" name="IgnoreThrottlePressed" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock">
+            <trigger xmi:id="a236" port="CCISystem.system.PedalsManager.pmThrottlePedalPort">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pedalPressed_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="CCISystem.system.PedalsManager.SM_PedalsManager.R.IgnoreThrottleReleased" name="IgnoreThrottleReleased" source="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock" target="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock">
+            <trigger xmi:id="a237" port="CCISystem.system.PedalsManager.pmThrottlePedalPort">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pedalReleased_SE"/>
+            </trigger>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.system.PedalsManager.SM_PedalsManager.R.Initial" name="Initial"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.system.PedalsManager.SM_PedalsManager.R.ChoiceLock" name="ChoiceLock" kind="choice"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.system.PedalsManager.SM_PedalsManager.R.ChoiceResume" name="ChoiceResume" kind="choice"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.PedalsManager.SM_PedalsManager.R.Idle" name="Idle"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.PedalsManager.SM_PedalsManager.R.Lock" name="Lock"/>
+        </region>
+      </ownedBehavior>
+      <ownedReception xmi:id="CCISystem.system.PedalsManager.requestPedals" name="requestPedals" signal="CCISystem.system.requestPedals"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="CCISystem.system.Controller" name="Controller" classifierBehavior="CCISystem.system.Controller.SM_Controller" isActive="true">
+      <generalization xmi:id="a238">
+        <general xmi:type="uml:Class" href="DAL.uml#DAL.ButtonsProvider"/>
+      </generalization>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="CCISystem.system.Controller.SM_Controller" name="SM_Controller">
+        <region xmi:id="CCISystem.system.Controller.SM_Controller.R" name="R">
+          <transition xmi:id="a239" source="CCISystem.system.Controller.SM_Controller.R.Initial" target="CCISystem.system.Controller.SM_Controller.R.Off"/>
+          <transition xmi:id="a240" source="CCISystem.system.Controller.SM_Controller.R.Off" target="CCISystem.system.Controller.SM_Controller.R.On">
+            <trigger xmi:id="a241">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.start_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a242" source="CCISystem.system.Controller.SM_Controller.R.On" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a243">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.stop_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a244" source="CCISystem.system.Controller.SM_Controller.R.On" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a245">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.set_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a246" source="CCISystem.system.Controller.SM_Controller.R.Pause" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a247">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.set_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a248" source="CCISystem.system.Controller.SM_Controller.R.Engaged" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a249">
+              <language>C</language>
+              <body>SEND(GET(this, actuation), disengage);</body>
+            </effect>
+            <trigger xmi:id="a250">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.set_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a251" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.WaitPM">
+            <trigger xmi:id="a252" event="CCISystem.system.ackCS_SE"/>
+          </transition>
+          <transition xmi:id="a253" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.On">
+            <trigger xmi:id="a254" event="CCISystem.system.nackCS_SE"/>
+          </transition>
+          <transition xmi:id="a255" source="CCISystem.system.Controller.SM_Controller.R.WaitPM" target="CCISystem.system.Controller.SM_Controller.R.Engaged">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a256">
+              <language>C</language>
+              <body>SEND(GET(this, actuation), engage);</body>
+            </effect>
+            <trigger xmi:id="a257" event="CCISystem.system.ackPedals_SE"/>
+          </transition>
+          <transition xmi:id="a258" source="CCISystem.system.Controller.SM_Controller.R.WaitPM" target="CCISystem.system.Controller.SM_Controller.R.On">
+            <trigger xmi:id="a259" event="CCISystem.system.nackPedals_SE"/>
+          </transition>
+          <transition xmi:id="a260" source="CCISystem.system.Controller.SM_Controller.R.Engaged" target="CCISystem.system.Controller.SM_Controller.R.Engaged">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a261">
+              <language>C</language>
+              <body>SEND(GET(this, csm), incCS);</body>
+            </effect>
+            <trigger xmi:id="a262">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.inc_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a263" source="CCISystem.system.Controller.SM_Controller.R.Engaged" target="CCISystem.system.Controller.SM_Controller.R.Engaged">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a264">
+              <language>C</language>
+              <body>SEND(GET(this, csm), decCS);</body>
+            </effect>
+            <trigger xmi:id="a265">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.dec_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a266" source="CCISystem.system.Controller.SM_Controller.R.Pause" target="CCISystem.system.Controller.SM_Controller.R.Pause">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a267">
+              <language>C</language>
+              <body>SEND(GET(this, csm), incCS);</body>
+            </effect>
+            <trigger xmi:id="a268">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.inc_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a269" source="CCISystem.system.Controller.SM_Controller.R.Pause" target="CCISystem.system.Controller.SM_Controller.R.Pause">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a270">
+              <language>C</language>
+              <body>SEND(GET(this, csm), decCS);</body>
+            </effect>
+            <trigger xmi:id="a271">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.dec_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a272" source="CCISystem.system.Controller.SM_Controller.R.Engaged" target="CCISystem.system.Controller.SM_Controller.R.Pause">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a273">
+              <language>C</language>
+              <body>SEND(GET(this, actuation), disengage);</body>
+            </effect>
+            <trigger xmi:id="a274">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pause_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a275" source="CCISystem.system.Controller.SM_Controller.R.Pause" target="CCISystem.system.Controller.SM_Controller.R.Engaged">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a276">
+              <language>C</language>
+              <body>SEND(GET(this, actuation), engage);</body>
+            </effect>
+            <trigger xmi:id="a277">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.resume_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a278" source="CCISystem.system.Controller.SM_Controller.R.Engaged" target="CCISystem.system.Controller.SM_Controller.R.Lock">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a279">
+              <language>C</language>
+              <body>SEND(GET(this, actuation), disengage);</body>
+            </effect>
+            <trigger xmi:id="a280" event="CCISystem.system.lock_SE"/>
+          </transition>
+          <transition xmi:id="a281" source="CCISystem.system.Controller.SM_Controller.R.Pause" target="CCISystem.system.Controller.SM_Controller.R.Lock">
+            <trigger xmi:id="a282" event="CCISystem.system.lock_SE"/>
+          </transition>
+          <transition xmi:id="a283" source="CCISystem.system.Controller.SM_Controller.R.Lock" target="CCISystem.system.Controller.SM_Controller.R.Pause">
+            <trigger xmi:id="a284" event="CCISystem.system.unlock_SE"/>
+          </transition>
+          <transition xmi:id="a285" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a286">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.stop_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a287" source="CCISystem.system.Controller.SM_Controller.R.Pause" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a288">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.stop_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a289" source="CCISystem.system.Controller.SM_Controller.R.Lock" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a290">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.stop_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a291" source="CCISystem.system.Controller.SM_Controller.R.Engaged" target="CCISystem.system.Controller.SM_Controller.R.WaitDisengaged">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="a292">
+              <language>C</language>
+              <body>SEND(GET(this, actuation), disengage);</body>
+            </effect>
+            <trigger xmi:id="a293">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.stop_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a294" source="CCISystem.system.Controller.SM_Controller.R.WaitDisengaged" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a295" event="CCISystem.system.disengaged_SE"/>
+          </transition>
+          <transition xmi:id="a296" source="CCISystem.system.Controller.SM_Controller.R.Off" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a297">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.stop_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a298" source="CCISystem.system.Controller.SM_Controller.R.Off" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a299">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.set_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a300" source="CCISystem.system.Controller.SM_Controller.R.Off" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a301">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.inc_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a302" source="CCISystem.system.Controller.SM_Controller.R.Off" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a303">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.dec_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a304" source="CCISystem.system.Controller.SM_Controller.R.Off" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a305">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pause_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a306" source="CCISystem.system.Controller.SM_Controller.R.Off" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a307">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.resume_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a308" source="CCISystem.system.Controller.SM_Controller.R.Off" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a309" event="CCISystem.system.lock_SE"/>
+          </transition>
+          <transition xmi:id="a310" source="CCISystem.system.Controller.SM_Controller.R.Off" target="CCISystem.system.Controller.SM_Controller.R.Off">
+            <trigger xmi:id="a311" event="CCISystem.system.unlock_SE"/>
+          </transition>
+          <transition xmi:id="a312" source="CCISystem.system.Controller.SM_Controller.R.On" target="CCISystem.system.Controller.SM_Controller.R.On">
+            <trigger xmi:id="a313">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.start_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a314" source="CCISystem.system.Controller.SM_Controller.R.On" target="CCISystem.system.Controller.SM_Controller.R.On">
+            <trigger xmi:id="a315">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.inc_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a316" source="CCISystem.system.Controller.SM_Controller.R.On" target="CCISystem.system.Controller.SM_Controller.R.On">
+            <trigger xmi:id="a317">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.dec_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a318" source="CCISystem.system.Controller.SM_Controller.R.On" target="CCISystem.system.Controller.SM_Controller.R.On">
+            <trigger xmi:id="a319">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pause_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a320" source="CCISystem.system.Controller.SM_Controller.R.On" target="CCISystem.system.Controller.SM_Controller.R.On">
+            <trigger xmi:id="a321">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.resume_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a322" source="CCISystem.system.Controller.SM_Controller.R.On" target="CCISystem.system.Controller.SM_Controller.R.On">
+            <trigger xmi:id="a323" event="CCISystem.system.lock_SE"/>
+          </transition>
+          <transition xmi:id="a324" source="CCISystem.system.Controller.SM_Controller.R.On" target="CCISystem.system.Controller.SM_Controller.R.On">
+            <trigger xmi:id="a325" event="CCISystem.system.unlock_SE"/>
+          </transition>
+          <transition xmi:id="a326" source="CCISystem.system.Controller.SM_Controller.R.Pause" target="CCISystem.system.Controller.SM_Controller.R.Pause">
+            <trigger xmi:id="a327">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.start_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a328" source="CCISystem.system.Controller.SM_Controller.R.Pause" target="CCISystem.system.Controller.SM_Controller.R.Pause">
+            <trigger xmi:id="a329">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pause_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a330" source="CCISystem.system.Controller.SM_Controller.R.Pause" target="CCISystem.system.Controller.SM_Controller.R.Pause">
+            <trigger xmi:id="a331" event="CCISystem.system.disengaged_SE"/>
+          </transition>
+          <transition xmi:id="a332" source="CCISystem.system.Controller.SM_Controller.R.Engaged" target="CCISystem.system.Controller.SM_Controller.R.Engaged">
+            <trigger xmi:id="a333">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.start_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a334" source="CCISystem.system.Controller.SM_Controller.R.Engaged" target="CCISystem.system.Controller.SM_Controller.R.Engaged">
+            <trigger xmi:id="a335">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.resume_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a336" source="CCISystem.system.Controller.SM_Controller.R.Lock" target="CCISystem.system.Controller.SM_Controller.R.Lock">
+            <trigger xmi:id="a337">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.start_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a338" source="CCISystem.system.Controller.SM_Controller.R.Lock" target="CCISystem.system.Controller.SM_Controller.R.Lock">
+            <trigger xmi:id="a339">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.inc_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a340" source="CCISystem.system.Controller.SM_Controller.R.Lock" target="CCISystem.system.Controller.SM_Controller.R.Lock">
+            <trigger xmi:id="a341">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.dec_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a342" source="CCISystem.system.Controller.SM_Controller.R.Lock" target="CCISystem.system.Controller.SM_Controller.R.Lock">
+            <trigger xmi:id="a343">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.set_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a344" source="CCISystem.system.Controller.SM_Controller.R.Lock" target="CCISystem.system.Controller.SM_Controller.R.Lock">
+            <trigger xmi:id="a345">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pause_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a346" source="CCISystem.system.Controller.SM_Controller.R.Lock" target="CCISystem.system.Controller.SM_Controller.R.Lock">
+            <trigger xmi:id="a347">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.resume_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a348" source="CCISystem.system.Controller.SM_Controller.R.Lock" target="CCISystem.system.Controller.SM_Controller.R.Lock">
+            <trigger xmi:id="a349" event="CCISystem.system.disengaged_SE"/>
+          </transition>
+          <transition xmi:id="a350" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a351">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.start_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a352" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a353">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.inc_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a354" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a355">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.dec_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a356" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a357">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.set_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a358" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a359">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.pause_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a360" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a361">
+              <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.resume_SE"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="a362" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a363" event="CCISystem.system.lock_SE"/>
+          </transition>
+          <transition xmi:id="a364" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a365" event="CCISystem.system.unlock_SE"/>
+          </transition>
+          <transition xmi:id="a366" source="CCISystem.system.Controller.SM_Controller.R.WaitCS" target="CCISystem.system.Controller.SM_Controller.R.WaitCS">
+            <trigger xmi:id="a367" event="CCISystem.system.disengaged_SE"/>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="CCISystem.system.Controller.SM_Controller.R.Initial" name="Initial"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.Controller.SM_Controller.R.WaitCS" name="WaitCS">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="a368">
+              <language>C</language>
+              <body>SEND(GET(this, csm), setCS);</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.Controller.SM_Controller.R.WaitPM" name="WaitPM">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="a369">
+              <language>C</language>
+              <body>SEND(GET(this, pm), requestPedals);</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.Controller.SM_Controller.R.Off" name="Off">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="a370">
+              <language>C</language>
+              <body>SEND(GET(this, csm), resetCS);</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.Controller.SM_Controller.R.On" name="On"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.Controller.SM_Controller.R.Pause" name="Pause"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.Controller.SM_Controller.R.Engaged" name="Engaged"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.Controller.SM_Controller.R.Lock" name="Lock"/>
+          <subvertex xmi:type="uml:State" xmi:id="CCISystem.system.Controller.SM_Controller.R.WaitDisengaged" name="WaitDisengaged"/>
+        </region>
+      </ownedBehavior>
+      <ownedReception xmi:id="CCISystem.system.Controller.ackCS" name="ackCS" signal="CCISystem.system.ackCS"/>
+      <ownedReception xmi:id="CCISystem.system.Controller.nackCS" name="nackCS" signal="CCISystem.system.nackCS"/>
+      <ownedReception xmi:id="CCISystem.system.Controller.ackPedals" name="ackPedals" signal="CCISystem.system.ackPedals"/>
+      <ownedReception xmi:id="CCISystem.system.Controller.nackPedals" name="nackPedals" signal="CCISystem.system.nackPedals"/>
+      <ownedReception xmi:id="CCISystem.system.Controller.lock" name="lock" signal="CCISystem.system.lock"/>
+      <ownedReception xmi:id="CCISystem.system.Controller.unlock" name="unlock" signal="CCISystem.system.unlock"/>
+      <ownedReception xmi:id="CCISystem.system.Controller.disengaged" name="disengaged" signal="CCISystem.system.disengaged"/>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

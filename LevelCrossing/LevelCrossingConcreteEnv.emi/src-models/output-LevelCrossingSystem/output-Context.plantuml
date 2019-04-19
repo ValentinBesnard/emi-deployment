@@ -1,0 +1,21 @@
+
+
+@startuml
+	rectangle "<u>tcEntrance : EntranceTC</u>" as LevelCrossingSystem_System_tcEntrance
+	rectangle "<u>tcExit : ExitTC</u>" as LevelCrossingSystem_System_tcExit
+	rectangle "<u>controller : Controller</u>" as LevelCrossingSystem_System_controller
+	rectangle "<u>railwaySign : RailwaySign</u>" as LevelCrossingSystem_System_railwaySign
+	rectangle "<u>roadSign : RoadSign</u>" as LevelCrossingSystem_System_roadSign
+	rectangle "<u>gate : Gate</u>" as LevelCrossingSystem_System_gate
+	rectangle "<u>tcEntrancePort : EntranceTCPort</u>" as LevelCrossingSystem_System_tcEntrancePort
+	rectangle "<u>tcExitPort : ExitTCPort</u>" as LevelCrossingSystem_System_tcExitPort
+	rectangle "<u>railwaySignPort : RailwaySignPort</u>" as LevelCrossingSystem_System_railwaySignPort
+	LevelCrossingSystem_System_controller -- LevelCrossingSystem_System_gate
+	LevelCrossingSystem_System_controller -- LevelCrossingSystem_System_tcEntrance
+	LevelCrossingSystem_System_controller -- LevelCrossingSystem_System_tcExit
+	LevelCrossingSystem_System_controller -- LevelCrossingSystem_System_roadSign
+	LevelCrossingSystem_System_tcEntrancePort -- LevelCrossingSystem_System_tcEntrance
+	LevelCrossingSystem_System_tcExitPort -- LevelCrossingSystem_System_tcExit
+	LevelCrossingSystem_System_controller -- LevelCrossingSystem_System_railwaySign
+	LevelCrossingSystem_System_railwaySign -- LevelCrossingSystem_System_railwaySignPort
+@enduml

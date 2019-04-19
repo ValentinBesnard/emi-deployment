@@ -1,0 +1,20 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "GpioButton" as GpioButton {
+		
+			state "Released" as DIL_GpioButton_SM_R_Released
+			state "Pressed" as DIL_GpioButton_SM_R_Pressed
+			[*] --> DIL_GpioButton_SM_R_Released
+			DIL_GpioButton_SM_R_Released --> DIL_GpioButton_SM_R_Pressed : [UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1] / SEND(GET(this, buttonPeer), buttonPressed);
+			DIL_GpioButton_SM_R_Pressed --> DIL_GpioButton_SM_R_Released : [UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0]
+		
+	}
+@enduml

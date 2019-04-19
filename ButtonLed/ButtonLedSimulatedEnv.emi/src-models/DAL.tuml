@@ -1,0 +1,27 @@
+model DAL {
+
+	signal lightOn;
+	signalEvent lightOn_SE of lightOn;
+	signal lightOff;
+	signalEvent lightOff_SE of lightOff;
+
+	interface I_Light receives lightOn(lightOn), lightOff(lightOff) {}
+
+	abstract class LightProvider implements I_Light {}
+	abstract class LightUser {}
+	usage use_I_Light_LightUser of I_Light by LightUser;
+
+	signal buttonPressed;
+	signalEvent buttonPressed_SE of buttonPressed;
+	signal  buttonReleased;
+	signalEvent buttonReleased_SE of buttonReleased;
+
+	interface I_Button receives buttonPressed(buttonPressed), buttonReleased(buttonReleased) {}
+	
+	abstract class ButtonProvider implements I_Button {}
+	abstract class ButtonUser {}
+	usage use_I_Button_ButtonUser of I_Button by ButtonUser;
+
+	class ButtonReceiverPort extends ButtonUser {}
+
+}

@@ -1,0 +1,72 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "EntranceTC" as EntranceTC {
+		
+			state "Detection" as LevelCrossingSystem_EntranceTC_SM_R_Detection
+			[*] --> LevelCrossingSystem_EntranceTC_SM_R_Detection
+			LevelCrossingSystem_EntranceTC_SM_R_Detection : activation / SEND(GET(this, controller), entranceDetection, params->id); [[ ]]
+		
+	}
+	state "ExitTC" as ExitTC {
+		
+			state "Detection" as LevelCrossingSystem_ExitTC_SM_R_Detection
+			[*] --> LevelCrossingSystem_ExitTC_SM_R_Detection
+			LevelCrossingSystem_ExitTC_SM_R_Detection : activation / SEND(GET(this, controller), exitDetection, GET(this, id)); [[ ]]
+		
+	}
+	state "Controller" as Controller {
+		
+			state "Idle" as LevelCrossingSystem_Controller_SM_R_Idle
+			state "WaitRoadSignOn" as LevelCrossingSystem_Controller_SM_R_WaitRoadSignOn
+			state "FarDetection" as LevelCrossingSystem_Controller_SM_R_FarDetection
+			state "CloseDetection" as LevelCrossingSystem_Controller_SM_R_CloseDetection
+			state "WaitRailwaySignOn" as LevelCrossingSystem_Controller_SM_R_WaitRailwaySignOn
+			state "WaitGateOpen" as LevelCrossingSystem_Controller_SM_R_WaitGateOpen
+			state "WaitRoadSignOff" as LevelCrossingSystem_Controller_SM_R_WaitRoadSignOff
+			[*] --> LevelCrossingSystem_Controller_SM_R_Idle : / SET(this, nbEngagedTrains, 0);
+			LevelCrossingSystem_Controller_SM_R_Idle --> LevelCrossingSystem_Controller_SM_R_WaitRoadSignOn : entranceDetection[GET(this, nbEngagedTrains) == 0] / SEND(GET(this, roadSign), switchOn);
+			LevelCrossingSystem_Controller_SM_R_WaitRoadSignOn --> LevelCrossingSystem_Controller_SM_R_FarDetection : roadSignOn
+			LevelCrossingSystem_Controller_SM_R_FarDetection --> LevelCrossingSystem_Controller_SM_R_CloseDetection : entranceDetection / SEND(GET(this, gate), close); INC(this, nbEngagedTrains, 1);
+			LevelCrossingSystem_Controller_SM_R_CloseDetection --> LevelCrossingSystem_Controller_SM_R_Idle : gateClosed / SEND(GET(this, railwaySign), switchOff);
+			LevelCrossingSystem_Controller_SM_R_Idle --> LevelCrossingSystem_Controller_SM_R_WaitRailwaySignOn : exitDetection[GET(this, nbEngagedTrains) == 1] / SEND(GET(this, railwaySign), switchOn);
+			LevelCrossingSystem_Controller_SM_R_WaitRailwaySignOn --> LevelCrossingSystem_Controller_SM_R_WaitGateOpen : railwaySignOn / SEND(GET(this, gate), open); DEC(this, nbEngagedTrains, 1);
+			LevelCrossingSystem_Controller_SM_R_WaitGateOpen --> LevelCrossingSystem_Controller_SM_R_WaitRoadSignOff : gateOpen / SEND(GET(this, roadSign), switchOff);
+			LevelCrossingSystem_Controller_SM_R_WaitRoadSignOff --> LevelCrossingSystem_Controller_SM_R_Idle : roadSignOff
+		
+	}
+	state "RoadSign" as RoadSign {
+		
+			state "Inactive" as LevelCrossingSystem_RoadSign_SM_R_Inactive
+			state "Active" as LevelCrossingSystem_RoadSign_SM_R_Active
+			[*] --> LevelCrossingSystem_RoadSign_SM_R_Inactive
+			LevelCrossingSystem_RoadSign_SM_R_Inactive --> LevelCrossingSystem_RoadSign_SM_R_Active : switchOn / SEND(GET(this, controller), roadSignOn);
+			LevelCrossingSystem_RoadSign_SM_R_Active --> LevelCrossingSystem_RoadSign_SM_R_Inactive : switchOff / SEND(GET(this, controller), roadSignOff);
+		
+	}
+	state "Gate" as Gate {
+		
+			state "Open" as LevelCrossingSystem_Gate_SM_R_Open
+			state "Closed" as LevelCrossingSystem_Gate_SM_R_Closed
+			[*] --> LevelCrossingSystem_Gate_SM_R_Open
+			LevelCrossingSystem_Gate_SM_R_Open --> LevelCrossingSystem_Gate_SM_R_Closed : close / SEND(GET(this, controller), gateClosed);
+			LevelCrossingSystem_Gate_SM_R_Closed --> LevelCrossingSystem_Gate_SM_R_Open : open / SEND(GET(this, controller), gateOpen);
+		
+	}
+	state "RailwaySign" as RailwaySign {
+		
+			state "Active" as LevelCrossingSystem_RailwaySign_SM_R_Active
+			state "Inactive" as LevelCrossingSystem_RailwaySign_SM_R_Inactive
+			[*] --> LevelCrossingSystem_RailwaySign_SM_R_Active
+			LevelCrossingSystem_RailwaySign_SM_R_Active --> LevelCrossingSystem_RailwaySign_SM_R_Inactive : switchOff / SEND(GET(this, train), authorization);
+			LevelCrossingSystem_RailwaySign_SM_R_Inactive --> LevelCrossingSystem_RailwaySign_SM_R_Active : switchOn / SEND(GET(this, controller), railwaySignOn);
+		
+	}
+@enduml

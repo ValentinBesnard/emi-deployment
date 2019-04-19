@@ -1,0 +1,10 @@
+
+
+@startuml
+	package Main <<card>> {
+		object "system : System" as ButtonLeds_Main_system
+		object "env : Env" as ButtonLeds_Main_env
+		ButtonLeds_Main_system "sysButtonPort" -- "envButtonPort" ButtonLeds_Main_env : ButtonPort_EnvButtonPort
+		ButtonLeds_Main_system "sysLightPort" -- "envLedPort" ButtonLeds_Main_env : LightPort_EnvLedPort
+	}
+@enduml

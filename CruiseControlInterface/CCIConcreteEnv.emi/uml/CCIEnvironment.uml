@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="CCIEnvironment" name="CCIEnvironment">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:PrimitiveType" href="DAL.uml#DAL.Integer"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:PrimitiveType" href="DAL.uml#DAL.Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Interface" href="DAL.uml#DAL.I_ControlOnOff"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Interface" href="DAL.uml#DAL.I_CruiseSpeed"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.ButtonsUser"/>
+  </elementImport>
+  <elementImport xmi:id="a6" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.PedalUser"/>
+  </elementImport>
+  <elementImport xmi:id="a7" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.ControlOnOffProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a8" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.SpeedUser"/>
+  </elementImport>
+  <elementImport xmi:id="a9" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DAL.uml#DAL.CruiseSpeedProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a10" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+  </elementImport>
+  <elementImport xmi:id="a11" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DIL.uml#DIL.ButtonProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a12" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DIL.uml#DIL.ButtonUser"/>
+  </elementImport>
+  <elementImport xmi:id="a13" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DIL.uml#DIL.buttonPressed_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a14" visibility="private">
+    <importedElement xmi:type="uml:Class" href="DIL.uml#DIL.ButtonPort"/>
+  </elementImport>
+  <elementImport xmi:id="a15" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.updateSpeed_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a16" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.updateSetPoint_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a17" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.controlOn_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a18" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="DAL.uml#DAL.controlOff_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a19" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="Target.uml#Target.UML_GpioPort"/>
+  </elementImport>
+  <elementImport xmi:id="a20" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="Target.uml#Target.UML_GpioPin"/>
+  </elementImport>
+  <elementImport xmi:id="a21" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="Target.uml#Target.UML_Timer"/>
+  </elementImport>
+  <elementImport xmi:id="a22" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="Target.uml#Target.UML_PwmChannel"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.EnvButtonsPort" name="EnvButtonsPort">
+    <generalization xmi:id="a23">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.ButtonsUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.EnvPedalPort" name="EnvPedalPort">
+    <generalization xmi:id="a24">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.PedalUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.EnvControlOnOffPort" name="EnvControlOnOffPort">
+    <generalization xmi:id="a25">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.ControlOnOffProvider"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.EnvSpeedPort" name="EnvSpeedPort">
+    <generalization xmi:id="a26">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.SpeedUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.EnvCruiseSpeedPort" name="EnvCruiseSpeedPort">
+    <generalization xmi:id="a27">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.CruiseSpeedProvider"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.Env" name="Env">
+    <ownedAttribute xmi:id="CCIEnvironment.Env.buttons" name="buttons" type="CCIEnvironment.Buttons" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a28" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a29" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.clutchPedal" name="clutchPedal" type="CCIEnvironment.Pedal" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a30" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a31" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.breakPedal" name="breakPedal" type="CCIEnvironment.Pedal" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a32" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a33" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.throttlePedal" name="throttlePedal" type="CCIEnvironment.Pedal" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a34" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a35" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.engine" name="engine" type="CCIEnvironment.Engine" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a36" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a37" value="1"/>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="a38" instance="CCIEnvironment.instEngine"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.buttonStart" name="buttonStart" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a39" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a40" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.buttonSet" name="buttonSet" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a41" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a42" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.buttonPause" name="buttonPause" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a43" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a44" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.buttonResume" name="buttonResume" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a45" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a46" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.buttonInc" name="buttonInc" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a47" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a48" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.buttonDec" name="buttonDec" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a49" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a50" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Env.buttonStop" name="buttonStop" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.GpioButton"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a51" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a52" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Env.envButtonsPort" name="envButtonsPort" type="CCIEnvironment.EnvButtonsPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a53" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a54" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Env.envClutchPedalPort" name="envClutchPedalPort" type="CCIEnvironment.EnvPedalPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a55" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a56" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Env.envBreakPedalPort" name="envBreakPedalPort" type="CCIEnvironment.EnvPedalPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a57" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a58" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Env.envThrottlePedalPort" name="envThrottlePedalPort" type="CCIEnvironment.EnvPedalPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a59" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a60" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Env.envControlOnOffPort" name="envControlOnOffPort" type="CCIEnvironment.EnvControlOnOffPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a61" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a62" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Env.envSpeedPort" name="envSpeedPort" type="CCIEnvironment.EnvSpeedPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a63" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a64" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Env.envCruiseSpeedPort" name="envCruiseSpeedPort" type="CCIEnvironment.EnvCruiseSpeedPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a65" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a66" value="1"/>
+    </ownedAttribute>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_buttons_buttonStart" name="c_buttons_buttonStart" type="CCIEnvironment.ButtonProvider_ButtonStart">
+      <end xmi:id="a67" partWithPort="CCIEnvironment.Env.buttons" role="CCIEnvironment.Buttons.portStart"/>
+      <end xmi:id="a68" partWithPort="CCIEnvironment.Env.buttonStart">
+        <role xmi:type="uml:Port" href="DIL.uml#DIL.GpioButton.buttonPeer"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_buttons_buttonSet" name="c_buttons_buttonSet" type="CCIEnvironment.ButtonProvider_ButtonSet">
+      <end xmi:id="a69" partWithPort="CCIEnvironment.Env.buttons" role="CCIEnvironment.Buttons.portSet"/>
+      <end xmi:id="a70" partWithPort="CCIEnvironment.Env.buttonSet">
+        <role xmi:type="uml:Port" href="DIL.uml#DIL.GpioButton.buttonPeer"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_buttons_buttonPause" name="c_buttons_buttonPause" type="CCIEnvironment.ButtonProvider_ButtonPause">
+      <end xmi:id="a71" partWithPort="CCIEnvironment.Env.buttons" role="CCIEnvironment.Buttons.portPause"/>
+      <end xmi:id="a72" partWithPort="CCIEnvironment.Env.buttonPause">
+        <role xmi:type="uml:Port" href="DIL.uml#DIL.GpioButton.buttonPeer"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_buttons_buttonResume" name="c_buttons_buttonResume" type="CCIEnvironment.ButtonProvider_ButtonResume">
+      <end xmi:id="a73" partWithPort="CCIEnvironment.Env.buttons" role="CCIEnvironment.Buttons.portResume"/>
+      <end xmi:id="a74" partWithPort="CCIEnvironment.Env.buttonResume">
+        <role xmi:type="uml:Port" href="DIL.uml#DIL.GpioButton.buttonPeer"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_buttons_buttonInc" name="c_buttons_buttonInc" type="CCIEnvironment.ButtonProvider_ButtonInc">
+      <end xmi:id="a75" partWithPort="CCIEnvironment.Env.buttons" role="CCIEnvironment.Buttons.portInc"/>
+      <end xmi:id="a76" partWithPort="CCIEnvironment.Env.buttonInc">
+        <role xmi:type="uml:Port" href="DIL.uml#DIL.GpioButton.buttonPeer"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_buttons_buttonDec" name="c_buttons_buttonDec" type="CCIEnvironment.ButtonProvider_ButtonDec">
+      <end xmi:id="a77" partWithPort="CCIEnvironment.Env.buttons" role="CCIEnvironment.Buttons.portDec"/>
+      <end xmi:id="a78" partWithPort="CCIEnvironment.Env.buttonDec">
+        <role xmi:type="uml:Port" href="DIL.uml#DIL.GpioButton.buttonPeer"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_buttons_buttonStop" name="c_buttons_buttonStop" type="CCIEnvironment.ButtonProvider_ButtonStop">
+      <end xmi:id="a79" partWithPort="CCIEnvironment.Env.buttons" role="CCIEnvironment.Buttons.portStop"/>
+      <end xmi:id="a80" partWithPort="CCIEnvironment.Env.buttonStop">
+        <role xmi:type="uml:Port" href="DIL.uml#DIL.GpioButton.buttonPeer"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_buttonsPort_buttons" name="c_buttonsPort_buttons" type="CCIEnvironment.EnvButtonsPort_Buttons">
+      <end xmi:id="a81" role="CCIEnvironment.Env.envButtonsPort"/>
+      <end xmi:id="a82" role="CCIEnvironment.Env.buttons"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_clutchPedalPort_clutchPedal" name="c_clutchPedalPort_clutchPedal" type="CCIEnvironment.EnvPedalPort_Pedal">
+      <end xmi:id="a83" role="CCIEnvironment.Env.envClutchPedalPort"/>
+      <end xmi:id="a84" partWithPort="CCIEnvironment.Env.clutchPedal" role="CCIEnvironment.Pedal.pedalPeer"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_breakPedalPort_breakPedal" name="c_breakPedalPort_breakPedal" type="CCIEnvironment.EnvPedalPort_Pedal">
+      <end xmi:id="a85" role="CCIEnvironment.Env.envBreakPedalPort"/>
+      <end xmi:id="a86" partWithPort="CCIEnvironment.Env.breakPedal" role="CCIEnvironment.Pedal.pedalPeer"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_throttlePedalPort_throttlePedal" name="c_throttlePedalPort_throttlePedal" type="CCIEnvironment.EnvPedalPort_Pedal">
+      <end xmi:id="a87" role="CCIEnvironment.Env.envThrottlePedalPort"/>
+      <end xmi:id="a88" partWithPort="CCIEnvironment.Env.throttlePedal" role="CCIEnvironment.Pedal.pedalPeer"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_controlOnOffPort_engine" name="c_controlOnOffPort_engine" type="CCIEnvironment.EnvControlOnOffPort_Engine">
+      <end xmi:id="a89" role="CCIEnvironment.Env.envControlOnOffPort"/>
+      <end xmi:id="a90" role="CCIEnvironment.Env.engine"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_speedPort_engine" name="c_speedPort_engine" type="CCIEnvironment.EnvSpeedPort_Engine">
+      <end xmi:id="a91" role="CCIEnvironment.Env.envSpeedPort"/>
+      <end xmi:id="a92" role="CCIEnvironment.Env.engine"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCIEnvironment.Env.c_cruiseSpeedPort_engine" name="c_cruiseSpeedPort_engine" type="CCIEnvironment.EnvCruiseSpeedPort_Engine">
+      <end xmi:id="a93" role="CCIEnvironment.Env.envCruiseSpeedPort"/>
+      <end xmi:id="a94" role="CCIEnvironment.Env.engine"/>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="CCIEnvironment.instEngine" name="instEngine" classifier="CCIEnvironment.Engine">
+    <slot xmi:id="a95" definingFeature="CCIEnvironment.Engine.speed">
+      <value xmi:type="uml:LiteralInteger" xmi:id="a96"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.EnvButtonsPort_Buttons" name="EnvButtonsPort_Buttons" memberEnd="CCIEnvironment.EnvButtonsPort_Buttons.envButtonsPort CCIEnvironment.EnvButtonsPort_Buttons.buttons">
+    <ownedEnd xmi:id="CCIEnvironment.EnvButtonsPort_Buttons.envButtonsPort" name="envButtonsPort" type="CCIEnvironment.EnvButtonsPort" isUnique="false" association="CCIEnvironment.EnvButtonsPort_Buttons">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a97" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a98" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.EnvButtonsPort_Buttons.buttons" name="buttons" type="CCIEnvironment.Buttons" isUnique="false" association="CCIEnvironment.EnvButtonsPort_Buttons">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a99" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a100" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.EnvPedalPort_Pedal" name="EnvPedalPort_Pedal" memberEnd="CCIEnvironment.EnvPedalPort_Pedal.envPedalPort CCIEnvironment.EnvPedalPort_Pedal.pedal">
+    <ownedEnd xmi:id="CCIEnvironment.EnvPedalPort_Pedal.envPedalPort" name="envPedalPort" type="CCIEnvironment.EnvPedalPort" isUnique="false" association="CCIEnvironment.EnvPedalPort_Pedal">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a101" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a102" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.EnvPedalPort_Pedal.pedal" name="pedal" type="CCIEnvironment.PedalPort" isUnique="false" association="CCIEnvironment.EnvPedalPort_Pedal">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a103" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a104" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.EnvControlOnOffPort_Engine" name="EnvControlOnOffPort_Engine" memberEnd="CCIEnvironment.EnvControlOnOffPort_Engine.envControlOnOffPort CCIEnvironment.EnvControlOnOffPort_Engine.engine">
+    <ownedEnd xmi:id="CCIEnvironment.EnvControlOnOffPort_Engine.envControlOnOffPort" name="envControlOnOffPort" type="CCIEnvironment.EnvControlOnOffPort" isUnique="false" association="CCIEnvironment.EnvControlOnOffPort_Engine">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a105" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a106" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.EnvControlOnOffPort_Engine.engine" name="engine" type="CCIEnvironment.Engine" isUnique="false" association="CCIEnvironment.EnvControlOnOffPort_Engine">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a107" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a108" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.EnvSpeedPort_Engine" name="EnvSpeedPort_Engine" memberEnd="CCIEnvironment.EnvSpeedPort_Engine.envSpeedPort CCIEnvironment.EnvSpeedPort_Engine.engine">
+    <ownedEnd xmi:id="CCIEnvironment.EnvSpeedPort_Engine.envSpeedPort" name="envSpeedPort" type="CCIEnvironment.EnvSpeedPort" isUnique="false" association="CCIEnvironment.EnvSpeedPort_Engine">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a109" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a110" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.EnvSpeedPort_Engine.engine" name="engine" type="CCIEnvironment.Engine" isUnique="false" association="CCIEnvironment.EnvSpeedPort_Engine">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a111" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a112" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.EnvCruiseSpeedPort_Engine" name="EnvCruiseSpeedPort_Engine" memberEnd="CCIEnvironment.EnvCruiseSpeedPort_Engine.envCruiseSpeedPort CCIEnvironment.EnvCruiseSpeedPort_Engine.engine">
+    <ownedEnd xmi:id="CCIEnvironment.EnvCruiseSpeedPort_Engine.envCruiseSpeedPort" name="envCruiseSpeedPort" type="CCIEnvironment.EnvCruiseSpeedPort" isUnique="false" association="CCIEnvironment.EnvCruiseSpeedPort_Engine">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a113" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a114" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.EnvCruiseSpeedPort_Engine.engine" name="engine" type="CCIEnvironment.Engine" isUnique="false" association="CCIEnvironment.EnvCruiseSpeedPort_Engine">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a115" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a116" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.ButtonProvider_ButtonStart" name="ButtonProvider_ButtonStart" memberEnd="CCIEnvironment.ButtonProvider_ButtonStart.buttonsForStart CCIEnvironment.ButtonProvider_ButtonStart.buttonStart">
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonStart.buttonsForStart" name="buttonsForStart" type="CCIEnvironment.ButtonsPort" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonStart">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a117" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a118" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonStart.buttonStart" name="buttonStart" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonStart">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a119" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a120" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.ButtonProvider_ButtonSet" name="ButtonProvider_ButtonSet" memberEnd="CCIEnvironment.ButtonProvider_ButtonSet.buttonsForSet CCIEnvironment.ButtonProvider_ButtonSet.buttonSet">
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonSet.buttonsForSet" name="buttonsForSet" type="CCIEnvironment.ButtonsPort" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonSet">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a121" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a122" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonSet.buttonSet" name="buttonSet" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonSet">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a123" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a124" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.ButtonProvider_ButtonPause" name="ButtonProvider_ButtonPause" memberEnd="CCIEnvironment.ButtonProvider_ButtonPause.buttonsForPause CCIEnvironment.ButtonProvider_ButtonPause.buttonPause">
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonPause.buttonsForPause" name="buttonsForPause" type="CCIEnvironment.ButtonsPort" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonPause">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a125" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a126" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonPause.buttonPause" name="buttonPause" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonPause">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a127" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a128" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.ButtonProvider_ButtonResume" name="ButtonProvider_ButtonResume" memberEnd="CCIEnvironment.ButtonProvider_ButtonResume.buttonsForResume CCIEnvironment.ButtonProvider_ButtonResume.buttonResume">
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonResume.buttonsForResume" name="buttonsForResume" type="CCIEnvironment.ButtonsPort" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonResume">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a129" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a130" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonResume.buttonResume" name="buttonResume" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonResume">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a131" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a132" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.ButtonProvider_ButtonInc" name="ButtonProvider_ButtonInc" memberEnd="CCIEnvironment.ButtonProvider_ButtonInc.buttonsForInc CCIEnvironment.ButtonProvider_ButtonInc.buttonInc">
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonInc.buttonsForInc" name="buttonsForInc" type="CCIEnvironment.ButtonsPort" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonInc">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a133" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a134" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonInc.buttonInc" name="buttonInc" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonInc">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a135" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a136" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.ButtonProvider_ButtonDec" name="ButtonProvider_ButtonDec" memberEnd="CCIEnvironment.ButtonProvider_ButtonDec.buttonsForDec CCIEnvironment.ButtonProvider_ButtonDec.buttonDec">
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonDec.buttonsForDec" name="buttonsForDec" type="CCIEnvironment.ButtonsPort" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonDec">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a137" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a138" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonDec.buttonDec" name="buttonDec" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonDec">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a139" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a140" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCIEnvironment.ButtonProvider_ButtonStop" name="ButtonProvider_ButtonStop" memberEnd="CCIEnvironment.ButtonProvider_ButtonStop.buttonsForStop CCIEnvironment.ButtonProvider_ButtonStop.buttonStop">
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonStop.buttonsForStop" name="buttonsForStop" type="CCIEnvironment.ButtonsPort" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonStop">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a141" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a142" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCIEnvironment.ButtonProvider_ButtonStop.buttonStop" name="buttonStop" isUnique="false" association="CCIEnvironment.ButtonProvider_ButtonStop">
+      <type xmi:type="uml:Class" href="DIL.uml#DIL.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a143" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a144" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.ButtonsPort" name="ButtonsPort">
+    <generalization xmi:id="a145">
+      <general xmi:type="uml:Class" href="DIL.uml#DIL.ButtonProvider"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.Buttons" name="Buttons" classifierBehavior="CCIEnvironment.Buttons.SM_Buttons" isActive="true">
+    <generalization xmi:id="a146">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.ButtonsUser"/>
+    </generalization>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Buttons.portStart" name="portStart" visibility="private" type="CCIEnvironment.ButtonsPort" isUnique="false" aggregation="composite" isBehavior="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a147" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a148" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Buttons.portSet" name="portSet" visibility="private" type="CCIEnvironment.ButtonsPort" isUnique="false" aggregation="composite" isBehavior="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a149" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a150" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Buttons.portPause" name="portPause" visibility="private" type="CCIEnvironment.ButtonsPort" isUnique="false" aggregation="composite" isBehavior="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a151" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a152" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Buttons.portResume" name="portResume" visibility="private" type="CCIEnvironment.ButtonsPort" isUnique="false" aggregation="composite" isBehavior="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a153" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a154" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Buttons.portInc" name="portInc" visibility="private" type="CCIEnvironment.ButtonsPort" isUnique="false" aggregation="composite" isBehavior="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a155" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a156" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Buttons.portDec" name="portDec" visibility="private" type="CCIEnvironment.ButtonsPort" isUnique="false" aggregation="composite" isBehavior="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a157" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a158" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Buttons.portStop" name="portStop" visibility="private" type="CCIEnvironment.ButtonsPort" isUnique="false" aggregation="composite" isBehavior="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a159" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a160" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="CCIEnvironment.Buttons.SM_Buttons" name="SM_Buttons">
+      <region xmi:id="CCIEnvironment.Buttons.SM_Buttons.R" name="R">
+        <transition xmi:id="CCIEnvironment.Buttons.SM_Buttons.R.Init" name="Init" source="CCIEnvironment.Buttons.SM_Buttons.R.Initial" target="CCIEnvironment.Buttons.SM_Buttons.R.Idle"/>
+        <transition xmi:id="CCIEnvironment.Buttons.SM_Buttons.R.Start" name="Start" source="CCIEnvironment.Buttons.SM_Buttons.R.Idle" target="CCIEnvironment.Buttons.SM_Buttons.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a161">
+            <language>C</language>
+            <body>SEND(GET(this, envButtonsPort), start);</body>
+          </effect>
+          <trigger xmi:id="a162" port="CCIEnvironment.Buttons.portStart">
+            <event xmi:type="uml:SignalEvent" href="DIL.uml#DIL.buttonPressed_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Buttons.SM_Buttons.R.Set" name="Set" source="CCIEnvironment.Buttons.SM_Buttons.R.Idle" target="CCIEnvironment.Buttons.SM_Buttons.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a163">
+            <language>C</language>
+            <body>SEND(GET(this, envButtonsPort), set);</body>
+          </effect>
+          <trigger xmi:id="a164" port="CCIEnvironment.Buttons.portSet">
+            <event xmi:type="uml:SignalEvent" href="DIL.uml#DIL.buttonPressed_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Buttons.SM_Buttons.R.Pause" name="Pause" source="CCIEnvironment.Buttons.SM_Buttons.R.Idle" target="CCIEnvironment.Buttons.SM_Buttons.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a165">
+            <language>C</language>
+            <body>SEND(GET(this, envButtonsPort), pause);</body>
+          </effect>
+          <trigger xmi:id="a166" port="CCIEnvironment.Buttons.portPause">
+            <event xmi:type="uml:SignalEvent" href="DIL.uml#DIL.buttonPressed_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Buttons.SM_Buttons.R.Resume" name="Resume" source="CCIEnvironment.Buttons.SM_Buttons.R.Idle" target="CCIEnvironment.Buttons.SM_Buttons.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a167">
+            <language>C</language>
+            <body>SEND(GET(this, envButtonsPort), resume);</body>
+          </effect>
+          <trigger xmi:id="a168" port="CCIEnvironment.Buttons.portResume">
+            <event xmi:type="uml:SignalEvent" href="DIL.uml#DIL.buttonPressed_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Buttons.SM_Buttons.R.Inc" name="Inc" source="CCIEnvironment.Buttons.SM_Buttons.R.Idle" target="CCIEnvironment.Buttons.SM_Buttons.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a169">
+            <language>C</language>
+            <body>SEND(GET(this, envButtonsPort), inc);</body>
+          </effect>
+          <trigger xmi:id="a170" port="CCIEnvironment.Buttons.portInc">
+            <event xmi:type="uml:SignalEvent" href="DIL.uml#DIL.buttonPressed_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Buttons.SM_Buttons.R.Dec" name="Dec" source="CCIEnvironment.Buttons.SM_Buttons.R.Idle" target="CCIEnvironment.Buttons.SM_Buttons.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a171">
+            <language>C</language>
+            <body>SEND(GET(this, envButtonsPort), dec);</body>
+          </effect>
+          <trigger xmi:id="a172" port="CCIEnvironment.Buttons.portDec">
+            <event xmi:type="uml:SignalEvent" href="DIL.uml#DIL.buttonPressed_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Buttons.SM_Buttons.R.Stop" name="Stop" source="CCIEnvironment.Buttons.SM_Buttons.R.Idle" target="CCIEnvironment.Buttons.SM_Buttons.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a173">
+            <language>C</language>
+            <body>SEND(GET(this, envButtonsPort), stop);</body>
+          </effect>
+          <trigger xmi:id="a174" port="CCIEnvironment.Buttons.portStop">
+            <event xmi:type="uml:SignalEvent" href="DIL.uml#DIL.buttonPressed_SE"/>
+          </trigger>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="CCIEnvironment.Buttons.SM_Buttons.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="CCIEnvironment.Buttons.SM_Buttons.R.Idle" name="Idle"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.PedalPort" name="PedalPort">
+    <generalization xmi:id="a175">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.PedalUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.Pedal" name="Pedal" classifierBehavior="CCIEnvironment.Pedal.SM_Pedal" isActive="true">
+    <generalization xmi:id="a176">
+      <general xmi:type="uml:Class" href="DAL.uml#DAL.PedalUser"/>
+    </generalization>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="CCIEnvironment.Pedal.pedalPeer" name="pedalPeer" visibility="private" type="CCIEnvironment.PedalPort" isUnique="false" aggregation="composite" isBehavior="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a177" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a178" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Pedal.port" name="port" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="Target.uml#Target.UML_GpioPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a179" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a180" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Pedal.pin" name="pin" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="Target.uml#Target.UML_GpioPin"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a181" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a182" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="CCIEnvironment.Pedal.SM_Pedal" name="SM_Pedal">
+      <region xmi:id="CCIEnvironment.Pedal.SM_Pedal.R" name="R">
+        <transition xmi:id="CCIEnvironment.Pedal.SM_Pedal.R.Init" name="Init" source="CCIEnvironment.Pedal.SM_Pedal.R.Initial" target="CCIEnvironment.Pedal.SM_Pedal.R.Released"/>
+        <transition xmi:id="CCIEnvironment.Pedal.SM_Pedal.R.PressPedal" name="PressPedal" source="CCIEnvironment.Pedal.SM_Pedal.R.Released" target="CCIEnvironment.Pedal.SM_Pedal.R.Pressed">
+          <ownedRule xmi:id="a183">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a184">
+              <language>C</language>
+              <body>UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a185">
+            <language>C</language>
+            <body>SEND(GET(this, pedalPeer), pedalPressed);</body>
+          </effect>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Pedal.SM_Pedal.R.ReleasePedal" name="ReleasePedal" source="CCIEnvironment.Pedal.SM_Pedal.R.Pressed" target="CCIEnvironment.Pedal.SM_Pedal.R.Released">
+          <ownedRule xmi:id="a186">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a187">
+              <language>C</language>
+              <body>UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a188">
+            <language>C</language>
+            <body>SEND(GET(this, pedalPeer), pedalReleased);</body>
+          </effect>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="CCIEnvironment.Pedal.SM_Pedal.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="CCIEnvironment.Pedal.SM_Pedal.R.Released" name="Released"/>
+        <subvertex xmi:type="uml:State" xmi:id="CCIEnvironment.Pedal.SM_Pedal.R.Pressed" name="Pressed"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCIEnvironment.Engine" clientDependency="a195 a196" name="Engine" classifierBehavior="CCIEnvironment.Engine.SM_Engine" isActive="true">
+    <ownedAttribute xmi:id="CCIEnvironment.Engine.speed" name="speed" visibility="private" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="DAL.uml#DAL.Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a189" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a190" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Engine.timer" name="timer" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="Target.uml#Target.UML_Timer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a191" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a192" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCIEnvironment.Engine.channel" name="channel" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="Target.uml#Target.UML_PwmChannel"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a193" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a194" value="1"/>
+    </ownedAttribute>
+    <interfaceRealization xmi:id="a195" client="CCIEnvironment.Engine">
+      <supplier xmi:type="uml:Interface" href="DAL.uml#DAL.I_ControlOnOff"/>
+      <contract href="DAL.uml#DAL.I_ControlOnOff"/>
+    </interfaceRealization>
+    <interfaceRealization xmi:id="a196" client="CCIEnvironment.Engine">
+      <supplier xmi:type="uml:Interface" href="DAL.uml#DAL.I_CruiseSpeed"/>
+      <contract href="DAL.uml#DAL.I_CruiseSpeed"/>
+    </interfaceRealization>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="CCIEnvironment.Engine.SM_Engine" name="SM_Engine">
+      <region xmi:id="CCIEnvironment.Engine.SM_Engine.R" name="R">
+        <transition xmi:id="CCIEnvironment.Engine.SM_Engine.R.Init" name="Init" source="CCIEnvironment.Engine.SM_Engine.R.Initial" target="CCIEnvironment.Engine.SM_Engine.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a197">
+            <language>C</language>
+            <body>UML_PwmInit(GET(this, timer), GET(this, channel));</body>
+          </effect>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Engine.SM_Engine.R.Tick" name="Tick" source="CCIEnvironment.Engine.SM_Engine.R.Idle" target="CCIEnvironment.Engine.SM_Engine.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a198">
+            <language>C</language>
+            <body>SEND(GET(this, envSpeedPort), updateSpeed, GET(this, speed)); UML_PwmRun(GET(this, timer), GET(this, channel), GET(this, speed) / 2);</body>
+          </effect>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Engine.SM_Engine.R.UpdateSetPoint" name="UpdateSetPoint" source="CCIEnvironment.Engine.SM_Engine.R.Idle" target="CCIEnvironment.Engine.SM_Engine.R.Idle">
+          <trigger xmi:id="a199">
+            <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.updateSetPoint_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Engine.SM_Engine.R.ControlOn" name="ControlOn" source="CCIEnvironment.Engine.SM_Engine.R.Idle" target="CCIEnvironment.Engine.SM_Engine.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a200">
+            <language>C</language>
+            <body>UML_PwmRun(GET(this, timer), GET(this, channel), GET(this, speed) / 2);</body>
+          </effect>
+          <trigger xmi:id="a201">
+            <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.controlOn_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Engine.SM_Engine.R.ControlOff" name="ControlOff" source="CCIEnvironment.Engine.SM_Engine.R.Idle" target="CCIEnvironment.Engine.SM_Engine.R.Idle">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a202">
+            <language>C</language>
+            <body>UML_PwmStop(GET(this, timer), GET(this, channel));</body>
+          </effect>
+          <trigger xmi:id="a203">
+            <event xmi:type="uml:SignalEvent" href="DAL.uml#DAL.controlOff_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Engine.SM_Engine.R.IncSpeed" name="IncSpeed" source="CCIEnvironment.Engine.SM_Engine.R.Idle" target="CCIEnvironment.Engine.SM_Engine.R.Idle">
+          <ownedRule xmi:id="CCIEnvironment.Engine.SM_Engine.R.IncSpeed.guard" name="guard">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a204">
+              <language>C</language>
+              <body>GET(this, speed) &lt; 200</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a205">
+            <language>C</language>
+            <body>INC(this, speed, 1);</body>
+          </effect>
+        </transition>
+        <transition xmi:id="CCIEnvironment.Engine.SM_Engine.R.DecSpeed" name="DecSpeed" source="CCIEnvironment.Engine.SM_Engine.R.Idle" target="CCIEnvironment.Engine.SM_Engine.R.Idle">
+          <ownedRule xmi:id="CCIEnvironment.Engine.SM_Engine.R.DecSpeed.guard" name="guard">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a206">
+              <language>C</language>
+              <body>GET(this, speed) > 0</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a207">
+            <language>C</language>
+            <body>DEC(this, speed, 1);</body>
+          </effect>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="CCIEnvironment.Engine.SM_Engine.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="CCIEnvironment.Engine.SM_Engine.R.Idle" name="Idle"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+</uml:Model>

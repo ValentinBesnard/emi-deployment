@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="ButtonLeds" name="ButtonLeds">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../ButtonLedSystem.uml#ButtonLedsSystem.System"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../ButtonLedSystem.uml#ButtonLedsSystem.LightPort"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../ButtonLedSystem.uml#ButtonLedsSystem.ButtonPort"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../ButtonLedEnvironment.uml#ButtonLedsEnvironment.Env"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../ButtonLedEnvironment.uml#ButtonLedsEnvironment.EnvLedPort"/>
+  </elementImport>
+  <elementImport xmi:id="a6" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../ButtonLedEnvironment.uml#ButtonLedsEnvironment.EnvButtonPort"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLeds.Main" name="Main">
+    <ownedAttribute xmi:id="ButtonLeds.Main.system" name="system" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="../ButtonLedSystem.uml#ButtonLedsSystem.System"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a7" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a8" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="ButtonLeds.Main.env" name="env" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="../ButtonLedEnvironment.uml#ButtonLedsEnvironment.Env"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a9" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a10" value="1"/>
+    </ownedAttribute>
+    <ownedConnector xmi:id="ButtonLeds.Main.c1" name="c1" type="ButtonLeds.ButtonPort_EnvButtonPort">
+      <end xmi:id="a11" partWithPort="ButtonLeds.Main.system">
+        <role xmi:type="uml:Port" href="../ButtonLedSystem.uml#ButtonLedsSystem.System.sysButtonPort"/>
+      </end>
+      <end xmi:id="a12" partWithPort="ButtonLeds.Main.env">
+        <role xmi:type="uml:Port" href="../ButtonLedEnvironment.uml#ButtonLedsEnvironment.Env.envButtonPort"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="ButtonLeds.Main.c2" name="c2" type="ButtonLeds.LightPort_EnvLedPort">
+      <end xmi:id="a13" partWithPort="ButtonLeds.Main.system">
+        <role xmi:type="uml:Port" href="../ButtonLedSystem.uml#ButtonLedsSystem.System.sysLightPort"/>
+      </end>
+      <end xmi:id="a14" partWithPort="ButtonLeds.Main.env">
+        <role xmi:type="uml:Port" href="../ButtonLedEnvironment.uml#ButtonLedsEnvironment.Env.envLedPort"/>
+      </end>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="ButtonLeds.instMain" name="instMain" classifier="ButtonLeds.Main"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="ButtonLeds.ButtonPort_EnvButtonPort" name="ButtonPort_EnvButtonPort" memberEnd="ButtonLeds.ButtonPort_EnvButtonPort.systemButtonPort ButtonLeds.ButtonPort_EnvButtonPort.envButtonPort">
+    <ownedEnd xmi:id="ButtonLeds.ButtonPort_EnvButtonPort.systemButtonPort" name="systemButtonPort" isUnique="false" association="ButtonLeds.ButtonPort_EnvButtonPort">
+      <type xmi:type="uml:Class" href="../ButtonLedSystem.uml#ButtonLedsSystem.ButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a15" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a16" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="ButtonLeds.ButtonPort_EnvButtonPort.envButtonPort" name="envButtonPort" isUnique="false" association="ButtonLeds.ButtonPort_EnvButtonPort">
+      <type xmi:type="uml:Class" href="../ButtonLedEnvironment.uml#ButtonLedsEnvironment.EnvButtonPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a17" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a18" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="ButtonLeds.LightPort_EnvLedPort" name="LightPort_EnvLedPort" memberEnd="ButtonLeds.LightPort_EnvLedPort.systemLightPort ButtonLeds.LightPort_EnvLedPort.envLedPort">
+    <ownedEnd xmi:id="ButtonLeds.LightPort_EnvLedPort.systemLightPort" name="systemLightPort" isUnique="false" association="ButtonLeds.LightPort_EnvLedPort">
+      <type xmi:type="uml:Class" href="../ButtonLedSystem.uml#ButtonLedsSystem.LightPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a19" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a20" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="ButtonLeds.LightPort_EnvLedPort.envLedPort" name="envLedPort" isUnique="false" association="ButtonLeds.LightPort_EnvLedPort">
+      <type xmi:type="uml:Class" href="../ButtonLedEnvironment.uml#ButtonLedsEnvironment.EnvLedPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a21" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a22" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

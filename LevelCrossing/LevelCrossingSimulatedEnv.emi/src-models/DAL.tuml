@@ -1,0 +1,23 @@
+model DAL {
+
+	primitiveType Integer;
+
+	signal activation{
+		id[1-1] : Integer;
+	}
+	signalEvent activation_SE of activation;
+
+	signal authorization;
+	signalEvent authorization_SE of authorization;
+
+	interface I_Activation receives activation(activation) {}
+	interface I_Authorization receives authorization(authorization) {}
+
+	class ActivationProvider implements I_Activation {}
+	class ActivationUser {}
+	usage use_ActivationUser of I_Activation by ActivationUser;
+
+	class AuthorizationProvider implements I_Authorization {}
+	class AuthorizationUser {}
+	usage use_AuthorizationUser of I_Authorization by AuthorizationUser;
+}

@@ -1,0 +1,431 @@
+model CCISystem with(
+	private "DAL.uml#DAL.Integer",
+	private "DAL.uml#DAL.Boolean",
+	private "DAL.uml#DAL.I_Speed",
+	private "DAL.uml#DAL.ButtonsProvider",
+	private "DAL.uml#DAL.PedalProvider",
+	private "DAL.uml#DAL.ControlOnOffUser",
+	private "DAL.uml#DAL.SpeedProvider",
+	private "DAL.uml#DAL.CruiseSpeedUser",
+	private "DAL.uml#DAL.start_SE",
+	private "DAL.uml#DAL.stop_SE",
+	private "DAL.uml#DAL.set_SE",
+	private "DAL.uml#DAL.pause_SE",
+	private "DAL.uml#DAL.resume_SE",
+	private "DAL.uml#DAL.inc_SE",
+	private "DAL.uml#DAL.dec_SE",
+	private "DAL.uml#DAL.pedalPressed_SE",
+	private "DAL.uml#DAL.pedalReleased_SE",
+	private "DAL.uml#DAL.updateSpeed_SE"
+) {
+
+	package observers {
+		class Obs {
+			public composite observer1[1-1] : Observer1;
+			public composite observer2[1-1] : Observer2;
+			public composite observer3[1-1] : Observer3;
+		}
+
+		class |Observer1| behavesAs SM {
+			stateMachine SM {
+				region R {
+					Initial -> Disengaged;
+					Disengaged -> Fail : [constraint "guard" is opaqueExpression = '
+							EP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), csm), cciCruiseSpeedPort), SIGNAL_updateSetPoint)
+						' in C;] /;
+					Disengaged -> Engaged : [constraint "guard" is opaqueExpression = '
+							EP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), actuation), cciControlOnOffPort), SIGNAL_controlOn)
+						' in C;] /;
+					Engaged -> Disengaged : [constraint "guard" is opaqueExpression = '
+							EP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), actuation), cciControlOnOffPort), SIGNAL_controlOff)
+						' in C;] /;
+					initial pseudoState Initial;
+				}
+			}
+		}
+
+		class |Observer2| behavesAs SM {
+			stateMachine SM {
+				region R {
+					Initial -> Running;
+					Running -> Fail : [constraint "guard" is opaqueExpression = '
+							!((GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) >= 40 && GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) <= 180) || GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) == -1)
+						' in C;] /;
+					initial pseudoState Initial;
+				}
+			}
+		}
+
+		class |Observer3| behavesAs SM {
+			stateMachine SM {
+				region R {
+					Initial -> Running;
+					Running -> Fail : [constraint "guard" is opaqueExpression = '
+							GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) == -1 && IS_IN_STATE(GET(GET(ROOT_instMain, cci), actuation), STATE_Actuation_Engaged)
+						' in C;] /;
+					initial pseudoState Initial;
+				}
+			}
+		}
+
+		instance instObs of Obs {
+
+		}
+	}
+
+	package system {
+
+		// Ports for CCI
+		class CCIButtonsPort extends ButtonsProvider {}
+		class CCIPedalPort extends PedalProvider {}
+		class CCIControlOnOffPort extends ControlOnOffUser {}
+		class CCISpeedPort extends SpeedProvider {}
+		class CCICruiseSpeedPort extends CruiseSpeedUser {}
+
+		// Ports for PedalsManager
+		class PedalsManagerPedalPort extends PedalProvider {}
+
+		class CCI {
+			public composite controller[1-1] : Controller;
+			public composite actuation[1-1] : Actuation;
+			public composite csm[1-1] : CruiseSpeedManager;
+			public composite pm[1-1] : PedalsManager;
+
+			public composite port buttonsPort[1-1] : CCIButtonsPort;
+			public composite port clutchPedalPort[1-1] : CCIPedalPort;
+			public composite port breakPedalPort[1-1] : CCIPedalPort;
+			public composite port throttlePedalPort[1-1] : CCIPedalPort;
+			public composite port controlOnOffPort[1-1] : CCIControlOnOffPort;
+			public composite port speedPort[1-1] : CCISpeedPort;
+			public composite port cruiseSpeedPort[1-1] : CCICruiseSpeedPort;
+
+			connector "c_pmClutchPedalPort_clutchPedalPort" : PedalsManagerPedalPort_CCIPedalPort between pm.pmClutchPedalPort and clutchPedalPort;
+			connector "c_pmBreakPedalPort_breakPedalPort" : PedalsManagerPedalPort_CCIPedalPort between pm.pmBreakPedalPort and breakPedalPort;
+			connector "c_pmThrottlePedalPort_throttlePedalPort" : PedalsManagerPedalPort_CCIPedalPort between pm.pmThrottlePedalPort and throttlePedalPort;
+
+			connector "c_buttonsPort_controller" : CCIButtonsPort_Controller between buttonsPort and controller;
+			connector "c_controlOnOffPort_actuation" : CCIControlOnOffPort_Actuation between controlOnOffPort and actuation;
+			connector "c_speedPort_actuation" : CCISpeedPort_Actuation between speedPort and actuation;
+			connector "c_cruiseSpeedPort_csm" : CCICruiseSpeedPort_CruiseSpeedManager between cruiseSpeedPort and csm;
+			connector "c_pm_controller" : PedalsManager_Controller between pm and controller;
+			connector "c_actuation_controller" : Actuation_Controller between actuation and controller;
+			connector "c_csm_controller" : CruiseSpeedManager_Controller between csm and controller;
+			connector "c_actuation_csm" : Actuation_CruiseSpeedManager between actuation and csm;
+		}
+
+		// Associations for CCI
+		association CCIButtonsPort_Controller {
+			cciButtonsPort[1-1] : CCIButtonsPort in CCIButtonsPort_Controller;
+			controller[1-1] : Controller in CCIButtonsPort_Controller;
+		}
+		association PedalsManagerPedalPort_CCIPedalPort {
+			pmPedalPort[1-1] : PedalsManagerPedalPort in PedalsManagerPedalPort_CCIPedalPort;
+			cciPedalPort[1-1] : CCIPedalPort in PedalsManagerPedalPort_CCIPedalPort;
+		}
+		association CCIControlOnOffPort_Actuation {
+			cciControlOnOffPort[1-1] : CCIControlOnOffPort in CCIControlOnOffPort_Actuation;
+			actuation[1-1] : Actuation in CCIControlOnOffPort_Actuation;
+		}
+		association CCISpeedPort_Actuation {
+			cciSpeedPort[1-1] : CCISpeedPort in CCISpeedPort_Actuation;
+			actuation[1-1] : Actuation in CCISpeedPort_Actuation;
+		}
+		association CCICruiseSpeedPort_CruiseSpeedManager {
+			cciCruiseSpeedPort[1-1] : CCICruiseSpeedPort in CCICruiseSpeedPort_CruiseSpeedManager;
+			csm[1-1] : CruiseSpeedManager in CCICruiseSpeedPort_CruiseSpeedManager;
+		}
+		association PedalsManager_Controller {
+			pm[1-1] : PedalsManager in PedalsManager_Controller;
+			controller[1-1] : Controller in PedalsManager_Controller;
+		}
+		association Actuation_Controller {
+			actuation[1-1] : Actuation in Actuation_Controller;
+			controller[1-1] : Controller in Actuation_Controller;
+		}
+		association CruiseSpeedManager_Controller {
+			csm[1-1] : CruiseSpeedManager in CruiseSpeedManager_Controller;
+			controller[1-1] : Controller in CruiseSpeedManager_Controller;
+		}
+		association Actuation_CruiseSpeedManager {
+			actuation[1-1] : Actuation in Actuation_CruiseSpeedManager;
+			csm[1-1] : CruiseSpeedManager in Actuation_CruiseSpeedManager;
+		}
+
+
+		signal lock;
+		signalEvent lock_SE of lock;
+		signal unlock;
+		signalEvent unlock_SE of unlock;
+		signal requestPedals;
+		signalEvent requestPedals_SE of requestPedals;
+		signal ackPedals;
+		signalEvent ackPedals_SE of ackPedals;
+		signal nackPedals;
+		signalEvent nackPedals_SE of nackPedals;
+
+		signal setCS;
+		signalEvent setCS_SE of setCS;
+		signal incCS;
+		signalEvent incCS_SE of incCS;
+		signal decCS;
+		signalEvent decCS_SE of decCS;
+		signal ackCS;
+		signalEvent ackCS_SE of ackCS;
+		signal nackCS;
+		signalEvent nackCS_SE of nackCS;
+		signal resetCS;
+		signalEvent resetCS_SE of resetCS;
+
+		signal engage;
+		signalEvent engage_SE of engage;
+		signal disengage;
+		signalEvent disengage_SE of disengage;
+
+		signal disengaged;
+		signalEvent disengaged_SE of disengaged;
+
+		signal speedCaptured {
+			speed[1-1] : Integer;
+		}
+		signalEvent speedCaptured_SE of speedCaptured;
+		signal speedNotCaptured;
+		signalEvent speedNotCaptured_SE of speedNotCaptured;
+
+		signal requestSetPoint;
+		signalEvent requestSetPoint_SE of requestSetPoint;
+
+		
+		class |Actuation| behavesAs SM_Actuation extends ControlOnOffUser implements I_Speed receives engage(engage), disengage(disengage) {
+			//private captureSpeedOnNextUpdate[1-1] : Integer;
+			stateMachine SM_Actuation {
+				region R {
+					Initial -> Disengaged : Init;
+					Disengaged -> Engaged : Engage : engage_SE /
+						opaqueBehavior = 'SEND(GET(this, cciControlOnOffPort), controlOn);' in C;;
+
+					// Actual version
+					Engaged -> Disengaged : Disengage : disengage_SE /
+						opaqueBehavior = 'SEND(GET(this, cciControlOnOffPort), controlOff); SEND(GET(this, controller), disengaged);' in C;;
+
+					// Version with bug
+					// Engaged -> Disengaged : Disengage : disengage_SE /
+					// 	opaqueBehavior = 'SEND(GET(this, cciControlOnOffPort), controlOff);' in C;;
+
+					Engaged -> ChoiceEngagedCaptureSpeed : updateSpeedWhenEngaged : updateSpeed_SE / ;
+					ChoiceEngagedCaptureSpeed -> Engaged : [constraint "guard" is opaqueExpression = 'params->speed >= 40 && params->speed <= 180' in C;] /
+						opaqueBehavior = 'SEND(GET(this, csm), speedCaptured, params->speed); SEND(GET(this, csm), requestSetPoint);' in C;;
+					ChoiceEngagedCaptureSpeed -> Engaged : [constraint "guard" is opaqueExpression = 'else' in C;] /
+						opaqueBehavior = 'SEND(GET(this, csm), speedNotCaptured); SEND(GET(this, controller), pause);' in C;;
+
+					Disengaged -> ChoiceDisengagedCaptureSpeed : updateSpeedWhenDisengaged : updateSpeed_SE / ;
+					ChoiceDisengagedCaptureSpeed -> Disengaged : [constraint "guard" is opaqueExpression = 'params->speed >= 40 && params->speed <= 180' in C;] /
+						opaqueBehavior = 'SEND(GET(this, csm), speedCaptured, params->speed);' in C;;
+					ChoiceDisengagedCaptureSpeed -> Disengaged : [constraint "guard" is opaqueExpression = 'else' in C;] /
+						opaqueBehavior = 'SEND(GET(this, csm), speedNotCaptured);' in C;;
+					
+					initial pseudoState Initial;
+					choice pseudoState ChoiceEngagedCaptureSpeed;
+					choice pseudoState ChoiceDisengagedCaptureSpeed;
+				}
+			}
+		}
+
+		class |CruiseSpeedManager| behavesAs SM_CruiseSpeedManager extends CruiseSpeedUser receives incCS(incCS), decCS(decCS), setCS(setCS), resetCS(resetCS),
+																			speedCaptured(speedCaptured), speedNotCaptured(speedNotCaptured), requestSetPoint(requestSetPoint) {
+			private cruiseSpeed[1-1] : Integer;
+			stateMachine SM_CruiseSpeedManager {
+				region R {
+					Initial -> Idle: Init : /
+						opaqueBehavior = 'SET(this, cruiseSpeed, -1);' in C;;
+
+					Idle -> WaitSpeed : SetCS : setCS_SE / ;
+						//opaqueBehavior = 'SEND(GET(this, actuation), captureSpeed);' in C;;
+					WaitSpeed -> Idle : SpeedCaptured : speedCaptured_SE /
+						opaqueBehavior = 'SET(this, cruiseSpeed, params->speed); SEND(GET(this, controller), ackCS);' in C;;
+					WaitSpeed -> Idle : SpeedNotCaptured : speedNotCaptured_SE /
+						opaqueBehavior = 'SET(this, cruiseSpeed, -1); SEND(GET(this, controller), nackCS);' in C;;
+					WaitSpeed -> Idle : SpeedReset : resetCS_SE /
+						opaqueBehavior = 'SET(this, cruiseSpeed, -1);' in C;;
+
+					Idle -> Idle : ResetCS : resetCS_SE /
+						opaqueBehavior = 'SET(this, cruiseSpeed, -1);' in C;;
+
+					Idle -> ChoiceIncCS : Inc : incCS_SE / ;
+					ChoiceIncCS -> Idle : [constraint "guard" is opaqueExpression = 'GET(this, cruiseSpeed) < 180' in C;] /
+						opaqueBehavior = 'INC(this, cruiseSpeed, 1);' in C;;
+					ChoiceIncCS -> Idle : [constraint "guard" is opaqueExpression = 'else' in C;] / ;
+
+					Idle -> ChoiceDecCS : Dec : decCS_SE / ;
+					ChoiceDecCS -> Idle: [constraint "guard" is opaqueExpression = 'GET(this, cruiseSpeed) > 40' in C;] /
+						opaqueBehavior = 'DEC(this, cruiseSpeed, 1);' in C;;
+					ChoiceDecCS -> Idle: [constraint "guard" is opaqueExpression = 'else' in C;] / ;
+
+					Idle -> Idle : RequestSetPoint : requestSetPoint_SE /
+						opaqueBehavior = 'SEND(GET(this, cciCruiseSpeedPort), updateSetPoint, GET(this, cruiseSpeed));' in C;;
+
+					// List of ignored transitions
+					WaitSpeed -> WaitSpeed : IgnoreSetCS : setCS_SE / ;
+					WaitSpeed -> WaitSpeed : IgnoreIncCS : incCS_SE / ;
+					WaitSpeed -> WaitSpeed : IgnoreDecCS : decCS_SE / ;
+
+					Idle -> Idle : IgnoreSpeedCaptured : speedCaptured_SE / ;
+					Idle -> Idle : IgnoreSpeedNotCaptured : speedNotCaptured_SE / ;
+
+					initial pseudoState Initial;
+					choice pseudoState ChoiceIncCS;
+					choice pseudoState ChoiceDecCS;
+				}
+			}
+		}
+
+		class |PedalsManager| behavesAs SM_PedalsManager extends PedalProvider receives requestPedals(requestPedals) {
+			private nbLocks[1-1]: Integer;
+			private canResume[1-1]: Boolean;
+			public composite behavior port pmClutchPedalPort[1-1]: PedalsManagerPedalPort;
+			public composite behavior port pmBreakPedalPort[1-1]: PedalsManagerPedalPort;
+			public composite behavior port pmThrottlePedalPort[1-1]: PedalsManagerPedalPort;
+			stateMachine SM_PedalsManager {
+				region R {
+					Initial -> Idle : Init;
+					Idle -> Idle : pedalPressed_SE from pmThrottlePedalPort /
+						opaqueBehavior = 'SEND(GET(this, controller), pause); SET(this, canResume, TRUE);' in C;;
+					Idle -> ChoiceResume : pedalReleased_SE from pmThrottlePedalPort / ;
+					ChoiceResume -> Idle : [constraint "guard" is opaqueExpression = 'GET(this, canResume) == TRUE' in C;] /
+						opaqueBehavior = 'SEND(GET(this, controller), resume);' in C;;
+					ChoiceResume -> Idle : [constraint "guard" is opaqueExpression = 'else' in C;] / ;
+					Idle -> Lock : pedalPressed_SE from pmClutchPedalPort, pmBreakPedalPort /
+						opaqueBehavior = 'INC(this, nbLocks, 1); SET(this, canResume, FALSE); SEND(GET(this, controller), lock);' in C;;
+					Lock -> Lock : pedalPressed_SE from pmClutchPedalPort, pmBreakPedalPort /
+						opaqueBehavior = 'INC(this, nbLocks, 1);' in C;;
+					Lock -> ChoiceLock : pedalReleased_SE from pmClutchPedalPort, pmBreakPedalPort /
+						opaqueBehavior = 'DEC(this, nbLocks, 1);' in C;;
+					ChoiceLock -> Lock : [constraint "guard" is opaqueExpression = 'GET(this, nbLocks) > 0' in C;] / ;
+					ChoiceLock -> Idle : [constraint "guard" is opaqueExpression = 'else' in C;] / 
+						opaqueBehavior = 'SEND(GET(this, controller), unlock);' in C;;
+					Idle -> Idle : requestPedals_SE /
+						opaqueBehavior = 'SEND(GET(this, controller), ackPedals);' in C;;
+					Lock -> Lock : requestPedals_SE /
+						opaqueBehavior = 'SEND(GET(this, controller), nackPedals);' in C;;
+					Lock -> Lock: IgnoreThrottlePressed : pedalPressed_SE from pmThrottlePedalPort / ;
+					Lock -> Lock: IgnoreThrottleReleased : pedalReleased_SE from pmThrottlePedalPort / ;
+					initial pseudoState Initial;
+					choice pseudoState ChoiceLock;
+					choice pseudoState ChoiceResume;
+				}
+			}
+		}
+
+
+		class |Controller| behavesAs SM_Controller extends ButtonsProvider
+							receives ackCS(ackCS), nackCS(nackCS),
+							ackPedals(ackPedals), nackPedals(nackPedals),
+							lock(lock), unlock(unlock), disengaged(disengaged) {
+			stateMachine SM_Controller {
+				region R {
+					Initial -> Off;
+
+					Off -> On : start_SE / ;
+					On -> Off : stop_SE / ;
+
+					On -> WaitCS : set_SE / ;
+					Pause -> WaitCS : set_SE / ;
+					Engaged -> WaitCS : set_SE /
+						opaqueBehavior = 'SEND(GET(this, actuation), disengage);' in C;;
+
+					WaitCS -> WaitPM : ackCS_SE / ;
+					WaitCS -> On : nackCS_SE / ;
+
+					WaitPM -> Engaged : ackPedals_SE /
+						opaqueBehavior = 'SEND(GET(this, actuation), engage);' in C;;
+					WaitPM -> On : nackPedals_SE / ;
+
+					Engaged -> Engaged : inc_SE /
+						opaqueBehavior = 'SEND(GET(this, csm), incCS);' in C;;
+					Engaged -> Engaged : dec_SE /
+						opaqueBehavior = 'SEND(GET(this, csm), decCS);' in C;;
+
+					Pause -> Pause : inc_SE /
+						opaqueBehavior = 'SEND(GET(this, csm), incCS);' in C;;
+					Pause -> Pause : dec_SE /
+						opaqueBehavior = 'SEND(GET(this, csm), decCS);' in C;;
+
+					Engaged -> Pause : pause_SE / 
+						opaqueBehavior = 'SEND(GET(this, actuation), disengage);' in C;;
+					Pause -> Engaged : resume_SE / 
+						opaqueBehavior = 'SEND(GET(this, actuation), engage);' in C;;
+
+					Engaged -> Lock : lock_SE /
+						opaqueBehavior = 'SEND(GET(this, actuation), disengage);' in C;;
+					Pause -> Lock : lock_SE / ;
+					Lock -> Pause : unlock_SE / ;
+
+					WaitCS -> Off : stop_SE / ;
+					Pause -> Off : stop_SE / ;
+					Lock -> Off : stop_SE / ;
+
+					// Actual version
+					Engaged -> WaitDisengaged : stop_SE / 
+						opaqueBehavior = 'SEND(GET(this, actuation), disengage);' in C;;
+					WaitDisengaged -> Off : disengaged_SE / ;
+
+					// Version with bug
+					// Engaged -> Off : stop_SE / 
+					// 	opaqueBehavior = 'SEND(GET(this, actuation), disengage);' in C;;
+
+					// List of ignored transitions
+					Off -> Off : stop_SE / ;
+					Off -> Off : set_SE / ;
+					Off -> Off : inc_SE / ;
+					Off -> Off : dec_SE / ;
+					Off -> Off : pause_SE / ;
+					Off -> Off : resume_SE / ;
+					Off -> Off : lock_SE / ;
+					Off -> Off : unlock_SE / ;
+
+					On -> On : start_SE / ;
+					On -> On : inc_SE / ;
+					On -> On : dec_SE / ;
+					On -> On : pause_SE / ;
+					On -> On : resume_SE / ;
+					On -> On : lock_SE / ;
+					On -> On : unlock_SE / ;
+
+					Pause -> Pause : start_SE / ;
+					Pause -> Pause : pause_SE / ;
+					Pause -> Pause : disengaged_SE / ;
+
+					Engaged -> Engaged : start_SE / ;
+					Engaged -> Engaged : resume_SE / ;
+
+					Lock -> Lock : start_SE / ;
+					Lock -> Lock : inc_SE / ;
+					Lock -> Lock : dec_SE / ;
+					Lock -> Lock : set_SE / ;
+					Lock -> Lock : pause_SE / ;
+					Lock -> Lock : resume_SE / ;
+					Lock -> Lock : disengaged_SE / ;
+
+					WaitCS -> WaitCS : start_SE / ;
+					WaitCS -> WaitCS : inc_SE / ;
+					WaitCS -> WaitCS : dec_SE / ;
+					WaitCS -> WaitCS : set_SE / ;
+					WaitCS -> WaitCS : pause_SE / ;
+					WaitCS -> WaitCS : resume_SE / ;
+					WaitCS -> WaitCS : lock_SE / ;
+					WaitCS -> WaitCS : unlock_SE / ;
+					WaitCS -> WaitCS : disengaged_SE / ;
+
+
+					initial pseudoState Initial;
+					state WaitCS
+						entry / opaqueBehavior = 'SEND(GET(this, csm), setCS);' in C;;
+					state WaitPM
+						entry / opaqueBehavior = 'SEND(GET(this, pm), requestPedals);' in C;;
+					state Off 
+						entry / opaqueBehavior = 'SEND(GET(this, csm), resetCS);' in C;;
+				}
+			}
+		}
+	}
+}
+

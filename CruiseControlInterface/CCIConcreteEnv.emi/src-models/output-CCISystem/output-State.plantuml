@@ -1,0 +1,178 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "Observer1" as Observer1 {
+		
+			state "Disengaged" as CCISystem_observers_Observer1_SM_R_Disengaged
+			state "Fail" as CCISystem_observers_Observer1_SM_R_Fail
+			state "Engaged" as CCISystem_observers_Observer1_SM_R_Engaged
+			[*] --> CCISystem_observers_Observer1_SM_R_Disengaged
+			CCISystem_observers_Observer1_SM_R_Disengaged --> CCISystem_observers_Observer1_SM_R_Fail : [\nEP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), csm), cciCruiseSpeedPort), SIGNAL_updateSetPoint)\n]
+			CCISystem_observers_Observer1_SM_R_Disengaged --> CCISystem_observers_Observer1_SM_R_Engaged : [\nEP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), actuation), cciControlOnOffPort), SIGNAL_controlOn)\n]
+			CCISystem_observers_Observer1_SM_R_Engaged --> CCISystem_observers_Observer1_SM_R_Disengaged : [\nEP_CONTAINS(GET_ACTIVE_PEER(GET(GET(ROOT_instMain, cci), actuation), cciControlOnOffPort), SIGNAL_controlOff)\n]
+		
+	}
+	state "Observer2" as Observer2 {
+		
+			state "Running" as CCISystem_observers_Observer2_SM_R_Running
+			state "Fail" as CCISystem_observers_Observer2_SM_R_Fail
+			[*] --> CCISystem_observers_Observer2_SM_R_Running
+			CCISystem_observers_Observer2_SM_R_Running --> CCISystem_observers_Observer2_SM_R_Fail : [\n!((GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) >= 40 && GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) <= 180) || GET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) == -1)\n]
+		
+	}
+	state "Observer3" as Observer3 {
+		
+			state "Running" as CCISystem_observers_Observer3_SM_R_Running
+			state "Fail" as CCISystem_observers_Observer3_SM_R_Fail
+			[*] --> CCISystem_observers_Observer3_SM_R_Running
+			CCISystem_observers_Observer3_SM_R_Running --> CCISystem_observers_Observer3_SM_R_Fail : [\nGET(GET(GET(ROOT_instMain, cci), csm), cruiseSpeed) == -1 && IS_IN_STATE(GET(GET(ROOT_instMain, cci), actuation), STATE_Actuation_Engaged)\n]
+		
+	}
+	state "Actuation" as Actuation {
+		
+			state "ChoiceEngagedCaptureSpeed" as CCISystem_system_Actuation_SM_Actuation_R_ChoiceEngagedCaptureSpeed <<choice>>
+			state "ChoiceDisengagedCaptureSpeed" as CCISystem_system_Actuation_SM_Actuation_R_ChoiceDisengagedCaptureSpeed <<choice>>
+			state "Disengaged" as CCISystem_system_Actuation_SM_Actuation_R_Disengaged
+			state "Engaged" as CCISystem_system_Actuation_SM_Actuation_R_Engaged
+			[*] --> CCISystem_system_Actuation_SM_Actuation_R_Disengaged
+			CCISystem_system_Actuation_SM_Actuation_R_Disengaged --> CCISystem_system_Actuation_SM_Actuation_R_Engaged : engage / SEND(GET(this, cciControlOnOffPort), controlOn);
+			CCISystem_system_Actuation_SM_Actuation_R_Engaged --> CCISystem_system_Actuation_SM_Actuation_R_Disengaged : disengage / SEND(GET(this, cciControlOnOffPort), controlOff); SEND(GET(this, controller), disengaged);
+			CCISystem_system_Actuation_SM_Actuation_R_Engaged --> CCISystem_system_Actuation_SM_Actuation_R_ChoiceEngagedCaptureSpeed : updateSpeed
+			CCISystem_system_Actuation_SM_Actuation_R_ChoiceEngagedCaptureSpeed --> CCISystem_system_Actuation_SM_Actuation_R_Engaged : [params->speed >= 40 && params->speed <= 180] / SEND(GET(this, csm), speedCaptured, params->speed); SEND(GET(this, csm), requestSetPoint);
+			CCISystem_system_Actuation_SM_Actuation_R_ChoiceEngagedCaptureSpeed --> CCISystem_system_Actuation_SM_Actuation_R_Engaged : [else] / SEND(GET(this, csm), speedNotCaptured); SEND(GET(this, controller), pause);
+			CCISystem_system_Actuation_SM_Actuation_R_Disengaged --> CCISystem_system_Actuation_SM_Actuation_R_ChoiceDisengagedCaptureSpeed : updateSpeed
+			CCISystem_system_Actuation_SM_Actuation_R_ChoiceDisengagedCaptureSpeed --> CCISystem_system_Actuation_SM_Actuation_R_Disengaged : [params->speed >= 40 && params->speed <= 180] / SEND(GET(this, csm), speedCaptured, params->speed);
+			CCISystem_system_Actuation_SM_Actuation_R_ChoiceDisengagedCaptureSpeed --> CCISystem_system_Actuation_SM_Actuation_R_Disengaged : [else] / SEND(GET(this, csm), speedNotCaptured);
+		
+	}
+	state "CruiseSpeedManager" as CruiseSpeedManager {
+		
+			state "ChoiceIncCS" as CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_ChoiceIncCS <<choice>>
+			state "ChoiceDecCS" as CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_ChoiceDecCS <<choice>>
+			state "Idle" as CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle
+			state "WaitSpeed" as CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_WaitSpeed
+			[*] --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : / SET(this, cruiseSpeed, -1);
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_WaitSpeed : setCS
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_WaitSpeed --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : speedCaptured / SET(this, cruiseSpeed, params->speed); SEND(GET(this, controller), ackCS);
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_WaitSpeed --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : speedNotCaptured / SET(this, cruiseSpeed, -1); SEND(GET(this, controller), nackCS);
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_WaitSpeed --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : resetCS / SET(this, cruiseSpeed, -1);
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : resetCS / SET(this, cruiseSpeed, -1); [[ ]]
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_ChoiceIncCS : incCS
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_ChoiceIncCS --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : [GET(this, cruiseSpeed) < 180] / INC(this, cruiseSpeed, 1);
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_ChoiceIncCS --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : [else]
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_ChoiceDecCS : decCS
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_ChoiceDecCS --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : [GET(this, cruiseSpeed) > 40] / DEC(this, cruiseSpeed, 1);
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_ChoiceDecCS --> CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : [else]
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : requestSetPoint / SEND(GET(this, cciCruiseSpeedPort), updateSetPoint, GET(this, cruiseSpeed)); [[ ]]
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_WaitSpeed : setCS [[ ]]
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_WaitSpeed : incCS [[ ]]
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_WaitSpeed : decCS [[ ]]
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : speedCaptured [[ ]]
+			CCISystem_system_CruiseSpeedManager_SM_CruiseSpeedManager_R_Idle : speedNotCaptured [[ ]]
+		
+	}
+	state "PedalsManager" as PedalsManager {
+		
+			state "ChoiceLock" as CCISystem_system_PedalsManager_SM_PedalsManager_R_ChoiceLock <<choice>>
+			state "ChoiceResume" as CCISystem_system_PedalsManager_SM_PedalsManager_R_ChoiceResume <<choice>>
+			state "Idle" as CCISystem_system_PedalsManager_SM_PedalsManager_R_Idle
+			state "Lock" as CCISystem_system_PedalsManager_SM_PedalsManager_R_Lock
+			[*] --> CCISystem_system_PedalsManager_SM_PedalsManager_R_Idle
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_Idle : pedalPressed / SEND(GET(this, controller), pause); SET(this, canResume, TRUE); [[ ]]
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_Idle --> CCISystem_system_PedalsManager_SM_PedalsManager_R_ChoiceResume : pedalReleased
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_ChoiceResume --> CCISystem_system_PedalsManager_SM_PedalsManager_R_Idle : [GET(this, canResume) == TRUE] / SEND(GET(this, controller), resume);
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_ChoiceResume --> CCISystem_system_PedalsManager_SM_PedalsManager_R_Idle : [else]
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_Idle --> CCISystem_system_PedalsManager_SM_PedalsManager_R_Lock : pedalPressed / INC(this, nbLocks, 1); SET(this, canResume, FALSE); SEND(GET(this, controller), lock);
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_Lock : pedalPressed / INC(this, nbLocks, 1); [[ ]]
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_Lock --> CCISystem_system_PedalsManager_SM_PedalsManager_R_ChoiceLock : pedalReleased / DEC(this, nbLocks, 1);
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_ChoiceLock --> CCISystem_system_PedalsManager_SM_PedalsManager_R_Lock : [GET(this, nbLocks) > 0]
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_ChoiceLock --> CCISystem_system_PedalsManager_SM_PedalsManager_R_Idle : [else] / SEND(GET(this, controller), unlock);
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_Idle : requestPedals / SEND(GET(this, controller), ackPedals); [[ ]]
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_Lock : requestPedals / SEND(GET(this, controller), nackPedals); [[ ]]
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_Lock : pedalPressed [[ ]]
+			CCISystem_system_PedalsManager_SM_PedalsManager_R_Lock : pedalReleased [[ ]]
+		
+	}
+	state "Controller" as Controller {
+		
+			state "WaitCS" as CCISystem_system_Controller_SM_Controller_R_WaitCS
+			state "WaitPM" as CCISystem_system_Controller_SM_Controller_R_WaitPM
+			state "Off" as CCISystem_system_Controller_SM_Controller_R_Off
+			state "On" as CCISystem_system_Controller_SM_Controller_R_On
+			state "Pause" as CCISystem_system_Controller_SM_Controller_R_Pause
+			state "Engaged" as CCISystem_system_Controller_SM_Controller_R_Engaged
+			state "Lock" as CCISystem_system_Controller_SM_Controller_R_Lock
+			state "WaitDisengaged" as CCISystem_system_Controller_SM_Controller_R_WaitDisengaged
+			[*] --> CCISystem_system_Controller_SM_Controller_R_Off
+			CCISystem_system_Controller_SM_Controller_R_Off --> CCISystem_system_Controller_SM_Controller_R_On : start
+			CCISystem_system_Controller_SM_Controller_R_On --> CCISystem_system_Controller_SM_Controller_R_Off : stop
+			CCISystem_system_Controller_SM_Controller_R_On --> CCISystem_system_Controller_SM_Controller_R_WaitCS : set
+			CCISystem_system_Controller_SM_Controller_R_Pause --> CCISystem_system_Controller_SM_Controller_R_WaitCS : set
+			CCISystem_system_Controller_SM_Controller_R_Engaged --> CCISystem_system_Controller_SM_Controller_R_WaitCS : set / SEND(GET(this, actuation), disengage);
+			CCISystem_system_Controller_SM_Controller_R_WaitCS --> CCISystem_system_Controller_SM_Controller_R_WaitPM : ackCS
+			CCISystem_system_Controller_SM_Controller_R_WaitCS --> CCISystem_system_Controller_SM_Controller_R_On : nackCS
+			CCISystem_system_Controller_SM_Controller_R_WaitPM --> CCISystem_system_Controller_SM_Controller_R_Engaged : ackPedals / SEND(GET(this, actuation), engage);
+			CCISystem_system_Controller_SM_Controller_R_WaitPM --> CCISystem_system_Controller_SM_Controller_R_On : nackPedals
+			CCISystem_system_Controller_SM_Controller_R_Engaged : inc / SEND(GET(this, csm), incCS); [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Engaged : dec / SEND(GET(this, csm), decCS); [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Pause : inc / SEND(GET(this, csm), incCS); [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Pause : dec / SEND(GET(this, csm), decCS); [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Engaged --> CCISystem_system_Controller_SM_Controller_R_Pause : pause / SEND(GET(this, actuation), disengage);
+			CCISystem_system_Controller_SM_Controller_R_Pause --> CCISystem_system_Controller_SM_Controller_R_Engaged : resume / SEND(GET(this, actuation), engage);
+			CCISystem_system_Controller_SM_Controller_R_Engaged --> CCISystem_system_Controller_SM_Controller_R_Lock : lock / SEND(GET(this, actuation), disengage);
+			CCISystem_system_Controller_SM_Controller_R_Pause --> CCISystem_system_Controller_SM_Controller_R_Lock : lock
+			CCISystem_system_Controller_SM_Controller_R_Lock --> CCISystem_system_Controller_SM_Controller_R_Pause : unlock
+			CCISystem_system_Controller_SM_Controller_R_WaitCS --> CCISystem_system_Controller_SM_Controller_R_Off : stop
+			CCISystem_system_Controller_SM_Controller_R_Pause --> CCISystem_system_Controller_SM_Controller_R_Off : stop
+			CCISystem_system_Controller_SM_Controller_R_Lock --> CCISystem_system_Controller_SM_Controller_R_Off : stop
+			CCISystem_system_Controller_SM_Controller_R_Engaged --> CCISystem_system_Controller_SM_Controller_R_WaitDisengaged : stop / SEND(GET(this, actuation), disengage);
+			CCISystem_system_Controller_SM_Controller_R_WaitDisengaged --> CCISystem_system_Controller_SM_Controller_R_Off : disengaged
+			CCISystem_system_Controller_SM_Controller_R_Off : stop [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Off : set [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Off : inc [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Off : dec [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Off : pause [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Off : resume [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Off : lock [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Off : unlock [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_On : start [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_On : inc [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_On : dec [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_On : pause [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_On : resume [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_On : lock [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_On : unlock [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Pause : start [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Pause : pause [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Pause : disengaged [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Engaged : start [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Engaged : resume [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Lock : start [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Lock : inc [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Lock : dec [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Lock : set [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Lock : pause [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Lock : resume [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Lock : disengaged [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitCS : start [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitCS : inc [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitCS : dec [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitCS : set [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitCS : pause [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitCS : resume [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitCS : lock [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitCS : unlock [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitCS : disengaged [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitCS : entry / SEND(GET(this, csm), setCS); [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_WaitPM : entry / SEND(GET(this, pm), requestPedals); [[ ]]
+			CCISystem_system_Controller_SM_Controller_R_Off : entry / SEND(GET(this, csm), resetCS); [[ ]]
+		
+	}
+@enduml

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:ClassDiagram">
+      <skinparams>
+        <commentsBefore></commentsBefore>
+      </skinparams>
+      <elements xsi:type="PlantUML:Class" name="DAL_ButtonReceiverPort" longName="[[DAL%3A%3AButtonReceiverPort-Class.svg DAL::ButtonReceiverPort]]"/>
+      <elements xsi:type="PlantUML:Class" name="DAL_LightProvider" longName="[[DAL%3A%3ALightProvider-Class.svg DAL::LightProvider]]" isAbstract="true"/>
+      <elements xsi:type="PlantUML:Class" name="DAL_ButtonUser" longName="[[DAL%3A%3AButtonUser-Class.svg DAL::ButtonUser]]" isAbstract="true"/>
+      <elements xsi:type="PlantUML:Class" name="ButtonLedsEnvironment_Env" longName="Env">
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; envLedPort : [[ButtonLedsEnvironment%3A%3AEnvLedPort-Class.svg EnvLedPort]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; envButtonPort : [[ButtonLedsEnvironment%3A%3AEnvButtonPort-Class.svg EnvButtonPort]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; envLed : [[ButtonLedsEnvironment%3A%3ASimulatedLight-Class.svg SimulatedLight]]"/>
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; envButton : [[ButtonLedsEnvironment%3A%3ASimulatedButton-Class.svg SimulatedButton]]"/>
+      </elements>
+      <elements xsi:type="PlantUML:Class" name="ButtonLedsEnvironment_EnvLedPort" longName="EnvLedPort"/>
+      <elements xsi:type="PlantUML:Class" name="ButtonLedsEnvironment_EnvButtonPort" longName="EnvButtonPort"/>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_ButtonLedsEnvironment_SimulatedLight" longName="SimulatedLight"/>
+      <elements xsi:type="PlantUML:Class" name="ACTIVE_ButtonLedsEnvironment_SimulatedButton" longName="SimulatedButton">
+        <features xsi:type="PlantUML:Attribute" name="+&#x2666; peer : [[DAL%3A%3AButtonReceiverPort-Class.svg ButtonReceiverPort]]"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.1"/>
+        <members target="/0/@element.0/@elements.4"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.2"/>
+        <members target="/0/@element.0/@elements.5"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.1"/>
+        <members target="/0/@element.0/@elements.6"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" kind="extension">
+        <members target="/0/@element.0/@elements.2"/>
+        <members target="/0/@element.0/@elements.7"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="led">
+        <members target="/0/@element.0/@elements.4"/>
+        <members target="/0/@element.0/@elements.6"/>
+      </elements>
+      <elements xsi:type="PlantUML:Relation" isVertical="true" name="buttonPort">
+        <members target="/0/@element.0/@elements.0"/>
+        <members target="/0/@element.0/@elements.5"/>
+      </elements>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:Class name="ButtonLedsEnvironment_SimulatedLight_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="ButtonLedsEnvironment_SimulatedLight_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@4cf5d999_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@4cf5d999" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="ButtonLedsEnvironment_SimulatedLight_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@4cf5d999_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@4cf5d999" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="ButtonLedsEnvironment_SimulatedButton_SM" longName="SM" stereotype="StateMachine"/>
+  <PlantUML:Class name="ButtonLedsEnvironment_SimulatedButton_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@4cf5d999_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@4cf5d999" longName="unnamed" stereotype="OpaqueBehavior"/>
+  <PlantUML:Class name="ButtonLedsEnvironment_SimulatedButton_SM_R_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@4cf5d999_org.eclipse.m2m.atl.engine.emfvm.lib.OclUndefined@4cf5d999" longName="unnamed" stereotype="OpaqueBehavior"/>
+</xmi:XMI>

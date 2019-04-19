@@ -1,0 +1,17 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "SensorInitializer" as SensorInitializer {
+		
+			state "Idle" as LevelCrossingEnvironment_SensorInitializer_SM_R_Idle
+			[*] --> LevelCrossingEnvironment_SensorInitializer_SM_R_Idle : / \nSEND(AT(GET(this, tcEntrance), 0), initSensor, GET(this, tcEntrancePort0), GET(this, tcEntrancePin0));\nSEND(AT(GET(this, tcEntrance), 1), initSensor, GET(this, tcEntrancePort1), GET(this, tcEntrancePin1));\nSEND(GET(this, tcExit), initSensor, GET(this, tcExitPort), GET(this, tcExitPin));\n
+		
+	}
+@enduml

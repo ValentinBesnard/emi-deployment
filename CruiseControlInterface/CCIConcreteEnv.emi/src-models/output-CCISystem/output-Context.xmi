@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:UseCaseDiagram">
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_controller" longName="&lt;u>controller : Controller&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_actuation" longName="&lt;u>actuation : Actuation&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_csm" longName="&lt;u>csm : CruiseSpeedManager&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_pm" longName="&lt;u>pm : PedalsManager&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_buttonsPort" longName="&lt;u>buttonsPort : CCIButtonsPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_clutchPedalPort" longName="&lt;u>clutchPedalPort : CCIPedalPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_breakPedalPort" longName="&lt;u>breakPedalPort : CCIPedalPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_throttlePedalPort" longName="&lt;u>throttlePedalPort : CCIPedalPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_controlOnOffPort" longName="&lt;u>controlOnOffPort : CCIControlOnOffPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_speedPort" longName="&lt;u>speedPort : CCISpeedPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="CCISystem_system_CCI_cruiseSpeedPort" longName="&lt;u>cruiseSpeedPort : CCICruiseSpeedPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.3"/>
+      <members target="//@element.0/@elements.5"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.3"/>
+      <members target="//@element.0/@elements.6"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.3"/>
+      <members target="//@element.0/@elements.7"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.4"/>
+      <members target="//@element.0/@elements.0"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.8"/>
+      <members target="//@element.0/@elements.1"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.9"/>
+      <members target="//@element.0/@elements.1"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.10"/>
+      <members target="//@element.0/@elements.2"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.3"/>
+      <members target="//@element.0/@elements.0"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.1"/>
+      <members target="//@element.0/@elements.0"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.0"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.1"/>
+      <members target="//@element.0/@elements.2"/>
+    </elements>
+  </element>
+</PlantUML:Model>

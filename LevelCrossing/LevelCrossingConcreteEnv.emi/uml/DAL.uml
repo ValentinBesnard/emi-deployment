@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="DAL" name="DAL">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="DAL.Integer" name="Integer"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.activation" name="activation">
+    <ownedAttribute xmi:id="DAL.activation.id" name="id" type="DAL.Integer" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a1" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a2" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.activation_SE" name="activation_SE" signal="DAL.activation"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="DAL.authorization" name="authorization"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="DAL.authorization_SE" name="authorization_SE" signal="DAL.authorization"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="DAL.I_Activation" name="I_Activation">
+    <ownedReception xmi:id="DAL.I_Activation.activation" name="activation" signal="DAL.activation"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="DAL.I_Authorization" name="I_Authorization">
+    <ownedReception xmi:id="DAL.I_Authorization.authorization" name="authorization" signal="DAL.authorization"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.ActivationProvider" clientDependency="a3" name="ActivationProvider">
+    <interfaceRealization xmi:id="a3" client="DAL.ActivationProvider" supplier="DAL.I_Activation" contract="DAL.I_Activation"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.ActivationUser" clientDependency="DAL.use_ActivationUser" name="ActivationUser"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="DAL.use_ActivationUser" name="use_ActivationUser" client="DAL.ActivationUser" supplier="DAL.I_Activation"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.AuthorizationProvider" clientDependency="a4" name="AuthorizationProvider">
+    <interfaceRealization xmi:id="a4" client="DAL.AuthorizationProvider" supplier="DAL.I_Authorization" contract="DAL.I_Authorization"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DAL.AuthorizationUser" clientDependency="DAL.use_AuthorizationUser" name="AuthorizationUser"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="DAL.use_AuthorizationUser" name="use_AuthorizationUser" client="DAL.AuthorizationUser" supplier="DAL.I_Authorization"/>
+</uml:Model>

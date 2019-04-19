@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:UseCaseDiagram">
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingCS_Main_env" longName="&lt;u>env : Environment&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingCS_Main_sys" longName="&lt;u>sys : System&lt;/u>"/>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.1"/>
+      <members target="//@element.0/@elements.0"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.1"/>
+      <members target="//@element.0/@elements.0"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.1"/>
+      <members target="//@element.0/@elements.0"/>
+    </elements>
+  </element>
+</PlantUML:Model>

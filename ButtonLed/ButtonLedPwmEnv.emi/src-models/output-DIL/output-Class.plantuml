@@ -1,0 +1,24 @@
+
+
+@startuml
+
+
+	abstract class "[[DAL%3A%3ALightProvider-Class.svg DAL::LightProvider]]" as DAL_LightProvider
+	abstract class "[[DAL%3A%3AButtonUser-Class.svg DAL::ButtonUser]]" as DAL_ButtonUser
+	class "PwmLed" as ACTIVE_DIL_PwmLed {
+		-timer : UML_Timer
+		-channel : UML_PwmChannel
+	}
+	class "GpioLed" as ACTIVE_DIL_GpioLed {
+		-port : UML_GpioPort
+		-pin : UML_GpioPin
+	}
+	class "GpioButton" as ACTIVE_DIL_GpioButton {
+		-♦ peer : [[DAL%3A%3AButtonReceiverPort-Class.svg ButtonReceiverPort]]
+		-port : UML_GpioPort
+		-pin : UML_GpioPin
+	}
+	DAL_LightProvider <|-- ACTIVE_DIL_PwmLed
+	DAL_LightProvider <|-- ACTIVE_DIL_GpioLed
+	DAL_ButtonUser <|-- ACTIVE_DIL_GpioButton
+@enduml

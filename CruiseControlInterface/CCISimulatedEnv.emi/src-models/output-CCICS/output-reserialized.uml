@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="CCICS" name="CCICS">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCI"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCIButtonsPort"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCIPedalPort"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCIControlOnOffPort"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCISpeedPort"/>
+  </elementImport>
+  <elementImport xmi:id="a6" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCICruiseSpeedPort"/>
+  </elementImport>
+  <elementImport xmi:id="a7" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.Env"/>
+  </elementImport>
+  <elementImport xmi:id="a8" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.EnvButtonsPort"/>
+  </elementImport>
+  <elementImport xmi:id="a9" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.EnvPedalPort"/>
+  </elementImport>
+  <elementImport xmi:id="a10" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.EnvControlOnOffPort"/>
+  </elementImport>
+  <elementImport xmi:id="a11" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.EnvSpeedPort"/>
+  </elementImport>
+  <elementImport xmi:id="a12" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.EnvCruiseSpeedPort"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="CCICS.Main" name="Main">
+    <ownedAttribute xmi:id="CCICS.Main.cci" name="cci" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCI"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a13" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a14" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CCICS.Main.env" name="env" isUnique="false" aggregation="composite">
+      <type xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.Env"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a15" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a16" value="1"/>
+    </ownedAttribute>
+    <ownedConnector xmi:id="CCICS.Main.c_cciButtonsPort_envButtonsPort" name="c_cciButtonsPort_envButtonsPort" type="CCICS.CCIButtonsPort_EnvButtonsPort">
+      <end xmi:id="a17" partWithPort="CCICS.Main.cci">
+        <role xmi:type="uml:Port" href="../CCISystem.uml#CCISystem.system.CCI.buttonsPort"/>
+      </end>
+      <end xmi:id="a18" partWithPort="CCICS.Main.env">
+        <role xmi:type="uml:Port" href="../CCIEnvironment.uml#CCIEnvironment.Env.envButtonsPort"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCICS.Main.c_cciClutchPedalPort_envClutchPedalPort" name="c_cciClutchPedalPort_envClutchPedalPort" type="CCICS.CCIPedalPort_EnvPedalPort">
+      <end xmi:id="a19" partWithPort="CCICS.Main.cci">
+        <role xmi:type="uml:Port" href="../CCISystem.uml#CCISystem.system.CCI.clutchPedalPort"/>
+      </end>
+      <end xmi:id="a20" partWithPort="CCICS.Main.env">
+        <role xmi:type="uml:Port" href="../CCIEnvironment.uml#CCIEnvironment.Env.envClutchPedalPort"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCICS.Main.c_cciBreakPedalPort_envBreakPedalPort" name="c_cciBreakPedalPort_envBreakPedalPort" type="CCICS.CCIPedalPort_EnvPedalPort">
+      <end xmi:id="a21" partWithPort="CCICS.Main.cci">
+        <role xmi:type="uml:Port" href="../CCISystem.uml#CCISystem.system.CCI.breakPedalPort"/>
+      </end>
+      <end xmi:id="a22" partWithPort="CCICS.Main.env">
+        <role xmi:type="uml:Port" href="../CCIEnvironment.uml#CCIEnvironment.Env.envBreakPedalPort"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCICS.Main.c_cciThrottlePedalPort_envThrottlePedalPort" name="c_cciThrottlePedalPort_envThrottlePedalPort" type="CCICS.CCIPedalPort_EnvPedalPort">
+      <end xmi:id="a23" partWithPort="CCICS.Main.cci">
+        <role xmi:type="uml:Port" href="../CCISystem.uml#CCISystem.system.CCI.throttlePedalPort"/>
+      </end>
+      <end xmi:id="a24" partWithPort="CCICS.Main.env">
+        <role xmi:type="uml:Port" href="../CCIEnvironment.uml#CCIEnvironment.Env.envThrottlePedalPort"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCICS.Main.c_cciControlOnOffPort_envControlOnOffPort" name="c_cciControlOnOffPort_envControlOnOffPort" type="CCICS.CCIControlOnOffPort_EnvControlOnOffPort">
+      <end xmi:id="a25" partWithPort="CCICS.Main.cci">
+        <role xmi:type="uml:Port" href="../CCISystem.uml#CCISystem.system.CCI.controlOnOffPort"/>
+      </end>
+      <end xmi:id="a26" partWithPort="CCICS.Main.env">
+        <role xmi:type="uml:Port" href="../CCIEnvironment.uml#CCIEnvironment.Env.envControlOnOffPort"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCICS.Main.c_cciSpeedPort_envSpeedPort" name="c_cciSpeedPort_envSpeedPort" type="CCICS.CCISpeedPort_EnvSpeedPort">
+      <end xmi:id="a27" partWithPort="CCICS.Main.cci">
+        <role xmi:type="uml:Port" href="../CCISystem.uml#CCISystem.system.CCI.speedPort"/>
+      </end>
+      <end xmi:id="a28" partWithPort="CCICS.Main.env">
+        <role xmi:type="uml:Port" href="../CCIEnvironment.uml#CCIEnvironment.Env.envSpeedPort"/>
+      </end>
+    </ownedConnector>
+    <ownedConnector xmi:id="CCICS.Main.c_cciCruiseSpeedPort_envCruiseSpeedPort" name="c_cciCruiseSpeedPort_envCruiseSpeedPort" type="CCICS.CCICruiseSpeedPort_EnvCruiseSpeedPort">
+      <end xmi:id="a29" partWithPort="CCICS.Main.cci">
+        <role xmi:type="uml:Port" href="../CCISystem.uml#CCISystem.system.CCI.cruiseSpeedPort"/>
+      </end>
+      <end xmi:id="a30" partWithPort="CCICS.Main.env">
+        <role xmi:type="uml:Port" href="../CCIEnvironment.uml#CCIEnvironment.Env.envCruiseSpeedPort"/>
+      </end>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="CCICS.instMain" name="instMain" classifier="CCICS.Main"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCICS.CCIButtonsPort_EnvButtonsPort" name="CCIButtonsPort_EnvButtonsPort" memberEnd="CCICS.CCIButtonsPort_EnvButtonsPort.cciButtonsPort CCICS.CCIButtonsPort_EnvButtonsPort.envButtonsPort">
+    <ownedEnd xmi:id="CCICS.CCIButtonsPort_EnvButtonsPort.cciButtonsPort" name="cciButtonsPort" isUnique="false" association="CCICS.CCIButtonsPort_EnvButtonsPort">
+      <type xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCIButtonsPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a31" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a32" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCICS.CCIButtonsPort_EnvButtonsPort.envButtonsPort" name="envButtonsPort" isUnique="false" association="CCICS.CCIButtonsPort_EnvButtonsPort">
+      <type xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.EnvButtonsPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a33" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a34" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCICS.CCIPedalPort_EnvPedalPort" name="CCIPedalPort_EnvPedalPort" memberEnd="CCICS.CCIPedalPort_EnvPedalPort.cciPedalPort CCICS.CCIPedalPort_EnvPedalPort.envPedalPort">
+    <ownedEnd xmi:id="CCICS.CCIPedalPort_EnvPedalPort.cciPedalPort" name="cciPedalPort" isUnique="false" association="CCICS.CCIPedalPort_EnvPedalPort">
+      <type xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCIPedalPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a35" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a36" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCICS.CCIPedalPort_EnvPedalPort.envPedalPort" name="envPedalPort" isUnique="false" association="CCICS.CCIPedalPort_EnvPedalPort">
+      <type xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.EnvPedalPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a37" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a38" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCICS.CCIControlOnOffPort_EnvControlOnOffPort" name="CCIControlOnOffPort_EnvControlOnOffPort" memberEnd="CCICS.CCIControlOnOffPort_EnvControlOnOffPort.cciControlOnOffPort CCICS.CCIControlOnOffPort_EnvControlOnOffPort.envControlOnOffPort">
+    <ownedEnd xmi:id="CCICS.CCIControlOnOffPort_EnvControlOnOffPort.cciControlOnOffPort" name="cciControlOnOffPort" isUnique="false" association="CCICS.CCIControlOnOffPort_EnvControlOnOffPort">
+      <type xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCIControlOnOffPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a39" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a40" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCICS.CCIControlOnOffPort_EnvControlOnOffPort.envControlOnOffPort" name="envControlOnOffPort" isUnique="false" association="CCICS.CCIControlOnOffPort_EnvControlOnOffPort">
+      <type xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.EnvControlOnOffPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a41" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a42" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCICS.CCISpeedPort_EnvSpeedPort" name="CCISpeedPort_EnvSpeedPort" memberEnd="CCICS.CCISpeedPort_EnvSpeedPort.cciSpeedPort CCICS.CCISpeedPort_EnvSpeedPort.envSpeedPort">
+    <ownedEnd xmi:id="CCICS.CCISpeedPort_EnvSpeedPort.cciSpeedPort" name="cciSpeedPort" isUnique="false" association="CCICS.CCISpeedPort_EnvSpeedPort">
+      <type xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCISpeedPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a43" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a44" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCICS.CCISpeedPort_EnvSpeedPort.envSpeedPort" name="envSpeedPort" isUnique="false" association="CCICS.CCISpeedPort_EnvSpeedPort">
+      <type xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.EnvSpeedPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a45" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a46" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="CCICS.CCICruiseSpeedPort_EnvCruiseSpeedPort" name="CCICruiseSpeedPort_EnvCruiseSpeedPort" memberEnd="CCICS.CCICruiseSpeedPort_EnvCruiseSpeedPort.cciCruiseSpeedPort CCICS.CCICruiseSpeedPort_EnvCruiseSpeedPort.envCruiseSpeedPort">
+    <ownedEnd xmi:id="CCICS.CCICruiseSpeedPort_EnvCruiseSpeedPort.cciCruiseSpeedPort" name="cciCruiseSpeedPort" isUnique="false" association="CCICS.CCICruiseSpeedPort_EnvCruiseSpeedPort">
+      <type xmi:type="uml:Class" href="../CCISystem.uml#CCISystem.system.CCICruiseSpeedPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a47" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a48" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="CCICS.CCICruiseSpeedPort_EnvCruiseSpeedPort.envCruiseSpeedPort" name="envCruiseSpeedPort" isUnique="false" association="CCICS.CCICruiseSpeedPort_EnvCruiseSpeedPort">
+      <type xmi:type="uml:Class" href="../CCIEnvironment.uml#CCIEnvironment.EnvCruiseSpeedPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a49" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a50" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,11 @@
+
+
+@startuml
+	package Main <<card>> {
+		object "env : Environment" as LevelCrossingCS_Main_env
+		object "sys : System" as LevelCrossingCS_Main_sys
+		LevelCrossingCS_Main_sys "tcEntrancePort" -- "tcEntrancePort" LevelCrossingCS_Main_env : EntranceTCPort_EnvEntranceTCPort
+		LevelCrossingCS_Main_sys "tcExitPort" -- "tcExitPort" LevelCrossingCS_Main_env : ExitTCPort_EnvExitTCPort
+		LevelCrossingCS_Main_sys "railwaySignPort" -- "railwaySignPort" LevelCrossingCS_Main_env : RailwaySignPort_EnvRailwaySignPort
+	}
+@enduml

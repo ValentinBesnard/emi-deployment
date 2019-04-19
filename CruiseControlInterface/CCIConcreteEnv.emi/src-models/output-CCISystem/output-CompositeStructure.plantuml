@@ -1,0 +1,21 @@
+
+
+@startuml
+	package CCI <<card>> {
+		object "controller : Controller" as CCISystem_system_CCI_controller
+		object "actuation : Actuation" as CCISystem_system_CCI_actuation
+		object "csm : CruiseSpeedManager" as CCISystem_system_CCI_csm
+		object "pm : PedalsManager" as CCISystem_system_CCI_pm
+		CCISystem_system_CCI_pm "pmClutchPedalPort" -- "clutchPedalPort" CCI : PedalsManagerPedalPort_CCIPedalPort
+		CCISystem_system_CCI_pm "pmBreakPedalPort" -- "breakPedalPort" CCI : PedalsManagerPedalPort_CCIPedalPort
+		CCISystem_system_CCI_pm "pmThrottlePedalPort" -- "throttlePedalPort" CCI : PedalsManagerPedalPort_CCIPedalPort
+		CCI "buttonsPort" -- CCISystem_system_CCI_controller : CCIButtonsPort_Controller
+		CCI "controlOnOffPort" -- CCISystem_system_CCI_actuation : CCIControlOnOffPort_Actuation
+		CCI "speedPort" -- CCISystem_system_CCI_actuation : CCISpeedPort_Actuation
+		CCI "cruiseSpeedPort" -- CCISystem_system_CCI_csm : CCICruiseSpeedPort_CruiseSpeedManager
+		CCISystem_system_CCI_pm -- CCISystem_system_CCI_controller : PedalsManager_Controller
+		CCISystem_system_CCI_actuation -- CCISystem_system_CCI_controller : Actuation_Controller
+		CCISystem_system_CCI_csm -- CCISystem_system_CCI_controller : CruiseSpeedManager_Controller
+		CCISystem_system_CCI_actuation -- CCISystem_system_CCI_csm : Actuation_CruiseSpeedManager
+	}
+@enduml

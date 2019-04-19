@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:StateDiagram">
+      <skinparams>
+        <commentsBefore>hide empty description
+skinparam shadowing false
+skinparam &lt;&lt;junction>>stateBackgroundColor white
+skinparam &lt;&lt;junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+</commentsBefore>
+      </skinparams>
+      <region>
+        <elements xsi:type="PlantUML:State" name="SimulatedLight" longName="SimulatedLight">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="ButtonLedsEnvironment_SimulatedLight_SM_R_Off" longName="Off"/>
+            <elements xsi:type="PlantUML:State" name="ButtonLedsEnvironment_SimulatedLight_SM_R_On" longName="On"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/1" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.1" isVertical="true">
+              <trigger>
+                <parts>lightOn</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}printf(''LED ON\n'');]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true">
+              <trigger>
+                <parts>lightOff</parts>
+              </trigger>
+              <effect>&lt;font color=red>[[#{missing ABCD body}printf(''LED OFF\n'');]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+        <elements xsi:type="PlantUML:State" name="SimulatedButton" longName="SimulatedButton">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="ButtonLedsEnvironment_SimulatedButton_SM_R_Released" longName="Released"/>
+            <elements xsi:type="PlantUML:State" name="ButtonLedsEnvironment_SimulatedButton_SM_R_Pressed" longName="Pressed"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/2" target="/0/@element.0/@region/@elements.1/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.1/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.1/@regions.0/@elements.1" isVertical="true">
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, peer), buttonPressed); printf(''BUTTON PRESSED\n'');]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.1/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.1/@regions.0/@elements.0" isVertical="true">
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, peer), buttonReleased); printf(''BUTTON RELEASED\n'');]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+      </region>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:State name="[*]" longName="Initial"/>
+  <PlantUML:State name="[*]" longName="Initial"/>
+</xmi:XMI>

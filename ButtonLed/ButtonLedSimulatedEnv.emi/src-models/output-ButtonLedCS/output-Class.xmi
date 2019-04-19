@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:ClassDiagram">
+    <skinparams>
+      <commentsBefore></commentsBefore>
+    </skinparams>
+    <elements xsi:type="PlantUML:Class" name="ButtonLedsSystem_ButtonPort" longName="[[ButtonLedsSystem%3A%3AButtonPort-Class.svg ButtonLedsSystem::ButtonPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="ButtonLedsEnvironment_EnvButtonPort" longName="[[ButtonLedsEnvironment%3A%3AEnvButtonPort-Class.svg ButtonLedsEnvironment::EnvButtonPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="ButtonLedsSystem_LightPort" longName="[[ButtonLedsSystem%3A%3ALightPort-Class.svg ButtonLedsSystem::LightPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="ButtonLedsEnvironment_EnvLedPort" longName="[[ButtonLedsEnvironment%3A%3AEnvLedPort-Class.svg ButtonLedsEnvironment::EnvLedPort]]"/>
+    <elements xsi:type="PlantUML:Class" name="ButtonLeds_Main" longName="Main">
+      <features xsi:type="PlantUML:Attribute" name="+&#x2666; system : [[ButtonLedsSystem%3A%3ASystem-Class.svg System]]"/>
+      <features xsi:type="PlantUML:Attribute" name="+&#x2666; env : [[ButtonLedsEnvironment%3A%3AEnv-Class.svg Env]]"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="envButtonPort">
+      <members target="//@element.0/@elements.0"/>
+      <members target="//@element.0/@elements.1"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true" name="envLedPort">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.3"/>
+    </elements>
+  </element>
+</PlantUML:Model>

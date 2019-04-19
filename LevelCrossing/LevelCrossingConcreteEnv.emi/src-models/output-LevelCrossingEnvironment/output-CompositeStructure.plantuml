@@ -1,0 +1,25 @@
+
+
+@startuml
+	package Environment <<card>> {
+		object "tcEntranceSensor : GpioButton" as LevelCrossingEnvironment_Environment_tcEntranceSensor
+		object "tcExitSensor : GpioButton" as LevelCrossingEnvironment_Environment_tcExitSensor
+		object "railwaySignLed : GpioLed" as LevelCrossingEnvironment_Environment_railwaySignLed {
+			port = UML_GPIO_PORT_D
+			pin = UML_GPIO_PIN_12
+		}
+		object "sensorInitializer : SensorInitializer" as LevelCrossingEnvironment_Environment_sensorInitializer {
+			tcEntrancePort0 = UML_GPIO_PORT_C
+			tcEntrancePin0 = UML_GPIO_PIN_1
+			tcEntrancePort1 = UML_GPIO_PORT_C
+			tcEntrancePin1 = UML_GPIO_PIN_3
+			tcExitPort = UML_GPIO_PORT_A
+			tcExitPin = UML_GPIO_PIN_1
+		}
+		LevelCrossingEnvironment_Environment_tcEntranceSensor "peerButton" -- "tcEntrancePort" Environment : ButtonPort_EnvEntranceTCPort
+		LevelCrossingEnvironment_Environment_tcExitSensor "peerButton" -- "tcExitPort" Environment : ButtonPort_EnvExitTCPort
+		LevelCrossingEnvironment_Environment_railwaySignLed -- "railwaySignPort" Environment : RailwaySignLed_EnvRailwaySignPort
+		LevelCrossingEnvironment_Environment_tcEntranceSensor "peerButton" -- LevelCrossingEnvironment_Environment_sensorInitializer : EntranceButtonPort_SensorInitializer
+		LevelCrossingEnvironment_Environment_tcExitSensor "peerButton" -- LevelCrossingEnvironment_Environment_sensorInitializer : ExitButtonPort_SensorInitializer
+	}
+@enduml

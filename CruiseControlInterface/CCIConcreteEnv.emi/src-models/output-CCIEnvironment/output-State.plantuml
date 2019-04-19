@@ -1,0 +1,45 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "Buttons" as Buttons {
+		
+			state "Idle" as CCIEnvironment_Buttons_SM_Buttons_R_Idle
+			[*] --> CCIEnvironment_Buttons_SM_Buttons_R_Idle
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : buttonPressed / SEND(GET(this, envButtonsPort), start); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : buttonPressed / SEND(GET(this, envButtonsPort), set); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : buttonPressed / SEND(GET(this, envButtonsPort), pause); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : buttonPressed / SEND(GET(this, envButtonsPort), resume); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : buttonPressed / SEND(GET(this, envButtonsPort), inc); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : buttonPressed / SEND(GET(this, envButtonsPort), dec); [[ ]]
+			CCIEnvironment_Buttons_SM_Buttons_R_Idle : buttonPressed / SEND(GET(this, envButtonsPort), stop); [[ ]]
+		
+	}
+	state "Pedal" as Pedal {
+		
+			state "Released" as CCIEnvironment_Pedal_SM_Pedal_R_Released
+			state "Pressed" as CCIEnvironment_Pedal_SM_Pedal_R_Pressed
+			[*] --> CCIEnvironment_Pedal_SM_Pedal_R_Released
+			CCIEnvironment_Pedal_SM_Pedal_R_Released --> CCIEnvironment_Pedal_SM_Pedal_R_Pressed : [UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1] / SEND(GET(this, pedalPeer), pedalPressed);
+			CCIEnvironment_Pedal_SM_Pedal_R_Pressed --> CCIEnvironment_Pedal_SM_Pedal_R_Released : [UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0] / SEND(GET(this, pedalPeer), pedalReleased);
+		
+	}
+	state "Engine" as Engine {
+		
+			state "Idle" as CCIEnvironment_Engine_SM_Engine_R_Idle
+			[*] --> CCIEnvironment_Engine_SM_Engine_R_Idle : / UML_PwmInit(GET(this, timer), GET(this, channel));
+			CCIEnvironment_Engine_SM_Engine_R_Idle : / SEND(GET(this, envSpeedPort), updateSpeed, GET(this, speed)); UML_PwmRun(GET(this, timer), GET(this, channel), GET(this, speed) / 2); [[ ]]
+			CCIEnvironment_Engine_SM_Engine_R_Idle : updateSetPoint [[ ]]
+			CCIEnvironment_Engine_SM_Engine_R_Idle : controlOn / UML_PwmRun(GET(this, timer), GET(this, channel), GET(this, speed) / 2); [[ ]]
+			CCIEnvironment_Engine_SM_Engine_R_Idle : controlOff / UML_PwmStop(GET(this, timer), GET(this, channel)); [[ ]]
+			CCIEnvironment_Engine_SM_Engine_R_Idle : [GET(this, speed) < 200] / INC(this, speed, 1); [[ ]]
+			CCIEnvironment_Engine_SM_Engine_R_Idle : [GET(this, speed) > 0] / DEC(this, speed, 1); [[ ]]
+		
+	}
+@enduml

@@ -1,0 +1,38 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "PwmLed" as PwmLed {
+		
+			state "Off" as DIL_PwmLed_SM_R_Off
+			state "On" as DIL_PwmLed_SM_R_On
+			[*] --> DIL_PwmLed_SM_R_Off : / UML_PwmInit(GET(this, timer), GET(this, channel));
+			DIL_PwmLed_SM_R_Off --> DIL_PwmLed_SM_R_On : lightOn / UML_PwmRun(GET(this, timer), GET(this, channel), 50);
+			DIL_PwmLed_SM_R_On --> DIL_PwmLed_SM_R_Off : lightOff / UML_PwmStop(GET(this, timer), GET(this, channel));
+		
+	}
+	state "GpioLed" as GpioLed {
+		
+			state "Off" as DIL_GpioLed_SM_R_Off
+			state "On" as DIL_GpioLed_SM_R_On
+			[*] --> DIL_GpioLed_SM_R_Off
+			DIL_GpioLed_SM_R_Off --> DIL_GpioLed_SM_R_On : lightOn / UML_GpioSetBits(GET(this, port), GET(this, pin));
+			DIL_GpioLed_SM_R_On --> DIL_GpioLed_SM_R_Off : lightOff / UML_GpioResetBits(GET(this, port), GET(this, pin));
+		
+	}
+	state "GpioButton" as GpioButton {
+		
+			state "Released" as DIL_GpioButton_SM_R_Released
+			state "Pressed" as DIL_GpioButton_SM_R_Pressed
+			[*] --> DIL_GpioButton_SM_R_Released
+			DIL_GpioButton_SM_R_Released --> DIL_GpioButton_SM_R_Pressed : [UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1] / SEND(GET(this, peer), buttonPressed);
+			DIL_GpioButton_SM_R_Pressed --> DIL_GpioButton_SM_R_Released : [UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0] / SEND(GET(this, peer), buttonReleased);
+		
+	}
+@enduml

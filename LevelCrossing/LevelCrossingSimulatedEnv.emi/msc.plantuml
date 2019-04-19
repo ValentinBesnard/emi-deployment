@@ -1,0 +1,76 @@
+@startuml
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam monochrome true
+participant "<u>instMain_env_train:Train</u>" as instMain_env_train
+participant "<u>instMain_sys_tcEntrance0:EntranceTC</u>" as instMain_sys_tcEntrance0
+participant "<u>instMain_sys_tcEntrance1:EntranceTC</u>" as instMain_sys_tcEntrance1
+participant "<u>instMain_sys_tcExit:ExitTC</u>" as instMain_sys_tcExit
+participant "<u>instMain_sys_controller:Controller</u>" as instMain_sys_controller
+participant "<u>instMain_sys_railwaySign:RailwaySign</u>" as instMain_sys_railwaySign
+participant "<u>instMain_sys_roadSign:RoadSign</u>" as instMain_sys_roadSign
+participant "<u>instMain_sys_gate:Gate</u>" as instMain_sys_gate
+/ hnote over instMain_env_train : Idle
+/ hnote over instMain_sys_tcEntrance0 : Detection
+/ hnote over instMain_sys_tcEntrance1 : Detection
+/ hnote over instMain_sys_tcExit : Detection
+/ hnote over instMain_sys_controller : Idle
+/ hnote over instMain_sys_railwaySign : Active
+/ hnote over instMain_sys_roadSign : Inactive
+/ hnote over instMain_sys_gate : Open
+hnote over instMain_env_train : Idle
+hnote over instMain_sys_tcEntrance0 : Detection
+hnote over instMain_sys_tcEntrance1 : Detection
+hnote over instMain_sys_tcExit : Detection
+hnote over instMain_sys_controller : Idle
+hnote over instMain_sys_railwaySign : Active
+hnote over instMain_sys_roadSign : Inactive
+hnote over instMain_sys_gate : Open
+instMain_env_train -> instMain_env_tcEntrancePort0 : activation
+instMain_env_tcEntrancePort0 -> instMain_sys_tcEntrancePort0 : activation
+instMain_sys_tcEntrancePort0 -> instMain_sys_tcEntrance0 : activation
+hnote over instMain_env_train : Far
+instMain_sys_tcEntrance0 -> instMain_sys_controller : entranceDetection
+hnote over instMain_sys_tcEntrance0 : Detection
+instMain_sys_controller -> instMain_sys_roadSign : switchOn
+hnote over instMain_sys_controller : WaitRoadSignOn
+instMain_sys_roadSign -> instMain_sys_controller : roadSignOn
+hnote over instMain_sys_roadSign : Active
+hnote over instMain_sys_controller : FarDetection
+instMain_env_train -> instMain_env_tcEntrancePort1 : activation
+instMain_env_tcEntrancePort1 -> instMain_sys_tcEntrancePort1 : activation
+instMain_sys_tcEntrancePort1 -> instMain_sys_tcEntrance1 : activation
+hnote over instMain_env_train : Close
+instMain_sys_tcEntrance1 -> instMain_sys_controller : entranceDetection
+hnote over instMain_sys_tcEntrance1 : Detection
+instMain_sys_controller -> instMain_sys_gate : close
+hnote over instMain_sys_controller : CloseDetection
+instMain_sys_gate -> instMain_sys_controller : gateClosed
+hnote over instMain_sys_gate : Closed
+instMain_sys_controller -> instMain_sys_railwaySign : switchOff
+hnote over instMain_sys_controller : Idle
+instMain_sys_railwaySign -> instMain_sys_railwaySignPort : authorization
+instMain_sys_railwaySignPort -> instMain_env_railwaySignPort : authorization
+instMain_env_railwaySignPort -> instMain_env_train : authorization
+hnote over instMain_sys_railwaySign : Inactive
+hnote over instMain_env_train : Passing
+instMain_env_train -> instMain_env_tcExitPort : activation
+instMain_env_tcExitPort -> instMain_sys_tcExitPort : activation
+instMain_sys_tcExitPort -> instMain_sys_tcExit : activation
+hnote over instMain_env_train : Idle
+instMain_sys_tcExit -> instMain_sys_controller : exitDetection
+hnote over instMain_sys_tcExit : Detection
+instMain_sys_controller -> instMain_sys_railwaySign : switchOn
+hnote over instMain_sys_controller : WaitRailwaySignOn
+instMain_sys_railwaySign -> instMain_sys_controller : railwaySignOn
+hnote over instMain_sys_railwaySign : Active
+instMain_sys_controller -> instMain_sys_gate : open
+hnote over instMain_sys_controller : WaitGateOpen
+instMain_sys_gate -> instMain_sys_controller : gateOpen
+hnote over instMain_sys_gate : Open
+instMain_sys_controller -> instMain_sys_roadSign : switchOff
+hnote over instMain_sys_controller : WaitRoadSignOff
+instMain_sys_roadSign -> instMain_sys_controller : roadSignOff
+hnote over instMain_sys_roadSign : Inactive
+hnote over instMain_sys_controller : Idle
+@enduml

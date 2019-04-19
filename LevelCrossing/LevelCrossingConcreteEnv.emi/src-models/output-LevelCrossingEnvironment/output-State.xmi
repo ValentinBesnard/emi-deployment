@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:StateDiagram">
+      <skinparams>
+        <commentsBefore>hide empty description
+skinparam shadowing false
+skinparam &lt;&lt;junction>>stateBackgroundColor white
+skinparam &lt;&lt;junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+</commentsBefore>
+      </skinparams>
+      <region>
+        <elements xsi:type="PlantUML:State" name="SensorInitializer" longName="SensorInitializer">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingEnvironment_SensorInitializer_SM_R_Idle" longName="Idle"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/1" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true">
+              <effect>&lt;font color=red>[[#{missing ABCD body}]]&lt;/font>\n&lt;font color=red>[[#{missing ABCD body}							SEND(AT(GET(this, tcEntrance), 0), initSensor, GET(this, tcEntrancePort0), GET(this, tcEntrancePin0));]]&lt;/font>\n&lt;font color=red>[[#{missing ABCD body}							SEND(AT(GET(this, tcEntrance), 1), initSensor, GET(this, tcEntrancePort1), GET(this, tcEntrancePin1));]]&lt;/font>\n&lt;font color=red>[[#{missing ABCD body}							SEND(GET(this, tcExit), initSensor, GET(this, tcExitPort), GET(this, tcExitPin));]]&lt;/font>\n&lt;font color=red>[[#{missing ABCD body}						]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+      </region>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:State name="[*]" longName="Initial"/>
+</xmi:XMI>

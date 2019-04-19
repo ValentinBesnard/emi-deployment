@@ -1,0 +1,27 @@
+
+
+@startuml
+	state Env {
+		
+			state "buttons : Buttons" as CCIEnvironment_Env_buttons
+			state "clutchPedal : Pedal" as CCIEnvironment_Env_clutchPedal
+			state "breakPedal : Pedal" as CCIEnvironment_Env_breakPedal
+			state "throttlePedal : Pedal" as CCIEnvironment_Env_throttlePedal
+			state "engine : Engine" as CCIEnvironment_Env_engine
+			state "envButtonsPort : EnvButtonsPort" as CCIEnvironment_Env_envButtonsPort <<entrypoint>>
+			state "envClutchPedalPort : EnvPedalPort" as CCIEnvironment_Env_envClutchPedalPort <<entrypoint>>
+			state "envBreakPedalPort : EnvPedalPort" as CCIEnvironment_Env_envBreakPedalPort <<entrypoint>>
+			state "envThrottlePedalPort : EnvPedalPort" as CCIEnvironment_Env_envThrottlePedalPort <<entrypoint>>
+			state "envControlOnOffPort : EnvControlOnOffPort" as CCIEnvironment_Env_envControlOnOffPort <<entrypoint>>
+			state "envSpeedPort : EnvSpeedPort" as CCIEnvironment_Env_envSpeedPort <<entrypoint>>
+			state "envCruiseSpeedPort : EnvCruiseSpeedPort" as CCIEnvironment_Env_envCruiseSpeedPort <<entrypoint>>
+			CCIEnvironment_Env_envButtonsPort --> CCIEnvironment_Env_buttons
+			CCIEnvironment_Env_envClutchPedalPort --> CCIEnvironment_Env_clutchPedal
+			CCIEnvironment_Env_envBreakPedalPort --> CCIEnvironment_Env_breakPedal
+			CCIEnvironment_Env_envThrottlePedalPort --> CCIEnvironment_Env_throttlePedal
+			CCIEnvironment_Env_envControlOnOffPort --> CCIEnvironment_Env_engine
+			CCIEnvironment_Env_envSpeedPort --> CCIEnvironment_Env_engine
+			CCIEnvironment_Env_envCruiseSpeedPort --> CCIEnvironment_Env_engine
+		
+	}
+@enduml

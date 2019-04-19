@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="Target" name="Target">
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="Target.UML_GpioPort" name="UML_GpioPort">
+    <ownedLiteral xmi:id="Target.UML_GpioPort.UML_GPIO_PORT_A" name="UML_GPIO_PORT_A"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPort.UML_GPIO_PORT_B" name="UML_GPIO_PORT_B"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPort.UML_GPIO_PORT_C" name="UML_GPIO_PORT_C"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPort.UML_GPIO_PORT_D" name="UML_GPIO_PORT_D"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPort.UML_GPIO_PORT_E" name="UML_GPIO_PORT_E"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPort.UML_GPIO_PORT_F" name="UML_GPIO_PORT_F"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="Target.UML_GpioPin" name="UML_GpioPin">
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_0" name="UML_GPIO_PIN_0"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_1" name="UML_GPIO_PIN_1"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_2" name="UML_GPIO_PIN_2"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_3" name="UML_GPIO_PIN_3"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_4" name="UML_GPIO_PIN_4"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_5" name="UML_GPIO_PIN_5"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_6" name="UML_GPIO_PIN_6"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_7" name="UML_GPIO_PIN_7"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_8" name="UML_GPIO_PIN_8"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_9" name="UML_GPIO_PIN_9"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_10" name="UML_GPIO_PIN_10"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_11" name="UML_GPIO_PIN_11"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_12" name="UML_GPIO_PIN_12"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_13" name="UML_GPIO_PIN_13"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_14" name="UML_GPIO_PIN_14"/>
+    <ownedLiteral xmi:id="Target.UML_GpioPin.UML_GPIO_PIN_15" name="UML_GPIO_PIN_15"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="Target.UML_Timer" name="UML_Timer">
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_0" name="UML_TIM_0"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_1" name="UML_TIM_1"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_2" name="UML_TIM_2"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_3" name="UML_TIM_3"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_4" name="UML_TIM_4"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_5" name="UML_TIM_5"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_6" name="UML_TIM_6"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_7" name="UML_TIM_7"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_8" name="UML_TIM_8"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_9" name="UML_TIM_9"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_10" name="UML_TIM_10"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_11" name="UML_TIM_11"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_12" name="UML_TIM_12"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_13" name="UML_TIM_13"/>
+    <ownedLiteral xmi:id="Target.UML_Timer.UML_TIM_14" name="UML_TIM_14"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="Target.UML_PwmChannel" name="UML_PwmChannel">
+    <ownedLiteral xmi:id="Target.UML_PwmChannel.UML_PWM_CH_0" name="UML_PWM_CH_0"/>
+    <ownedLiteral xmi:id="Target.UML_PwmChannel.UML_PWM_CH_1" name="UML_PWM_CH_1"/>
+    <ownedLiteral xmi:id="Target.UML_PwmChannel.UML_PWM_CH_2" name="UML_PWM_CH_2"/>
+    <ownedLiteral xmi:id="Target.UML_PwmChannel.UML_PWM_CH_3" name="UML_PWM_CH_3"/>
+    <ownedLiteral xmi:id="Target.UML_PwmChannel.UML_PWM_CH_4" name="UML_PWM_CH_4"/>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,65 @@
+model DIL with (
+	private "DAL.uml#DAL.lightOn_SE",
+	private "DAL.uml#DAL.lightOff_SE",
+	private "DAL.uml#DAL.LightProvider",
+	private "DAL.uml#DAL.ButtonUser",
+	private "DAL.uml#DAL.ButtonReceiverPort",
+
+	private "Target.uml#Target.UML_GpioPort",
+	private "Target.uml#Target.UML_GpioPin",
+	private "Target.uml#Target.UML_Timer",
+	private "Target.uml#Target.UML_PwmChannel"
+) {
+
+	class |PwmLed| behavesAs SM extends LightProvider {
+		private timer[1-1] : UML_Timer;
+		private channel[1-1] : UML_PwmChannel;
+
+		stateMachine SM {
+			region R {
+				Initial -> Off: /
+						opaqueBehavior = 'UML_PwmInit(GET(this, timer), GET(this, channel));' in C;;
+				Off -> On : lightOn_SE /
+						opaqueBehavior = 'UML_PwmRun(GET(this, timer), GET(this, channel), 50);' in C;;
+				On -> Off : lightOff_SE / 
+						opaqueBehavior = 'UML_PwmStop(GET(this, timer), GET(this, channel));' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |GpioLed| behavesAs SM extends LightProvider {
+		private "port"[1-1] : UML_GpioPort;
+		private pin[1-1] : UML_GpioPin;
+
+		stateMachine SM {
+			region R {
+				Initial -> Off;
+				Off -> On : lightOn_SE /
+						opaqueBehavior = 'UML_GpioSetBits(GET(this, port), GET(this, pin));' in C;;
+				On -> Off : lightOff_SE / 
+						opaqueBehavior = 'UML_GpioResetBits(GET(this, port), GET(this, pin));' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |GpioButton| behavesAs SM extends ButtonUser {
+		private composite behavior port peer[1-1] : ButtonReceiverPort;
+		private "port"[1-1] : UML_GpioPort;
+		private pin[1-1] : UML_GpioPin;
+
+		stateMachine SM {
+			region R {
+				Initial -> Released;
+				Released -> Pressed: [constraint "" is opaqueExpression = 'UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1' in C;] /
+					opaqueBehavior = 'SEND(GET(this, peer), buttonPressed);' in C;;
+				Pressed -> Released: [constraint "" is opaqueExpression = 'UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0' in C;] /
+					opaqueBehavior = 'SEND(GET(this, peer), buttonReleased);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+}
+

@@ -1,0 +1,14 @@
+
+
+@startuml
+	state Env {
+		
+			state "envLedPort : EnvLedPort" as ButtonLedsEnvironment_Env_envLedPort <<entrypoint>>
+			state "envButtonPort : EnvButtonPort" as ButtonLedsEnvironment_Env_envButtonPort <<entrypoint>>
+			state "envLed : PwmLed" as ButtonLedsEnvironment_Env_envLed
+			state "envButton : GpioButton" as ButtonLedsEnvironment_Env_envButton {
+				
+					
+				
+			}
+			

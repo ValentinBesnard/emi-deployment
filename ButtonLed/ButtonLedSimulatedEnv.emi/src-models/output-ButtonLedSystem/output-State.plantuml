@@ -1,0 +1,20 @@
+
+
+@startuml
+hide empty description
+skinparam shadowing false
+skinparam <<junction>>stateBackgroundColor white
+skinparam <<junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+
+
+	state "Controller" as Controller {
+		
+			state "Idle" as ButtonLedsSystem_Controller_SM_R_Idle
+			state "RedOn" as ButtonLedsSystem_Controller_SM_R_RedOn
+			[*] --> ButtonLedsSystem_Controller_SM_R_Idle
+			ButtonLedsSystem_Controller_SM_R_Idle --> ButtonLedsSystem_Controller_SM_R_RedOn : buttonPressed / SEND(GET(this, light), lightOn);
+			ButtonLedsSystem_Controller_SM_R_RedOn --> ButtonLedsSystem_Controller_SM_R_Idle : buttonReleased / SEND(GET(this, light), lightOff);
+		
+	}
+@enduml

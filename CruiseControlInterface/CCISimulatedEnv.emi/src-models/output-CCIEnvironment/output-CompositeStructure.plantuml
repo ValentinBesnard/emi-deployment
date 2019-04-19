@@ -1,0 +1,20 @@
+
+
+@startuml
+	package Env <<card>> {
+		object "buttons : Buttons" as CCIEnvironment_Env_buttons
+		object "clutchPedal : Pedal" as CCIEnvironment_Env_clutchPedal
+		object "breakPedal : Pedal" as CCIEnvironment_Env_breakPedal
+		object "throttlePedal : Pedal" as CCIEnvironment_Env_throttlePedal
+		object "engine : Engine" as CCIEnvironment_Env_engine {
+			speed = 50
+		}
+		Env "envButtonsPort" -- CCIEnvironment_Env_buttons : EnvButtonsPort_Buttons
+		Env "envClutchPedalPort" -- CCIEnvironment_Env_clutchPedal : EnvPedalPort_Pedal
+		Env "envBreakPedalPort" -- CCIEnvironment_Env_breakPedal : EnvPedalPort_Pedal
+		Env "envThrottlePedalPort" -- CCIEnvironment_Env_throttlePedal : EnvPedalPort_Pedal
+		Env "envControlOnOffPort" -- CCIEnvironment_Env_engine : EnvControlOnOffPort_Engine
+		Env "envSpeedPort" -- CCIEnvironment_Env_engine : EnvSpeedPort_Engine
+		Env "envCruiseSpeedPort" -- CCIEnvironment_Env_engine : EnvCruiseSpeedPort_Engine
+	}
+@enduml

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:StateDiagram">
+      <region>
+        <elements xsi:type="PlantUML:State" name="System">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_System_tcEntrance" longName="tcEntrance : EntranceTC"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_System_tcExit" longName="tcExit : ExitTC"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_System_controller" longName="controller : Controller"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_System_railwaySign" longName="railwaySign : RailwaySign"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_System_roadSign" longName="roadSign : RoadSign"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_System_gate" longName="gate : Gate"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_System_tcEntrancePort" longName="tcEntrancePort : EntranceTCPort" kind="entrypoint"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_System_tcExitPort" longName="tcExitPort : ExitTCPort" kind="entrypoint"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingSystem_System_railwaySignPort" longName="railwaySignPort : RailwaySignPort" kind="entrypoint"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.5" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.1" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.4" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.6" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.7" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.1" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.3" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.8" isVertical="true"/>
+          </regions>
+        </elements>
+      </region>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:InternalTransition>
+    <trigger>
+      <parts>id = 1</parts>
+    </trigger>
+  </PlantUML:InternalTransition>
+  <PlantUML:InternalTransition>
+    <trigger>
+      <parts>id = 2</parts>
+    </trigger>
+  </PlantUML:InternalTransition>
+</xmi:XMI>

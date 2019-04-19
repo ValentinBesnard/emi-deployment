@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PlantUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <element xsi:type="PlantUML:UseCaseDiagram">
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingSystem_System_tcEntrance" longName="&lt;u>tcEntrance : EntranceTC&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingSystem_System_tcExit" longName="&lt;u>tcExit : ExitTC&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingSystem_System_controller" longName="&lt;u>controller : Controller&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingSystem_System_railwaySign" longName="&lt;u>railwaySign : RailwaySign&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingSystem_System_roadSign" longName="&lt;u>roadSign : RoadSign&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingSystem_System_gate" longName="&lt;u>gate : Gate&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingSystem_System_tcEntrancePort" longName="&lt;u>tcEntrancePort : EntranceTCPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingSystem_System_tcExitPort" longName="&lt;u>tcExitPort : ExitTCPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Rectangle" name="LevelCrossingSystem_System_railwaySignPort" longName="&lt;u>railwaySignPort : RailwaySignPort&lt;/u>"/>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.5"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.0"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.1"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.4"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.6"/>
+      <members target="//@element.0/@elements.0"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.7"/>
+      <members target="//@element.0/@elements.1"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.2"/>
+      <members target="//@element.0/@elements.3"/>
+    </elements>
+    <elements xsi:type="PlantUML:Relation" isVertical="true">
+      <members target="//@element.0/@elements.3"/>
+      <members target="//@element.0/@elements.8"/>
+    </elements>
+  </element>
+</PlantUML:Model>

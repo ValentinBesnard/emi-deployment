@@ -1,0 +1,2618 @@
+struct _IO_FILE {
+	int                        _flags;               /*     0     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	char *                     _IO_read_ptr;         /*     8     8 */
+	char *                     _IO_read_end;         /*    16     8 */
+	char *                     _IO_read_base;        /*    24     8 */
+	char *                     _IO_write_base;       /*    32     8 */
+	char *                     _IO_write_ptr;        /*    40     8 */
+	char *                     _IO_write_end;        /*    48     8 */
+	char *                     _IO_buf_base;         /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	char *                     _IO_buf_end;          /*    64     8 */
+	char *                     _IO_save_base;        /*    72     8 */
+	char *                     _IO_backup_base;      /*    80     8 */
+	char *                     _IO_save_end;         /*    88     8 */
+	struct _IO_marker *        _markers;             /*    96     8 */
+	struct _IO_FILE *          _chain;               /*   104     8 */
+	int                        _fileno;              /*   112     4 */
+	int                        _flags2;              /*   116     4 */
+	__off_t                    _old_offset;          /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	short unsigned int         _cur_column;          /*   128     2 */
+	signed char                _vtable_offset;       /*   130     1 */
+	char                       _shortbuf[1];         /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	_IO_lock_t *               _lock;                /*   136     8 */
+	__off64_t                  _offset;              /*   144     8 */
+	void *                     __pad1;               /*   152     8 */
+	void *                     __pad2;               /*   160     8 */
+	void *                     __pad3;               /*   168     8 */
+	void *                     __pad4;               /*   176     8 */
+	size_t                     __pad5;               /*   184     8 */
+	/* --- cacheline 3 boundary (192 bytes) --- */
+	int                        _mode;                /*   192     4 */
+	char                       _unused2[20];         /*   196    20 */
+
+	/* size: 216, cachelines: 4, members: 29 */
+	/* sum members: 208, holes: 2, sum holes: 8 */
+	/* last cacheline: 24 bytes */
+};
+struct _IO_marker {
+	struct _IO_marker *        _next;                /*     0     8 */
+	struct _IO_FILE *          _sbuf;                /*     8     8 */
+	int                        _pos;                 /*    16     4 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* padding: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct C_UML_Model {
+	char *                     name;                 /*     0     8 */
+	UML_Signal * *             uml_signal;           /*     8     8 */
+	UML_SignalEvent * *        uml_signal_event;     /*    16     8 */
+	UML_Class * *              uml_class;            /*    24     8 */
+	UML_Association * *        uml_association;      /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 5 */
+	/* last cacheline: 40 bytes */
+};
+struct UML_Constraint {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_ValueSpecification *   specification;        /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_ConnectorEnd {
+	DescriptorType             c_type;               /*     0     4 */
+	int                        lower;                /*     4     4 */
+	UML_Property *             role;                 /*     8     8 */
+	UML_Property *             partWithPort;         /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_SignalEvent {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	NbEnumerationLiteral_t     c_index;              /*    16     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	UML_Signal *               signal;               /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 5 */
+	/* sum members: 25, holes: 1, sum holes: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct UML_Connector {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_ConnectorEnd *         end;                  /*    16     8 */
+	UML_Association *          type;                 /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 5 */
+	/* last cacheline: 32 bytes */
+};
+struct UML_InterfaceRealization {
+	DescriptorType             c_type;               /*     0     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Interface *            contract;             /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* sum members: 12, holes: 1, sum holes: 4 */
+	/* last cacheline: 16 bytes */
+};
+struct UML_OpaqueExpression {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	void *                     c_function;           /*    16     8 */
+	char * *                   language;             /*    24     8 */
+	char * *                   body;                 /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 6 */
+	/* last cacheline: 40 bytes */
+};
+struct UML_Interface {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_ClassifierKind       c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Property * *           ownedAttribute;       /*    24     8 */
+	UML_Reception * *          ownedReception;       /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 6 */
+	/* sum members: 36, holes: 1, sum holes: 4 */
+	/* last cacheline: 40 bytes */
+};
+struct UML_Reception {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Signal *               signal;               /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Pseudostate {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_VertexKind           c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Transition * *         incoming;             /*    24     8 */
+	UML_Transition * *         outgoing;             /*    32     8 */
+	UML_PseudostateKind        kind;                 /*    40     4 */
+
+	/* size: 48, cachelines: 1, members: 7 */
+	/* sum members: 40, holes: 1, sum holes: 4 */
+	/* padding: 4 */
+	/* last cacheline: 48 bytes */
+};
+struct UML_Vertex {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_VertexKind           c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Transition * *         incoming;             /*    24     8 */
+	UML_Transition * *         outgoing;             /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 6 */
+	/* sum members: 36, holes: 1, sum holes: 4 */
+	/* last cacheline: 40 bytes */
+};
+struct UML_Association {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_ClassifierKind       c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Property * *           memberEnd;            /*    24     8 */
+	UML_Property * *           ownedEnd;             /*    32     8 */
+
+	/* size: 40, cachelines: 1, members: 6 */
+	/* sum members: 36, holes: 1, sum holes: 4 */
+	/* last cacheline: 40 bytes */
+};
+struct UML_ValueSpecification {
+	DescriptorType             c_type;               /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct UML_Property {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Class *                type;                 /*    16     8 */
+	int                        lower;                /*    24     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Association *          association;          /*    32     8 */
+	UML_AggregationKind        aggregation;          /*    40     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Class *                class;                /*    48     8 */
+
+	/* size: 56, cachelines: 1, members: 8 */
+	/* sum members: 48, holes: 2, sum holes: 8 */
+	/* last cacheline: 56 bytes */
+};
+struct UML_Transition {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Constraint *           guard;                /*    16     8 */
+	UML_Behavior *             effect;               /*    24     8 */
+	UML_Trigger *              trigger;              /*    32     8 */
+	UML_Vertex *               source;               /*    40     8 */
+	UML_Vertex *               target;               /*    48     8 */
+
+	/* size: 56, cachelines: 1, members: 8 */
+	/* last cacheline: 56 bytes */
+};
+struct UML_PrimitiveType {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_ClassifierKind       c_kind;               /*    16     4 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* padding: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_StateMachine {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Region * *             region;               /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Behavior {
+	DescriptorType             c_type;               /*     0     4 */
+	C_UML_BehaviorKind         c_kind;               /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct UML_OpaqueBehavior {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_BehaviorKind         c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	void *                     c_function;           /*    24     8 */
+	char * *                   language;             /*    32     8 */
+	char * *                   body;                 /*    40     8 */
+
+	/* size: 48, cachelines: 1, members: 7 */
+	/* sum members: 44, holes: 1, sum holes: 4 */
+	/* last cacheline: 48 bytes */
+};
+struct UML_State {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	C_UML_VertexKind           c_kind;               /*    16     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Transition * *         incoming;             /*    24     8 */
+	UML_Transition * *         outgoing;             /*    32     8 */
+	UML_Behavior *             entry;                /*    40     8 */
+	UML_Behavior *             exit;                 /*    48     8 */
+	UML_Trigger *              deferrableTrigger;    /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+
+	/* size: 64, cachelines: 1, members: 9 */
+	/* sum members: 60, holes: 1, sum holes: 4 */
+};
+struct UML_Trigger {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Port * *               port;                 /*    16     8 */
+	UML_SignalEvent *          event;                /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 5 */
+	/* last cacheline: 32 bytes */
+};
+struct UML_Signal {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Property * *           ownedAttribute;       /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Class {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Connector * *          ownedConnector;       /*    16     8 */
+	UML_Property * *           ownedAttribute;       /*    24     8 */
+	UML_Behavior *             classifierBehavior;   /*    32     8 */
+	UML_InterfaceRealization * * interfaceRealization; /*    40     8 */
+	UML_Port * *               ownedPort;            /*    48     8 */
+	C_UML_ClassifierKind       c_kind;               /*    56     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	UML_Class * *              superClass;           /*    64     8 */
+	_Bool                      isActive;             /*    72     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	UML_Reception * *          ownedReception;       /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 12 */
+	/* sum members: 77, holes: 2, sum holes: 11 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Region {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Vertex * *             subvertex;            /*    16     8 */
+	UML_Transition * *         transition;           /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 5 */
+	/* last cacheline: 32 bytes */
+};
+struct UML_Enumeration {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_EnumerationLiteral * * ownedLiteral;         /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_Port {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	UML_Association *          association;          /*    16     8 */
+	UML_AggregationKind        aggregation;          /*    24     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	UML_Class *                class;                /*    32     8 */
+	UML_Class *                type;                 /*    40     8 */
+	UML_ConnectorEnd *         end;                  /*    48     8 */
+	int                        lower;                /*    56     4 */
+	NbEnumerationLiteral_t     c_index;              /*    60     1 */
+	_Bool                      isConjugated;         /*    61     1 */
+
+	/* XXX 2 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	UML_Interface * *          provided;             /*    64     8 */
+	_Bool                      isBehavior;           /*    72     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	UML_Interface * *          required;             /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 14 */
+	/* sum members: 75, holes: 3, sum holes: 13 */
+	/* last cacheline: 24 bytes */
+};
+struct UML_EnumerationLiteral {
+	DescriptorType             c_type;               /*     0     4 */
+	UML_VisibilityKind         visibility;           /*     4     4 */
+	char *                     name;                 /*     8     8 */
+	NbEnumerationLiteral_t     c_index;              /*    16     1 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* padding: 7 */
+	/* last cacheline: 24 bytes */
+};
+struct Fifo {
+	void * *                   data;                 /*     0     8 */
+	uint8_t                    nb_layers;            /*     8     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	uint32_t *                 element_size;         /*    16     8 */
+	NbFifoElements_t *         nb;                   /*    24     8 */
+	NbFifoElements_t           size;                 /*    32     1 */
+	NbFifoElements_t           writing;              /*    33     1 */
+
+	/* XXX 6 bytes hole, try to pack */
+
+	void *                     reorganize_buffer;    /*    40     8 */
+
+	/* size: 48, cachelines: 1, members: 7 */
+	/* sum members: 35, holes: 2, sum holes: 13 */
+	/* last cacheline: 48 bytes */
+};
+struct EventPool {
+	Fifo                       fifo;                 /*     0    48 */
+	EventPoolMeta              meta;                 /*    48    24 */
+	/* --- cacheline 1 boundary (64 bytes) was 8 bytes ago --- */
+
+	/* size: 72, cachelines: 2, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct EventPoolStore {
+	NbEvents_t                 nbEvents;             /*     0     1 */
+	EventId                    eventOccurred[4];     /*     1     8 */
+
+	/* size: 9, cachelines: 1, members: 2 */
+	/* last cacheline: 9 bytes */
+};
+struct EventPoolMeta {
+	EventSetSize_t             eventSetSize;         /*     0     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	UML_Signal * *             eventSet;             /*     8     8 */
+	uint32_t                   paramsSize;           /*    16     4 */
+	NbEvents_t                 nbDeferred;           /*    20     1 */
+
+	/* size: 24, cachelines: 1, members: 4 */
+	/* sum members: 14, holes: 1, sum holes: 7 */
+	/* padding: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct EventId {
+	NbSignalEvents_t           signalEventId;        /*     0     1 */
+	NbPorts_t                  portId;               /*     1     1 */
+
+	/* size: 2, cachelines: 1, members: 2 */
+	/* last cacheline: 2 bytes */
+};
+struct ClassInfo {
+	UML_Class *                type;                 /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct Object {
+	char *                     name;                 /*     0     8 */
+	ClassInfo *                classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	void *                     properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	void *                     store;                /*    40     8 */
+	void *                     operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* size: 64, cachelines: 1, members: 8 */
+	/* sum members: 50, holes: 1, sum holes: 7 */
+	/* padding: 7 */
+};
+struct PassiveObject {
+	char *                     name;                 /*     0     8 */
+	ClassInfo *                classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	void *                     properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	void *                     store;                /*    40     8 */
+	void *                     operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	void *                     properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct ActiveObject {
+	char *                     name;                 /*     0     8 */
+	ClassInfo *                classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	void *                     properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	void *                     store;                /*    40     8 */
+	void *                     operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	void *                     properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct entranceDetection_signal_parameters {
+	int32_t                    id;                   /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct exitDetection_signal_parameters {
+	int32_t                    id;                   /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct switchOn_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct switchOff_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct roadSignOn_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct roadSignOff_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct open_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct close_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct gateOpen_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct gateClosed_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct railwaySignOn_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct initSensor_signal_parameters {
+	int32_t                    port;                 /*     0     4 */
+	int32_t                    pin;                  /*     4     4 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct activation_signal_parameters {
+	int32_t                    id;                   /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct authorization_signal_parameters {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct GpioButton_events {
+	union {
+		initSensor_signal_parameters initSensor_params; /*           8 */
+	};                                               /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct EntranceTC_events {
+	union {
+		activation_signal_parameters activation_params; /*           4 */
+	};                                               /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct ExitTC_events {
+	union {
+		activation_signal_parameters activation_params; /*           4 */
+	};                                               /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct Controller_events {
+	union {
+		entranceDetection_signal_parameters entranceDetection_params; /*           4 */
+		exitDetection_signal_parameters exitDetection_params; /*           4 */
+	};                                               /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct System_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct System_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EntranceTCPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EntranceTCPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ExitTCPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ExitTCPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct RailwaySignPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct RailwaySignPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EntranceTC_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	EntranceTC_ep_params       ep_params;            /*    16    16 */
+	EntranceTC_od              od;                   /*    32     4 */
+
+	/* size: 36, cachelines: 1, members: 4 */
+	/* sum members: 33, holes: 1, sum holes: 3 */
+	/* last cacheline: 36 bytes */
+};
+struct EntranceTC_ep_params {
+	EntranceTC_events          eventOccurred[4];     /*     0    16 */
+
+	/* size: 16, cachelines: 1, members: 1 */
+	/* last cacheline: 16 bytes */
+};
+struct EntranceTC_od {
+	int32_t                    id;                   /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct ExitTC_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	ExitTC_ep_params           ep_params;            /*    16    16 */
+	ExitTC_od                  od;                   /*    32     4 */
+
+	/* size: 36, cachelines: 1, members: 4 */
+	/* sum members: 33, holes: 1, sum holes: 3 */
+	/* last cacheline: 36 bytes */
+};
+struct ExitTC_ep_params {
+	ExitTC_events              eventOccurred[4];     /*     0    16 */
+
+	/* size: 16, cachelines: 1, members: 1 */
+	/* last cacheline: 16 bytes */
+};
+struct ExitTC_od {
+	int32_t                    id;                   /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct Controller_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	Controller_ep_params       ep_params;            /*    16    16 */
+	Controller_od              od;                   /*    32     4 */
+
+	/* size: 36, cachelines: 1, members: 4 */
+	/* sum members: 33, holes: 1, sum holes: 3 */
+	/* last cacheline: 36 bytes */
+};
+struct Controller_ep_params {
+	Controller_events          eventOccurred[4];     /*     0    16 */
+
+	/* size: 16, cachelines: 1, members: 1 */
+	/* last cacheline: 16 bytes */
+};
+struct Controller_od {
+	int32_t                    nbEngagedTrains;      /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct RoadSign_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct RoadSign_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Gate_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 3 */
+	/* last cacheline: 16 bytes */
+};
+struct Gate_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct RailwaySign_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	RailwaySign_od             od;                   /*    16     4 */
+
+	/* size: 20, cachelines: 1, members: 3 */
+	/* sum members: 17, holes: 1, sum holes: 3 */
+	/* last cacheline: 20 bytes */
+};
+struct RailwaySign_od {
+	int32_t                    id;                   /*     0     4 */
+
+	/* size: 4, cachelines: 1, members: 1 */
+	/* last cacheline: 4 bytes */
+};
+struct GpioLed_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+	GpioLed_od                 od;                   /*    13     2 */
+
+	/* size: 16, cachelines: 1, members: 3 */
+	/* padding: 1 */
+	/* last cacheline: 16 bytes */
+};
+struct GpioLed_od {
+	NbEnumerationLiteral_t     port;                 /*     0     1 */
+	NbEnumerationLiteral_t     pin;                  /*     1     1 */
+
+	/* size: 2, cachelines: 1, members: 2 */
+	/* last cacheline: 2 bytes */
+};
+struct ButtonPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct GpioButton_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+
+	/* XXX 3 bytes hole, try to pack */
+
+	GpioButton_ep_params       ep_params;            /*    16    32 */
+	GpioButton_od              od;                   /*    48     2 */
+
+	/* size: 52, cachelines: 1, members: 4 */
+	/* sum members: 47, holes: 1, sum holes: 3 */
+	/* padding: 2 */
+	/* last cacheline: 52 bytes */
+};
+struct GpioButton_ep_params {
+	GpioButton_events          eventOccurred[4];     /*     0    32 */
+
+	/* size: 32, cachelines: 1, members: 1 */
+	/* last cacheline: 32 bytes */
+};
+struct GpioButton_od {
+	NbEnumerationLiteral_t     port;                 /*     0     1 */
+	NbEnumerationLiteral_t     pin;                  /*     1     1 */
+
+	/* size: 2, cachelines: 1, members: 2 */
+	/* last cacheline: 2 bytes */
+};
+struct Main_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Main_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Environment_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Environment_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvEntranceTCPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvEntranceTCPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvExitTCPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvExitTCPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvRailwaySignPort_store {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvRailwaySignPort_od {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct SensorInitializer_store {
+	uint32_t                   cs;                   /*     0     4 */
+	EventPoolStore             ep;                   /*     4     9 */
+	SensorInitializer_od       od;                   /*    13     6 */
+
+	/* size: 20, cachelines: 1, members: 3 */
+	/* padding: 1 */
+	/* last cacheline: 20 bytes */
+};
+struct SensorInitializer_od {
+	NbEnumerationLiteral_t     tcEntrancePort0;      /*     0     1 */
+	NbEnumerationLiteral_t     tcEntrancePin0;       /*     1     1 */
+	NbEnumerationLiteral_t     tcEntrancePort1;      /*     2     1 */
+	NbEnumerationLiteral_t     tcEntrancePin1;       /*     3     1 */
+	NbEnumerationLiteral_t     tcExitPort;           /*     4     1 */
+	NbEnumerationLiteral_t     tcExitPin;            /*     5     1 */
+
+	/* size: 6, cachelines: 1, members: 6 */
+	/* last cacheline: 6 bytes */
+};
+struct Store {
+	uint32_t                   scheduling_state;     /*     0     4 */
+	Main_store                 instMain;             /*     4     0 */
+	Environment_store          instMain_env;         /*     4     0 */
+	GpioButton_store           instMain_env_tcEntranceSensor0; /*     4    52 */
+	ButtonPort_store           instMain_env_tcEntranceSensor0_peerButton; /*    56     0 */
+	GpioButton_store           instMain_env_tcEntranceSensor1; /*    56    52 */
+	/* --- cacheline 1 boundary (64 bytes) was 44 bytes ago --- */
+	ButtonPort_store           instMain_env_tcEntranceSensor1_peerButton; /*   108     0 */
+	GpioButton_store           instMain_env_tcExitSensor; /*   108    52 */
+	/* --- cacheline 2 boundary (128 bytes) was 32 bytes ago --- */
+	ButtonPort_store           instMain_env_tcExitSensor_peerButton; /*   160     0 */
+	GpioLed_store              instMain_env_railwaySignLed; /*   160    16 */
+	SensorInitializer_store    instMain_env_sensorInitializer; /*   176    20 */
+	/* --- cacheline 3 boundary (192 bytes) was 4 bytes ago --- */
+	EnvEntranceTCPort_store    instMain_env_tcEntrancePort0; /*   196     0 */
+	EnvEntranceTCPort_store    instMain_env_tcEntrancePort1; /*   196     0 */
+	EnvExitTCPort_store        instMain_env_tcExitPort; /*   196     0 */
+	EnvRailwaySignPort_store   instMain_env_railwaySignPort; /*   196     0 */
+	System_store               instMain_sys;         /*   196     0 */
+	EntranceTC_store           instMain_sys_tcEntrance0; /*   196    36 */
+	EntranceTC_store           instMain_sys_tcEntrance1; /*   232    36 */
+	/* --- cacheline 4 boundary (256 bytes) was 12 bytes ago --- */
+	ExitTC_store               instMain_sys_tcExit;  /*   268    36 */
+	Controller_store           instMain_sys_controller; /*   304    36 */
+	/* --- cacheline 5 boundary (320 bytes) was 20 bytes ago --- */
+	RailwaySign_store          instMain_sys_railwaySign; /*   340    20 */
+	RoadSign_store             instMain_sys_roadSign; /*   360    16 */
+	Gate_store                 instMain_sys_gate;    /*   376    16 */
+	/* --- cacheline 6 boundary (384 bytes) was 8 bytes ago --- */
+	EntranceTCPort_store       instMain_sys_tcEntrancePort0; /*   392     0 */
+	EntranceTCPort_store       instMain_sys_tcEntrancePort1; /*   392     0 */
+	ExitTCPort_store           instMain_sys_tcExitPort; /*   392     0 */
+	RailwaySignPort_store      instMain_sys_railwaySignPort; /*   392     0 */
+
+	/* size: 392, cachelines: 7, members: 27 */
+	/* last cacheline: 8 bytes */
+};
+struct SignalEvents {
+	UML_SignalEvent *          entranceDetection;    /*     0     8 */
+	UML_SignalEvent *          exitDetection;        /*     8     8 */
+	UML_SignalEvent *          switchOn;             /*    16     8 */
+	UML_SignalEvent *          switchOff;            /*    24     8 */
+	UML_SignalEvent *          roadSignOn;           /*    32     8 */
+	UML_SignalEvent *          roadSignOff;          /*    40     8 */
+	UML_SignalEvent *          open;                 /*    48     8 */
+	UML_SignalEvent *          close;                /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	UML_SignalEvent *          gateOpen;             /*    64     8 */
+	UML_SignalEvent *          gateClosed;           /*    72     8 */
+	UML_SignalEvent *          railwaySignOn;        /*    80     8 */
+	UML_SignalEvent *          initSensor;           /*    88     8 */
+	UML_SignalEvent *          activation;           /*    96     8 */
+	UML_SignalEvent *          authorization;        /*   104     8 */
+
+	/* size: 112, cachelines: 2, members: 14 */
+	/* last cacheline: 48 bytes */
+};
+struct GpioLed_properties_ro {
+	EnvRailwaySignPort_Object * railwaySign;         /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct ButtonPort_properties_ro {
+	EnvEntranceTCPort_Object * tcEntrance;           /*     0     8 */
+	SensorInitializer_Object * sensorInitializerForExit; /*     8     8 */
+	EnvExitTCPort_Object *     tcExit;               /*    16     8 */
+	SensorInitializer_Object * sensorInitializerForEntrance; /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 4 */
+	/* last cacheline: 32 bytes */
+};
+struct EnvExitTCPort_properties_ro {
+	ButtonPort_Object *        tcExitSensor;         /*     0     8 */
+	ExitTCPort_Object *        sysTcExitPort;        /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct EntranceTCPort_properties_ro {
+	EntranceTC_Object *        tcEntrance;           /*     0     8 */
+	EnvEntranceTCPort_Object * envTcEntrancePort;    /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct Controller_properties_ro {
+	EntranceTC_Object *        tcEntrance[2];        /*     0    16 */
+	ExitTC_Object *            tcExit;               /*    16     8 */
+	RoadSign_Object *          roadSign;             /*    24     8 */
+	RailwaySign_Object *       railwaySign;          /*    32     8 */
+	Gate_Object *              gate;                 /*    40     8 */
+
+	/* size: 48, cachelines: 1, members: 5 */
+	/* last cacheline: 48 bytes */
+};
+struct RailwaySign_properties_ro {
+	RailwaySignPort_Object *   train;                /*     0     8 */
+	Controller_Object *        controller;           /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct GpioButton_properties_ro {
+	ButtonPort_Object *        peerButton;           /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct Main_properties_ro {
+	Environment_Object *       env;                  /*     0     8 */
+	System_Object *            sys;                  /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvEntranceTCPort_properties_ro {
+	EntranceTCPort_Object *    sysTcEntrancePort;    /*     0     8 */
+	ButtonPort_Object *        tcEntranceSensor;     /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct RoadSign_properties_ro {
+	Controller_Object *        controller;           /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct Environment_properties_ro {
+	EnvExitTCPort_Object *     tcExitPort;           /*     0     8 */
+	GpioLed_Object *           railwaySignLed;       /*     8     8 */
+	GpioButton_Object *        tcExitSensor;         /*    16     8 */
+	SensorInitializer_Object * sensorInitializer;    /*    24     8 */
+	EnvEntranceTCPort_Object * tcEntrancePort[2];    /*    32    16 */
+	GpioButton_Object *        tcEntranceSensor[2];  /*    48    16 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	EnvRailwaySignPort_Object * railwaySignPort;     /*    64     8 */
+
+	/* size: 72, cachelines: 2, members: 7 */
+	/* last cacheline: 8 bytes */
+};
+struct SensorInitializer_properties_ro {
+	ButtonPort_Object *        tcEntrance[2];        /*     0    16 */
+	ButtonPort_Object *        tcExit;               /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 2 */
+	/* last cacheline: 24 bytes */
+};
+struct ExitTC_properties_ro {
+	ExitTCPort_Object *        tcExitPort;           /*     0     8 */
+	Controller_Object *        controller;           /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct System_properties_ro {
+	EntranceTC_Object *        tcEntrance[2];        /*     0    16 */
+	EntranceTCPort_Object *    tcEntrancePort[2];    /*    16    16 */
+	RailwaySignPort_Object *   railwaySignPort;      /*    32     8 */
+	Gate_Object *              gate;                 /*    40     8 */
+	ExitTCPort_Object *        tcExitPort;           /*    48     8 */
+	Controller_Object *        controller;           /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	RailwaySign_Object *       railwaySign;          /*    64     8 */
+	ExitTC_Object *            tcExit;               /*    72     8 */
+	RoadSign_Object *          roadSign;             /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 9 */
+	/* last cacheline: 24 bytes */
+};
+struct ExitTCPort_properties_ro {
+	EnvExitTCPort_Object *     envTcExitPort;        /*     0     8 */
+	ExitTC_Object *            tcExit;               /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct RailwaySignPort_properties_ro {
+	RailwaySign_Object *       railwaySign;          /*     0     8 */
+	EnvRailwaySignPort_Object * envRailwaySignPort;  /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct Gate_properties_ro {
+	Controller_Object *        controller;           /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct EntranceTC_properties_ro {
+	Controller_Object *        controller;           /*     0     8 */
+	EntranceTCPort_Object *    train;                /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvRailwaySignPort_properties_ro {
+	RailwaySignPort_Object *   sysRailwaySignPort;   /*     0     8 */
+	GpioLed_Object *           railwaySignLed;       /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct PropertiesRO {
+	Main_properties_ro         instMain;             /*     0    16 */
+	Environment_properties_ro  instMain_env;         /*    16    72 */
+	/* --- cacheline 1 boundary (64 bytes) was 24 bytes ago --- */
+	GpioButton_properties_ro   instMain_env_tcEntranceSensor0; /*    88     8 */
+	ButtonPort_properties_ro   instMain_env_tcEntranceSensor0_peerButton; /*    96    32 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	GpioButton_properties_ro   instMain_env_tcEntranceSensor1; /*   128     8 */
+	ButtonPort_properties_ro   instMain_env_tcEntranceSensor1_peerButton; /*   136    32 */
+	GpioButton_properties_ro   instMain_env_tcExitSensor; /*   168     8 */
+	ButtonPort_properties_ro   instMain_env_tcExitSensor_peerButton; /*   176    32 */
+	/* --- cacheline 3 boundary (192 bytes) was 16 bytes ago --- */
+	GpioLed_properties_ro      instMain_env_railwaySignLed; /*   208     8 */
+	SensorInitializer_properties_ro instMain_env_sensorInitializer; /*   216    24 */
+	EnvEntranceTCPort_properties_ro instMain_env_tcEntrancePort0; /*   240    16 */
+	/* --- cacheline 4 boundary (256 bytes) --- */
+	EnvEntranceTCPort_properties_ro instMain_env_tcEntrancePort1; /*   256    16 */
+	EnvExitTCPort_properties_ro instMain_env_tcExitPort; /*   272    16 */
+	EnvRailwaySignPort_properties_ro instMain_env_railwaySignPort; /*   288    16 */
+	System_properties_ro       instMain_sys;         /*   304    88 */
+	/* --- cacheline 6 boundary (384 bytes) was 8 bytes ago --- */
+	EntranceTC_properties_ro   instMain_sys_tcEntrance0; /*   392    16 */
+	EntranceTC_properties_ro   instMain_sys_tcEntrance1; /*   408    16 */
+	ExitTC_properties_ro       instMain_sys_tcExit;  /*   424    16 */
+	Controller_properties_ro   instMain_sys_controller; /*   440    48 */
+	/* --- cacheline 7 boundary (448 bytes) was 40 bytes ago --- */
+	RailwaySign_properties_ro  instMain_sys_railwaySign; /*   488    16 */
+	RoadSign_properties_ro     instMain_sys_roadSign; /*   504     8 */
+	/* --- cacheline 8 boundary (512 bytes) --- */
+	Gate_properties_ro         instMain_sys_gate;    /*   512     8 */
+	EntranceTCPort_properties_ro instMain_sys_tcEntrancePort0; /*   520    16 */
+	EntranceTCPort_properties_ro instMain_sys_tcEntrancePort1; /*   536    16 */
+	ExitTCPort_properties_ro   instMain_sys_tcExitPort; /*   552    16 */
+	RailwaySignPort_properties_ro instMain_sys_railwaySignPort; /*   568    16 */
+	/* --- cacheline 9 boundary (576 bytes) was 8 bytes ago --- */
+
+	/* size: 584, cachelines: 10, members: 26 */
+	/* last cacheline: 8 bytes */
+};
+struct System_mutability {
+	_Bool                      tcEntrance_isMutable:1; /*     0: 7  1 */
+	_Bool                      tcEntrancePort_isMutable:1; /*     0: 6  1 */
+	_Bool                      railwaySignPort_isMutable:1; /*     0: 5  1 */
+	_Bool                      gate_isMutable:1;     /*     0: 4  1 */
+	_Bool                      tcExitPort_isMutable:1; /*     0: 3  1 */
+	_Bool                      controller_isMutable:1; /*     0: 2  1 */
+	_Bool                      railwaySign_isMutable:1; /*     0: 1  1 */
+	_Bool                      tcExit_isMutable:1;   /*     0: 0  1 */
+	_Bool                      roadSign_isMutable:1; /*     1: 7  1 */
+
+	/* size: 2, cachelines: 1, members: 9 */
+	/* bit_padding: 7 bits */
+	/* last cacheline: 2 bytes */
+};
+struct EntranceTCPort_mutability {
+	_Bool                      tcEntrance_isMutable:1; /*     0: 7  1 */
+	_Bool                      envTcEntrancePort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct ExitTCPort_mutability {
+	_Bool                      envTcExitPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      tcExit_isMutable:1;   /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct RailwaySignPort_mutability {
+	_Bool                      railwaySign_isMutable:1; /*     0: 7  1 */
+	_Bool                      envRailwaySignPort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct EntranceTC_mutability {
+	_Bool                      controller_isMutable:1; /*     0: 7  1 */
+	_Bool                      train_isMutable:1;    /*     0: 6  1 */
+	_Bool                      id_isMutable:1;       /*     0: 5  1 */
+
+	/* size: 1, cachelines: 1, members: 3 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 1 bytes */
+};
+struct ExitTC_mutability {
+	_Bool                      tcExitPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      controller_isMutable:1; /*     0: 6  1 */
+	_Bool                      id_isMutable:1;       /*     0: 5  1 */
+
+	/* size: 1, cachelines: 1, members: 3 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Controller_mutability {
+	_Bool                      tcEntrance_isMutable:1; /*     0: 7  1 */
+	_Bool                      tcExit_isMutable:1;   /*     0: 6  1 */
+	_Bool                      roadSign_isMutable:1; /*     0: 5  1 */
+	_Bool                      railwaySign_isMutable:1; /*     0: 4  1 */
+	_Bool                      gate_isMutable:1;     /*     0: 3  1 */
+	_Bool                      nbEngagedTrains_isMutable:1; /*     0: 2  1 */
+
+	/* size: 1, cachelines: 1, members: 6 */
+	/* bit_padding: 2 bits */
+	/* last cacheline: 1 bytes */
+};
+struct RoadSign_mutability {
+	_Bool                      controller_isMutable:1; /*     0: 7  1 */
+
+	/* size: 1, cachelines: 1, members: 1 */
+	/* bit_padding: 7 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Gate_mutability {
+	_Bool                      controller_isMutable:1; /*     0: 7  1 */
+
+	/* size: 1, cachelines: 1, members: 1 */
+	/* bit_padding: 7 bits */
+	/* last cacheline: 1 bytes */
+};
+struct RailwaySign_mutability {
+	_Bool                      train_isMutable:1;    /*     0: 7  1 */
+	_Bool                      controller_isMutable:1; /*     0: 6  1 */
+	_Bool                      id_isMutable:1;       /*     0: 5  1 */
+
+	/* size: 1, cachelines: 1, members: 3 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 1 bytes */
+};
+struct GpioLed_mutability {
+	_Bool                      railwaySign_isMutable:1; /*     0: 7  1 */
+	_Bool                      port_isMutable:1;     /*     0: 6  1 */
+	_Bool                      pin_isMutable:1;      /*     0: 5  1 */
+
+	/* size: 1, cachelines: 1, members: 3 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 1 bytes */
+};
+struct ButtonPort_mutability {
+	_Bool                      tcEntrance_isMutable:1; /*     0: 7  1 */
+	_Bool                      sensorInitializerForExit_isMutable:1; /*     0: 6  1 */
+	_Bool                      tcExit_isMutable:1;   /*     0: 5  1 */
+	_Bool                      sensorInitializerForEntrance_isMutable:1; /*     0: 4  1 */
+
+	/* size: 1, cachelines: 1, members: 4 */
+	/* bit_padding: 4 bits */
+	/* last cacheline: 1 bytes */
+};
+struct GpioButton_mutability {
+	_Bool                      peerButton_isMutable:1; /*     0: 7  1 */
+	_Bool                      port_isMutable:1;     /*     0: 6  1 */
+	_Bool                      pin_isMutable:1;      /*     0: 5  1 */
+
+	/* size: 1, cachelines: 1, members: 3 */
+	/* bit_padding: 5 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Main_mutability {
+	_Bool                      env_isMutable:1;      /*     0: 7  1 */
+	_Bool                      sys_isMutable:1;      /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct Environment_mutability {
+	_Bool                      tcExitPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      railwaySignLed_isMutable:1; /*     0: 6  1 */
+	_Bool                      tcExitSensor_isMutable:1; /*     0: 5  1 */
+	_Bool                      sensorInitializer_isMutable:1; /*     0: 4  1 */
+	_Bool                      tcEntrancePort_isMutable:1; /*     0: 3  1 */
+	_Bool                      tcEntranceSensor_isMutable:1; /*     0: 2  1 */
+	_Bool                      railwaySignPort_isMutable:1; /*     0: 1  1 */
+
+	/* size: 1, cachelines: 1, members: 7 */
+	/* bit_padding: 1 bits */
+	/* last cacheline: 1 bytes */
+};
+struct EnvEntranceTCPort_mutability {
+	_Bool                      sysTcEntrancePort_isMutable:1; /*     0: 7  1 */
+	_Bool                      tcEntranceSensor_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct EnvExitTCPort_mutability {
+	_Bool                      tcExitSensor_isMutable:1; /*     0: 7  1 */
+	_Bool                      sysTcExitPort_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct EnvRailwaySignPort_mutability {
+	_Bool                      sysRailwaySignPort_isMutable:1; /*     0: 7  1 */
+	_Bool                      railwaySignLed_isMutable:1; /*     0: 6  1 */
+
+	/* size: 1, cachelines: 1, members: 2 */
+	/* bit_padding: 6 bits */
+	/* last cacheline: 1 bytes */
+};
+struct SensorInitializer_mutability {
+	_Bool                      tcEntrance_isMutable:1; /*     0: 7  1 */
+	_Bool                      tcExit_isMutable:1;   /*     0: 6  1 */
+	_Bool                      tcEntrancePort0_isMutable:1; /*     0: 5  1 */
+	_Bool                      tcEntrancePin0_isMutable:1; /*     0: 4  1 */
+	_Bool                      tcEntrancePort1_isMutable:1; /*     0: 3  1 */
+	_Bool                      tcEntrancePin1_isMutable:1; /*     0: 2  1 */
+	_Bool                      tcExitPort_isMutable:1; /*     0: 1  1 */
+	_Bool                      tcExitPin_isMutable:1; /*     0: 0  1 */
+
+	/* size: 1, cachelines: 1, members: 8 */
+	/* last cacheline: 1 bytes */
+};
+struct ActivationProvider_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ActivationUser_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct AuthorizationProvider_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct AuthorizationUser_mutability {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct System_PropertiesTypes {
+	System_properties_ro *     tcEntrance_type;      /*     0     8 */
+	System_properties_ro *     tcEntrancePort_type;  /*     8     8 */
+	System_properties_ro *     railwaySignPort_type; /*    16     8 */
+	System_properties_ro *     gate_type;            /*    24     8 */
+	System_properties_ro *     tcExitPort_type;      /*    32     8 */
+	System_properties_ro *     controller_type;      /*    40     8 */
+	System_properties_ro *     railwaySign_type;     /*    48     8 */
+	System_properties_ro *     tcExit_type;          /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	System_properties_ro *     roadSign_type;        /*    64     8 */
+
+	/* size: 72, cachelines: 2, members: 9 */
+	/* last cacheline: 8 bytes */
+};
+struct EntranceTCPort_PropertiesTypes {
+	EntranceTCPort_properties_ro * tcEntrance_type;  /*     0     8 */
+	EntranceTCPort_properties_ro * envTcEntrancePort_type; /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct ExitTCPort_PropertiesTypes {
+	ExitTCPort_properties_ro * envTcExitPort_type;   /*     0     8 */
+	ExitTCPort_properties_ro * tcExit_type;          /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct RailwaySignPort_PropertiesTypes {
+	RailwaySignPort_properties_ro * railwaySign_type; /*     0     8 */
+	RailwaySignPort_properties_ro * envRailwaySignPort_type; /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct EntranceTC_PropertiesTypes {
+	EntranceTC_properties_ro * controller_type;      /*     0     8 */
+	EntranceTC_properties_ro * train_type;           /*     8     8 */
+	EntranceTC_od *            id_type;              /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct ExitTC_PropertiesTypes {
+	ExitTC_properties_ro *     tcExitPort_type;      /*     0     8 */
+	ExitTC_properties_ro *     controller_type;      /*     8     8 */
+	ExitTC_od *                id_type;              /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct Controller_PropertiesTypes {
+	Controller_properties_ro * tcEntrance_type;      /*     0     8 */
+	Controller_properties_ro * tcExit_type;          /*     8     8 */
+	Controller_properties_ro * roadSign_type;        /*    16     8 */
+	Controller_properties_ro * railwaySign_type;     /*    24     8 */
+	Controller_properties_ro * gate_type;            /*    32     8 */
+	Controller_od *            nbEngagedTrains_type; /*    40     8 */
+
+	/* size: 48, cachelines: 1, members: 6 */
+	/* last cacheline: 48 bytes */
+};
+struct RoadSign_PropertiesTypes {
+	RoadSign_properties_ro *   controller_type;      /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct Gate_PropertiesTypes {
+	Gate_properties_ro *       controller_type;      /*     0     8 */
+
+	/* size: 8, cachelines: 1, members: 1 */
+	/* last cacheline: 8 bytes */
+};
+struct RailwaySign_PropertiesTypes {
+	RailwaySign_properties_ro * train_type;          /*     0     8 */
+	RailwaySign_properties_ro * controller_type;     /*     8     8 */
+	RailwaySign_od *           id_type;              /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct GpioLed_PropertiesTypes {
+	GpioLed_properties_ro *    railwaySign_type;     /*     0     8 */
+	GpioLed_od *               port_type;            /*     8     8 */
+	GpioLed_od *               pin_type;             /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct ButtonPort_PropertiesTypes {
+	ButtonPort_properties_ro * tcEntrance_type;      /*     0     8 */
+	ButtonPort_properties_ro * sensorInitializerForExit_type; /*     8     8 */
+	ButtonPort_properties_ro * tcExit_type;          /*    16     8 */
+	ButtonPort_properties_ro * sensorInitializerForEntrance_type; /*    24     8 */
+
+	/* size: 32, cachelines: 1, members: 4 */
+	/* last cacheline: 32 bytes */
+};
+struct GpioButton_PropertiesTypes {
+	GpioButton_properties_ro * peerButton_type;      /*     0     8 */
+	GpioButton_od *            port_type;            /*     8     8 */
+	GpioButton_od *            pin_type;             /*    16     8 */
+
+	/* size: 24, cachelines: 1, members: 3 */
+	/* last cacheline: 24 bytes */
+};
+struct Main_PropertiesTypes {
+	Main_properties_ro *       env_type;             /*     0     8 */
+	Main_properties_ro *       sys_type;             /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct Environment_PropertiesTypes {
+	Environment_properties_ro * tcExitPort_type;     /*     0     8 */
+	Environment_properties_ro * railwaySignLed_type; /*     8     8 */
+	Environment_properties_ro * tcExitSensor_type;   /*    16     8 */
+	Environment_properties_ro * sensorInitializer_type; /*    24     8 */
+	Environment_properties_ro * tcEntrancePort_type; /*    32     8 */
+	Environment_properties_ro * tcEntranceSensor_type; /*    40     8 */
+	Environment_properties_ro * railwaySignPort_type; /*    48     8 */
+
+	/* size: 56, cachelines: 1, members: 7 */
+	/* last cacheline: 56 bytes */
+};
+struct EnvEntranceTCPort_PropertiesTypes {
+	EnvEntranceTCPort_properties_ro * sysTcEntrancePort_type; /*     0     8 */
+	EnvEntranceTCPort_properties_ro * tcEntranceSensor_type; /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvExitTCPort_PropertiesTypes {
+	EnvExitTCPort_properties_ro * tcExitSensor_type; /*     0     8 */
+	EnvExitTCPort_properties_ro * sysTcExitPort_type; /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvRailwaySignPort_PropertiesTypes {
+	EnvRailwaySignPort_properties_ro * sysRailwaySignPort_type; /*     0     8 */
+	EnvRailwaySignPort_properties_ro * railwaySignLed_type; /*     8     8 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* last cacheline: 16 bytes */
+};
+struct SensorInitializer_PropertiesTypes {
+	SensorInitializer_properties_ro * tcEntrance_type; /*     0     8 */
+	SensorInitializer_properties_ro * tcExit_type;   /*     8     8 */
+	SensorInitializer_od *     tcEntrancePort0_type; /*    16     8 */
+	SensorInitializer_od *     tcEntrancePin0_type;  /*    24     8 */
+	SensorInitializer_od *     tcEntrancePort1_type; /*    32     8 */
+	SensorInitializer_od *     tcEntrancePin1_type;  /*    40     8 */
+	SensorInitializer_od *     tcExitPort_type;      /*    48     8 */
+	SensorInitializer_od *     tcExitPin_type;       /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+
+	/* size: 64, cachelines: 1, members: 8 */
+};
+struct ActivationProvider_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ActivationUser_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct AuthorizationProvider_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct AuthorizationUser_PropertiesTypes {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct System_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const System_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	System_mutability          mutability;           /*     8     2 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 6 */
+	/* last cacheline: 16 bytes */
+};
+struct EntranceTCPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const EntranceTCPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	EntranceTCPort_mutability  mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct ExitTCPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const ExitTCPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	ExitTCPort_mutability      mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct RailwaySignPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const RailwaySignPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	RailwaySignPort_mutability mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct EntranceTC_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const EntranceTC_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	EntranceTC_mutability      mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct ExitTC_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const ExitTC_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	ExitTC_mutability          mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct Controller_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const Controller_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	Controller_mutability      mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct RoadSign_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const RoadSign_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	RoadSign_mutability        mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct Gate_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const Gate_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	Gate_mutability            mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct RailwaySign_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const RailwaySign_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	RailwaySign_mutability     mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct GpioLed_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const GpioLed_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	GpioLed_mutability         mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct ButtonPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const ButtonPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	ButtonPort_mutability      mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct GpioButton_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const GpioButton_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	GpioButton_mutability      mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct Main_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const Main_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	Main_mutability            mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct Environment_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const Environment_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	Environment_mutability     mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvEntranceTCPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const EnvEntranceTCPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	EnvEntranceTCPort_mutability mutability;         /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvExitTCPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const EnvExitTCPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	EnvExitTCPort_mutability   mutability;           /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct EnvRailwaySignPort_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const EnvRailwaySignPort_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	EnvRailwaySignPort_mutability mutability;        /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct SensorInitializer_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const SensorInitializer_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	SensorInitializer_mutability mutability;         /*     8     1 */
+
+	/* size: 16, cachelines: 1, members: 2 */
+	/* padding: 7 */
+	/* last cacheline: 16 bytes */
+};
+struct ActivationProvider_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const ActivationProvider_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	ActivationProvider_mutability mutability;        /*     8     0 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct ActivationUser_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const ActivationUser_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	ActivationUser_mutability  mutability;           /*     8     0 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct AuthorizationProvider_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const AuthorizationProvider_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	AuthorizationProvider_mutability mutability;     /*     8     0 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct AuthorizationUser_classInfo {
+	union {
+		UML_Class *        type;                 /*           8 */
+		const AuthorizationUser_PropertiesTypes  * properties_types; /*           8 */
+	};                                               /*     0     8 */
+	AuthorizationUser_mutability mutability;         /*     8     0 */
+
+	/* size: 8, cachelines: 1, members: 2 */
+	/* last cacheline: 8 bytes */
+};
+struct EntranceTC_Object {
+	char *                     name;                 /*     0     8 */
+	EntranceTC_classInfo *     classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	EntranceTC_properties_ro * properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	EntranceTC_store *         store;                /*    40     8 */
+	EntranceTC_operations *    operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EntranceTC_od *            properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct ExitTC_Object {
+	char *                     name;                 /*     0     8 */
+	ExitTC_classInfo *         classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	ExitTC_properties_ro *     properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	ExitTC_store *             store;                /*    40     8 */
+	ExitTC_operations *        operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	ExitTC_od *                properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct Controller_Object {
+	char *                     name;                 /*     0     8 */
+	Controller_classInfo *     classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	Controller_properties_ro * properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	Controller_store *         store;                /*    40     8 */
+	Controller_operations *    operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	Controller_od *            properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct RoadSign_Object {
+	char *                     name;                 /*     0     8 */
+	RoadSign_classInfo *       classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	RoadSign_properties_ro *   properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	RoadSign_store *           store;                /*    40     8 */
+	RoadSign_operations *      operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	RoadSign_od *              properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct Gate_Object {
+	char *                     name;                 /*     0     8 */
+	Gate_classInfo *           classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	Gate_properties_ro *       properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	Gate_store *               store;                /*    40     8 */
+	Gate_operations *          operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	Gate_od *                  properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct RailwaySign_Object {
+	char *                     name;                 /*     0     8 */
+	RailwaySign_classInfo *    classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	RailwaySign_properties_ro * properties_ro;       /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	RailwaySign_store *        store;                /*    40     8 */
+	RailwaySign_operations *   operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	RailwaySign_od *           properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct GpioLed_Object {
+	char *                     name;                 /*     0     8 */
+	GpioLed_classInfo *        classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	GpioLed_properties_ro *    properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	GpioLed_store *            store;                /*    40     8 */
+	GpioLed_operations *       operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	GpioLed_od *               properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct GpioButton_Object {
+	char *                     name;                 /*     0     8 */
+	GpioButton_classInfo *     classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	GpioButton_properties_ro * properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	GpioButton_store *         store;                /*    40     8 */
+	GpioButton_operations *    operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	GpioButton_od *            properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct SensorInitializer_Object {
+	char *                     name;                 /*     0     8 */
+	SensorInitializer_classInfo * classInfo;         /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	SensorInitializer_properties_ro * properties_ro; /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	SensorInitializer_store *  store;                /*    40     8 */
+	SensorInitializer_operations * operations;       /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	SensorInitializer_od *     properties_rw;        /*    80     8 */
+	UML_StateMachine *         stateMachine;         /*    88     8 */
+	uint32_t                   eventParamsSize;      /*    96     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EventPool *                eventPool;            /*   104     8 */
+	void *                     reorganize_buffer;    /*   112     8 */
+	NbOutgoings_t *            fireables;            /*   120     8 */
+	/* --- cacheline 2 boundary (128 bytes) --- */
+	NbFireables_t              nbFireables;          /*   128     1 */
+	NbOutgoings_t              maxOutgoings;         /*   129     1 */
+	NbFireables_t              fireablesMax;         /*   130     1 */
+	FireablesLength_t          fireablesLength;      /*   131     1 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	uint32_t *                 store_cs;             /*   136     8 */
+	void *                     store_ep_params;      /*   144     8 */
+	_Bool                      in_environment;       /*   152     1 */
+
+	/* size: 160, cachelines: 3, members: 23 */
+	/* sum members: 127, holes: 5, sum holes: 26 */
+	/* padding: 7 */
+	/* last cacheline: 32 bytes */
+};
+struct ActiveObjects {
+	GpioButton_Object *        instMain_env_tcEntranceSensor0; /*     0     8 */
+	GpioButton_Object *        instMain_env_tcEntranceSensor1; /*     8     8 */
+	GpioButton_Object *        instMain_env_tcExitSensor; /*    16     8 */
+	GpioLed_Object *           instMain_env_railwaySignLed; /*    24     8 */
+	SensorInitializer_Object * instMain_env_sensorInitializer; /*    32     8 */
+	EntranceTC_Object *        instMain_sys_tcEntrance0; /*    40     8 */
+	EntranceTC_Object *        instMain_sys_tcEntrance1; /*    48     8 */
+	ExitTC_Object *            instMain_sys_tcExit;  /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	Controller_Object *        instMain_sys_controller; /*    64     8 */
+	RailwaySign_Object *       instMain_sys_railwaySign; /*    72     8 */
+	RoadSign_Object *          instMain_sys_roadSign; /*    80     8 */
+	Gate_Object *              instMain_sys_gate;    /*    88     8 */
+
+	/* size: 96, cachelines: 2, members: 12 */
+	/* last cacheline: 32 bytes */
+};
+struct System_Object {
+	char *                     name;                 /*     0     8 */
+	System_classInfo *         classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	System_properties_ro *     properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	System_store *             store;                /*    40     8 */
+	System_operations *        operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	System_od *                properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct EntranceTCPort_Object {
+	char *                     name;                 /*     0     8 */
+	EntranceTCPort_classInfo * classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	EntranceTCPort_properties_ro * properties_ro;    /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	EntranceTCPort_store *     store;                /*    40     8 */
+	EntranceTCPort_operations * operations;          /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EntranceTCPort_od *        properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct ExitTCPort_Object {
+	char *                     name;                 /*     0     8 */
+	ExitTCPort_classInfo *     classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	ExitTCPort_properties_ro * properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	ExitTCPort_store *         store;                /*    40     8 */
+	ExitTCPort_operations *    operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	ExitTCPort_od *            properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct RailwaySignPort_Object {
+	char *                     name;                 /*     0     8 */
+	RailwaySignPort_classInfo * classInfo;           /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	RailwaySignPort_properties_ro * properties_ro;   /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	RailwaySignPort_store *    store;                /*    40     8 */
+	RailwaySignPort_operations * operations;         /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	RailwaySignPort_od *       properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct ButtonPort_Object {
+	char *                     name;                 /*     0     8 */
+	ButtonPort_classInfo *     classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	ButtonPort_properties_ro * properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	ButtonPort_store *         store;                /*    40     8 */
+	ButtonPort_operations *    operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	ButtonPort_od *            properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct Main_Object {
+	char *                     name;                 /*     0     8 */
+	Main_classInfo *           classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	Main_properties_ro *       properties_ro;        /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	Main_store *               store;                /*    40     8 */
+	Main_operations *          operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	Main_od *                  properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct Environment_Object {
+	char *                     name;                 /*     0     8 */
+	Environment_classInfo *    classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	Environment_properties_ro * properties_ro;       /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	Environment_store *        store;                /*    40     8 */
+	Environment_operations *   operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	Environment_od *           properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct EnvEntranceTCPort_Object {
+	char *                     name;                 /*     0     8 */
+	EnvEntranceTCPort_classInfo * classInfo;         /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	EnvEntranceTCPort_properties_ro * properties_ro; /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	EnvEntranceTCPort_store *  store;                /*    40     8 */
+	EnvEntranceTCPort_operations * operations;       /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EnvEntranceTCPort_od *     properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct EnvExitTCPort_Object {
+	char *                     name;                 /*     0     8 */
+	EnvExitTCPort_classInfo *  classInfo;            /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	EnvExitTCPort_properties_ro * properties_ro;     /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	EnvExitTCPort_store *      store;                /*    40     8 */
+	EnvExitTCPort_operations * operations;           /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EnvExitTCPort_od *         properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct EnvRailwaySignPort_Object {
+	char *                     name;                 /*     0     8 */
+	EnvRailwaySignPort_classInfo * classInfo;        /*     8     8 */
+	UML_Property *             part;                 /*    16     8 */
+	EnvRailwaySignPort_properties_ro * properties_ro; /*    24     8 */
+	NbPropertiesRO_t           nb_properties_ro;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	EnvRailwaySignPort_store * store;                /*    40     8 */
+	EnvRailwaySignPort_operations * operations;      /*    48     8 */
+	ObjectMultiplicity_t       multiplicity_id;      /*    56     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	void *                     instance;             /*    64     8 */
+	uint32_t                   instanceSize;         /*    72     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	EnvRailwaySignPort_od *    properties_rw;        /*    80     8 */
+
+	/* size: 88, cachelines: 2, members: 11 */
+	/* sum members: 70, holes: 3, sum holes: 18 */
+	/* last cacheline: 24 bytes */
+};
+struct PassiveObjects {
+	Main_Object *              instMain;             /*     0     8 */
+	Environment_Object *       instMain_env;         /*     8     8 */
+	ButtonPort_Object *        instMain_env_tcEntranceSensor0_peerButton; /*    16     8 */
+	ButtonPort_Object *        instMain_env_tcEntranceSensor1_peerButton; /*    24     8 */
+	ButtonPort_Object *        instMain_env_tcExitSensor_peerButton; /*    32     8 */
+	EnvEntranceTCPort_Object * instMain_env_tcEntrancePort0; /*    40     8 */
+	EnvEntranceTCPort_Object * instMain_env_tcEntrancePort1; /*    48     8 */
+	EnvExitTCPort_Object *     instMain_env_tcExitPort; /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	EnvRailwaySignPort_Object * instMain_env_railwaySignPort; /*    64     8 */
+	System_Object *            instMain_sys;         /*    72     8 */
+	EntranceTCPort_Object *    instMain_sys_tcEntrancePort0; /*    80     8 */
+	EntranceTCPort_Object *    instMain_sys_tcEntrancePort1; /*    88     8 */
+	ExitTCPort_Object *        instMain_sys_tcExitPort; /*    96     8 */
+	RailwaySignPort_Object *   instMain_sys_railwaySignPort; /*   104     8 */
+
+	/* size: 112, cachelines: 2, members: 14 */
+	/* last cacheline: 48 bytes */
+};
+struct GpioLed_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ButtonPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvExitTCPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EntranceTCPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Controller_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct RailwaySign_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct GpioButton_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Main_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvEntranceTCPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct RoadSign_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Environment_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct SensorInitializer_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ExitTC_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct System_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct ExitTCPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct RailwaySignPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Gate_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EntranceTC_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct EnvRailwaySignPort_operations {
+
+	/* size: 0, cachelines: 0, members: 0 */
+};
+struct Ports {
+	UML_Port *                 LevelCrossingSystem__POINT__System__POINT__tcEntrancePort; /*     0     8 */
+	UML_Port *                 LevelCrossingSystem__POINT__System__POINT__tcExitPort; /*     8     8 */
+	UML_Port *                 LevelCrossingSystem__POINT__System__POINT__railwaySignPort; /*    16     8 */
+	UML_Port *                 DIL__POINT__GpioButton__POINT__peerButton; /*    24     8 */
+	UML_Port *                 LevelCrossingEnvironment__POINT__Environment__POINT__tcEntrancePort; /*    32     8 */
+	UML_Port *                 LevelCrossingEnvironment__POINT__Environment__POINT__tcExitPort; /*    40     8 */
+	UML_Port *                 LevelCrossingEnvironment__POINT__Environment__POINT__railwaySignPort; /*    48     8 */
+
+	/* size: 56, cachelines: 1, members: 7 */
+	/* last cacheline: 56 bytes */
+};
+struct Interpreter {
+	InterpreterMode            status;               /*     0     4 */
+
+	/* XXX 4 bytes hole, try to pack */
+
+	ActiveObject * *           activeObjects;        /*     8     8 */
+	NbActiveObjects_t          offsetActiveObjectsId; /*    16     1 */
+	NbActiveObjects_t          nbActiveObjects;      /*    17     1 */
+
+	/* XXX 6 bytes hole, try to pack */
+
+	PassiveObject * *          passiveObjects;       /*    24     8 */
+	NbPassiveObjects_t         nbPassiveObjects;     /*    32     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	void *                     store;                /*    40     8 */
+	StoreSize_t                storeSize;            /*    48     2 */
+
+	/* size: 56, cachelines: 1, members: 8 */
+	/* sum members: 33, holes: 3, sum holes: 17 */
+	/* padding: 6 */
+	/* last cacheline: 56 bytes */
+};

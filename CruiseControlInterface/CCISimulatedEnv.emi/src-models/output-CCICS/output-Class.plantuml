@@ -1,0 +1,25 @@
+
+
+@startuml
+
+
+	class "[[CCISystem%3A%3Asystem%3A%3ACCIButtonsPort-Class.svg CCISystem::system::CCIButtonsPort]]" as CCISystem_system_CCIButtonsPort
+	class "[[CCIEnvironment%3A%3AEnvButtonsPort-Class.svg CCIEnvironment::EnvButtonsPort]]" as CCIEnvironment_EnvButtonsPort
+	class "[[CCISystem%3A%3Asystem%3A%3ACCIPedalPort-Class.svg CCISystem::system::CCIPedalPort]]" as CCISystem_system_CCIPedalPort
+	class "[[CCIEnvironment%3A%3AEnvPedalPort-Class.svg CCIEnvironment::EnvPedalPort]]" as CCIEnvironment_EnvPedalPort
+	class "[[CCISystem%3A%3Asystem%3A%3ACCIControlOnOffPort-Class.svg CCISystem::system::CCIControlOnOffPort]]" as CCISystem_system_CCIControlOnOffPort
+	class "[[CCIEnvironment%3A%3AEnvControlOnOffPort-Class.svg CCIEnvironment::EnvControlOnOffPort]]" as CCIEnvironment_EnvControlOnOffPort
+	class "[[CCISystem%3A%3Asystem%3A%3ACCISpeedPort-Class.svg CCISystem::system::CCISpeedPort]]" as CCISystem_system_CCISpeedPort
+	class "[[CCIEnvironment%3A%3AEnvSpeedPort-Class.svg CCIEnvironment::EnvSpeedPort]]" as CCIEnvironment_EnvSpeedPort
+	class "[[CCISystem%3A%3Asystem%3A%3ACCICruiseSpeedPort-Class.svg CCISystem::system::CCICruiseSpeedPort]]" as CCISystem_system_CCICruiseSpeedPort
+	class "[[CCIEnvironment%3A%3AEnvCruiseSpeedPort-Class.svg CCIEnvironment::EnvCruiseSpeedPort]]" as CCIEnvironment_EnvCruiseSpeedPort
+	class "Main" as CCICS_Main {
+		+♦ cci : [[CCISystem%3A%3Asystem%3A%3ACCI-Class.svg CCI]]
+		+♦ env : [[CCIEnvironment%3A%3AEnv-Class.svg Env]]
+	}
+	CCISystem_system_CCIButtonsPort -- CCIEnvironment_EnvButtonsPort : envButtonsPort
+	CCISystem_system_CCIPedalPort -- CCIEnvironment_EnvPedalPort : envPedalPort
+	CCISystem_system_CCIControlOnOffPort -- CCIEnvironment_EnvControlOnOffPort : envControlOnOffPort
+	CCISystem_system_CCISpeedPort -- CCIEnvironment_EnvSpeedPort : envSpeedPort
+	CCISystem_system_CCICruiseSpeedPort -- CCIEnvironment_EnvCruiseSpeedPort : envCruiseSpeedPort
+@enduml

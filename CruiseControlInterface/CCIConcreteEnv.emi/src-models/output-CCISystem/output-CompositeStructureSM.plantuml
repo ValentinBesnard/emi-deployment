@@ -1,0 +1,36 @@
+
+
+@startuml
+	state CCI {
+		
+			state "controller : Controller" as CCISystem_system_CCI_controller
+			state "actuation : Actuation" as CCISystem_system_CCI_actuation
+			state "csm : CruiseSpeedManager" as CCISystem_system_CCI_csm
+			state "pm : PedalsManager" as CCISystem_system_CCI_pm {
+				
+					state "pmClutchPedalPort" as CCISystem_system_CCI_pm_CCISystem_system_PedalsManager_pmClutchPedalPort <<entrypoint>>
+					state "pmBreakPedalPort" as CCISystem_system_CCI_pm_CCISystem_system_PedalsManager_pmBreakPedalPort <<entrypoint>>
+					state "pmThrottlePedalPort" as CCISystem_system_CCI_pm_CCISystem_system_PedalsManager_pmThrottlePedalPort <<entrypoint>>
+				
+			}
+			state "buttonsPort : CCIButtonsPort" as CCISystem_system_CCI_buttonsPort <<entrypoint>>
+			state "clutchPedalPort : CCIPedalPort" as CCISystem_system_CCI_clutchPedalPort <<entrypoint>>
+			state "breakPedalPort : CCIPedalPort" as CCISystem_system_CCI_breakPedalPort <<entrypoint>>
+			state "throttlePedalPort : CCIPedalPort" as CCISystem_system_CCI_throttlePedalPort <<entrypoint>>
+			state "controlOnOffPort : CCIControlOnOffPort" as CCISystem_system_CCI_controlOnOffPort <<entrypoint>>
+			state "speedPort : CCISpeedPort" as CCISystem_system_CCI_speedPort <<entrypoint>>
+			state "cruiseSpeedPort : CCICruiseSpeedPort" as CCISystem_system_CCI_cruiseSpeedPort <<entrypoint>>
+			CCISystem_system_CCI_pm_CCISystem_system_PedalsManager_pmClutchPedalPort --> CCISystem_system_CCI_clutchPedalPort
+			CCISystem_system_CCI_pm_CCISystem_system_PedalsManager_pmBreakPedalPort --> CCISystem_system_CCI_breakPedalPort
+			CCISystem_system_CCI_pm_CCISystem_system_PedalsManager_pmThrottlePedalPort --> CCISystem_system_CCI_throttlePedalPort
+			CCISystem_system_CCI_buttonsPort --> CCISystem_system_CCI_controller
+			CCISystem_system_CCI_controlOnOffPort --> CCISystem_system_CCI_actuation
+			CCISystem_system_CCI_speedPort --> CCISystem_system_CCI_actuation
+			CCISystem_system_CCI_cruiseSpeedPort --> CCISystem_system_CCI_csm
+			CCISystem_system_CCI_pm --> CCISystem_system_CCI_controller
+			CCISystem_system_CCI_actuation --> CCISystem_system_CCI_controller
+			CCISystem_system_CCI_csm --> CCISystem_system_CCI_controller
+			CCISystem_system_CCI_actuation --> CCISystem_system_CCI_csm
+		
+	}
+@enduml

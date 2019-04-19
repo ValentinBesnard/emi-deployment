@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PlantUML="PlantUML">
+  <PlantUML:Model>
+    <element xsi:type="PlantUML:StateDiagram">
+      <skinparams>
+        <commentsBefore>hide empty description
+skinparam shadowing false
+skinparam &lt;&lt;junction>>stateBackgroundColor white
+skinparam &lt;&lt;junction>>stateBorderColor white
+skinparam defaultFontName DejaVu Sans
+</commentsBefore>
+      </skinparams>
+      <region>
+        <elements xsi:type="PlantUML:State" name="Train" longName="Train">
+          <regions>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingEnvironment_Train_SM_R_Idle" longName="Idle"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingEnvironment_Train_SM_R_Far" longName="Far"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingEnvironment_Train_SM_R_Close" longName="Close"/>
+            <elements xsi:type="PlantUML:State" name="LevelCrossingEnvironment_Train_SM_R_Passing" longName="Passing"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/1" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true"/>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.1" isVertical="true">
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(AT(GET(this, tcEntrance), 0), activation, 0);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.1" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.2" isVertical="true">
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(AT(GET(this, tcEntrance), 1), activation, 1);]]&lt;/font></effect>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.2" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.3" isVertical="true">
+              <trigger>
+                <parts>authorization</parts>
+              </trigger>
+            </elements>
+            <elements xsi:type="PlantUML:ExternalTransition" source="/0/@element.0/@region/@elements.0/@regions.0/@elements.3" target="/0/@element.0/@region/@elements.0/@regions.0/@elements.0" isVertical="true">
+              <effect>&lt;font color=red>[[#{missing ABCD body}SEND(GET(this, tcExit), activation);]]&lt;/font></effect>
+            </elements>
+          </regions>
+        </elements>
+      </region>
+    </element>
+  </PlantUML:Model>
+  <PlantUML:State name="[*]" longName="Initial"/>
+</xmi:XMI>

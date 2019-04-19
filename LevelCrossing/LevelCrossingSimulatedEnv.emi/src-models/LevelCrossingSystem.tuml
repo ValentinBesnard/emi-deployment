@@ -1,0 +1,218 @@
+model LevelCrossingSystem with(
+	private "DAL.uml#DAL.activation_SE",
+	private "DAL.uml#DAL.I_Activation",
+	private "DAL.uml#DAL.I_Authorization",
+	private "DAL.uml#DAL.ActivationProvider",
+	private "DAL.uml#DAL.AuthorizationUser"
+) {
+
+	primitiveType Integer;
+	primitiveType Boolean;
+
+	instance instEntranceTrackCircuit of EntranceTC {
+		id = 1;
+	}
+
+	instance instExitTC of ExitTC {
+		id = 2;
+	}
+
+	class System {
+		public composite tcEntrance[2-2] : EntranceTC = instEntranceTrackCircuit;
+		public composite tcExit[1-1] : ExitTC = instExitTC;
+		public composite controller[1-1] : Controller;
+		public composite railwaySign[1-1] : RailwaySign;
+		public composite roadSign[1-1] : RoadSign;
+		public composite gate[1-1] : Gate;
+
+		public composite port tcEntrancePort[2-2] : EntranceTCPort;
+		public composite port tcExitPort[1-1] : ExitTCPort;
+		public composite port railwaySignPort[1-1] : RailwaySignPort;
+
+		connector "c1" : Controller_Gate between controller and gate;
+		connector "c2" : Controller_EntranceTC between controller and tcEntrance;
+		connector "c3" : Controller_ExitTC between controller and tcExit;
+		connector "c4" : Controller_RoadSign between controller and roadSign;
+		connector "c5" : EntranceTCPort_EntranceTC between tcEntrancePort and tcEntrance;
+		connector "c6" : ExitTCPort_ExitTC between tcExitPort and tcExit;
+		connector "c7" : Controller_RailwaySign between controller and railwaySign;
+		connector "c8" : RailwaySign_RailwaySignPort between railwaySign and railwaySignPort;
+	}
+
+	signal entranceDetection {
+		id[1-1] : Integer;
+	}
+	signalEvent entranceDetection_SE of entranceDetection;
+	signal exitDetection {
+		id[1-1] : Integer;
+	}
+	signalEvent exitDetection_SE of exitDetection;
+
+	signal switchOn;
+	signalEvent switchOn_SE of switchOn;
+	signal switchOff;
+	signalEvent switchOff_SE of switchOff;
+
+	signal roadSignOn;
+	signalEvent roadSignOn_SE of roadSignOn;
+	signal roadSignOff;
+	signalEvent roadSignOff_SE of roadSignOff;
+
+	signal open;
+	signalEvent open_SE of open;
+	signal close;
+	signalEvent close_SE of close;
+
+	signal gateOpen;
+	signalEvent gateOpen_SE of gateOpen;
+	signal gateClosed;
+	signalEvent gateClosed_SE of gateClosed;
+
+	signal railwaySignOn;
+	signalEvent railwaySignOn_SE of railwaySignOn;
+
+	association Controller_Gate {
+		controller[1-1] : Controller in Controller_Gate;
+		gate[1-1] : Gate in Controller_Gate;
+	}
+	association Controller_EntranceTC {
+		controller[1-1] : Controller in Controller_EntranceTC;
+		tcEntrance[2-2] : EntranceTC in Controller_EntranceTC;
+	}
+	association Controller_ExitTC {
+		controller[1-1] : Controller in Controller_ExitTC;
+		tcExit[1-1] : ExitTC in Controller_ExitTC;
+	}
+	association Controller_RoadSign {
+		controller[1-1] : Controller in Controller_RoadSign;
+		roadSign[1-1] : RoadSign in Controller_RoadSign;
+	}
+	association EntranceTCPort_EntranceTC {
+		train[1-1] : EntranceTCPort in EntranceTCPort_EntranceTC;
+		tcEntrance[1-1] : EntranceTC in EntranceTCPort_EntranceTC;
+	}
+	association ExitTCPort_ExitTC {
+		tcExitPort[1-1] : ExitTCPort in ExitTCPort_ExitTC;
+		tcExit[1-1] : ExitTC in ExitTCPort_ExitTC;
+	}
+	association Controller_RailwaySign {
+		controller[1-1] : Controller in Controller_RailwaySign;
+		railwaySign[1-1] : RailwaySign in Controller_RailwaySign;
+	}
+	association RailwaySign_RailwaySignPort {
+		railwaySign[1-1] : RailwaySign in RailwaySign_RailwaySignPort;
+		train[1-1] : RailwaySignPort in RailwaySign_RailwaySignPort;
+	}
+
+	class EntranceTCPort extends ActivationProvider {}
+
+	class ExitTCPort extends ActivationProvider {}
+
+	class RailwaySignPort extends AuthorizationUser {}
+
+	class |EntranceTC| behavesAs SM extends ActivationProvider {
+		private id[1-1] : Integer;
+
+		stateMachine SM {
+			region R {
+				Initial -> Detection;
+				Detection -> Detection : activation_SE /
+						opaqueBehavior = 'SEND(GET(this, controller), entranceDetection, params->id);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |ExitTC| behavesAs SM extends ActivationProvider {
+		private id[1-1] : Integer;
+
+		stateMachine SM {
+			region R {
+				Initial -> Detection;
+				Detection -> Detection : activation_SE /
+						opaqueBehavior = 'SEND(GET(this, controller), exitDetection, GET(this, id));' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |Controller| behavesAs SM receives entranceDetection(entranceDetection), exitDetection(exitDetection),
+					roadSignOn(roadSignOn), roadSignOff(roadSignOff),
+					railwaySignOn(railwaySignOn),
+					gateOpen(gateOpen), gateClosed(gateClosed) {
+		
+		private nbEngagedTrains[1-1] : Integer;
+
+		stateMachine SM {
+			region R {
+				Initial -> Idle: /
+						opaqueBehavior = 'SET(this, nbEngagedTrains, 0);' in  C;;
+
+				Idle -> WaitRoadSignOn : entranceDetection_SE  [constraint "" is opaqueExpression = 'GET(this, nbEngagedTrains) == 0' in C;] /
+						opaqueBehavior = 'SEND(GET(this, roadSign), switchOn);' in  C;;
+				WaitRoadSignOn -> FarDetection : roadSignOn_SE  / ;
+				FarDetection -> CloseDetection : entranceDetection_SE /
+						opaqueBehavior = 'SEND(GET(this, gate), close); INC(this, nbEngagedTrains, 1);' in  C;;
+				CloseDetection -> Idle : gateClosed_SE /
+						opaqueBehavior = 'SEND(GET(this, railwaySign), switchOff);' in  C;;
+
+				Idle -> WaitRailwaySignOn : exitDetection_SE [constraint "" is opaqueExpression = 'GET(this, nbEngagedTrains) == 1' in C;] /
+						opaqueBehavior = 'SEND(GET(this, railwaySign), switchOn);' in  C;;
+				WaitRailwaySignOn -> WaitGateOpen : railwaySignOn_SE /
+						opaqueBehavior = 'SEND(GET(this, gate), open); DEC(this, nbEngagedTrains, 1);' in  C;;
+				WaitGateOpen -> WaitRoadSignOff : gateOpen_SE /
+						opaqueBehavior = 'SEND(GET(this, roadSign), switchOff);' in  C;;
+				WaitRoadSignOff -> Idle : roadSignOff_SE / ;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |RoadSign| behavesAs SM 
+			receives switchOn(switchOn), switchOff(switchOff) {
+		
+		stateMachine SM {
+			region R {
+				Initial -> Inactive;
+				Inactive -> Active : switchOn_SE / 
+						opaqueBehavior = 'SEND(GET(this, controller), roadSignOn);' in C;;
+				Active -> Inactive : switchOff_SE / 
+						opaqueBehavior = 'SEND(GET(this, controller), roadSignOff);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |Gate| behavesAs SM 
+			receives open(open), close(close) {
+		
+		stateMachine SM {
+			region R {
+				Initial -> Open;
+				Open -> Closed : close_SE /
+						opaqueBehavior = 'SEND(GET(this, controller), gateClosed);' in C;;
+				Closed -> Open : open_SE /
+						opaqueBehavior = 'SEND(GET(this, controller), gateOpen);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+	class |RailwaySign| behavesAs SM extends AuthorizationUser
+			receives switchOn(switchOn), switchOff(switchOff) {
+		
+		private id[1-1] : Integer;
+
+		stateMachine SM {
+			region R {
+				Initial -> Active;
+				Active -> Inactive : switchOff_SE /
+					opaqueBehavior = 'SEND(GET(this, train), authorization);' in C;;
+				Inactive -> Active : switchOn_SE /
+					opaqueBehavior = 'SEND(GET(this, controller), railwaySignOn);' in C;;
+				initial pseudoState Initial;
+			}
+		}
+	}
+
+}

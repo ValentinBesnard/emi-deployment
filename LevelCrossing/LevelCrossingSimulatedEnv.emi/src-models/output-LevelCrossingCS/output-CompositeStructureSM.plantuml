@@ -1,0 +1,16 @@
+
+
+@startuml
+	state Main {
+		
+			state "env : Environment" as LevelCrossingCS_Main_env {
+				
+					
+				
+			}
+			state "sys : System" as LevelCrossingCS_Main_sys {
+				
+					
+				
+			}
+			

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="ButtonLedsEnvironment" name="ButtonLedsEnvironment">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.lightOn_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.lightOff_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DAL.uml#DAL.LightProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DAL.uml#DAL.ButtonUser"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DAL.uml#DAL.ButtonReceiverPort"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsEnvironment.Env" name="Env">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="ButtonLedsEnvironment.Env.envLedPort" name="envLedPort" type="ButtonLedsEnvironment.EnvLedPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a6" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a7" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="ButtonLedsEnvironment.Env.envButtonPort" name="envButtonPort" type="ButtonLedsEnvironment.EnvButtonPort" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a8" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a9" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="ButtonLedsEnvironment.Env.envLed" name="envLed" type="ButtonLedsEnvironment.SimulatedLight" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a10" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a11" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="ButtonLedsEnvironment.Env.envButton" name="envButton" type="ButtonLedsEnvironment.SimulatedButton" isUnique="false" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a12" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a13" value="1"/>
+    </ownedAttribute>
+    <ownedConnector xmi:id="ButtonLedsEnvironment.Env.c2" name="c2" type="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort">
+      <end xmi:id="a14" partWithPort="ButtonLedsEnvironment.Env.envButton" role="ButtonLedsEnvironment.SimulatedButton.peer"/>
+      <end xmi:id="a15" role="ButtonLedsEnvironment.Env.envButtonPort"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="ButtonLedsEnvironment.Env.c1" name="c1" type="ButtonLedsEnvironment.EnvLedPort_SimulatedLight">
+      <end xmi:id="a16" role="ButtonLedsEnvironment.Env.envLedPort"/>
+      <end xmi:id="a17" role="ButtonLedsEnvironment.Env.envLed"/>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsEnvironment.EnvLedPort" name="EnvLedPort">
+    <generalization xmi:id="a18">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.LightProvider"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsEnvironment.EnvButtonPort" name="EnvButtonPort">
+    <generalization xmi:id="a19">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.ButtonUser"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="ButtonLedsEnvironment.EnvLedPort_SimulatedLight" name="EnvLedPort_SimulatedLight" memberEnd="ButtonLedsEnvironment.EnvLedPort_SimulatedLight.ledPort ButtonLedsEnvironment.EnvLedPort_SimulatedLight.led">
+    <ownedEnd xmi:id="ButtonLedsEnvironment.EnvLedPort_SimulatedLight.ledPort" name="ledPort" type="ButtonLedsEnvironment.EnvLedPort" isUnique="false" association="ButtonLedsEnvironment.EnvLedPort_SimulatedLight">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a20" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a21" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="ButtonLedsEnvironment.EnvLedPort_SimulatedLight.led" name="led" type="ButtonLedsEnvironment.SimulatedLight" isUnique="false" association="ButtonLedsEnvironment.EnvLedPort_SimulatedLight">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a22" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a23" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort" name="EnvButtonPort_ButtonReceiverPort" memberEnd="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort.button ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort.buttonPort">
+    <ownedEnd xmi:id="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort.button" name="button" isUnique="false" association="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort">
+      <type xmi:type="uml:Class" href="../DAL.uml#DAL.ButtonReceiverPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a24" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a25" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort.buttonPort" name="buttonPort" type="ButtonLedsEnvironment.EnvButtonPort" isUnique="false" association="ButtonLedsEnvironment.EnvButtonPort_ButtonReceiverPort">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a26" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a27" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsEnvironment.SimulatedLight" name="SimulatedLight" classifierBehavior="ButtonLedsEnvironment.SimulatedLight.SM" isActive="true">
+    <generalization xmi:id="a28">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.LightProvider"/>
+    </generalization>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="ButtonLedsEnvironment.SimulatedLight.SM" name="SM">
+      <region xmi:id="ButtonLedsEnvironment.SimulatedLight.SM.R" name="R">
+        <transition xmi:id="a29" source="ButtonLedsEnvironment.SimulatedLight.SM.R.Initial" target="ButtonLedsEnvironment.SimulatedLight.SM.R.Off"/>
+        <transition xmi:id="a30" source="ButtonLedsEnvironment.SimulatedLight.SM.R.Off" target="ButtonLedsEnvironment.SimulatedLight.SM.R.On">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a31">
+            <language>C</language>
+            <body>printf(&quot;LED ON\n&quot;);</body>
+          </effect>
+          <trigger xmi:id="a32">
+            <event xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.lightOn_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="a33" source="ButtonLedsEnvironment.SimulatedLight.SM.R.On" target="ButtonLedsEnvironment.SimulatedLight.SM.R.Off">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a34">
+            <language>C</language>
+            <body>printf(&quot;LED OFF\n&quot;);</body>
+          </effect>
+          <trigger xmi:id="a35">
+            <event xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.lightOff_SE"/>
+          </trigger>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="ButtonLedsEnvironment.SimulatedLight.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="ButtonLedsEnvironment.SimulatedLight.SM.R.Off" name="Off"/>
+        <subvertex xmi:type="uml:State" xmi:id="ButtonLedsEnvironment.SimulatedLight.SM.R.On" name="On"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="ButtonLedsEnvironment.SimulatedButton" name="SimulatedButton" classifierBehavior="ButtonLedsEnvironment.SimulatedButton.SM" isActive="true">
+    <generalization xmi:id="a36">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.ButtonUser"/>
+    </generalization>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="ButtonLedsEnvironment.SimulatedButton.peer" name="peer" isUnique="false" aggregation="composite" isBehavior="true">
+      <type xmi:type="uml:Class" href="../DAL.uml#DAL.ButtonReceiverPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a37" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a38" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="ButtonLedsEnvironment.SimulatedButton.SM" name="SM">
+      <region xmi:id="ButtonLedsEnvironment.SimulatedButton.SM.R" name="R">
+        <transition xmi:id="a39" source="ButtonLedsEnvironment.SimulatedButton.SM.R.Initial" target="ButtonLedsEnvironment.SimulatedButton.SM.R.Released"/>
+        <transition xmi:id="a40" source="ButtonLedsEnvironment.SimulatedButton.SM.R.Released" target="ButtonLedsEnvironment.SimulatedButton.SM.R.Pressed">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a41">
+            <language>C</language>
+            <body>SEND(GET(this, peer), buttonPressed); printf(&quot;BUTTON PRESSED\n&quot;);</body>
+          </effect>
+        </transition>
+        <transition xmi:id="a42" source="ButtonLedsEnvironment.SimulatedButton.SM.R.Pressed" target="ButtonLedsEnvironment.SimulatedButton.SM.R.Released">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a43">
+            <language>C</language>
+            <body>SEND(GET(this, peer), buttonReleased); printf(&quot;BUTTON RELEASED\n&quot;);</body>
+          </effect>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="ButtonLedsEnvironment.SimulatedButton.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="ButtonLedsEnvironment.SimulatedButton.SM.R.Released" name="Released"/>
+        <subvertex xmi:type="uml:State" xmi:id="ButtonLedsEnvironment.SimulatedButton.SM.R.Pressed" name="Pressed"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+</uml:Model>

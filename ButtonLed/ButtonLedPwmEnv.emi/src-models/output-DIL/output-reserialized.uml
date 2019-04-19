@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="DIL" name="DIL">
+  <elementImport xmi:id="a1" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.lightOn_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a2" visibility="private">
+    <importedElement xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.lightOff_SE"/>
+  </elementImport>
+  <elementImport xmi:id="a3" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DAL.uml#DAL.LightProvider"/>
+  </elementImport>
+  <elementImport xmi:id="a4" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DAL.uml#DAL.ButtonUser"/>
+  </elementImport>
+  <elementImport xmi:id="a5" visibility="private">
+    <importedElement xmi:type="uml:Class" href="../DAL.uml#DAL.ButtonReceiverPort"/>
+  </elementImport>
+  <elementImport xmi:id="a6" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPort"/>
+  </elementImport>
+  <elementImport xmi:id="a7" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPin"/>
+  </elementImport>
+  <elementImport xmi:id="a8" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_Timer"/>
+  </elementImport>
+  <elementImport xmi:id="a9" visibility="private">
+    <importedElement xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_PwmChannel"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="DIL.PwmLed" name="PwmLed" classifierBehavior="DIL.PwmLed.SM" isActive="true">
+    <generalization xmi:id="a10">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.LightProvider"/>
+    </generalization>
+    <ownedAttribute xmi:id="DIL.PwmLed.timer" name="timer" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_Timer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a11" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a12" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="DIL.PwmLed.channel" name="channel" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_PwmChannel"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a13" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a14" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="DIL.PwmLed.SM" name="SM">
+      <region xmi:id="DIL.PwmLed.SM.R" name="R">
+        <transition xmi:id="a15" source="DIL.PwmLed.SM.R.Initial" target="DIL.PwmLed.SM.R.Off">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a16">
+            <language>C</language>
+            <body>UML_PwmInit(GET(this, timer), GET(this, channel));</body>
+          </effect>
+        </transition>
+        <transition xmi:id="a17" source="DIL.PwmLed.SM.R.Off" target="DIL.PwmLed.SM.R.On">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a18">
+            <language>C</language>
+            <body>UML_PwmRun(GET(this, timer), GET(this, channel), 50);</body>
+          </effect>
+          <trigger xmi:id="a19">
+            <event xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.lightOn_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="a20" source="DIL.PwmLed.SM.R.On" target="DIL.PwmLed.SM.R.Off">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a21">
+            <language>C</language>
+            <body>UML_PwmStop(GET(this, timer), GET(this, channel));</body>
+          </effect>
+          <trigger xmi:id="a22">
+            <event xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.lightOff_SE"/>
+          </trigger>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="DIL.PwmLed.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="DIL.PwmLed.SM.R.Off" name="Off"/>
+        <subvertex xmi:type="uml:State" xmi:id="DIL.PwmLed.SM.R.On" name="On"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DIL.GpioLed" name="GpioLed" classifierBehavior="DIL.GpioLed.SM" isActive="true">
+    <generalization xmi:id="a23">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.LightProvider"/>
+    </generalization>
+    <ownedAttribute xmi:id="DIL.GpioLed.port" name="port" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a24" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a25" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="DIL.GpioLed.pin" name="pin" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPin"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a26" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a27" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="DIL.GpioLed.SM" name="SM">
+      <region xmi:id="DIL.GpioLed.SM.R" name="R">
+        <transition xmi:id="a28" source="DIL.GpioLed.SM.R.Initial" target="DIL.GpioLed.SM.R.Off"/>
+        <transition xmi:id="a29" source="DIL.GpioLed.SM.R.Off" target="DIL.GpioLed.SM.R.On">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a30">
+            <language>C</language>
+            <body>UML_GpioSetBits(GET(this, port), GET(this, pin));</body>
+          </effect>
+          <trigger xmi:id="a31">
+            <event xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.lightOn_SE"/>
+          </trigger>
+        </transition>
+        <transition xmi:id="a32" source="DIL.GpioLed.SM.R.On" target="DIL.GpioLed.SM.R.Off">
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a33">
+            <language>C</language>
+            <body>UML_GpioResetBits(GET(this, port), GET(this, pin));</body>
+          </effect>
+          <trigger xmi:id="a34">
+            <event xmi:type="uml:SignalEvent" href="../DAL.uml#DAL.lightOff_SE"/>
+          </trigger>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="DIL.GpioLed.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="DIL.GpioLed.SM.R.Off" name="Off"/>
+        <subvertex xmi:type="uml:State" xmi:id="DIL.GpioLed.SM.R.On" name="On"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="DIL.GpioButton" name="GpioButton" classifierBehavior="DIL.GpioButton.SM" isActive="true">
+    <generalization xmi:id="a35">
+      <general xmi:type="uml:Class" href="../DAL.uml#DAL.ButtonUser"/>
+    </generalization>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="DIL.GpioButton.peer" name="peer" visibility="private" isUnique="false" aggregation="composite" isBehavior="true">
+      <type xmi:type="uml:Class" href="../DAL.uml#DAL.ButtonReceiverPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a36" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a37" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="DIL.GpioButton.port" name="port" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPort"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a38" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a39" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="DIL.GpioButton.pin" name="pin" visibility="private" isUnique="false">
+      <type xmi:type="uml:Enumeration" href="../Target.uml#Target.UML_GpioPin"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a40" value="1"/>
+      <upperValue xmi:type="uml:LiteralInteger" xmi:id="a41" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="DIL.GpioButton.SM" name="SM">
+      <region xmi:id="DIL.GpioButton.SM.R" name="R">
+        <transition xmi:id="a42" source="DIL.GpioButton.SM.R.Initial" target="DIL.GpioButton.SM.R.Released"/>
+        <transition xmi:id="a43" source="DIL.GpioButton.SM.R.Released" target="DIL.GpioButton.SM.R.Pressed">
+          <ownedRule xmi:id="a44" name="">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a45">
+              <language>C</language>
+              <body>UML_GpioReadBits(GET(this, port), GET(this, pin)) == 1</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a46">
+            <language>C</language>
+            <body>SEND(GET(this, peer), buttonPressed);</body>
+          </effect>
+        </transition>
+        <transition xmi:id="a47" source="DIL.GpioButton.SM.R.Pressed" target="DIL.GpioButton.SM.R.Released">
+          <ownedRule xmi:id="a48" name="">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a49">
+              <language>C</language>
+              <body>UML_GpioReadBits(GET(this, port), GET(this, pin)) == 0</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:OpaqueBehavior" xmi:id="a50">
+            <language>C</language>
+            <body>SEND(GET(this, peer), buttonReleased);</body>
+          </effect>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="DIL.GpioButton.SM.R.Initial" name="Initial"/>
+        <subvertex xmi:type="uml:State" xmi:id="DIL.GpioButton.SM.R.Released" name="Released"/>
+        <subvertex xmi:type="uml:State" xmi:id="DIL.GpioButton.SM.R.Pressed" name="Pressed"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+</uml:Model>

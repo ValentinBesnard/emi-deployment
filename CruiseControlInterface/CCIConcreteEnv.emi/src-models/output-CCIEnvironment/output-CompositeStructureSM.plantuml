@@ -1,0 +1,75 @@
+
+
+@startuml
+	state Env {
+		
+			state "buttons : Buttons" as CCIEnvironment_Env_buttons {
+				
+					state "portStart" as CCIEnvironment_Env_buttons_CCIEnvironment_Buttons_portStart <<entrypoint>>
+					state "portSet" as CCIEnvironment_Env_buttons_CCIEnvironment_Buttons_portSet <<entrypoint>>
+					state "portPause" as CCIEnvironment_Env_buttons_CCIEnvironment_Buttons_portPause <<entrypoint>>
+					state "portResume" as CCIEnvironment_Env_buttons_CCIEnvironment_Buttons_portResume <<entrypoint>>
+					state "portInc" as CCIEnvironment_Env_buttons_CCIEnvironment_Buttons_portInc <<entrypoint>>
+					state "portDec" as CCIEnvironment_Env_buttons_CCIEnvironment_Buttons_portDec <<entrypoint>>
+					state "portStop" as CCIEnvironment_Env_buttons_CCIEnvironment_Buttons_portStop <<entrypoint>>
+				
+			}
+			state "clutchPedal : Pedal" as CCIEnvironment_Env_clutchPedal {
+				
+					state "pedalPeer" as CCIEnvironment_Env_clutchPedal_CCIEnvironment_Pedal_pedalPeer <<entrypoint>>
+				
+			}
+			state "breakPedal : Pedal" as CCIEnvironment_Env_breakPedal {
+				
+					state "pedalPeer" as CCIEnvironment_Env_breakPedal_CCIEnvironment_Pedal_pedalPeer <<entrypoint>>
+				
+			}
+			state "throttlePedal : Pedal" as CCIEnvironment_Env_throttlePedal {
+				
+					state "pedalPeer" as CCIEnvironment_Env_throttlePedal_CCIEnvironment_Pedal_pedalPeer <<entrypoint>>
+				
+			}
+			state "engine : Engine" as CCIEnvironment_Env_engine
+			state "buttonStart : GpioButton" as CCIEnvironment_Env_buttonStart {
+				
+					
+				
+			}
+			state "buttonSet : GpioButton" as CCIEnvironment_Env_buttonSet {
+				
+					
+				
+			}
+			state "buttonPause : GpioButton" as CCIEnvironment_Env_buttonPause {
+				
+					
+				
+			}
+			state "buttonResume : GpioButton" as CCIEnvironment_Env_buttonResume {
+				
+					
+				
+			}
+			state "buttonInc : GpioButton" as CCIEnvironment_Env_buttonInc {
+				
+					
+				
+			}
+			state "buttonDec : GpioButton" as CCIEnvironment_Env_buttonDec {
+				
+					
+				
+			}
+			state "buttonStop : GpioButton" as CCIEnvironment_Env_buttonStop {
+				
+					
+				
+			}
+			state "envButtonsPort : EnvButtonsPort" as CCIEnvironment_Env_envButtonsPort <<entrypoint>>
+			state "envClutchPedalPort : EnvPedalPort" as CCIEnvironment_Env_envClutchPedalPort <<entrypoint>>
+			state "envBreakPedalPort : EnvPedalPort" as CCIEnvironment_Env_envBreakPedalPort <<entrypoint>>
+			state "envThrottlePedalPort : EnvPedalPort" as CCIEnvironment_Env_envThrottlePedalPort <<entrypoint>>
+			state "envControlOnOffPort : EnvControlOnOffPort" as CCIEnvironment_Env_envControlOnOffPort <<entrypoint>>
+			state "envSpeedPort : EnvSpeedPort" as CCIEnvironment_Env_envSpeedPort <<entrypoint>>
+			state "envCruiseSpeedPort : EnvCruiseSpeedPort" as CCIEnvironment_Env_envCruiseSpeedPort <<entrypoint>>
+			CCIEnvironment_Env_buttons_CCIEnvironment_Buttons_portStart -->

@@ -1,0 +1,25 @@
+
+
+@startuml
+	state System {
+		
+			state "tcEntrance : EntranceTC" as LevelCrossingSystem_System_tcEntrance
+			state "tcExit : ExitTC" as LevelCrossingSystem_System_tcExit
+			state "controller : Controller" as LevelCrossingSystem_System_controller
+			state "railwaySign : RailwaySign" as LevelCrossingSystem_System_railwaySign
+			state "roadSign : RoadSign" as LevelCrossingSystem_System_roadSign
+			state "gate : Gate" as LevelCrossingSystem_System_gate
+			state "tcEntrancePort : EntranceTCPort" as LevelCrossingSystem_System_tcEntrancePort <<entrypoint>>
+			state "tcExitPort : ExitTCPort" as LevelCrossingSystem_System_tcExitPort <<entrypoint>>
+			state "railwaySignPort : RailwaySignPort" as LevelCrossingSystem_System_railwaySignPort <<entrypoint>>
+			LevelCrossingSystem_System_controller --> LevelCrossingSystem_System_gate
+			LevelCrossingSystem_System_controller --> LevelCrossingSystem_System_tcEntrance
+			LevelCrossingSystem_System_controller --> LevelCrossingSystem_System_tcExit
+			LevelCrossingSystem_System_controller --> LevelCrossingSystem_System_roadSign
+			LevelCrossingSystem_System_tcEntrancePort --> LevelCrossingSystem_System_tcEntrance
+			LevelCrossingSystem_System_tcExitPort --> LevelCrossingSystem_System_tcExit
+			LevelCrossingSystem_System_controller --> LevelCrossingSystem_System_railwaySign
+			LevelCrossingSystem_System_railwaySign --> LevelCrossingSystem_System_railwaySignPort
+		
+	}
+@enduml
