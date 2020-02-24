@@ -3,7 +3,7 @@
 
 This project presents sample UML models for modular deployment on embedded targets.
 Different environment models can be used for different purposes: simulation, verification, and execution on actual embedded boards.
-In this project, these models are executed using the Embedded Model Interpreter (EMI), verified with the [OBP2 model-checker (or Plug model-checker)](https://plug-obp.github.io/), and deployed on a STM32 discovery board.
+In this project, these models are executed using the Embedded Model Interpreter (EMI), verified with the [OBP2 model-checker](https://plug-obp.github.io/), and deployed on a STM32 discovery board.
 
 
 ## Sample UML Models
